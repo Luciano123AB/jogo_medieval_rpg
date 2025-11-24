@@ -10,7 +10,9 @@ class Batalha extends Model
     protected $fillable = [
         "nome",
         "nome_oponente",
+        "hp_maximo",
         "hp",
+        "hp_maximo_oponente",
         "hp_oponente",
         "vez",
         "ganhou",

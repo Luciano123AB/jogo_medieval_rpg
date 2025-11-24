@@ -224,7 +224,9 @@ class MainController extends Controller
             $nova_batalha = new Batalha();
             $nova_batalha->nome = session("player.usuario");
             $nova_batalha->nome_oponente = $nome_oponente;
+            $nova_batalha->hp_maximo = session("player.personagem.hp") * session("player.nivel");
             $nova_batalha->hp = session("player.personagem.hp") * session("player.nivel");
+            $nova_batalha->hp_maximo_oponente = $oponente->hp * $nivel;
             $nova_batalha->hp_oponente = $oponente->hp * $nivel;
             $nova_batalha->vez = $vez;
             $nova_batalha->ganhou = null;
