@@ -158,6 +158,7 @@ class Batalhar extends Controller
         }
         $batalha->updated_at = date("Y-m-d H:i:s");
         $batalha->save();
+        $batalha->delete();
 
         session()->forget(["alerta_confirmar_render", "id_oponente", "foto_oponente", "nivel_oponente", "dados", "skill01", "skill02", "skill03"]);
 

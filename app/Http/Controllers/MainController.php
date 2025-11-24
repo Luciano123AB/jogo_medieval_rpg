@@ -157,7 +157,7 @@ class MainController extends Controller
 
     public function batalhasAndamento(): View {
 
-        $batalhas = Batalha::where("ganhou", null)->get();
+        $batalhas = Batalha::where("deleted_at", null)->get();
 
         session([
             "alerta" => [

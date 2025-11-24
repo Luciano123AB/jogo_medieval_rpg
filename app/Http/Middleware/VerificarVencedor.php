@@ -51,6 +51,7 @@ class VerificarVencedor
                 }
                 $batalha->updated_at = date("Y-m-d H:i:s");
                 $batalha->save();
+                $batalha->delete();
                 
                 session([
                     "alerta_batalha" => [
@@ -119,6 +120,7 @@ class VerificarVencedor
                 
                 $batalha->updated_at = date("Y-m-d H:i:s");
                 $batalha->save();
+                $batalha->delete();
                 
                 session([
                     "alerta_batalha" => [

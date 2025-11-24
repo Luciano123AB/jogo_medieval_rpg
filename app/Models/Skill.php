@@ -14,6 +14,6 @@ class Skill extends Model
     ];
 
     public function personagem() {
-        return $this->belongsTo(Personagen::class);
+        return $this->belongsTo(Personagem::class);
     }
 }
