@@ -77,6 +77,8 @@ Route::prefix("/")->group(function () {
                 Route::get("atualizacao", "atualizacao")->name("atualizacao");
 
                 Route::get("registro_batalhas", "registroBatalhas")->name("registro");
+
+                Route::get("batalhas_andamento", "batalhasAndamento")->name("batalhas");
             });
         });
 

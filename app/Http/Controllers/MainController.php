@@ -155,6 +155,25 @@ class MainController extends Controller
             ->with("batalhas_derrotas", $batalhas_derrotas);
     }
 
+    public function batalhasAndamento(): View {
+
+        $batalhas = Batalha::where("ganhou", null)->get();
+
+        session([
+            "alerta" => [
+                "titulo" => "Batalhas em Andamento!",
+                "icone" => "bi-file-earmark-medical-fill",
+                "texto" => "Aqui você irá vizualizar todas as batalhas que estão acontecendo agora.",
+                "pagina" => "batalhas"
+            ]
+        ]);
+
+        return view("batalhas")
+            ->with("imagem", "recrutamento")
+            ->with("pagina", "Batalhas")
+            ->with("batalhas", $batalhas);
+    }
+
     public function preparacao(): View {
 
         $id = session("player.id");

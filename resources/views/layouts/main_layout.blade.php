@@ -17,7 +17,7 @@
     
     @include("layouts.navbar")
 
-    @include("layouts.audio_tema")
+    @include("layouts.subnavbar")
     
     @yield("content")
 
