@@ -76,12 +76,12 @@ class VerificarVencedor
                 session()->forget(["alerta_confirmar_render", "id_oponente", "foto_oponente", "nivel_oponente", "dados", "skill01", "skill02", "skill03"]);
     
                 $id = session("player.id");
-                $rota = "route(listagem)";
+                $rota = "route('listagem')";
                 $xp = 33.5;
 
                 if (session("nome_oponente") == "Computador") {
 
-                    $rota = "route(preparacao)";
+                    $rota = "route('preparacao')";
 
                     $batalha->perdeu = "Computador";
                 } else {
@@ -96,7 +96,7 @@ class VerificarVencedor
                     if ($player->xp >= 100) {
                         $player->nivel++;
                         $player->xp = 0;
-                        $rota = "home";
+                        $rota = "route('home')";
                     }
                 }
                 $player->quantidade_vitorias = $player->quantidade_vitorias + 1;

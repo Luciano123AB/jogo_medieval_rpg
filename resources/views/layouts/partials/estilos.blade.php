@@ -13,7 +13,7 @@
         top: 0;
         left: 0;
         width: 100vw;
-        height: 100vh;
+        height: 100%;
         background-image: url('{{ asset('assets/images/fundos/' . (session('tema') === 'escuro' ? "$imagem" . '.png' : "$imagem" . '_noite.png')) }}');
         background-size: cover;
         background-repeat: no-repeat;
@@ -62,6 +62,10 @@
     .botoes:hover {
         transform: scale(1.1);
     }
+
+    .subnavbar {
+        height: 50%;
+    }
     
     .sombras {
         box-shadow: 5px 5px 5px 0 rgba(36, 40, 43);
@@ -73,6 +77,10 @@
 
     .fundos_card_claro {
         background-color: rgba(127, 127, 127, 0.3);
+    }
+
+    #espacamento {
+        margin-bottom: 22%;
     }
     
     #direitos {

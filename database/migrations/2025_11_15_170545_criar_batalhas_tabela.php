@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('batalhas', function (Blueprint $table) {
             $table->id()->autoIncrement()->comment("1");
+            $table->string("nome")->nullable()->comment("Player");
+            $table->string("nome_oponente")->nullable()->comment("Oponente");
             $table->integer("hp")->nullable()->comment("2200");
             $table->integer("hp_oponente")->nullable()->comment("3200");
             $table->integer("vez")->nullable()->comment("0|1");

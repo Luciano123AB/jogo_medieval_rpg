@@ -46,7 +46,7 @@
                             <label class="cursor d-grid btn {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-secondary btn-outline-primary" : "cor_fontes_claro bg-dark btn-outline-danger" }}" for="btnradio3">🕹 <span class="cursor">{{ session("player.personagem.skill03.skill") }}</span></label>
                         </div>
                         @error("skill")
-                            <div class="alert alert-danger mb-0" role="alert">
+                            <div class="alert alert-danger animate__animated animate__shakeX mb-0" role="alert">
                                 <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                             </div>
                         @enderror

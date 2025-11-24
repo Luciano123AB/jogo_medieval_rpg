@@ -8,9 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Batalha extends Model
 {
     protected $fillable = [
+        "nome",
+        "nome_oponente",
         "hp",
         "hp_oponente",
-        "vez"
+        "vez",
+        "ganhou",
+        "perdeu"
     ];
 
     use SoftDeletes;

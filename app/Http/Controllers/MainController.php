@@ -162,7 +162,7 @@ class MainController extends Controller
         session([
             "alerta" => [
                 "titulo" => "Batalhas em Andamento!",
-                "icone" => "bi-file-earmark-medical-fill",
+                "icone" => "bi-card-list",
                 "texto" => "Aqui você irá vizualizar todas as batalhas que estão acontecendo agora.",
                 "pagina" => "batalhas"
             ]
@@ -221,7 +221,9 @@ class MainController extends Controller
         
         if (!session()->has("dados.batalha_comecou")) {
             
-            $nova_batalha = new Batalha();            
+            $nova_batalha = new Batalha();
+            $nova_batalha->nome = session("player.usuario");
+            $nova_batalha->nome_oponente = $nome_oponente;
             $nova_batalha->hp = session("player.personagem.hp") * session("player.nivel");
             $nova_batalha->hp_oponente = $oponente->hp * $nivel;
             $nova_batalha->vez = $vez;

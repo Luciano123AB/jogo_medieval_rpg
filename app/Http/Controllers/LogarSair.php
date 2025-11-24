@@ -25,10 +25,15 @@ class LogarSair extends Controller
         $senha = $request->input("senha");
 
         $player = Player::where("usuario", $usuario)
-                        ->first();
+                        ->first();        
+
+        if (!$player) {
+            return redirect()->back()->withInput()->withErrors(["playerNaoExiste" => "Esse player não está cadastrado! Tente novamente."]);
+        }
+
         $player_senha = decrypt($player->senha);
 
-        if (!$player || $player_senha != $senha) {
+        if ($player_senha != $senha) {
             return redirect()->back()->withInput()->withErrors(["playerNaoExiste" => "Esse player não está cadastrado! Tente novamente."]);
         }
 

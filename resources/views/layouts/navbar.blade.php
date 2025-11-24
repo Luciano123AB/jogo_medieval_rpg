@@ -21,6 +21,8 @@
                     <i class="bi bi-list-stars"></i>
                 @elseif($pagina == "Registro")
                     <i class="bi bi-file-earmark-medical-fill"></i>
+                @elseif($pagina == "Batalhas")
+                    <i class="bi bi-card-list"></i>
                 @elseif($pagina == "Batalha" || $pagina == "Preparação")
                     ⚔️
                 @endif
@@ -40,7 +42,7 @@
             </a>
         @endif
 
-        @if($pagina != "Listagem" && $pagina != "Batalha")
+        @if(session()->has("player") && $pagina != "Listagem" && $pagina != "Batalha")
             <a href="{{ route("listagem") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} d-flex border my-1">
                 <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}"><i class="bi bi-list-stars"></i> Lista de Players/Rank</span>
             </a>
@@ -105,7 +107,7 @@
                                 <input type="text" id="usuario" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="usuario" placeholder="Username123" aria-label="Username123" aria-describedby="Usuario" value="{{ old("usuario") }}">
                             </div>
                             @error("usuario")
-                                <div class="alert alert-danger mt-1 mb-0" role="alert">
+                                <div class="alert alert-danger animate__animated animate__shakeX mt-1 mb-0" role="alert">
                                     <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                 </div>
                             @enderror
@@ -119,7 +121,7 @@
                                 <button type="button" id="mostrar" class="cursor input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}"><i class="cursor bi bi-eye-slash-fill"></i></button>
                             </div>
                             @error("senha")
-                                <div class="alert alert-danger mt-1 mb-0" role="alert">
+                                <div class="alert alert-danger animate__animated animate__shakeX mt-1 mb-0" role="alert">
                                     <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                 </div>
                             @enderror
@@ -127,7 +129,7 @@
 
                         @error("playerNaoExiste")
                             <div class="d-flex justify-content-center">
-                                <div class="alert alert-danger text-center w-50" role="alert">
+                                <div class="alert alert-danger animate__animated animate__shakeX text-center w-50" role="alert">
                                     <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                 </div>
                             </div>
