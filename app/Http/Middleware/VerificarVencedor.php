@@ -53,7 +53,7 @@ class VerificarVencedor
                 $batalha->save();
                 
                 session([
-                    "alerta_resultado" => [
+                    "alerta_batalha" => [
                         "titulo" => "Derrota!",
                         "texto" => "Que Pena! Mas não desista, faz parte, infelismente não dá para ganhar todas, continue tentando.",
                         "icone" => "bi-emoji-frown-fill",
@@ -121,7 +121,7 @@ class VerificarVencedor
                 $batalha->save();
                 
                 session([
-                    "alerta_resultado" => [
+                    "alerta_batalha" => [
                         "titulo" => "Vitória!",
                         "texto" => "Parabéns!, continue assim e você se destacará na classificação.",
                         "icone" => "bi-emoji-sunglasses-fill",

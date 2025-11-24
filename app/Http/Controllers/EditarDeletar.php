@@ -39,9 +39,10 @@ class EditarDeletar extends Controller
             session()->forget(["alerta_confirmar"]);
 
             session([
-                "alerta_operacao" => [
+                "alerta_resultado" => [
                     "titulo" => "Erro ao Deletar!",
-                    "texto" => "Ocorreu um erro ao tentar excluir a conta! Tente novamente."
+                    "texto" => "Ocorreu um erro ao tentar excluir a conta! Tente novamente.",
+                    "icone" => "bi-hand-thumbs-down-fill"
                 ]
             ]);
 
@@ -51,9 +52,10 @@ class EditarDeletar extends Controller
             session()->forget(["player"]);
 
             session([
-                "alerta_operacao" => [
+                "alerta_resultado" => [
                     "titulo" => "Player Deletado com Sucesso!",
-                    "texto" => "Caso queira começar novamente do zero, sinta-se à vontade para criar uma nova conta."
+                    "texto" => "Caso queira começar novamente do zero, sinta-se à vontade para criar uma nova conta.",
+                    "icone" => "bi-hand-thumbs-up-fill"
                 ]
             ]);
 
@@ -167,9 +169,10 @@ class EditarDeletar extends Controller
             session()->forget(["alerta_confirmar"]);
 
             session([
-                "alerta_operacao" => [
+                "alerta_resultado" => [
                     "titulo" => "Erro ao Atualizar!",
-                    "texto" => "Ocorreu um erro ao tentar atualizar o player! Tente novamente."
+                    "texto" => "Ocorreu um erro ao tentar atualizar o player! Tente novamente.",
+                    "icone" => "bi-hand-thumbs-down-fill"
                 ]
             ]);
 
@@ -180,9 +183,10 @@ class EditarDeletar extends Controller
             session(["player" => $novo_player]);
 
             session([
-                "alerta_operacao" => [
+                "alerta_resultado" => [
                     "titulo" => "Player Atualizado com Sucesso!",
-                    "texto" => "Para ver seu novo nome de usuário e(ou) classe nova, deslogue e faça o login novamente."
+                    "texto" => "Para ver seu novo nome de usuário e(ou) classe nova, deslogue e faça o login novamente.",
+                    "icone" => "bi-hand-thumbs-up-fill"
                 ]
             ]);
 

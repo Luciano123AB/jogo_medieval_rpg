@@ -17,9 +17,10 @@ class VerificarLogado
     {
         if (!session()->has("player")) {
             session([
-                "alerta_operacao" => [
+                "alerta_resultado" => [
                     "titulo" => "Acesso Negado!",
-                    "texto" => "Para poder abrir essa página, primeiro você deve logar na sua conta."
+                    "texto" => "Para poder abrir essa página, primeiro você deve logar na sua conta.",
+                    "icone" => "bi-hand-thumbs-down-fill"
                 ],
             ]);
 

@@ -176,7 +176,7 @@ class Batalhar extends Controller
         }
         
         session([
-            "alerta_resultado" => [
+            "alerta_batalha" => [
                 "titulo" => "Derrota!",
                 "texto" => "Que Pena! Mas não desista, faz parte, infelismente não dá para ganhar todas, continue tentando.",
                 "icone" => "bi-emoji-frown-fill",

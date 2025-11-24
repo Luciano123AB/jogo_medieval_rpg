@@ -36,9 +36,10 @@ class LogarSair extends Controller
             "xp" => $player->xp,
             "player" => $player,
 
-            "alerta_operacao" => [
+            "alerta_resultado" => [
                 "titulo" => "Login Efetuado com Sucesso!",
-                "texto" => "Agora você pode acessar a página de batalha."
+                "texto" => "Agora você pode acessar a página de batalha.",
+                    "icone" => "bi-hand-thumbs-up-fill"
             ]
         ]);
 

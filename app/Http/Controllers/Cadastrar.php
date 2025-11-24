@@ -126,9 +126,10 @@ class Cadastrar extends Controller
             session()->forget(["alerta_confirmar"]);
 
             session([
-                "alerta_operacao" => [
+                "alerta_resultado" => [
                     "titulo" => "Erro ao Cadastrar!",
-                    "texto" => "Ocorreu um erro ao tentar cadastrar esse player! Tente novamente."
+                    "texto" => "Ocorreu um erro ao tentar cadastrar esse player! Tente novamente.",
+                    "icone" => "bi-hand-thumbs-down-fill"
                 ]
             ]);
 
@@ -137,9 +138,10 @@ class Cadastrar extends Controller
             session()->forget("alerta_confirmar");
             
             session([
-                "alerta_operacao" => [
+                "alerta_resultado" => [
                     "titulo" => "Player Cadastrado com Sucesso!",
-                    "texto" => "Agora você pode realizar o login e acessar a página de batalha."
+                    "texto" => "Agora você pode realizar o login e acessar a página de batalha.",
+                    "icone" => "bi-hand-thumbs-up-fill"
                 ]
             ]);
 

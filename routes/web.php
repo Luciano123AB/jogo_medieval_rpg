@@ -81,9 +81,12 @@ Route::prefix("/")->group(function () {
         });
 
         Route::middleware(VerificarLogado::class)->group(function() {
-            Route::get("listagem", "listagem")->name("listagem");
+            Route::middleware(VerificarBatalha::class)->group(function() {
+                Route::get("listagem", "listagem")->name("listagem");
     
-            Route::get("preparacao", "preparacao")->name("preparacao");
+                Route::get("preparacao", "preparacao")->name("preparacao");
+            });
+            
             Route::get("batalha", "batalhar")->name("batalhar")->middleware(VerificarVencedor::class);
         });
     });

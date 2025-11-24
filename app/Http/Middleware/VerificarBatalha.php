@@ -17,9 +17,10 @@ class VerificarBatalha
     {
         if (session()->has("dados.batalha_comecou")) {
             session([
-                "alerta_operacao" => [
+                "alerta_resultado" => [
                     "titulo" => "Batalha em Andamento!",
-                    "texto" => "Para sair, antes você precisa finalizar essa batalha."
+                    "texto" => "Para sair, antes você precisa finalizar essa batalha.",
+                    "icone" => "bi-hand-thumbs-down-fill"
                 ],
             ]);
 
