@@ -39,7 +39,7 @@ class EditarDeletar extends Controller
             session()->forget(["alerta_confirmar"]);
 
             session([
-                "alerta_erro" => [
+                "alerta_operacao" => [
                     "titulo" => "Erro ao Deletar!",
                     "texto" => "Ocorreu um erro ao tentar excluir a conta! Tente novamente."
                 ]
@@ -51,7 +51,7 @@ class EditarDeletar extends Controller
             session()->forget(["player"]);
 
             session([
-                "alerta_sucesso" => [
+                "alerta_operacao" => [
                     "titulo" => "Player Deletado com Sucesso!",
                     "texto" => "Caso queira começar novamente do zero, sinta-se à vontade para criar uma nova conta."
                 ]
@@ -167,7 +167,7 @@ class EditarDeletar extends Controller
             session()->forget(["alerta_confirmar"]);
 
             session([
-                "alerta_erro" => [
+                "alerta_operacao" => [
                     "titulo" => "Erro ao Atualizar!",
                     "texto" => "Ocorreu um erro ao tentar atualizar o player! Tente novamente."
                 ]
@@ -180,7 +180,7 @@ class EditarDeletar extends Controller
             session(["player" => $novo_player]);
 
             session([
-                "alerta_sucesso" => [
+                "alerta_operacao" => [
                     "titulo" => "Player Atualizado com Sucesso!",
                     "texto" => "Para ver seu novo nome de usuário e(ou) classe nova, deslogue e faça o login novamente."
                 ]

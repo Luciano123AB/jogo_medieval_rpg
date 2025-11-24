@@ -176,9 +176,11 @@ class Batalhar extends Controller
         }
         
         session([
-            "alerta_erro" => [
+            "alerta_resultado" => [
                 "titulo" => "Derrota!",
-                "texto" => "Não desista, faz parte continue tentando, não dá para ganhar todas."
+                "texto" => "Que Pena! Mas não desista, faz parte, infelismente não dá para ganhar todas, continue tentando.",
+                "icone" => "bi-emoji-frown-fill",
+                "rota" => ""
             ]
         ]);
 

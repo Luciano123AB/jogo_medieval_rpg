@@ -8,7 +8,7 @@
 
     @include("layouts.partials.links")
 
-    @include("layouts.partials.styles")
+    @include("layouts.partials.estilos")
 </head>
 <body class="bg-dark fst-italic">
     <div id="fundo"></div>

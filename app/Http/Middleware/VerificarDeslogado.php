@@ -17,7 +17,7 @@ class VerificarDeslogado
     {
         if (session()->has("player")) {
             session([
-                "alerta_erro" => [
+                "alerta_operacao" => [
                     "titulo" => "Acesso Negado!",
                     "texto" => "Para poder abrir essa página, primeiro você deve deslogar da sua conta."
                 ],

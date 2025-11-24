@@ -53,9 +53,11 @@ class VerificarVencedor
                 $batalha->save();
                 
                 session([
-                    "alerta_erro" => [
+                    "alerta_resultado" => [
                         "titulo" => "Derrota!",
-                        "texto" => "Não desista, faz parte continue tentando, não dá para ganhar todas."
+                        "texto" => "Que Pena! Mas não desista, faz parte, infelismente não dá para ganhar todas, continue tentando.",
+                        "icone" => "bi-emoji-frown-fill",
+                        "rota" => ""
                     ]
                 ]);
     
@@ -74,12 +76,12 @@ class VerificarVencedor
                 session()->forget(["alerta_confirmar_render", "id_oponente", "foto_oponente", "nivel_oponente", "dados", "skill01", "skill02", "skill03"]);
     
                 $id = session("player.id");
-                $rota = "listagem";
+                $rota = "route(listagem)";
                 $xp = 33.5;
 
                 if (session("nome_oponente") == "Computador") {
 
-                    $rota = "preparacao";
+                    $rota = "route(preparacao)";
 
                     $batalha->perdeu = "Computador";
                 } else {
@@ -119,9 +121,10 @@ class VerificarVencedor
                 $batalha->save();
                 
                 session([
-                    "alerta_vitoria" => [
+                    "alerta_resultado" => [
                         "titulo" => "Vitória!",
                         "texto" => "Parabéns!, continue assim e você se destacará na classificação.",
+                        "icone" => "bi-emoji-sunglasses-fill",
                         "rota" => $rota
                     ]
                 ]);

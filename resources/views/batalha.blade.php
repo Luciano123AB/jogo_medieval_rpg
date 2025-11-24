@@ -4,14 +4,14 @@
     <div class="container">
         <div class="d-flex">
             <div class="text-center">
-                <h4 class="cor_fontes_claro">
+                <h4 class="text-success">
                     <img src="
                         @if(session("player.foto") == "nenhuma")
                             {{ asset("assets/images/perfils/vazio_perfil.png") }}
                         @else
                             data:image/png;data:image/jpeg;base64,{{ session("player.foto") }}
                         @endif
-                    " id="perfil_player" class="cursor sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
+                    " id="perfil_player" class="sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
                     Você
                 </h4>
                 <img src="{{ asset("assets/images/personagens/" . (session("player.personagem.classe")) . ".png") }}" class="animate__animated
@@ -77,14 +77,14 @@
             </div>
 
             <div class="text-center">
-                <h4 class="cor_fontes_claro">
+                <h4 class="text-danger">
                     <img src="
                         @if($foto == "nenhuma")
                             {{ asset("assets/images/perfils/vazio_perfil.png") }}
                         @else
                             data:image/png;data:image/jpeg;base64,{{ $foto }}
                         @endif
-                    " id="perfil_player" class="cursor sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
+                    " id="perfil_player" class="sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
                     Oponente: {{ $nome }}
                 </h4>
                 <img src="{{ asset("assets/images/personagens/$oponente->classe" . "_reverso.png") }}" class="animate__animated

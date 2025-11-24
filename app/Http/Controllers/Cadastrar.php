@@ -126,7 +126,7 @@ class Cadastrar extends Controller
             session()->forget(["alerta_confirmar"]);
 
             session([
-                "alerta_erro" => [
+                "alerta_operacao" => [
                     "titulo" => "Erro ao Cadastrar!",
                     "texto" => "Ocorreu um erro ao tentar cadastrar esse player! Tente novamente."
                 ]
@@ -137,7 +137,7 @@ class Cadastrar extends Controller
             session()->forget("alerta_confirmar");
             
             session([
-                "alerta_sucesso" => [
+                "alerta_operacao" => [
                     "titulo" => "Player Cadastrado com Sucesso!",
                     "texto" => "Agora você pode realizar o login e acessar a página de batalha."
                 ]

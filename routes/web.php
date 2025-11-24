@@ -125,8 +125,10 @@ Route::prefix("/")->group(function () {
                 Route::get("confirmar_desafio/{player}/{oponente}/{nome_oponente}/{nivel}", "confirmarDesafio")->name("confirmarDesafio");
                 Route::get("cancelar_batalha", "cancelar")->name("cancelarBatalha");
             });
+            
             Route::post("atacar", "atacar")->name("atacar");
             Route::get("ataque_oponente", "ataqueOponente")->name("ataque");
+
             Route::get("confirmar_render", "confirmarRender")->name("confirmarRender");
             Route::get("cancelar_render", "cancelarRender")->name("cancelarRender");
             Route::get("render_se", "renderSe")->name("renderSe");
