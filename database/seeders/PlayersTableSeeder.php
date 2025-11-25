@@ -15,6 +15,7 @@ class PlayersTableSeeder extends Seeder
         DB::table("players")->insert([
             [
                 "usuario" => "Luciano123AB",
+                "email" => "luciano@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Masculino",
                 "foto" => "nenhuma",
@@ -28,6 +29,7 @@ class PlayersTableSeeder extends Seeder
 
             [
                 "usuario" => "Carlos123AB",
+                "email" => "carlos@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Masculino",
                 "foto" => "nenhuma",
@@ -41,6 +43,7 @@ class PlayersTableSeeder extends Seeder
 
             [
                 "usuario" => "Mariana123AB",
+                "email" => "mariana@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Feminino",
                 "foto" => "nenhuma",
@@ -54,6 +57,7 @@ class PlayersTableSeeder extends Seeder
 
             [
                 "usuario" => "Rafael123AB",
+                "email" => "rafael@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Masculino",
                 "foto" => "nenhuma",
@@ -67,6 +71,7 @@ class PlayersTableSeeder extends Seeder
 
             [
                 "usuario" => "Beatriz123AB",
+                "email" => "beatriz@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Feminino",
                 "foto" => "nenhuma",
@@ -80,6 +85,7 @@ class PlayersTableSeeder extends Seeder
 
             [
                 "usuario" => "Fernando123AB",
+                "email" => "fernando@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Masculino",
                 "foto" => "nenhuma",
@@ -93,6 +99,7 @@ class PlayersTableSeeder extends Seeder
 
             [
                 "usuario" => "Aline123AB",
+                "email" => "aline@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Feminino",
                 "foto" => "nenhuma",
@@ -106,6 +113,7 @@ class PlayersTableSeeder extends Seeder
 
             [
                 "usuario" => "Eduardo123AB",
+                "email" => "eduardo@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Masculino",
                 "foto" => "nenhuma",
@@ -119,6 +127,7 @@ class PlayersTableSeeder extends Seeder
 
             [
                 "usuario" => "Patricia123AB",
+                "email" => "patricia@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Feminino",
                 "foto" => "nenhuma",
@@ -132,6 +141,7 @@ class PlayersTableSeeder extends Seeder
 
             [
                 "usuario" => "Gustavo123AB",
+                "email" => "gustavo@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Masculino",
                 "foto" => "nenhuma",
@@ -145,6 +155,7 @@ class PlayersTableSeeder extends Seeder
 
             [
                 "usuario" => "Claudia123AB",
+                "email" => "claudia@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Feminino",
                 "foto" => "nenhuma",
@@ -158,6 +169,7 @@ class PlayersTableSeeder extends Seeder
 
             [
                 "usuario" => "Henrique123AB",
+                "email" => "henrique@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Masculino",
                 "foto" => "nenhuma",
@@ -171,6 +183,7 @@ class PlayersTableSeeder extends Seeder
 
             [
                 "usuario" => "Isabela123AB",
+                "email" => "isabela@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Feminino",
                 "foto" => "nenhuma",
@@ -184,6 +197,7 @@ class PlayersTableSeeder extends Seeder
 
             [
                 "usuario" => "Marcelo123AB",
+                "email" => "marcelo@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Masculino",
                 "foto" => "nenhuma",
@@ -197,6 +211,7 @@ class PlayersTableSeeder extends Seeder
 
             [
                 "usuario" => "Juliana123AB",
+                "email" => "juliana@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Feminino",
                 "foto" => "nenhuma",
@@ -210,6 +225,7 @@ class PlayersTableSeeder extends Seeder
 
             [
                 "usuario" => "Thiago123AB",
+                "email" => "thiago@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Masculino",
                 "foto" => "nenhuma",
@@ -223,6 +239,7 @@ class PlayersTableSeeder extends Seeder
 
             [
                 "usuario" => "Camila123AB",
+                "email" => "camila@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Feminino",
                 "foto" => "nenhuma",
@@ -236,6 +253,7 @@ class PlayersTableSeeder extends Seeder
 
             [
                 "usuario" => "Leonardo123AB",
+                "email" => "leonardo@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Masculino",
                 "foto" => "nenhuma",
@@ -249,6 +267,7 @@ class PlayersTableSeeder extends Seeder
 
             [
                 "usuario" => "Sara123AB",
+                "email" => "sara@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Feminino",
                 "foto" => "nenhuma",
@@ -259,9 +278,10 @@ class PlayersTableSeeder extends Seeder
                 "id_personagem" => 3,
                 "created_at" => date("Y-m-d H:i:s")
             ],
-            
+
             [
                 "usuario" => "Victor123AB",
+                "email" => "victor@gmail.com",
                 "senha" => encrypt("24032004ABCD123"),
                 "genero" => "Masculino",
                 "foto" => "nenhuma",

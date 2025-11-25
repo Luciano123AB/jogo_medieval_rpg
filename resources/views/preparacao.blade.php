@@ -12,7 +12,7 @@
                     </div>
                 </div>
 
-                <div class="animate__animated animate__fadeInRight w-25">
+                <div id="oponentes" class="animate__animated animate__fadeInRight">
                     <h1 class="cursor {{ session("tema") == "escuro" ? "titulos_escuro" : "titulos_claro" }} {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} text-center fw-bold">Oponentes:</h1>
                     <form action="{{ route("confirmarBatalha") }}" class="d-grid gap-3">
                         @foreach ($personagens as $personagem)

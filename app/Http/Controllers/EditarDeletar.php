@@ -71,6 +71,7 @@ class EditarDeletar extends Controller
         $request->validate(
             [
                 "novo_usuario" => "required|max:30",
+                "novo_email" => "required|max:100",
                 "nova_senha" => "required|max:60",
                 "confirmar_nova_senha" => "required"
             ],
@@ -78,6 +79,8 @@ class EditarDeletar extends Controller
             [
                 "novo_usuario.required" => "O campo usuário é obrigatório.",
                 "novo_usuario.max" => "O nome de usuário deve ter no máximo 30 caracteres.",
+                "novo_email.required" => "O campo email é obrigatório.",
+                "novo_email.max" => "O email deve ter no máximo 100 caracteres.",
                 "nova_senha.required" => "O campo senha é obrigatório.",
                 "nova_senha.max" => "O nome de usuário deve ter no máximo 60 caracteres.",
                 "confirmar_nova_senha.required" => "Confirme sua senha."
@@ -85,6 +88,7 @@ class EditarDeletar extends Controller
         );
 
         $usuario = $request->input("novo_usuario");
+        $email = $request->input("novo_email");
         $senha = $request->input("nova_senha");
         $confirmar_senha = $request->input("confirmar_nova_senha");        
 
@@ -123,8 +127,14 @@ class EditarDeletar extends Controller
 
         $player_existente = Player::where("usuario", $usuario)
                                   ->first();
+        $email_existente = Player::where("email", $email)
+                                 ->first();
 
-        if ($player_existente && $player_existente->usuario != session("player.usuario")) {
+        if ($player_existente && $player_existente->usuario !== session("player.usuario")) {
+            return redirect()->back()->withInput()->withErrors(["playerExiste" => "Esse player já está cadastrado! Tente novamente."]);
+        }
+
+        if ($email_existente && $email_existente->email !== session("player.email")) {
             return redirect()->back()->withInput()->withErrors(["playerExiste" => "Esse player já está cadastrado! Tente novamente."]);
         }
 
@@ -136,6 +146,7 @@ class EditarDeletar extends Controller
                 "sim" => "atualizar",
                 "dados" => [
                     "usuario" => $usuario,
+                    "email" => $email,
                     "senha" => $senha,
                     "classe" => $classe,
                     "foto" => $foto
@@ -159,6 +170,7 @@ class EditarDeletar extends Controller
         
         $novo_player = Player::find($id);
         $novo_player->usuario = session("alerta_confirmar.dados.usuario");
+        $novo_player->email = session("alerta_confirmar.dados.email");
         $novo_player->senha = encrypt($senha);
         $novo_player->id_personagem = session("alerta_confirmar.dados.classe");
         $novo_player->foto = session("alerta_confirmar.dados.foto");

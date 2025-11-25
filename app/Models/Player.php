@@ -9,6 +9,7 @@ class Player extends Model
 {
     protected $fillable = [
         "usuario",
+        "email",
         "senha",
         "genero",
         "foto",

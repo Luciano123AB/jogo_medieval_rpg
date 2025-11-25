@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('players', function (Blueprint $table) {
             $table->id()->autoIncrement()->comment("1");
-            $table->string("usuario", 30)->nullable()->comment("User123AB");
+            $table->string("usuario", 30)->nullable()->comment("Usuario123AB");
+            $table->string("email", 100)->nullable()->comment("usuario@gmail.com");
             $table->string("senha", 255)->nullable()->comment("***");
             $table->string("genero", 9)->nullable()->comment("Masculino|Feminino|Outro");
             $table->longText("foto", 13980320)->comment("iVBORw0KGgo...");

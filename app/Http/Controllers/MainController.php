@@ -82,6 +82,7 @@ class MainController extends Controller
         $personagens = Personagem::all();
         $id = session("player.id");
         $usuario = session("player.usuario");
+        $email = session("player.email");
         $senha = decrypt(session("player.senha"));
         $classe = session("player.personagem.classe");
         $foto = session("player.foto");
@@ -103,6 +104,7 @@ class MainController extends Controller
                 "dados" => [
                     "id" => $id,
                     "usuario" => $usuario,
+                    "email" => $email,
                     "senha" => $senha,
                     "confirmar_senha" => $senha,
                     "classe" => $classe,
@@ -149,7 +151,7 @@ class MainController extends Controller
         ]);
 
         return view("registro_batalhas")
-            ->with("imagem", "recrutamento")
+            ->with("imagem", "registros")
             ->with("pagina", "Registro")
             ->with("batalhas_vitorias", $batalhas_vitorias)
             ->with("batalhas_derrotas", $batalhas_derrotas);
@@ -169,7 +171,7 @@ class MainController extends Controller
         ]);
 
         return view("batalhas")
-            ->with("imagem", "recrutamento")
+            ->with("imagem", "registros")
             ->with("pagina", "Batalhas")
             ->with("batalhas", $batalhas);
     }

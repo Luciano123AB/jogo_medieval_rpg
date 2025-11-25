@@ -1,9 +1,10 @@
 <nav id="navbar" class="navbar navbar-expand-lg {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-black border-danger" }} border-5 rounded-bottom-5 mb-4">
     <div class="container-fluid">
         <a href="{{ route("home") }}" id="home" class="cursor navbar-brand">
-            <img src="{{ asset("assets/images/icone.png") }}" id="icone" class="cursor animate__animated animate__flipOutY animate__infinite">
+            <img src="{{ asset("assets/images/icones/icone.png") }}" id="icone" class="cursor animate__animated animate__flipOutY animate__infinite">
             <span class="cursor align-middle fs-3">🎮</span>
             <span class="cursor {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} fw-bold align-middle fs-3">Jogo Medieval RPG</span>
+            <br class="d-sm-none">
             <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeIn align-middle fs-3">- 
                 @if ($pagina == "Home")
                     <i class="bi bi-house-fill"></i>
@@ -100,13 +101,13 @@
                     <form action="{{ route("logar") }}" method="POST" id="login" class="sombras animate__animated animate__fadeInDown {{ session("tema") == "escuro" ? 'bg-secondary border-primary' : 'bg-black border-danger' }} dropdown-menu dropdown-menu-end p-3">
                         @csrf
 
-                        <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Usuário:</label>
+                        <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Email:</label>
                         <div class="mb-3">
                             <div class="input-group">
-                                <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}"><i class="bi bi-person-fill"></i></span>
-                                <input type="text" id="usuario" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="usuario" placeholder="Username123" aria-label="Username123" aria-describedby="Usuario" value="{{ old("usuario") }}">
+                                <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}"><i class="bi bi-envelope-at-fill"></i></span>
+                                <input type="email" id="email" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="email" placeholder="usuario@gmail.com" aria-label="usuario@gmail.com" aria-describedby="Email" value="{{ old("email") }}">
                             </div>
-                            @error("usuario")
+                            @error("email")
                                 <div class="alert alert-danger animate__animated animate__shakeX mt-1 mb-0" role="alert">
                                     <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                 </div>

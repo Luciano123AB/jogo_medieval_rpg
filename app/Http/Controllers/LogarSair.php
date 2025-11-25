@@ -11,20 +11,20 @@ class LogarSair extends Controller
     public function logar(Request $request): RedirectResponse {
         $request->validate(
             [
-                "usuario" => "required",
+                "email" => "required",
                 "senha" => "required"
             ],
 
             [
-                "usuario.required" => "O campo usuário é obrigatório.",
+                "email.required" => "O campo email é obrigatório.",
                 "senha.required" => "O campo senha é obrigatório."
             ]
         );
 
-        $usuario = $request->input("usuario");
+        $email = $request->input("email");
         $senha = $request->input("senha");
 
-        $player = Player::where("usuario", $usuario)
+        $player = Player::where("email", $email)
                         ->first();        
 
         if (!$player) {
@@ -40,11 +40,11 @@ class LogarSair extends Controller
         session([
             "xp" => $player->xp,
             "player" => $player,
-
+            
             "alerta_resultado" => [
                 "titulo" => "Login Efetuado com Sucesso!",
                 "texto" => "Agora você pode acessar a página de batalha.",
-                    "icone" => "bi-hand-thumbs-up-fill"
+                "icone" => "bi-hand-thumbs-up-fill"
             ]
         ]);
 

@@ -18,6 +18,7 @@ class Cadastrar extends Controller
         $request->validate(
             [
                 "novo_usuario" => "required|max:30",
+                "novo_email" => "required|max:100",
                 "nova_senha" => "required|max:60",
                 "confirmar_nova_senha" => "required"
             ],
@@ -25,6 +26,8 @@ class Cadastrar extends Controller
             [
                 "novo_usuario.required" => "O campo usuário é obrigatório.",
                 "novo_usuario.max" => "O nome de usuário deve ter no máximo 30 caracteres.",
+                "novo_email.required" => "O campo email é obrigatório.",
+                "novo_email.max" => "O email deve ter no máximo 100 caracteres.",
                 "nova_senha.required" => "O campo senha é obrigatório.",
                 "nova_senha.max" => "O nome de usuário deve ter no máximo 60 caracteres.",
                 "confirmar_nova_senha.required" => "Confirme sua senha."
@@ -32,6 +35,7 @@ class Cadastrar extends Controller
         );
 
         $usuario = $request->input("novo_usuario");
+        $email = $request->input("novo_email");
         $senha = $request->input("nova_senha");
         $confirmar_senha = $request->input("confirmar_nova_senha");
 
@@ -76,8 +80,10 @@ class Cadastrar extends Controller
 
         $player_existente = Player::where("usuario", $usuario)
                                   ->first();
+        $email_existente = Player::where("email", $email)
+                                  ->first();
 
-        if ($player_existente) {
+        if ($player_existente || $email_existente) {
             return redirect()->back()->withInput()->withErrors(["playerExiste" => "Esse player já está cadastrado! Tente novamente."]);
         }
 
@@ -89,6 +95,7 @@ class Cadastrar extends Controller
                 "sim" => "cadastrar",
                 "dados" => [
                     "usuario" => $usuario,
+                    "email" => $email,
                     "senha" => $senha,
                     "genero" => $genero,
                     "classe" => $classe,
@@ -110,6 +117,7 @@ class Cadastrar extends Controller
 
         $player = new Player();
         $player->usuario = session("alerta_confirmar.dados.usuario");
+        $player->email = session("alerta_confirmar.dados.email");
         $player->senha = encrypt(session("alerta_confirmar.dados.senha"));
         $player->genero = session("alerta_confirmar.dados.genero");
         $player->foto = session("alerta_confirmar.dados.foto");

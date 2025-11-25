@@ -19,7 +19,7 @@
             showConfirmButton: false,
             theme: "dark",
             background: "{{ session('tema') == 'escuro' ? '#f8f9fa' : '#323232' }}",
-            imageUrl: "{{ asset('assets/images/icone.png') }}",
+            imageUrl: "{{ asset('assets/images/icones/icone.png') }}",
             imageHeight: 150,
             customClass: {
                 image: "animate__animated animate__flipOutY animate__infinite"
@@ -63,7 +63,7 @@
             showConfirmButton: false,
             theme: "dark",
             background: "{{ session('tema') == 'escuro' ? '#f8f9fa' : '#323232' }}",
-            imageUrl: "{{ asset('assets/images/icone.png') }}",
+            imageUrl: "{{ asset('assets/images/icones/icone.png') }}",
             imageHeight: 150,
             customClass: {
                 image: "animate__animated animate__flipOutY animate__infinite"
@@ -103,7 +103,7 @@
             showConfirmButton: false,
             theme: "dark",
             background: "{{ session('tema') == 'escuro' ? '#f8f9fa' : '#323232' }}",
-            imageUrl: "{{ asset('assets/images/icone.png') }}",
+            imageUrl: "{{ asset('assets/images/icones/icone.png') }}",
             imageHeight: 150,
             customClass: {
                 image: "animate__animated animate__flipOutY animate__infinite"
@@ -143,7 +143,7 @@
             showConfirmButton: false,
             theme: "dark",
             background: "{{ session('tema') == 'escuro' ? '#f8f9fa' : '#323232' }}",
-            imageUrl: "{{ asset('assets/images/icone.png') }}",
+            imageUrl: "{{ asset('assets/images/icones/icone.png') }}",
             imageHeight: 150,
             customClass: {
                 image: "animate__animated animate__flipOutY animate__infinite"
@@ -185,7 +185,7 @@
             showConfirmButton: false,
             theme: "dark",
             background: "{{ session('tema') == 'escuro' ? '#f8f9fa' : '#323232' }}",
-            imageUrl: "{{ asset('assets/images/icone.png') }}",
+            imageUrl: "{{ asset('assets/images/icones/icone.png') }}",
             imageHeight: 150,
             customClass: {
                 image: "animate__animated animate__flipOutY animate__infinite"
@@ -227,7 +227,7 @@
             showConfirmButton: false,
             theme: "dark",
             background: "{{ session('tema') == 'escuro' ? '#f8f9fa' : '#323232' }}",
-            imageUrl: "{{ asset('assets/images/icone.png') }}",
+            imageUrl: "{{ asset('assets/images/icones/icone.png') }}",
             imageHeight: 150,
             customClass: {
                 image: "animate__animated animate__flipOutY animate__infinite"

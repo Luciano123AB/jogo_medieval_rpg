@@ -88,6 +88,11 @@
         text-decoration: underline;
     }
 
+    .icones {
+        width: 40px;
+        height: 40px;
+    }
+
     #icone_creditos {
         width: 30px;
     }
@@ -124,7 +129,11 @@
 
     .cor_niveis {
         color: #073c8b;
-    }    
+    }
+
+    #oponentes {
+        width: 33%;
+    }
 
     #login {
         width: 300px;

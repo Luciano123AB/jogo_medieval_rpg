@@ -143,6 +143,7 @@
 
     function limparCamposCadastro() {
         document.getElementById("novo_usuario").value = "";
+        document.getElementById("novo_email").value = "";
         document.getElementById("nova_senha").value = "";
         document.getElementById("confirmar_nova_senha").value = "";
         document.getElementById("genero").selectedIndex = 0;
@@ -163,7 +164,7 @@
     }
 
     function limparCamposLogin() {
-        document.getElementById("usuario").value = "";
+        document.getElementById("email").value = "";
         document.getElementById("senha").value = "";
     }
 </script>

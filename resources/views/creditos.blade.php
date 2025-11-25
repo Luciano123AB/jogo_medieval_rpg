@@ -8,7 +8,7 @@
                     <div>
                         <h3 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} animate__animated animate__fadeInUpBig"><i class="bi bi-arrow-right"></i>Nome do jogo e introdução inicial:</h3>
                         <ul>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUpBig"><img src="{{ asset("assets/images/icone.png") }}" id="icone_creditos"> Projeto: Jogo RPG</li>
+                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUpBig"><img src="{{ asset("assets/images/icones/icone.png") }}" id="icone_creditos"> Projeto: Jogo RPG</li>
                         </ul>
                     </div>
 

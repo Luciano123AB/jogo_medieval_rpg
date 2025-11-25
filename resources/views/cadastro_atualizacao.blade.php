@@ -10,7 +10,7 @@
                         $rota = "confirmarCadastrar";
                         $titulo = "Novo Usuário";
                         $id = "";
-                        $values = ["", "", "", ""];
+                        $values = ["", "", "", "", ""];
                         $classe = "vazio";
 
                         if ($pagina == "Atualização") {
@@ -18,8 +18,8 @@
                             $rota = "confirmarAtualizar";
                             $titulo = "Atualizar Usuário";
                             $id = $dados["id"];
-                            $values = [$dados["usuario"], $dados["senha"], $dados["confirmar_senha"], $dados["classe"]];
-                            $classe = $values[3];
+                            $values = [$dados["usuario"], $dados["email"], $dados["senha"], $dados["confirmar_senha"], $dados["classe"]];
+                            $classe = $values[4];
 
                         }
                     @endphp
@@ -43,10 +43,24 @@
                             <div class="mb-3">
                                 <div class="input-group">
                                     <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}"><i class="bi bi-person-fill"></i></span>
-                                    <input type="text" id="novo_usuario" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="novo_usuario" placeholder="Username123" aria-label="Username123" aria-describedby="NovoUsuario" value="{{ old("novo_usuario", $values[0]) }}">
+                                    <input type="text" id="novo_usuario" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="novo_usuario" placeholder="Usuario123" aria-label="Usuario123" aria-describedby="NovoUsuario" value="{{ old("novo_usuario", $values[0]) }}">
                                 </div>
 
                                 @error("novo_usuario")
+                                    <div class="alert alert-danger animate__animated animate__shakeX mt-1 mb-0" role="alert">
+                                        <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">{{ $pagina == "Cadastro" ? "Email" : "Novo Email" }}:</label>
+                            <div class="mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}"><i class="bi bi-envelope-at-fill"></i></span>
+                                    <input type="email" id="novo_email" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="novo_email" placeholder="usuario@gmail.com" aria-label="usuario@gmail.com" aria-describedby="NovoEmail" value="{{ old("novo_email", $values[1]) }}">
+                                </div>
+
+                                @error("novo_email")
                                     <div class="alert alert-danger animate__animated animate__shakeX mt-1 mb-0" role="alert">
                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                     </div>
@@ -57,7 +71,7 @@
                             <div class="mb-3">
                                 <div class="input-group">
                                     <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}">***</span>
-                                    <input type="password" id="nova_senha" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="nova_senha" placeholder="..." aria-label="..." aria-describedby="NovaSenha" value="{{ old("nova_senha", $values[1]) }}">
+                                    <input type="password" id="nova_senha" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="nova_senha" placeholder="..." aria-label="..." aria-describedby="NovaSenha" value="{{ old("nova_senha", $values[2]) }}">
                                     <button type="button" id="mostrar_novo" class="cursor input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}"><i class="cursor bi bi-eye-slash-fill"></i></button>
                                 </div>
 
@@ -77,7 +91,7 @@
                             <div class="mb-3">
                                 <div class="input-group">
                                     <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}">***</span>
-                                    <input type="password" id="confirmar_nova_senha" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="confirmar_nova_senha" placeholder="..." aria-label="..." aria-describedby="ConfirmarNovaSenha" value="{{ old("confirmar_nova_senha", $values[2]) }}">
+                                    <input type="password" id="confirmar_nova_senha" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="confirmar_nova_senha" placeholder="..." aria-label="..." aria-describedby="ConfirmarNovaSenha" value="{{ old("confirmar_nova_senha", $values[3]) }}">
                                     <button type="button" id="mostrar_confirmar_novo" class="cursor input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}"><i class="cursor bi bi-eye-slash-fill"></i></button>
                                 </div>
 
@@ -125,7 +139,7 @@
                                             <select id="classe" class="form-select cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="classe" aria-label="Classes">
                                                 <option selected>Selecione sua classe...</option>
                                                 @foreach ($personagens as $personagem)
-                                                    <option value="{{ $personagem->classe }}" {{ old("classe", $values[3]) == "$personagem->classe" ? "selected" : "" }}>
+                                                    <option value="{{ $personagem->classe }}" {{ old("classe", $values[4]) == "$personagem->classe" ? "selected" : "" }}>
                                                         @if($personagem->classe == "Guerreiro")
                                                             🛡️
                                                         @elseif($personagem->classe == "Mago")
