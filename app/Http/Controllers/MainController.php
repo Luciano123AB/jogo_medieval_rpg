@@ -138,8 +138,12 @@ class MainController extends Controller
 
     public function registroBatalhas(): View {
 
-        $batalhas_vitorias = Batalha::where("ganhou", session("player.usuario"))->get();
-        $batalhas_derrotas = Batalha::where("perdeu", session("player.usuario"))->get();
+        $batalhas_vitorias = Batalha::onlyTrashed()
+                                    ->where("ganhou", session("player.usuario"))
+                                    ->get();
+        $batalhas_derrotas = Batalha::onlyTrashed()
+                                    ->where("perdeu", session("player.usuario"))
+                                    ->get();
 
         session([
             "alerta" => [
