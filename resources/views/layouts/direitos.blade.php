@@ -14,10 +14,10 @@
             </span>
         </small>
     </div>
-    <div class="d-flex gap-3 justify-content-center mt-2 overflow-x-auto">
+    <div class="d-flex gap-3 justify-content-center py-1 overflow-x-auto">
         @foreach(array_combine($icones, $links) as $icone => $link)
             <a href="http://{{ $link }}">
-                <img src="{{ asset("assets/images/icones/$icone.png") }}" class="cursor icones">
+                <img src="{{ asset("assets/images/icones/$icone.png") }}" class="cursor icones botoes">
             </a>
         @endforeach
     </div>
