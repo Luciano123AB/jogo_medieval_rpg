@@ -5,7 +5,7 @@
         <div class="{{ session("tema") == "escuro" ? "fundos_card_claro" : "fundos_card_escuro" }} card p-3">
             <div class="d-flex gap-3">
                 <div class="animate__animated animate__fadeInLeft w-75">
-                    <h1 class="cursor {{ session("tema") == "escuro" ? "titulos_escuro" : "titulos_claro" }} {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} text-center fw-bold">Seu Personagem:</h1>
+                    <h1 class="{{ session("tema") == "escuro" ? "titulos_escuro" : "titulos_claro" }} {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} text-center fw-bold">Seu Personagem:</h1>
                     <div class="cards sombras card {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }}">
                         <h5 class="{{ session("tema") == "escuro" ? "cor_niveis" : "text-danger" }} text-center mt-2">Nível: {{ $nivel }}</h5>
                         <img src="{{ asset("assets/images/personagens/$classe.png") }}" class="card-img-top border-bottom {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
@@ -13,7 +13,7 @@
                 </div>
 
                 <div id="oponentes" class="animate__animated animate__fadeInRight">
-                    <h1 class="cursor {{ session("tema") == "escuro" ? "titulos_escuro" : "titulos_claro" }} {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} text-center fw-bold">Oponentes:</h1>
+                    <h1 class="{{ session("tema") == "escuro" ? "titulos_escuro" : "titulos_claro" }} {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} text-center fw-bold">Oponentes:</h1>
                     <form action="{{ route("confirmarBatalha") }}" class="d-grid gap-3">
                         @foreach ($personagens as $personagem)
                             <div class="cards sombras card {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }}">

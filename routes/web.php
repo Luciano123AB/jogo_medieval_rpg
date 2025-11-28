@@ -140,6 +140,12 @@ Route::prefix("/")->group(function () {
         });
     });
 
+    Route::get("nivel_up", function() {
+        session()->forget("alerta_nivel");
+
+        return redirect()->back();
+    })->name("nivel");
+
     Route::fallback(function() {
         return redirect()->route("home");
     });

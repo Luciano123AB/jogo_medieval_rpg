@@ -19,7 +19,7 @@ class VerificarBatalha
             session([
                 "alerta_resultado" => [
                     "titulo" => "Batalha em Andamento!",
-                    "texto" => "Para sair, antes você precisa finalizar essa batalha.",
+                    "texto" => "Espere! Para sair, antes você precisa finalizar essa batalha.",
                     "icone" => "bi-hand-thumbs-down-fill"
                 ],
             ]);

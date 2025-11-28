@@ -43,6 +43,28 @@ class Batalhar extends Controller
     }
 
     public function confirmarDesafio($player, $oponente, $nome_oponente, $nivel): RedirectResponse {
+        if ($nivel > session("player.nivel")) {
+            session([
+                "alerta_resultado" => [
+                    "titulo" => "Player Muito Forte!",
+                    "texto" => "Você não pode desafiar um player de nível superior que o seu. Escolha outro.",
+                    "icone" => "bi-hand-thumbs-down-fill"
+                ],
+            ]);
+
+            return redirect()->back();
+        } elseif ($nivel < session("player.nivel")) {
+            session([
+                "alerta_resultado" => [
+                    "titulo" => "Player Muito Fraco!",
+                    "texto" => "Você não pode desafiar um player de nível inferior que o seu. Escolha outro.",
+                    "icone" => "bi-hand-thumbs-down-fill"
+                ],
+            ]);
+
+            return redirect()->back();
+        }
+
         session([
             "alerta_confirmar" => [
                 "titulo" => "Confirmar Desafio!",
