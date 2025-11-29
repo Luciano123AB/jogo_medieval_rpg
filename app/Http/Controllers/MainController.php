@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Batalha;
+use App\Models\Desafio;
 use App\Models\Personagem;
 use App\Models\Player;
 use Illuminate\Contracts\View\View;
@@ -118,6 +119,9 @@ class MainController extends Controller
         $players = Player::orderBy("usuario", "asc")->get();
         $player_lider_vitorias = Player::orderBy("quantidade_vitorias", "desc")->first();
         $player_lider_nivel = Player::orderBy("nivel", "desc")->first();
+        $desafiou = Desafio::where("id_desafiador", session("player.id"))
+                           ->pluck("id_desafiado")
+                           ->toArray();
 
         session([
             "alerta" => [
@@ -133,7 +137,8 @@ class MainController extends Controller
             ->with("pagina", "Listagem")
             ->with("players", $players)
             ->with("player_lider_vitorias", $player_lider_vitorias)
-            ->with("player_lider_nivel", $player_lider_nivel);
+            ->with("player_lider_nivel", $player_lider_nivel)
+            ->with("desafiou", $desafiou);
     }
 
     public function registroBatalhas(): View {
@@ -240,6 +245,11 @@ class MainController extends Controller
             $nova_batalha->created_at = date("Y-m-d H:i:s");
             $nova_batalha->updated_at = null;
             $nova_batalha->save();
+
+            $novo_desafio = new Desafio();
+            $novo_desafio->id_desafiador = session("player.id");
+            $novo_desafio->id_desafiado = session("id_player");
+            $novo_desafio->save();
 
             $batalha = $nova_batalha;            
 
