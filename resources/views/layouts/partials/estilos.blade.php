@@ -109,6 +109,12 @@
         text-indent: 30px;
     }
 
+    #paises {
+        display:none;
+        max-height:200px;
+        overflow-y:auto;
+    }
+
     .perfil_cadastro {
         width: 100px;
         height: 100px;

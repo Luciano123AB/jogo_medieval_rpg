@@ -6,6 +6,7 @@ use App\Models\Batalha;
 use App\Models\Desafio;
 use App\Models\Personagem;
 use App\Models\Player;
+use App\Services\Paises;
 use Illuminate\Contracts\View\View;
 
 class MainController extends Controller
@@ -62,6 +63,7 @@ class MainController extends Controller
     public function cadastro(): View {
 
         $personagens = Personagem::all();
+        $paises = Paises::paises();
 
         session([
             "alerta" => [
@@ -72,7 +74,7 @@ class MainController extends Controller
             ]
         ]);
 
-        return view("cadastro_atualizacao")
+        return view("cadastro_atualizacao", compact("paises"))
             ->with("imagem", "recrutamento")
             ->with("pagina", "Cadastro")
             ->with("personagens", $personagens);
@@ -87,6 +89,7 @@ class MainController extends Controller
         $senha = decrypt(session("player.senha"));
         $classe = session("player.personagem.classe");
         $foto = session("player.foto");
+        $paises = Paises::paises();
 
         session([
             "alerta" => [
@@ -97,7 +100,7 @@ class MainController extends Controller
             ]
         ]);
 
-        return view("cadastro_atualizacao")
+        return view("cadastro_atualizacao", compact("paises"))
             ->with("imagem", "recrutamento")
             ->with("pagina", "Atualização")
             ->with("personagens", $personagens)
