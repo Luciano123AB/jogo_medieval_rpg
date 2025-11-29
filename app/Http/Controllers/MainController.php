@@ -127,7 +127,7 @@ class MainController extends Controller
             "alerta" => [
                 "titulo" => "Lista de Players!",
                 "icone" => "bi-list-stars",
-                "texto" => "Aqui você vizualizará todos os players existentes e quem está na liderança, e caso queira, poderá desafiá-los para uma batalha.",
+                "texto" => "Aqui você vizualizará todos os players existentes e quem está na liderança, e caso queira, poderá desafiá-los para uma batalha, mas só poderá fazer isso 1 vez por dia.",
                 "pagina" => "listagem"
             ]
         ]);
