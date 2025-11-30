@@ -2,7 +2,7 @@
 
     $musica = "";
 
-    if ($pagina != "Preparação" && $pagina != "Batalha") {
+    if ($pagina != "Preparação" && $pagina != "Batalhas" && $pagina != "Batalha") {
 
         $musica = "trilha_sonora_normal.mp3";
 

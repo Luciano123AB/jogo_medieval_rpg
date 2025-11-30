@@ -125,6 +125,10 @@
         height: 50px;
     }
 
+    .bandeiras {
+        width: 27px;
+    }
+
     .opcoes_player_claro:hover {
         background-color: #64553a;
     }

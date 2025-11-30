@@ -142,20 +142,31 @@
                                                     </span>
 
                                                     <div id="countrySelect" class="form-control cursor p-0 {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}">
+                                                        @php
+
+                                                            $pais_antigo = old("pais");
+
+                                                        @endphp
+
                                                         <div class="cursor selected-option d-flex align-items-center gap-2 p-1">
-                                                            🌐 Selecione seu país...
+                                                            @if($pais_antigo)
+                                                                <span class="fi fi-{{ strtolower($pais_antigo) }} ms-1"></span> 
+                                                                {{ $paises[$pais_antigo] }}
+                                                            @else
+                                                                🌐 Selecione seu país...
+                                                            @endif
                                                         </div>
 
                                                         <div id="paises" class="options border-top {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded mt-1">
                                                             @foreach($paises as $codigo => $nome)
                                                                 <div class="cursor option d-flex border-bottom {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} align-items-center gap-2 p-1" data-value="{{ $codigo }}">
-                                                                    <span class="fi fi-{{ strtolower($codigo) }}"></span> 
+                                                                    <span class="fi fi-{{ strtolower($codigo) }} ms-1"></span> 
                                                                     {{ $nome }}
                                                                 </div>
                                                             @endforeach
                                                         </div>
 
-                                                        <input type="hidden" name="pais" id="countryInput" value="">
+                                                        <input type="hidden" name="pais" id="pais" value="{{ $pais_antigo }}">
                                                     </div>
                                                 </div>
 

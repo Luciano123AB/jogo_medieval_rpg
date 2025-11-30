@@ -20,7 +20,8 @@ class Cadastrar extends Controller
                 "novo_usuario" => "required|max:30",
                 "novo_email" => "required|max:100",
                 "nova_senha" => "required|max:60",
-                "confirmar_nova_senha" => "required"
+                "confirmar_nova_senha" => "required",
+                "pais" => "required"
             ],
 
             [
@@ -30,7 +31,8 @@ class Cadastrar extends Controller
                 "novo_email.max" => "O email deve ter no máximo 100 caracteres.",
                 "nova_senha.required" => "O campo senha é obrigatório.",
                 "nova_senha.max" => "O nome de usuário deve ter no máximo 60 caracteres.",
-                "confirmar_nova_senha.required" => "Confirme sua senha."
+                "confirmar_nova_senha.required" => "Confirme sua senha.",
+                "pais.required" => "Selecione seu país."
             ]
         );
 
@@ -38,6 +40,7 @@ class Cadastrar extends Controller
         $email = $request->input("novo_email");
         $senha = $request->input("nova_senha");
         $confirmar_senha = $request->input("confirmar_nova_senha");
+        $pais = $request->input("pais");
 
         if ($senha != $confirmar_senha) {
             return redirect()->back()->withInput()->withErrors(["senhas" => "As senhas estão diferentes! Tente novamente."]);
@@ -98,6 +101,7 @@ class Cadastrar extends Controller
                     "email" => $email,
                     "senha" => $senha,
                     "genero" => $genero,
+                    "pais" => $pais,
                     "classe" => $classe,
                     "foto" => $foto
                 ]
@@ -120,6 +124,7 @@ class Cadastrar extends Controller
         $player->email = session("alerta_confirmar.dados.email");
         $player->senha = encrypt(session("alerta_confirmar.dados.senha"));
         $player->genero = session("alerta_confirmar.dados.genero");
+        $player->pais = session("alerta_confirmar.dados.pais");
         $player->foto = session("alerta_confirmar.dados.foto");
         $player->nivel = 1;
         $player->xp = 0;

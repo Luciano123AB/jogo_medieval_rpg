@@ -65,7 +65,7 @@
                                 @endphp
                                 <img src="{{ $perfil }}" id="perfil_player" class="cursor sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle me-2">
                                 <div class="cursor">
-                                    <h4 class="cursor {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }}">{{ session("player.usuario") }}</h4>
+                                    <h4 class="cursor {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }}"><i class="fi fi-{{ strtolower(session("player.pais")) }} bandeiras align-middle me-1"></i>{{ session("player.usuario") }}</h4>
                                     <span class="cursor {{ session("tema") == "escuro" ? "cor_niveis" : "text-danger" }}">Nível: {{ session("player.nivel") }}</span>
                                 </div>
                             </div>

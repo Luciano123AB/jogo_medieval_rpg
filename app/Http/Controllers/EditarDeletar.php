@@ -90,7 +90,7 @@ class EditarDeletar extends Controller
         $usuario = $request->input("novo_usuario");
         $email = $request->input("novo_email");
         $senha = $request->input("nova_senha");
-        $confirmar_senha = $request->input("confirmar_nova_senha");        
+        $confirmar_senha = $request->input("confirmar_nova_senha");
 
         if ($senha != $confirmar_senha) {
             return redirect()->back()->withInput()->withErrors(["senhas" => "As senhas estão diferentes! Tente novamente."]);

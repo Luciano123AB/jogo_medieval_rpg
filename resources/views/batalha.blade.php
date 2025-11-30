@@ -12,7 +12,7 @@
                             data:image/png;data:image/jpeg;base64,{{ session("player.foto") }}
                         @endif
                     " id="perfil_player" class="sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
-                    Você
+                    <i class="fi fi-{{ strtolower(session("player.pais")) }} bandeiras"></i> Você
                 </h4>
                 <img src="{{ asset("assets/images/personagens/" . (session("player.personagem.classe")) . ".png") }}" class="animate__animated
                     @if(session("dano_recebido_player"))
@@ -85,7 +85,13 @@
                             data:image/png;data:image/jpeg;base64,{{ $foto }}
                         @endif
                     " id="perfil_player" class="sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
-                    Oponente: {{ $nome }}
+                    Oponente:
+                    @if($nome != "Computador")
+                        <i class="fi fi-{{ strtolower($bandeira_oponente) }} bandeiras"></i>
+                    @else
+                        <i class="fi fi-br bandeiras"></i>
+                    @endif
+                    {{ $nome }}
                 </h4>
                 <img src="{{ asset("assets/images/personagens/$oponente->classe" . "_reverso.png") }}" class="animate__animated
                     @if(session("dano_recebido_oponente"))

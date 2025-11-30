@@ -12,6 +12,7 @@ class Player extends Model
         "email",
         "senha",
         "genero",
+        "pais",
         "foto",
         "nivel",
         "subir_nivel",

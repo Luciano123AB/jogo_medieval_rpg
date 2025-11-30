@@ -141,21 +141,24 @@
         });
     });
 
-    document.querySelector('#countrySelect').addEventListener('click', function(e) {
-        const box = this.querySelector('.options');
-        box.style.display = box.style.display === 'block' ? 'none' : 'block';
+    document.querySelector("#countrySelect").addEventListener("click", function(e) {
+
+        const box = this.querySelector(".options");
+
+        box.style.display = box.style.display === "block" ? "none" : "block";
     });
 
-    document.querySelectorAll('#countrySelect .option').forEach(option => {
-        option.addEventListener('click', function(e) {
-            const countrySelect = document.querySelector('#countrySelect');
-            const selected = countrySelect.querySelector('.selected-option');
-            const hiddenInput = document.querySelector('#countryInput');
+    document.querySelectorAll("#countrySelect .option").forEach(option => {
+        option.addEventListener("click", function(e) {
+
+            const countrySelect = document.querySelector("#countrySelect");
+            const selected = countrySelect.querySelector(".selected-option");
+            const pais = document.querySelector("#pais");
 
             selected.innerHTML = this.innerHTML;
-            hiddenInput.value = this.dataset.value;
+            pais.value = this.dataset.value;
 
-            countrySelect.querySelector('.options').style.display = 'none';
+            countrySelect.querySelector(".options").style.display = "none";
 
             e.stopPropagation();
         });
@@ -168,6 +171,9 @@
         document.getElementById("confirmar_nova_senha").value = "";
         document.getElementById("genero").selectedIndex = 0;
         document.getElementById("foto").value = "";
+        document.querySelector("#pais").value = "";
+        document.querySelector("#countrySelect .selected-option").innerHTML = "🌐 Selecione seu país...";
+
 
         const classe = document.getElementById("classe");
         const perfil_cadastro = document.querySelector(".perfil_cadastro");

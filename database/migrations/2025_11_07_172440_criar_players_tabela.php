@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string("email", 100)->nullable()->comment("usuario@gmail.com");
             $table->string("senha", 255)->nullable()->comment("***");
             $table->string("genero", 9)->nullable()->comment("Masculino|Feminino|Outro");
+            $table->string("pais", 2)->nullable()->comment("Brasil");
             $table->longText("foto", 13980320)->comment("iVBORw0KGgo...");
             $table->integer("nivel")->nullable()->default(1)->comment("1");
             $table->float("xp")->nullable()->default(0)->comment("99");

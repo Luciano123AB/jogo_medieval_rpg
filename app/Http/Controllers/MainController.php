@@ -220,6 +220,7 @@ class MainController extends Controller
         $foto_oponente = session("foto_oponente");
         $nome_oponente = session("nome_oponente");
         $nivel = null;
+        $pais = session("pais_oponente");
         $oponente = Personagem::find($id);
         $vez = random_int(0, 1);
 
@@ -286,6 +287,7 @@ class MainController extends Controller
             ->with("pagina", "Batalha")
             ->with("batalha", $batalha)
             ->with("vez", $batalha->vez)
+            ->with("bandeira_oponente", $pais)
             ->with("oponente", $oponente)
             ->with("foto", $foto_oponente)
             ->with("nome", $nome_oponente);

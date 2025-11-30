@@ -22,6 +22,7 @@
                                         }
                                     @endphp
                                     <img src="{{ $perfil }}" class="sombras perfil_players border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
+                                    <i class="fi fi-{{ strtolower($player_lider_vitorias->pais) }} bandeiras"></i>
                                     {{ $player_lider_vitorias->usuario }}
                                 </label>
                                 <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Qtd/Vitórias: {{ $player_lider_vitorias->quantidade_vitorias }}</label>
@@ -46,6 +47,7 @@
                                         }
                                     @endphp
                                     <img src="{{ $perfil }}" class="sombras perfil_players border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
+                                    <i class="fi fi-{{ strtolower($player_lider_nivel->pais) }} bandeiras"></i>
                                     {{ $player_lider_nivel->usuario }}
                                 </label>
                                 <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Nível: {{ $player_lider_nivel->nivel }}</label>
@@ -82,14 +84,15 @@
                                             " id="perfil_player" class="sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
                                         </td>
                                         <td class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border px-1">
+                                            <i class="fi fi-{{ strtolower($player->pais) }} bandeiras"></i>
+                                            {{ $player->usuario }}
                                             @if($player->genero == "Masculino")
                                                 ♂️
                                             @elseif($player->genero == "Feminino")
                                                 ♀️
                                             @else
                                                 ⚧
-                                            @endif
-                                            {{ $player->usuario }}
+                                            @endif                                            
                                         </td>
                                         <td class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border px-1">{{ $player->personagem->classe }}</td>
                                         <td class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border text-center">{{ $player->nivel }}</td>
