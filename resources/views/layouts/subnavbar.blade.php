@@ -22,11 +22,19 @@
         <i class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} bi {{ session("musica") == "Desativado" ? "bi-volume-mute-fill" : "bi-volume-up-fill" }} fs-4"></i>
     </a>
 
-    @if(session()->has("player") && $pagina != "Batalhas" && $pagina != "Batalha")
-        <a href="{{ route("batalhas") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} border">
-            <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}"><i class="bi bi-card-list"></i> Batalhas em Andamento</span>
-        </a>
-    @endif
+    <div class="d-flex gap-3 flex-column flex-md-row">
+        @if(session()->has("player") && $pagina != "Batalhas" && $pagina != "Batalha")
+            <a href="{{ route("batalhas") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} border">
+                <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}"><i class="bi bi-card-list"></i> Batalhas em Andamento</span>
+            </a>
+        @endif
+    
+        @if(session()->has("player") && $pagina != "Totais" && $pagina != "Batalha")
+            <a href="{{ route("totais") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} border">
+                <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}"><i class="bi bi-flag-fill"></i> Total de Players(Países)</span>
+            </a>
+        @endif
+    </div>
 
     <a href="{{ route("tema") }}" class="cursor sombras botoes subnavbar btn {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} border rounded-circle mx-3 px-3 py-2">
         <i class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro bi-brightness-high-fill" : "cor_fontes_claro bi-moon-stars-fill" }} bi fs-4"></i>

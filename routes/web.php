@@ -76,6 +76,8 @@ Route::prefix("/")->group(function () {
             Route::middleware(VerificarLogado::class)->group(function() {
                 Route::get("atualizacao", "atualizacao")->name("atualizacao");
 
+                Route::get("totais_players", "totaisPlayers")->name("totais");
+
                 Route::get("registro_batalhas", "registroBatalhas")->name("registro");
 
                 Route::get("batalhas_andamento", "batalhasAndamento")->name("batalhas");

@@ -7,6 +7,7 @@ use App\Models\Desafio;
 use App\Models\Personagem;
 use App\Models\Player;
 use App\Services\Paises;
+use App\Services\PlayersPais;
 use Illuminate\Contracts\View\View;
 
 class MainController extends Controller
@@ -291,5 +292,32 @@ class MainController extends Controller
             ->with("oponente", $oponente)
             ->with("foto", $foto_oponente)
             ->with("nome", $nome_oponente);
+    }
+
+    public function totaisPlayers() {
+
+        $paises = Paises::paises();
+        $totais = [];
+        
+        foreach ($paises as $codigo => $nome) {
+            $totais[$codigo] = [
+                "nome" => $nome,
+                "total" => PlayersPais::playersPais($codigo)
+            ];
+        }
+
+        session([
+            "alerta" => [
+                "titulo" => "Totais de Players!",
+                "icone" => "bi-flag-list",
+                "texto" => "Aqui você descobri-rá quantos players de cada país estão presentes no jogo.",
+                "pagina" => "totais"
+            ]
+        ]);
+
+        return view("totais_players")
+            ->with("imagem", "recrutamento")
+            ->with("pagina", "Totais")
+            ->with("totais", $totais);
     }
 }

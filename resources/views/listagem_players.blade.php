@@ -22,7 +22,7 @@
                                         }
                                     @endphp
                                     <img src="{{ $perfil }}" class="sombras perfil_players border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
-                                    <i class="fi fi-{{ strtolower($player_lider_vitorias->pais) }} bandeiras"></i>
+                                    <i class="fi fi-{{ strtolower($player_lider_vitorias->pais) }} animate__animated animate__jello animate__infinite bandeiras"></i>
                                     {{ $player_lider_vitorias->usuario }}
                                 </label>
                                 <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Qtd/Vitórias: {{ $player_lider_vitorias->quantidade_vitorias }}</label>
@@ -47,7 +47,7 @@
                                         }
                                     @endphp
                                     <img src="{{ $perfil }}" class="sombras perfil_players border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
-                                    <i class="fi fi-{{ strtolower($player_lider_nivel->pais) }} bandeiras"></i>
+                                    <i class="fi fi-{{ strtolower($player_lider_nivel->pais) }} animate__animated animate__jello animate__infinite bandeiras"></i>
                                     {{ $player_lider_nivel->usuario }}
                                 </label>
                                 <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Nível: {{ $player_lider_nivel->nivel }}</label>
@@ -84,7 +84,7 @@
                                             " id="perfil_player" class="sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
                                         </td>
                                         <td class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border px-1">
-                                            <i class="fi fi-{{ strtolower($player->pais) }} bandeiras"></i>
+                                            <i class="fi fi-{{ strtolower($player->pais) }} animate__animated animate__jello animate__infinite bandeiras"></i>
                                             {{ $player->usuario }}
                                             @if($player->genero == "Masculino")
                                                 ♂️

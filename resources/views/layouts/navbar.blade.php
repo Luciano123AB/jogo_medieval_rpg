@@ -24,6 +24,8 @@
                     <i class="bi bi-file-earmark-medical-fill"></i>
                 @elseif($pagina == "Batalhas")
                     <i class="bi bi-card-list"></i>
+                @elseif($pagina == "Totais")
+                    <i class="bi bi-flag-fill"></i>
                 @elseif($pagina == "Batalha" || $pagina == "Preparação")
                     ⚔️
                 @endif
@@ -65,7 +67,7 @@
                                 @endphp
                                 <img src="{{ $perfil }}" id="perfil_player" class="cursor sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle me-2">
                                 <div class="cursor">
-                                    <h4 class="cursor {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }}"><i class="fi fi-{{ strtolower(session("player.pais")) }} bandeiras align-middle me-1"></i>{{ session("player.usuario") }}</h4>
+                                    <h4 class="cursor {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }}"><i class="fi fi-{{ strtolower(session("player.pais")) }} bandeiras animate__animated animate__jello animate__infinite align-middle me-1"></i>{{ session("player.usuario") }}</h4>
                                     <span class="cursor {{ session("tema") == "escuro" ? "cor_niveis" : "text-danger" }}">Nível: {{ session("player.nivel") }}</span>
                                 </div>
                             </div>
