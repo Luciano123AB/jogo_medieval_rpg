@@ -1,43 +1,47 @@
 <nav id="navbar" class="navbar navbar-expand-lg {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-black border-danger" }} border-5 rounded-bottom-5 mb-4">
     <div class="container-fluid">
-        <a href="{{ route("home") }}" id="home" class="cursor navbar-brand">
-            <img src="{{ asset("assets/images/icones/icone.png") }}" id="icone" class="cursor animate__animated animate__flipOutY animate__infinite">
-            <span class="cursor align-middle fs-3">🎮</span>
-            <span class="cursor {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} fw-bold align-middle fs-3">Jogo Medieval RPG</span>
-            <br class="d-sm-none">
-            <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeIn align-middle fs-3">- 
-                @if ($pagina == "Home")
-                    <i class="bi bi-house-fill"></i>
-                @elseif($pagina == "Créditos")
-                    <i class="cursor bi bi-body-text"></i>
-                @elseif($pagina == "Descrições")
-                    <i class="cursor bi bi-person-lines-fill"></i>
-                @elseif($pagina == "Regras")
-                    <i class="cursor bi bi-question-circle-fill"></i>
-                @elseif($pagina == "Cadastro")
-                    <i class="cursor bi bi-person-fill-add"></i>
-                @elseif($pagina == "Atualização")
-                    <i class="cursor bi bi-person-fill-down"></i>
-                @elseif($pagina == "Listagem")
-                    <i class="bi bi-list-stars"></i>
-                @elseif($pagina == "Registro")
-                    <i class="bi bi-file-earmark-medical-fill"></i>
-                @elseif($pagina == "Batalhas")
-                    <i class="bi bi-card-list"></i>
-                @elseif($pagina == "Totais")
-                    <i class="bi bi-flag-fill"></i>
-                @elseif($pagina == "Batalha" || $pagina == "Preparação")
-                    ⚔️
-                @endif
-                {{ $pagina }}
-            </span>
-        </a>
-
-        @if($pagina != "Home" && $pagina != "Batalha")
-            <a href="{{ route("home") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} d-flex border my-1">
-                <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}"><i class="cursor bi bi-arrow-90deg-left animate__animated animate__fadeIn animate__infinite"></i> Voltar</span>
+        <div class="d-flex flex-wrap align-items-center">
+            <a href="{{ route("home") }}" id="home" class="cursor navbar-brand">
+                <img src="{{ asset("assets/images/icones/icone.png") }}" id="icone" class="cursor animate__animated animate__flipOutY animate__infinite">
+                <span class="cursor align-middle fs-3">🎮</span>
+                <span class="cursor {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} fw-bold align-middle fs-3">Jogo Medieval RPG</span>
+                <br class="d-sm-none">
+                <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeIn align-middle fs-3">- 
+                    @if ($pagina == "Home")
+                        <i class="bi bi-house-fill"></i>
+                    @elseif($pagina == "Créditos")
+                        <i class="cursor bi bi-body-text"></i>
+                    @elseif($pagina == "Descrições")
+                        <i class="cursor bi bi-person-lines-fill"></i>
+                    @elseif($pagina == "Regras")
+                        <i class="cursor bi bi-question-circle-fill"></i>
+                    @elseif($pagina == "Cadastro")
+                        <i class="cursor bi bi-person-fill-add"></i>
+                    @elseif($pagina == "Atualização")
+                        <i class="cursor bi bi-person-fill-down"></i>
+                    @elseif($pagina == "Listagem")
+                        <i class="bi bi-list-stars"></i>
+                    @elseif($pagina == "Registro")
+                        <i class="bi bi-file-earmark-medical-fill"></i>
+                    @elseif($pagina == "Batalhas")
+                        <i class="bi bi-card-list"></i>
+                    @elseif($pagina == "Totais")
+                        <i class="bi bi-flag-fill"></i>
+                    @elseif($pagina == "Batalha" || $pagina == "Preparação")
+                        ⚔️
+                    @endif
+                    {{ mb_strtoupper($pagina) }}
+                </span>
             </a>
-        @endif
+
+            @if($pagina != "Home" && $pagina != "Batalha")
+                <div>
+                    <a href="{{ route("home") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} d-flex border my-1">
+                        <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}"><i class="cursor bi bi-arrow-90deg-left animate__animated animate__fadeIn animate__infinite"></i> Voltar</span>
+                    </a>
+                </div>
+            @endif
+        </div>
 
         @if($pagina == "Batalha")
             <a href="{{ route("confirmarRender") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} d-flex border my-1">
@@ -67,7 +71,9 @@
                                 @endphp
                                 <img src="{{ $perfil }}" id="perfil_player" class="cursor sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle me-2">
                                 <div class="cursor">
-                                    <h4 class="cursor {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }}"><i class="fi fi-{{ strtolower(session("player.pais")) }} bandeiras animate__animated animate__jello animate__infinite align-middle me-1"></i>{{ session("player.usuario") }}</h4>
+                                    <div class="border-3 border-start border-black">
+                                        <h4 class="cursor {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }}"><i class="fi fi-{{ strtolower(session("player.pais")) }} animate__animated animate__jello animate__infinite border border-start-0 border-white mb-2 me-1"></i>{{ session("player.usuario") }}</h4>
+                                    </div>
                                     <span class="cursor {{ session("tema") == "escuro" ? "cor_niveis" : "text-danger" }}">Nível: {{ session("player.nivel") }}</span>
                                 </div>
                             </div>

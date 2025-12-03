@@ -4,7 +4,7 @@
     <div class="container">
         <div class="d-flex">
             <div class="text-center">
-                <h4 class="text-success">
+                <h4 class="d-flex justify-content-center text-success">
                     <img src="
                         @if(session("player.foto") == "nenhuma")
                             {{ asset("assets/images/perfils/vazio_perfil.png") }}
@@ -12,7 +12,10 @@
                             data:image/png;data:image/jpeg;base64,{{ session("player.foto") }}
                         @endif
                     " id="perfil_player" class="sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
-                    <i class="fi fi-{{ strtolower(session("player.pais")) }} animate__animated animate__jello animate__infinite bandeiras"></i> Você
+                    <div class="border-3 border-start border-black ms-2">
+                        <i class="fi fi-{{ strtolower(session("player.pais")) }} animate__animated animate__jello animate__infinite border border-start-0 border-white"></i>
+                        Você
+                    </div>
                 </h4>
                 <img src="{{ asset("assets/images/personagens/" . (session("player.personagem.classe")) . ".png") }}" class="animate__animated
                     @if(session("dano_recebido_player"))
@@ -77,7 +80,7 @@
             </div>
 
             <div class="text-center">
-                <h4 class="text-danger">
+                <h4 class="d-flex justify-content-center text-danger">
                     <img src="
                         @if($foto == "nenhuma")
                             {{ asset("assets/images/perfils/vazio_perfil.png") }}
@@ -85,13 +88,17 @@
                             data:image/png;data:image/jpeg;base64,{{ $foto }}
                         @endif
                     " id="perfil_player" class="sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
-                    Oponente:
                     @if($nome != "Computador")
-                        <i class="fi fi-{{ strtolower($bandeira_oponente) }} animate__animated animate__jello animate__infinite bandeiras"></i>
+                        <div class="border-3 border-start border-black ms-2">
+                            <i class="fi fi-{{ strtolower($bandeira_oponente) }} animate__animated animate__jello animate__infinite border border-start-0 border-white"></i>
+                            Oponente: {{ $nome }}
+                        </div>
                     @else
-                        <i class="fi fi-br bandeiras"></i>
-                    @endif
-                    {{ $nome }}
+                        <div class="border-3 border-start border-black ms-2">
+                            <i class="fi animate__animated animate__jello animate__infinite bg-secondary border border-start-0 border-white"></i>
+                            Oponente: Computador
+                        </div>
+                    @endif                    
                 </h4>
                 <img src="{{ asset("assets/images/personagens/$oponente->classe" . "_reverso.png") }}" class="animate__animated
                     @if(session("dano_recebido_oponente"))

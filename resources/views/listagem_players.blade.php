@@ -12,7 +12,7 @@
                                     <span class="animate__animated animate__tada animate__infinite fs-4 me-1">🏆</span>
                                     <h4 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }}">Player com Mais Vitórias</h4>
                                 </div>
-                                <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Usuário:
+                                <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">
                                     @php
                                     
                                         $perfil = asset("assets/images/perfils/" . $player_lider_vitorias->personagem->classe . "_perfil.png");
@@ -21,9 +21,14 @@
                                             $perfil = "data:image/png;data:image/jpeg;base64," . $player_lider_vitorias->foto;
                                         }
                                     @endphp
-                                    <img src="{{ $perfil }}" class="sombras perfil_players border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
-                                    <i class="fi fi-{{ strtolower($player_lider_vitorias->pais) }} animate__animated animate__jello animate__infinite bandeiras"></i>
-                                    {{ $player_lider_vitorias->usuario }}
+                                    <div class="d-flex flex-wrap justify-content-center">
+                                        Usuário:
+                                        <img src="{{ $perfil }}" class="sombras perfil_players border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle ms-1 me-2">
+                                        <div class="bandeiras d-flex border-3 border-start border-black">
+                                            <i class="fi fi-{{ strtolower($player_lider_vitorias->pais) }} animate__animated animate__jello animate__infinite border border-start-0 border-white mb-1 me-1"></i>
+                                        </div>
+                                        {{ $player_lider_vitorias->usuario }}
+                                    </div>
                                 </label>
                                 <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Qtd/Vitórias: {{ $player_lider_vitorias->quantidade_vitorias }}</label>
                             </div>
@@ -37,7 +42,7 @@
                                     <span class="animate__animated animate__tada animate__infinite fs-4 me-1">🏆</span>
                                     <h4 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }}">Player com Maior Nível</h4>
                                 </div>
-                                <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Usuário:
+                                <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">
                                     @php
                                     
                                         $perfil = asset("assets/images/perfils/" . $player_lider_nivel->personagem->classe . "_perfil.png");
@@ -46,9 +51,14 @@
                                             $perfil = "data:image/png;data:image/jpeg;base64," . $player_lider_nivel->foto;
                                         }
                                     @endphp
-                                    <img src="{{ $perfil }}" class="sombras perfil_players border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
-                                    <i class="fi fi-{{ strtolower($player_lider_nivel->pais) }} animate__animated animate__jello animate__infinite bandeiras"></i>
-                                    {{ $player_lider_nivel->usuario }}
+                                    <div class="d-flex flex-wrap justify-content-center">
+                                        Usuário:
+                                        <img src="{{ $perfil }}" class="sombras perfil_players border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle ms-1 me-2">
+                                        <div class="bandeiras d-flex border-3 border-start border-black">
+                                            <i class="fi fi-{{ strtolower($player_lider_nivel->pais) }} animate__animated animate__jello animate__infinite border border-start-0 border-white mb-1 me-1"></i>
+                                        </div>
+                                        {{ $player_lider_nivel->usuario }}
+                                    </div>
                                 </label>
                                 <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Nível: {{ $player_lider_nivel->nivel }}</label>
                             </div>
@@ -84,15 +94,19 @@
                                             " id="perfil_player" class="sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
                                         </td>
                                         <td class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border px-1">
-                                            <i class="fi fi-{{ strtolower($player->pais) }} animate__animated animate__jello animate__infinite bandeiras"></i>
-                                            {{ $player->usuario }}
-                                            @if($player->genero == "Masculino")
-                                                ♂️
-                                            @elseif($player->genero == "Feminino")
-                                                ♀️
-                                            @else
-                                                ⚧
-                                            @endif                                            
+                                            <div class="d-flex">
+                                                <div class="bandeiras d-flex border-3 border-start border-black">
+                                                    <i class="fi fi-{{ strtolower($player->pais) }} animate__animated animate__jello animate__infinite border border-start-0 border-white mb-1 me-1"></i>
+                                                </div>
+                                                {{ $player->usuario }}
+                                                @if($player->genero == "Masculino")
+                                                    ♂️
+                                                @elseif($player->genero == "Feminino")
+                                                    ♀️
+                                                @else
+                                                    ⚧
+                                                @endif
+                                            </div>
                                         </td>
                                         <td class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border px-1">{{ $player->personagem->classe }}</td>
                                         <td class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border text-center">{{ $player->nivel }}</td>

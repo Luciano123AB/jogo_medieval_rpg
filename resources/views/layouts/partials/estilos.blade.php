@@ -126,7 +126,7 @@
     }
 
     .bandeiras {
-        width: 27px;
+        height: 18px;
     }
 
     .opcoes_player_claro:hover {
