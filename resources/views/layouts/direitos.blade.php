@@ -1,7 +1,7 @@
 @php
             
-    $icones = ["laravel", "php", "html5", "javascript", "css", "bootstrap", "animate_css", "jsdelivr", "sweetalert", "mysql"];
-    $links = ["laravel.com", "php.net", "developer.mozilla.org/en-US/docs/Glossary/HTML5", "developer.mozilla.org/pt-BR/docs/Web/JavaScript", "developer.mozilla.org/pt-BR/docs/Web/CSS", "getbootstrap.com", "animate.style", "cdn.jsdelivr.net", "sweetalert2.github.io", "mysql.com"];
+    $icones = ["laravel", "php", "html5", "javascript", "css", "bootstrap", "animate_css", "gsap", "jsdelivr", "sweetalert", "mysql"];
+    $links = ["laravel.com", "php.net", "developer.mozilla.org/en-US/docs/Glossary/HTML5", "developer.mozilla.org/pt-BR/docs/Web/JavaScript", "developer.mozilla.org/pt-BR/docs/Web/CSS", "getbootstrap.com", "animate.style", "gsap.com", "cdn.jsdelivr.net", "sweetalert2.github.io", "mysql.com"];
 
 @endphp
 

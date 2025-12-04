@@ -69,7 +69,7 @@
                                         $perfil = "data:image/png;data:image/jpeg;base64," . session("player.foto");
                                     }
                                 @endphp
-                                <img src="{{ $perfil }}" id="perfil_player" class="cursor sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle me-2">
+                                <img src="{{ $perfil }}" class="perfil_player cursor sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle me-2">
                                 <div class="cursor">
                                     <div class="border-3 border-start border-black">
                                         <h4 class="cursor {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }}"><i class="fi fi-{{ strtolower(session("player.pais")) }} animate__animated animate__jello animate__infinite border border-start-0 border-white mb-2 me-1"></i>{{ session("player.usuario") }}</h4>

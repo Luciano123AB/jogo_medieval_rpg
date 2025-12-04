@@ -9,13 +9,14 @@ class Randoms
         $skill01 = $personagem->skill01->skill;
         $skill02 = $personagem->skill02->skill;
         $skill03 = $personagem->skill03->skill;
+
         $danos_skill01 = [$personagem->skill01->dano01, $personagem->skill01->dano02, $personagem->skill01->dano03];
         $danos_skill02 = [$personagem->skill02->dano01, $personagem->skill02->dano02, $personagem->skill02->dano03];
         $danos_skill03 = [$personagem->skill03->dano01, $personagem->skill03->dano02, $personagem->skill03->dano03];
+        
         $dano01_sorteado = $danos_skill01[array_rand($danos_skill01)];
         $dano02_sorteado = $danos_skill02[array_rand($danos_skill02)];
         $dano03_sorteado = $danos_skill03[array_rand($danos_skill03)];
-        $dano = "";
 
         switch ($skill_escolhida) {
             case "$skill01":
@@ -31,6 +32,7 @@ class Randoms
             case "$skill03":
                 $dano = $dano03_sorteado * $nivel;
                 session(["skill03" => true]);
+                session()->flash("ultimate_player");
             break;
         }
 
@@ -42,27 +44,45 @@ class Randoms
         $skill01 = $personagem->skill01->skill;
         $skill02 = $personagem->skill02->skill;
         $skill03 = $personagem->skill03->skill;
-        $skills = [$skill01, $skill02, $skill03];
-        $skill_sorteado = $skills[array_rand($skills)];
+
         $danos_skill01 = [$personagem->skill01->dano01, $personagem->skill01->dano02, $personagem->skill01->dano03];
         $danos_skill02 = [$personagem->skill02->dano01, $personagem->skill02->dano02, $personagem->skill02->dano03];
         $danos_skill03 = [$personagem->skill03->dano01, $personagem->skill03->dano02, $personagem->skill03->dano03];
+
         $dano01_sorteado = $danos_skill01[array_rand($danos_skill01)];
         $dano02_sorteado = $danos_skill02[array_rand($danos_skill02)];
         $dano03_sorteado = $danos_skill03[array_rand($danos_skill03)];
-        $dano = "";
+
+        $todasSkills = [$skill01, $skill02, $skill03];
+        $skillsDisponiveis = [];
+
+        if (!session()->has("skill01_oponente")) $skillsDisponiveis[] = $skill01;
+        if (!session()->has("skill02_oponente")) $skillsDisponiveis[] = $skill02;
+        if (!session()->has("skill03_oponente")) $skillsDisponiveis[] = $skill03;
+
+        if (empty($skillsDisponiveis)) {
+            session()->forget(["skill01_oponente", "skill02_oponente", "skill03_oponente"]);
+
+            $skillsDisponiveis = $todasSkills;
+        }
+
+        $skill_sorteado = $skillsDisponiveis[array_rand($skillsDisponiveis)];
 
         switch ($skill_sorteado) {
-            case "$skill01":
+            case $skill01:
                 $dano = $dano01_sorteado * $nivel;
+                session(["skill01_oponente" => true]);
             break;
 
-            case "$skill02":
+            case $skill02:
                 $dano = $dano02_sorteado * $nivel;
+                session(["skill02_oponente" => true]);
             break;
 
-            case "$skill03":
+            case $skill03:
                 $dano = $dano03_sorteado * $nivel;
+                session(["skill03_oponente" => true]);
+                session()->flash("ultimate_oponente");
             break;
         }
 

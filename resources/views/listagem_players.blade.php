@@ -91,7 +91,7 @@
                                                 @else
                                                     data:image/png;data:image/jpeg;base64,{{ $player->foto }}
                                                 @endif
-                                            " id="perfil_player" class="sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
+                                            " class="perfil_player sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
                                         </td>
                                         <td class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border px-1">
                                             <div class="d-flex">

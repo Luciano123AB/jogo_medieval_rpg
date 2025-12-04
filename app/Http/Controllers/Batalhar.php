@@ -184,7 +184,9 @@ class Batalhar extends Controller
         $batalha->save();
         $batalha->delete();
 
-        session()->forget(["alerta_confirmar_render", "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente", "dados", "skill01", "skill02", "skill03"]);
+        session()->forget(["inicio_player", "inicio_oponente"]);
+        session()->forget(["skill01", "skill02", "skill03", "skill01_oponente", "skill02_oponente", "skill03_oponente"]);
+        session()->forget(["alerta_confirmar_render", "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente", "dados"]);
 
         $id = session("player.id");
         

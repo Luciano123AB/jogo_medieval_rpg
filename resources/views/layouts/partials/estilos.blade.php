@@ -120,7 +120,7 @@
         height: 100px;
     }
 
-    #perfil_player {
+    .perfil_player {
         width: 50px;
         height: 50px;
     }

@@ -11,19 +11,17 @@
                         @else
                             data:image/png;data:image/jpeg;base64,{{ session("player.foto") }}
                         @endif
-                    " id="perfil_player" class="sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
+                    " class="perfil_player sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
                     <div class="border-3 border-start border-black ms-2">
                         <i class="fi fi-{{ strtolower(session("player.pais")) }} animate__animated animate__jello animate__infinite border border-start-0 border-white"></i>
                         Você
                     </div>
                 </h4>
-                <img src="{{ asset("assets/images/personagens/" . (session("player.personagem.classe")) . ".png") }}" class="animate__animated
-                    @if(session("dano_recebido_player"))
-                        animate__shakeX
-                    @elseif(session("dano_desferido_player"))
-                        animate__slideInRight
-                    @else
+                <img src="{{ asset("assets/images/personagens/" . (session("player.personagem.classe")) . ".png") }}" id="player" class="animate__animated
+                    @if(!session()->has("inicio_player"))
                         animate__fadeInLeftBig
+
+                        {{ session(["inicio_player" => true]) }}
                     @endif
                 w-50">
                 <div class="d-grid gap-2 w-50 mx-auto">
@@ -87,7 +85,7 @@
                         @else
                             data:image/png;data:image/jpeg;base64,{{ $foto }}
                         @endif
-                    " id="perfil_player" class="sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
+                    " class="perfil_player sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
                     @if($nome != "Computador")
                         <div class="border-3 border-start border-black ms-2">
                             <i class="fi fi-{{ strtolower($bandeira_oponente) }} animate__animated animate__jello animate__infinite border border-start-0 border-white"></i>
@@ -100,13 +98,11 @@
                         </div>
                     @endif                    
                 </h4>
-                <img src="{{ asset("assets/images/personagens/$oponente->classe" . "_reverso.png") }}" class="animate__animated
-                    @if(session("dano_recebido_oponente"))
-                        animate__shakeX
-                    @elseif(session("dano_desferido_oponente"))
-                        animate__slideInLeft
-                    @else
+                <img src="{{ asset("assets/images/personagens/$oponente->classe" . "_reverso.png") }}" id="oponente" class="animate__animated
+                    @if(!session()->has("inicio_oponente"))
                         animate__fadeInRightBig
+
+                        {{ session(["inicio_oponente" => true]) }}
                     @endif
                 w-50">
                 <div class="d-grid gap-2 w-50 mx-auto">
@@ -141,6 +137,8 @@
 
     <script>
 
+        const player = document.getElementById("player");
+        const oponete = document.getElementById("oponente");
         const skill01 = document.getElementById("btnradio1");
         const skill02 = document.getElementById("btnradio2");
         const skill03 = document.getElementById("btnradio3");
@@ -170,6 +168,94 @@
 
         @if(session()->has("skill03"))
             skill03.disabled = true;
+        @endif
+
+        const gtl = gsap.timeline();
+
+        @if(session("dano_desferido_player"))
+            setTimeout(() => {
+                oponete.classList.add("animate__shakeX");
+            }, 900);
+
+            @if(session()->has("ultimate_player"))
+                gtl.to("#player", {
+                    duration: 0.9,
+                    ease: "power1.inOut",
+                    motionPath: {
+                        path: [
+                            { x: 0,   y: 0 },
+                            { x: 250, y: -250 },
+                            { x: 500, y: 0 }
+                        ],
+                        curviness: 1.5
+                    }
+                })
+                .to("#player", {
+                    x: 0,
+                    y: 0,
+                    duration: 0.7,
+                    ease: "power2.in"
+                });
+            @else            
+                gtl.fromTo("#player", {
+                    x: 0,
+                    y: 0
+                }, {
+                    x: 500,
+                    y: 0,
+                    duration: 0.9,
+                    ease: "power1.in"
+                })
+                .to("#player", {
+                    x: 0,
+                    y: 0,
+                    duration: 0.7,
+                    ease: "power2.in"
+                });
+            @endif
+        @endif
+
+        @if(session("dano_desferido_oponente"))
+            setTimeout(() => {
+                player.classList.add("animate__shakeX");
+            }, 900);
+
+            @if(session()->has("ultimate_oponente"))
+                gtl.to("#oponente", {
+                    duration: 0.9,
+                    ease: "power1.inOut",
+                    motionPath: {
+                        path: [
+                            { x: 0,   y: 0 },
+                            { x: -250, y: -250 },
+                            { x: -500, y: 0 }
+                        ],
+                        curviness: 1.5
+                    }
+                })
+                .to("#oponente", {
+                    x: 0,
+                    y: 0,
+                    duration: 0.7,
+                    ease: "power2.in"
+                });
+            @else            
+                gtl.fromTo("#oponente", {
+                    x: 0,
+                    y: 0
+                }, {
+                    x: -500,
+                    y: 0,
+                    duration: 0.9,
+                    ease: "power1.in"
+                })
+                .to("#oponente", {
+                    x: 0,
+                    y: 0,
+                    duration: 0.7,
+                    ease: "power2.in"
+                });
+            @endif
         @endif
 
         const hp_player = {{ $batalha->hp }};
