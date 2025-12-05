@@ -79,7 +79,12 @@
                                     <div class="border-3 border-start border-black rounded-top-1">
                                         <h4 class="cursor {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }}"><i class="fi fi-{{ strtolower(session("player.pais")) }} animate__animated animate__jello animate__infinite border-start border-end mb-2 me-1"></i>{{ session("player.usuario") }}</h4>
                                     </div>
-                                    <span class="cursor {{ session("tema") == "escuro" ? "text-bg-primary" : "text-bg-danger" }} badge">Nível: {{ session("player.nivel") }}</span>
+                                    <span class="cursor {{ session("tema") == "escuro" ? "text-bg-primary" : "text-bg-danger" }} {{ session("player.nivel") == 70 ? "text-warning" : "" }} badge">
+                                        Nível: {{ session("player.nivel") }}
+                                        @if(session("player.nivel") == 70)
+                                            Max
+                                        @endif
+                                    </span>
                                 </div>
                             </div>
                             <div class="cursor barras progress border {{ session("tema") == "escuro" ? "border-primary" : "border-success" }} bg-black" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
