@@ -14,16 +14,10 @@ class EditarDeletar extends Controller
             "alerta_confirmar" => [
                 "titulo" => "Confirmar Deleção!",
                 "texto" => "Tem certeza que deseja deletar sua conta? Esse operação é irreversível.",
-                "cancelar" => "cancelarDeletar",
+                "cancelar" => "cancelar",
                 "sim" => "deletar"
             ]
         ]);
-
-        return redirect()->back();
-    }
-
-    public function cancelarDeletar(): RedirectResponse {
-        session()->forget(["alerta_confirmar"]);
 
         return redirect()->back();
     }
@@ -36,7 +30,7 @@ class EditarDeletar extends Controller
         $player_deletar->delete();
 
         if (!$player_deletar) {
-            session()->forget(["alerta_confirmar"]);
+            session()->forget("alerta_confirmar");
 
             session([
                 "alerta_resultado" => [
@@ -48,8 +42,7 @@ class EditarDeletar extends Controller
 
             return redirect()->back();
         } else {
-            session()->forget(["alerta_confirmar"]);
-            session()->forget(["player"]);
+            session()->forget(["alerta_confirmar", "player"]);
 
             session([
                 "alerta_resultado" => [
@@ -142,7 +135,7 @@ class EditarDeletar extends Controller
             "alerta_confirmar" => [
                 "titulo" => "Confirmar Atualização!",
                 "texto" => "Tem certeza que deseja salvar esses novos dados?",
-                "cancelar" => "cancelarAtualizar",
+                "cancelar" => "cancelar",
                 "sim" => "atualizar",
                 "dados" => [
                     "usuario" => $usuario,
@@ -153,12 +146,6 @@ class EditarDeletar extends Controller
                 ]
             ]
         ]);
-
-        return redirect()->back();
-    }
-
-    public function cancelarAtualizar(): RedirectResponse {
-        session()->forget(["alerta_confirmar"]);
 
         return redirect()->back();
     }
@@ -178,7 +165,7 @@ class EditarDeletar extends Controller
         $novo_player->save();
 
         if (!$novo_player) {
-            session()->forget(["alerta_confirmar"]);
+            session()->forget("alerta_confirmar");
 
             session([
                 "alerta_resultado" => [
@@ -190,7 +177,7 @@ class EditarDeletar extends Controller
 
             return redirect()->back();
         } else {
-            session()->forget(["alerta_confirmar"]);
+            session()->forget("alerta_confirmar");
 
             session(["player" => $novo_player]);
 

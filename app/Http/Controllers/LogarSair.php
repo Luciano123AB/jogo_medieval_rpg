@@ -56,7 +56,7 @@ class LogarSair extends Controller
             "alerta_confirmar" => [
                 "titulo" => "Confirmar Saída!",
                 "texto" => "Tem certeza que deseja sair?",
-                "cancelar" => "cancelarSair",
+                "cancelar" => "cancelar",
                 "sim" => "sair"
             ]
         ]);
@@ -64,15 +64,8 @@ class LogarSair extends Controller
         return redirect()->back();
     }
 
-    public function cancelar(): RedirectResponse {
-        session()->forget("alerta_confirmar");
-
-        return redirect()->back();
-    }
-
     public function sair(): RedirectResponse {
-        session()->forget("alerta_confirmar");        
-        session()->forget(["player"]);
+        session()->forget(["alerta_confirmar", "player"]);
 
         return redirect()->route("home");
     }

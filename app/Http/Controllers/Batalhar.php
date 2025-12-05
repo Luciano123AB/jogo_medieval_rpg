@@ -28,7 +28,7 @@ class Batalhar extends Controller
             "alerta_confirmar" => [
                 "titulo" => "Confirmar Batalha!",
                 "texto" => "Tem certeza que está pronto para ir para a batalha?",
-                "cancelar" => "cancelarBatalha",
+                "cancelar" => "cancelar",
                 "sim" => "batalhar"
             ]
         ]);
@@ -69,7 +69,7 @@ class Batalhar extends Controller
             "alerta_confirmar" => [
                 "titulo" => "Confirmar Desafio!",
                 "texto" => "Tem certeza que deseja desafiar este player?",
-                "cancelar" => "cancelarBatalha",
+                "cancelar" => "cancelar",
                 "sim" => "batalhar"
             ]
         ]);
@@ -85,12 +85,6 @@ class Batalhar extends Controller
             "nome_oponente" => $nome_oponente,
             "nivel_oponente" => $nivel
         ]);
-
-        return redirect()->back();
-    }
-
-    public function cancelar(): RedirectResponse {
-        session()->forget(["alerta_confirmar", "id_oponente", "nome_oponente", "nivel_oponente"]);
 
         return redirect()->back();
     }
@@ -162,12 +156,6 @@ class Batalhar extends Controller
         return redirect()->back();
     }
 
-    public function cancelarRender(): RedirectResponse {
-        session()->forget("alerta_confirmar_render");
-
-        return redirect()->back();
-    }
-
     public function renderSe(): RedirectResponse {
 
         $id_batalha = session("dados.id_batalha");
@@ -184,9 +172,11 @@ class Batalhar extends Controller
         $batalha->save();
         $batalha->delete();
 
-        session()->forget(["inicio_player", "inicio_oponente"]);
-        session()->forget(["skill01", "skill02", "skill03", "skill01_oponente", "skill02_oponente", "skill03_oponente"]);
-        session()->forget(["alerta_confirmar_render", "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente", "dados"]);
+        session()->forget([
+            "inicio_player", "inicio_oponente",
+            "skill01", "skill02", "skill03", "skill01_oponente", "skill02_oponente", "skill03_oponente",
+            "alerta_confirmar_render", "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente", "dados"
+        ]);
 
         $id = session("player.id");
         
@@ -212,11 +202,11 @@ class Batalhar extends Controller
         ]);
 
         if (session("nome_oponente") == "Computador") {
-            session()->forget(["nome_oponente"]);
+            session()->forget("nome_oponente");
 
             return redirect()->route("preparacao");
         } else {
-            session()->forget(["nome_oponente"]);
+            session()->forget("nome_oponente");
 
             return redirect()->route("listagem");
         }

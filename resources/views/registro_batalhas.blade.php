@@ -3,10 +3,14 @@
 @section("content")
     <div class="container">
         <div class="{{ session("tema") == "escuro" ? "fundos_card_claro" : "fundos_card_escuro" }} card p-3">
-            <div class="d-flex gap-3">
-                <div class="cards w-50">
+            <div class="row row-cols-1 row-cols-md-2 g-3">
+                <div class="col cards">
                     <div class="sombras tabelas card animate__animated animate__backInLeft {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }} p-3">
-                        <h4 class="{{ session("tema") == "escuro" ? "cor_fontes_escuro titulos_escuro" : "cor_fontes_claro titulos_claro" }}">-Vitórias:</h4>
+                        <div class="d-flex justify-content-between mb-2">
+                            <h4 class="{{ session("tema") == "escuro" ? "cor_fontes_escuro titulos_escuro" : "cor_fontes_claro titulos_claro" }}">-Vitórias:</h4>
+                            <div></div>
+                            <a href="{{ route("resetarVitorias") }}" type="button" class="cursor sombras botoes btn {{ session("tema") == "escuro" ? "btn-light border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }}"><span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}"><i class="cursor bi bi-x-circle-fill"></i> Resetar</span></a>
+                        </div>
                         <div class="tabelas-scroll">
                             <table class="border border-2 {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} w-100">
                                 <thead class="text-center">
@@ -39,9 +43,13 @@
                     </div>
                 </div>
 
-                <div class="cards w-50">
+                <div class="col cards">
                     <div class="sombras tabelas card animate__animated animate__backInRight {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }} p-3">
-                        <h4 class="{{ session("tema") == "escuro" ? "cor_fontes_escuro titulos_escuro" : "cor_fontes_claro titulos_claro" }}">-Derrotas:</h4>
+                        <div class="d-flex justify-content-between mb-2">
+                            <h4 class="{{ session("tema") == "escuro" ? "cor_fontes_escuro titulos_escuro" : "cor_fontes_claro titulos_claro" }}">-Derrotas:</h4>
+                            <div></div>
+                            <a href="{{ route("resetarDerrotas") }}" type="button" class="cursor sombras botoes btn {{ session("tema") == "escuro" ? "btn-light border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }}"><span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}"><i class="cursor bi bi-x-circle-fill"></i> Resetar</span></a>
+                        </div>
                         <div class="tabelas-scroll">
                             <table class="border border-2 {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} w-100">
                                 <thead class="text-center">

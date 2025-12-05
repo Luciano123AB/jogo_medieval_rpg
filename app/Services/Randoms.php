@@ -21,16 +21,32 @@ class Randoms
         switch ($skill_escolhida) {
             case "$skill01":
                 $dano = $dano01_sorteado * $nivel;
+
+                if ($dano01_sorteado == $danos_skill01[2]) {
+                    session()->flash("dano_critico");
+                }
+
                 session(["skill01" => true]);
             break;
 
             case "$skill02":
                 $dano = $dano02_sorteado * $nivel;
+
+                if ($dano02_sorteado == $danos_skill02[2]) {
+                    session()->flash("dano_critico");
+                }
+
                 session(["skill02" => true]);
+                session()->flash("forte_player");
             break;
 
             case "$skill03":
                 $dano = $dano03_sorteado * $nivel;
+
+                if ($dano03_sorteado == $danos_skill03[2]) {
+                    session()->flash("dano_critico");
+                }
+
                 session(["skill03" => true]);
                 session()->flash("ultimate_player");
             break;
@@ -71,16 +87,32 @@ class Randoms
         switch ($skill_sorteado) {
             case $skill01:
                 $dano = $dano01_sorteado * $nivel;
+
+                if ($dano01_sorteado == $danos_skill01[2]) {
+                    session()->flash("dano_critico");
+                }
+
                 session(["skill01_oponente" => true]);
             break;
 
             case $skill02:
                 $dano = $dano02_sorteado * $nivel;
+
+                if ($dano02_sorteado == $danos_skill02[2]) {
+                    session()->flash("dano_critico");
+                }
+
                 session(["skill02_oponente" => true]);
+                session()->flash("forte_oponente");
             break;
 
             case $skill03:
                 $dano = $dano03_sorteado * $nivel;
+
+                if ($dano03_sorteado == $danos_skill03[2]) {
+                    session()->flash("dano_critico");
+                }
+
                 session(["skill03_oponente" => true]);
                 session()->flash("ultimate_oponente");
             break;

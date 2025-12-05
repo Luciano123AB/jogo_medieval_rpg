@@ -6,12 +6,15 @@ use App\Http\Controllers\EditarDeletar;
 use App\Http\Controllers\LogarSair;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Batalhar;
+use App\Http\Controllers\Resetar;
 use App\Http\Middleware\VerificarBatalha;
 use App\Http\Middleware\VerificarDeslogado;
 use App\Http\Middleware\VerificarLogado;
 use App\Http\Middleware\VerificarVencedor;
 use App\Models\Player;
 use App\Services\Boot;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("/")->group(function () {
@@ -23,7 +26,7 @@ Route::prefix("/")->group(function () {
 
     Route::controller(MainController::class)->group(function() {
         Route::middleware(VerificarBatalha::class)->group(function() {
-            Route::get("", function() {
+            Route::get("", function(): View {
                 $banco = Boot::testarConexao();
             
                 if ($banco == false) {
@@ -98,7 +101,6 @@ Route::prefix("/")->group(function () {
     Route::controller(Cadastrar::class)->group(function() {    
         Route::middleware(VerificarDeslogado::class)->group(function() {
             Route::post("confirmar_cadastrar", "confirmarCadastrar")->name("confirmarCadastrar");
-            Route::get("cancelar_cadastrar", "cancelar")->name("cancelarCadastrar");
             Route::get("cadastro_submit", "cadastroSubmit")->name("cadastrar");
         });
     });
@@ -108,7 +110,6 @@ Route::prefix("/")->group(function () {
 
         Route::middleware([VerificarLogado::class, VerificarBatalha::class])->group(function() {
             Route::get("confirmar_sair", "confirmarSair")->name("confirmarSair");
-            Route::get("cancelar_sair", "cancelar")->name("cancelarSair");
             Route::get("sair", "sair")->name("sair");
         });
     });
@@ -116,11 +117,9 @@ Route::prefix("/")->group(function () {
     Route::controller(EditarDeletar::class)->group(function() {
         Route::middleware([VerificarLogado::class, VerificarBatalha::class])->group(function() {
             Route::post("confirmar_atualizar", "confirmarAtualizar")->name("confirmarAtualizar");
-            Route::get("cancelar_atualizar", "cancelarAtualizar")->name("cancelarAtualizar");
             Route::get("atualizar", "atualizar")->name("atualizar");
 
             Route::get("confirmar_deletar", "confirmarDeletar")->name("confirmarDeletar");
-            Route::get("cancelar_deletar", "cancelarDeletar")->name("cancelarDeletar");
             Route::get("deletar", "deletar")->name("deletar");
         });
     });
@@ -130,25 +129,42 @@ Route::prefix("/")->group(function () {
             Route::middleware(VerificarBatalha::class)->group(function() {
                 Route::get("confirmar_batalha", "confirmarBatalha")->name("confirmarBatalha");
                 Route::get("confirmar_desafio/{player}/{oponente}/{nome_oponente}/{nivel}", "confirmarDesafio")->name("confirmarDesafio");
-                Route::get("cancelar_batalha", "cancelar")->name("cancelarBatalha");
             });
             
             Route::post("atacar", "atacar")->name("atacar");
             Route::get("ataque_oponente", "ataqueOponente")->name("ataque");
 
             Route::get("confirmar_render", "confirmarRender")->name("confirmarRender");
-            Route::get("cancelar_render", "cancelarRender")->name("cancelarRender");
             Route::get("render_se", "renderSe")->name("renderSe");
         });
     });
 
-    Route::get("nivel_up", function() {
+    Route::get("cancelar", function(): RedirectResponse {
+        session()->forget(["alerta_confirmar", "id_player", "id_oponente", "foto_oponente", "pais_oponente", "nome_oponente", "nivel_oponente"]);
+
+        return redirect()->back()->withInput();
+    })->name("cancelar");
+
+    Route::get("cancelar_render", function(): RedirectResponse {
+        session()->forget("alerta_confirmar_render");
+
+        return redirect()->back();
+    })->name("cancelarRender");
+
+    Route::get("nivel_up", function(): RedirectResponse {
         session()->forget("alerta_nivel");
 
         return redirect()->back();
     })->name("nivel");
 
-    Route::fallback(function() {
+    Route::fallback(function(): RedirectResponse {
         return redirect()->route("home");
+    });
+});
+
+Route::prefix("/resetar_")->group(function () {
+    Route::controller(Resetar::class)->group(function() {
+        Route::get("vitorias", "resetarVitorias")->name("resetarVitorias");
+        Route::get("derrotas", "resetarDerrotas")->name("resetarDerrotas");
     });
 });

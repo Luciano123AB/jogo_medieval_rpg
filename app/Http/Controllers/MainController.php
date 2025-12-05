@@ -158,7 +158,7 @@ class MainController extends Controller
             "alerta" => [
                 "titulo" => "Registro de Batalhas!",
                 "icone" => "bi-file-earmark-medical-fill",
-                "texto" => "Aqui você irá relembrar todas as suas vitórias e derrotas.",
+                "texto" => "Aqui você irá relembrar todas as suas vitórias e derrotas, e caso queira, poderá apagar esses registros.",
                 "pagina" => "registro"
             ]
         ]);

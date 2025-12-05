@@ -23,9 +23,11 @@ class VerificarVencedor
             $batalha = Batalha::find($id_batalha);
             
             if ($batalha->hp <= 0) {
-                session()->forget(["inicio_player", "inicio_oponente"]);
-                session()->forget(["skill01", "skill02", "skill03", "skill01_oponente", "skill02_oponente", "skill03_oponente"]);
-                session()->forget(["alerta_confirmar_render", "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente", "dados"]);
+                session()->forget([
+                    "inicio_player", "inicio_oponente",
+                    "skill01", "skill02", "skill03", "skill01_oponente", "skill02_oponente", "skill03_oponente",
+                    "alerta_confirmar_render", "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente", "dados"
+                ]);
     
                 $id = session("player.id");                
                 
@@ -76,9 +78,11 @@ class VerificarVencedor
             }
             
             if ($batalha->hp_oponente <= 0) {
-                session()->forget(["inicio_player", "inicio_oponente"]);
-                session()->forget(["skill01", "skill02", "skill03", "skill01_oponente", "skill02_oponente", "skill03_oponente"]);
-                session()->forget(["alerta_confirmar_render", "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente", "dados"]);
+                session()->forget([
+                    "inicio_player", "inicio_oponente",
+                    "skill01", "skill02", "skill03", "skill01_oponente", "skill02_oponente", "skill03_oponente",
+                    "alerta_confirmar_render", "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente", "dados"
+                ]);
     
                 $id = session("player.id");
                 $rota = route('listagem');
@@ -124,7 +128,7 @@ class VerificarVencedor
                     $player->save();
                 }
 
-                session()->forget(["id_player"]);
+                session()->forget("id_player");
                 
                 $batalha->updated_at = date("Y-m-d H:i:s");
                 $batalha->save();
@@ -140,11 +144,11 @@ class VerificarVencedor
                 ]);
     
                 if (session("nome_oponente") == "Computador") {
-                    session()->forget(["nome_oponente"]);
+                    session()->forget("nome_oponente");
 
                     return redirect()->route("preparacao");
                 } else {
-                    session()->forget(["nome_oponente"]);
+                    session()->forget("nome_oponente");
 
                     return redirect()->route("listagem");
                 }

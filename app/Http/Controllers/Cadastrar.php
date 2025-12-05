@@ -94,7 +94,7 @@ class Cadastrar extends Controller
             "alerta_confirmar" => [
                 "titulo" => "Confirmação Cadastro!",
                 "texto" => "Tem certeza que deseja cadastrar esse player?",
-                "cancelar" => "cancelarCadastrar",
+                "cancelar" => "cancelar",
                 "sim" => "cadastrar",
                 "dados" => [
                     "usuario" => $usuario,
@@ -107,12 +107,6 @@ class Cadastrar extends Controller
                 ]
             ]
         ]);
-
-        return redirect()->back()->withInput();
-    }
-
-    public function cancelar(): RedirectResponse {
-        session()->forget("alerta_confirmar");
 
         return redirect()->back()->withInput();
     }
@@ -136,7 +130,7 @@ class Cadastrar extends Controller
         $player->save();
 
         if (!$player) {
-            session()->forget(["alerta_confirmar"]);
+            session()->forget("alerta_confirmar");
 
             session([
                 "alerta_resultado" => [

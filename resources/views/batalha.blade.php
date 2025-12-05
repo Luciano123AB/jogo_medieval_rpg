@@ -30,7 +30,11 @@
                     </div>
                     
                     @if (session("dano_desferido_oponente"))
-                        <small class="cor_fontes_claro fw-bold">🎯 -{{ session('dano_desferido_oponente') }}</small>
+                        @if (session("dano_critico"))
+                            <small class="fs-5 fw-bold text-danger">🎯 -{{ session('dano_desferido_oponente') }}</small>
+                        @else
+                            <small class="cor_fontes_claro fw-bold">🎯 -{{ session('dano_desferido_oponente') }}</small>
+                        @endif
                     @endif
                     
                     <form action="{{ route("atacar") }}" method="POST" class="d-grid gap-2" novalidate>
@@ -111,7 +115,11 @@
                     </div>
 
                     @if (session("dano_desferido_player"))
-                        <small class="cor_fontes_claro fw-bold">🎯 -{{ session('dano_desferido_player') }}</small>
+                        @if (session("dano_critico"))
+                            <small class="fs-5 fw-bold text-danger">🎯 -{{ session('dano_desferido_player') }}</small>
+                        @else
+                            <small class="cor_fontes_claro fw-bold">🎯 -{{ session('dano_desferido_player') }}</small>
+                        @endif
                     @endif
 
                     <div class="btn-group animate__animated animate__fadeIn" role="group" aria-label="SkillsOponente">
@@ -196,6 +204,25 @@
                     duration: 0.7,
                     ease: "power2.in"
                 });
+            @elseif(session()->has("forte_player"))
+                gtl.to("#player", {
+                    duration: 0.9,
+                    ease: "power1.inOut",
+                    motionPath: {
+                        path: [
+                            { x: 250,   y: 0 },
+                            { x: 250, y: -250 },
+                            { x: 500, y: 0 }
+                        ],
+                        curviness: 1.5
+                    }
+                })
+                .to("#player", {
+                    x: 0,
+                    y: 0,
+                    duration: 0.7,
+                    ease: "power2.in"
+                });
             @else            
                 gtl.fromTo("#player", {
                     x: 0,
@@ -239,7 +266,26 @@
                     duration: 0.7,
                     ease: "power2.in"
                 });
-            @else            
+            @elseif(session()->has("forte_oponente"))
+                gtl.to("#oponente", {
+                    duration: 0.9,
+                    ease: "power1.inOut",
+                    motionPath: {
+                        path: [
+                            { x: -250,   y: 0 },
+                            { x: -250, y: -250 },
+                            { x: -500, y: 0 }
+                        ],
+                        curviness: 1.5
+                    }
+                })
+                .to("#oponente", {
+                    x: 0,
+                    y: 0,
+                    duration: 0.7,
+                    ease: "power2.in"
+                });
+            @else
                 gtl.fromTo("#oponente", {
                     x: 0,
                     y: 0
