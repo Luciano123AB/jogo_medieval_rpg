@@ -230,9 +230,19 @@
 
                                         <div>
                                             <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">{{ $pagina == "Cadastro" ? "Foto (Opcional)" : "Nova Foto (Opcional)" }}:</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}"><i class="bi bi-file-earmark-person-fill"></i></span>
-                                                <input id="foto" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border border-primary text-black" : "bg-dark border border-danger text-white" }}" type="file" name="foto" accept="image/png, image/jpeg">
+                                            <div class="d-grid">
+                                                <div class="input-group">
+                                                    <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}"><i class="bi bi-file-earmark-person-fill"></i></span>
+                                                    <input id="foto" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border border-primary text-black" : "bg-dark border border-danger text-white" }}" type="file" name="foto" accept="image/png, image/jpeg">
+                                                </div>                                                
+                                                @if($pagina == "Atualização")
+                                                    <div class="form-check mt-2">
+                                                        <input class="form-check-input cursor {{ session("tema") == "escuro" ? "border-primary focus-ring focus-ring-primary" : "border-danger focus-ring focus-ring-danger" }}" type="checkbox" name="sem_foto" value="nenhuma" id="sem_foto">
+                                                        <label class="form-check-label" for="semFoto">
+                                                            <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Sem Foto</span>
+                                                        </label>
+                                                    </div>
+                                                @endif
                                             </div>
 
                                             @error("fotoTamanho")

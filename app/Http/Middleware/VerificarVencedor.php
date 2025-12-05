@@ -107,10 +107,12 @@ class VerificarVencedor
                 
                 $player = Player::find($id);
                 $player->xp = $player->xp + $xp;
-                if ($player->xp >= 100) {
-                    $player->nivel++;
-                    $player->xp = 0;
-                    $rota = route('home');
+                if ($player->nivel < 70) {
+                    if ($player->xp >= 100) {
+                        $player->nivel++;
+                        $player->xp = 0;
+                        $rota = route('home');
+                    }
                 }
                 $player->quantidade_vitorias = $player->quantidade_vitorias + 1;
                 $player->save();

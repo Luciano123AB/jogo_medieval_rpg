@@ -12,8 +12,8 @@
                             data:image/png;data:image/jpeg;base64,{{ session("player.foto") }}
                         @endif
                     " class="perfil_player sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
-                    <div class="border-3 border-start border-black ms-2">
-                        <i class="fi fi-{{ strtolower(session("player.pais")) }} animate__animated animate__jello animate__infinite border border-start-0 border-white"></i>
+                    <div class="border-3 border-start border-black rounded-top-1 ms-2">
+                        <i class="fi fi-{{ strtolower(session("player.pais")) }} animate__animated animate__jello animate__infinite border-start border-end"></i>
                         Você
                     </div>
                 </h4>
@@ -91,13 +91,13 @@
                         @endif
                     " class="perfil_player sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
                     @if($nome != "Computador")
-                        <div class="border-3 border-start border-black ms-2">
-                            <i class="fi fi-{{ strtolower($bandeira_oponente) }} animate__animated animate__jello animate__infinite border border-start-0 border-white"></i>
+                        <div class="border-3 border-start border-black rounded-top-1 ms-2">
+                            <i class="fi fi-{{ strtolower($bandeira_oponente) }} animate__animated animate__jello animate__infinite border-start border-end"></i>
                             Oponente: {{ $nome }}
                         </div>
                     @else
                         <div class="border-3 border-start border-black ms-2">
-                            <i class="fi animate__animated animate__jello animate__infinite bg-secondary border border-start-0 border-white"></i>
+                            <i class="fi animate__animated animate__jello animate__infinite bg-secondary border-start border-end"></i>
                             Oponente: Computador
                         </div>
                     @endif                    
@@ -179,12 +179,22 @@
         @endif
 
         const gtl = gsap.timeline();
+        let distancia_player = 0;
+        let distancia_oponente = 0;
+
+        @if(session("player.personagem.classe") == "Mago")
+            distancia_player = 100
+        @else
+            distancia_player = 500
+        @endif
+
+        @if($oponente->classe == "Mago")
+            distancia_oponente = 100
+        @else
+            distancia_oponente = 500
+        @endif
 
         @if(session("dano_desferido_player"))
-            setTimeout(() => {
-                oponete.classList.add("animate__shakeX");
-            }, 900);
-
             @if(session()->has("ultimate_player"))
                 gtl.to("#player", {
                     duration: 0.9,
@@ -193,7 +203,7 @@
                         path: [
                             { x: 0,   y: 0 },
                             { x: 250, y: -250 },
-                            { x: 500, y: 0 }
+                            { x: distancia_player, y: 0 }
                         ],
                         curviness: 1.5
                     }
@@ -204,6 +214,10 @@
                     duration: 0.7,
                     ease: "power2.in"
                 });
+
+                setTimeout(() => {
+                    oponete.classList.add("animate__rubberBand");
+                }, 900);
             @elseif(session()->has("forte_player"))
                 gtl.to("#player", {
                     duration: 0.9,
@@ -212,7 +226,7 @@
                         path: [
                             { x: 250,   y: 0 },
                             { x: 250, y: -250 },
-                            { x: 500, y: 0 }
+                            { x: distancia_player, y: 0 }
                         ],
                         curviness: 1.5
                     }
@@ -223,30 +237,48 @@
                     duration: 0.7,
                     ease: "power2.in"
                 });
+
+                setTimeout(() => {
+                    oponete.classList.add("animate__shakeX");
+                }, 900);
             @else            
                 gtl.fromTo("#player", {
                     x: 0,
                     y: 0
                 }, {
-                    x: 500,
+                    x: distancia_player,
                     y: 0,
                     duration: 0.9,
                     ease: "power1.in"
                 })
+
+                .fromTo("#oponente", {
+                    x: 0,
+                    y: 0
+                }, {
+                    x: 150,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "power2.in"
+                })
+
                 .to("#player", {
                     x: 0,
                     y: 0,
                     duration: 0.7,
                     ease: "power2.in"
+                })
+
+                .to("#oponente", {
+                    x: 0,
+                    y: 0,
+                    duration: 0.7,
+                    ease: "power1.in"
                 });
             @endif
         @endif
 
         @if(session("dano_desferido_oponente"))
-            setTimeout(() => {
-                player.classList.add("animate__shakeX");
-            }, 900);
-
             @if(session()->has("ultimate_oponente"))
                 gtl.to("#oponente", {
                     duration: 0.9,
@@ -255,7 +287,7 @@
                         path: [
                             { x: 0,   y: 0 },
                             { x: -250, y: -250 },
-                            { x: -500, y: 0 }
+                            { x: -distancia_oponente, y: 0 }
                         ],
                         curviness: 1.5
                     }
@@ -266,6 +298,10 @@
                     duration: 0.7,
                     ease: "power2.in"
                 });
+
+                setTimeout(() => {
+                    player.classList.add("animate__rubberBand");
+                }, 900);
             @elseif(session()->has("forte_oponente"))
                 gtl.to("#oponente", {
                     duration: 0.9,
@@ -274,7 +310,7 @@
                         path: [
                             { x: -250,   y: 0 },
                             { x: -250, y: -250 },
-                            { x: -500, y: 0 }
+                            { x: -distancia_oponente, y: 0 }
                         ],
                         curviness: 1.5
                     }
@@ -285,21 +321,43 @@
                     duration: 0.7,
                     ease: "power2.in"
                 });
+
+                setTimeout(() => {
+                    player.classList.add("animate__shakeX");
+                }, 900);
             @else
                 gtl.fromTo("#oponente", {
                     x: 0,
                     y: 0
                 }, {
-                    x: -500,
+                    x: -distancia_oponente,
                     y: 0,
                     duration: 0.9,
                     ease: "power1.in"
                 })
+
+                .fromTo("#player", {
+                    x: 0,
+                    y: 0
+                }, {
+                    x: -150,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "power2.in"
+                })
+
                 .to("#oponente", {
                     x: 0,
                     y: 0,
                     duration: 0.7,
                     ease: "power2.in"
+                })
+
+                .to("#player", {
+                    x: 0,
+                    y: 0,
+                    duration: 0.7,
+                    ease: "power1.in"
                 });
             @endif
         @endif

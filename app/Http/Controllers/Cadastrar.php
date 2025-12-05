@@ -41,6 +41,7 @@ class Cadastrar extends Controller
         $senha = $request->input("nova_senha");
         $confirmar_senha = $request->input("confirmar_nova_senha");
         $pais = $request->input("pais");
+        $foto = "";
 
         if ($senha != $confirmar_senha) {
             return redirect()->back()->withInput()->withErrors(["senhas" => "As senhas estão diferentes! Tente novamente."]);
@@ -74,11 +75,8 @@ class Cadastrar extends Controller
             }
 
             $foto = base64_encode($foto_conteudo);
-
         } else {
-
             $foto = "nenhuma";
-
         }
 
         $player_existente = Player::where("usuario", $usuario)

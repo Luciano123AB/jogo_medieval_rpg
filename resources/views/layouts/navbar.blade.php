@@ -64,17 +64,22 @@
                                 @php
                                     
                                     $perfil = asset("assets/images/perfils/" . (session("player.personagem.classe")) . "_perfil.png");
+                                    $perfil_02 = asset("assets/images/perfils/vazio_perfil.png");
 
                                     if (session("player.foto") != "nenhuma") {
                                         $perfil = "data:image/png;data:image/jpeg;base64," . session("player.foto");
+                                        $perfil_02 = asset("assets/images/perfils/" . (session("player.personagem.classe")) . "_perfil.png");
                                     }
                                 @endphp
-                                <img src="{{ $perfil }}" class="perfil_player cursor sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle me-2">
+                                <div class="position-relative me-2">
+                                    <img src="{{ $perfil }}" class="cursor sombras perfil_player border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
+                                    <img src="{{ $perfil_02 }}" class="position-absolute bottom-0 start-100 translate-middle cursor sombras perfil_players border {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-dark border-danger" }} rounded-circle">
+                                </div>
                                 <div class="cursor">
-                                    <div class="border-3 border-start border-black">
-                                        <h4 class="cursor {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }}"><i class="fi fi-{{ strtolower(session("player.pais")) }} animate__animated animate__jello animate__infinite border border-start-0 border-white mb-2 me-1"></i>{{ session("player.usuario") }}</h4>
+                                    <div class="border-3 border-start border-black rounded-top-1">
+                                        <h4 class="cursor {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }}"><i class="fi fi-{{ strtolower(session("player.pais")) }} animate__animated animate__jello animate__infinite border-start border-end mb-2 me-1"></i>{{ session("player.usuario") }}</h4>
                                     </div>
-                                    <span class="cursor {{ session("tema") == "escuro" ? "cor_niveis" : "text-danger" }}">Nível: {{ session("player.nivel") }}</span>
+                                    <span class="cursor {{ session("tema") == "escuro" ? "text-bg-primary" : "text-bg-danger" }} badge">Nível: {{ session("player.nivel") }}</span>
                                 </div>
                             </div>
                             <div class="cursor barras progress border {{ session("tema") == "escuro" ? "border-primary" : "border-success" }} bg-black" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">

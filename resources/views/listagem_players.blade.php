@@ -24,8 +24,8 @@
                                     <div class="d-flex flex-wrap justify-content-center">
                                         Usuário:
                                         <img src="{{ $perfil }}" class="sombras perfil_players border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle ms-1 me-2">
-                                        <div class="bandeiras d-flex border-3 border-start border-black">
-                                            <i class="fi fi-{{ strtolower($player_lider_vitorias->pais) }} animate__animated animate__jello animate__infinite border border-start-0 border-white mb-1 me-1"></i>
+                                        <div class="bandeiras d-flex border-3 border-start border-black rounded-top-1">
+                                            <i class="fi fi-{{ strtolower($player_lider_vitorias->pais) }} animate__animated animate__jello animate__infinite border-start border-end mb-1 me-1"></i>
                                         </div>
                                         {{ $player_lider_vitorias->usuario }}
                                     </div>
@@ -54,8 +54,8 @@
                                     <div class="d-flex flex-wrap justify-content-center">
                                         Usuário:
                                         <img src="{{ $perfil }}" class="sombras perfil_players border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle ms-1 me-2">
-                                        <div class="bandeiras d-flex border-3 border-start border-black">
-                                            <i class="fi fi-{{ strtolower($player_lider_nivel->pais) }} animate__animated animate__jello animate__infinite border border-start-0 border-white mb-1 me-1"></i>
+                                        <div class="bandeiras d-flex border-3 border-start border-black rounded-top-1">
+                                            <i class="fi fi-{{ strtolower($player_lider_nivel->pais) }} animate__animated animate__jello animate__infinite border-start border-end mb-1 me-1"></i>
                                         </div>
                                         {{ $player_lider_nivel->usuario }}
                                     </div>
@@ -95,8 +95,8 @@
                                         </td>
                                         <td class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border px-1">
                                             <div class="d-flex">
-                                                <div class="bandeiras d-flex border-3 border-start border-black">
-                                                    <i class="fi fi-{{ strtolower($player->pais) }} animate__animated animate__jello animate__infinite border border-start-0 border-white mb-1 me-1"></i>
+                                                <div class="bandeiras d-flex border-3 border-start border-black rounded-top-1">
+                                                    <i class="fi fi-{{ strtolower($player->pais) }} animate__animated animate__jello animate__infinite border-start border-end mb-1 me-1"></i>
                                                 </div>
                                                 {{ $player->usuario }}
                                                 @if($player->genero == "Masculino")

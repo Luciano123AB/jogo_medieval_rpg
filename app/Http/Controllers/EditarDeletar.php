@@ -84,6 +84,8 @@ class EditarDeletar extends Controller
         $email = $request->input("novo_email");
         $senha = $request->input("nova_senha");
         $confirmar_senha = $request->input("confirmar_nova_senha");
+        $foto = "";
+        $sem_foto = $request->input("sem_foto");
 
         if ($senha != $confirmar_senha) {
             return redirect()->back()->withInput()->withErrors(["senhas" => "As senhas estão diferentes! Tente novamente."]);
@@ -95,27 +97,28 @@ class EditarDeletar extends Controller
             return redirect()->back()->withInput()->withErrors(["classe" => "Você deve escolher uma classe primeiro."]);
         }
 
-        if ($foto_escolhida && $foto_escolhida->isValid()) {
+        if (!$sem_foto) {
+            if ($foto_escolhida && $foto_escolhida->isValid()) {
 
-            $foto_tamanho = $foto_escolhida->getSize();
-            $tamanho_maximo = 10485760;
+                $foto_tamanho = $foto_escolhida->getSize();
+                $tamanho_maximo = 10485760;
 
-            if ($foto_tamanho > $tamanho_maximo) {
-                return redirect()->back()->withInput()->with("fotoTamanho", "Essa foto é muito grande.");
+                if ($foto_tamanho > $tamanho_maximo) {
+                    return redirect()->back()->withInput()->with("fotoTamanho", "Essa foto é muito grande.");
+                }
+
+                $foto_conteudo = file_get_contents($foto_escolhida->getRealPath());
+
+                if (!$foto_conteudo) {
+                    return redirect()->back()->withInput()->with("fotoErro", "Não foi possível carregar esta foto. Tente novamente.");
+                }
+
+                $foto = base64_encode($foto_conteudo);
+            } else {
+                $foto = session("player.foto");
             }
-
-            $foto_conteudo = file_get_contents($foto_escolhida->getRealPath());
-
-            if (!$foto_conteudo) {
-                return redirect()->back()->withInput()->with("fotoErro", "Não foi possível carregar esta foto. Tente novamente.");
-            }
-
-            $foto = base64_encode($foto_conteudo);
-
         } else {
-
-            $foto = session("player.foto");
-
+            $foto = "nenhuma";
         }
 
         $player_existente = Player::where("usuario", $usuario)
