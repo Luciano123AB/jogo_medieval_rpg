@@ -88,7 +88,17 @@
                                 </div>
                             </div>
                             <div class="cursor barras progress border {{ session("tema") == "escuro" ? "border-primary" : "border-success" }} bg-black" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated {{ session("tema") == "escuro" ? "bg-primary" : "bg-success" }}" style="width: {{ session("xp") }}%"><label class="cursor fw-bold fs-6">XP</label></div>
+                                @php
+
+                                    $nivel = "";
+
+                                    if (session("player.nivel") == 70) {
+                                        $nivel = "100.0";
+                                    } else {
+                                        $nivel = session("xp");
+                                    }
+                                @endphp
+                                <div class="progress-bar progress-bar-striped progress-bar-animated {{ session("tema") == "escuro" ? "bg-primary" : "bg-success" }}" style="width: {{ $nivel }}%"><label class="cursor fw-bold fs-6">XP</label></div>
                             </div>
                         </div>
                     </button>
