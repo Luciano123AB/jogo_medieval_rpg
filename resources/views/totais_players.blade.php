@@ -10,7 +10,7 @@
                             <div class="d-flex border-3 border-start border-black rounded-top-1">
                                 <i class="fi fi-{{ strtolower($codigo) }} animate__animated animate__jello animate__infinite border-start border-end mb-1"></i>
                             </div>
-                            <p class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">{{ mb_strtoupper($dados["nome"], "UTF-8") }}: {{ $dados["total"] }}</p>
+                            <p class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">{{ mb_strtoupper($dados["nome"], "UTF-8") }}: <br><span class="fs-4">{{ $dados["total"] }}</span></p>
                         </div>
                     </div>
                 @endforeach

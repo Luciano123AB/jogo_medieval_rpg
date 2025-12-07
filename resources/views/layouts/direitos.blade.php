@@ -14,7 +14,7 @@
             </span>
         </small>
     </div>
-    <div class="d-flex gap-3 justify-content-center py-2 overflow-x-auto">
+    <div class="d-flex flex-wrap gap-3 justify-content-center py-2">
         @foreach(array_combine($icones, $links) as $icone => $link)
             <a href="http://{{ $link }}">
                 <img src="{{ asset("assets/images/icones/$icone.png") }}" class="cursor icones botoes">

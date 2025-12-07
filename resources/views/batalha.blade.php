@@ -134,9 +134,7 @@
                     </div>
 
                     <div hidden>
-                        <a href="{{ route("ataque") }}" id="ataque" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} d-flex border" type="submit">
-                            <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} mx-auto">🤛🏼 ATACAR!</span>
-                        </a>
+                        <a href="{{ route("ataque") }}" id="ataque" type="submit"></a>
                     </div>
                 </div>
             </div>
@@ -159,7 +157,7 @@
             skill03.disabled = true;
             setTimeout(() => {
                 document.getElementById("ataque").click();
-            }, 2000);
+            }, 2500);
         @else
             skill01.disabled = false;
             skill02.disabled = false;
@@ -179,22 +177,24 @@
         @endif
 
         const gtl = gsap.timeline();
-        let distancia_player = 0;
-        let distancia_oponente = 0;
+        let distancia_player = [0, 0];
+        let distancia_oponente = [0, 0];
 
         @if(session("player.personagem.classe") == "Mago")
-            distancia_player = 100
+            distancia_player = [50, 100]
         @else
-            distancia_player = 500
+            distancia_player = [250, 500]
         @endif
 
         @if($oponente->classe == "Mago")
-            distancia_oponente = 100
+            distancia_oponente = [50, 100]
         @else
-            distancia_oponente = 500
+            distancia_oponente = [250, 500]
         @endif
 
         @if(session("dano_desferido_player"))
+            player.src = "{{ asset('assets/images/personagens_ataque/' . session('player.personagem.classe') . '.png') }}";
+            
             @if(session()->has("ultimate_player"))
                 gtl.to("#player", {
                     duration: 0.9,
@@ -202,8 +202,8 @@
                     motionPath: {
                         path: [
                             { x: 0,   y: 0 },
-                            { x: 250, y: -250 },
-                            { x: distancia_player, y: 0 }
+                            { x: distancia_player[0], y: -250 },
+                            { x: distancia_player[1], y: 0 }
                         ],
                         curviness: 1.5
                     }
@@ -225,8 +225,8 @@
                     motionPath: {
                         path: [
                             { x: 250,   y: 0 },
-                            { x: 250, y: -250 },
-                            { x: distancia_player, y: 0 }
+                            { x: distancia_player[0], y: -250 },
+                            { x: distancia_player[1], y: 0 }
                         ],
                         curviness: 1.5
                     }
@@ -246,7 +246,7 @@
                     x: 0,
                     y: 0
                 }, {
-                    x: distancia_player,
+                    x: distancia_player[1],
                     y: 0,
                     duration: 0.9,
                     ease: "power1.in"
@@ -279,6 +279,11 @@
         @endif
 
         @if(session("dano_desferido_oponente"))
+            oponente.src = "{{ asset('assets/images/personagens_ataque/' . $oponente->classe . '_reverso.png') }}";
+            setTimeout(() => {
+                oponente.src = "{{ asset('assets/images/personagens/' . $oponente->classe . '_reverso.png') }}";
+            }, 2100);
+
             @if(session()->has("ultimate_oponente"))
                 gtl.to("#oponente", {
                     duration: 0.9,
@@ -286,8 +291,8 @@
                     motionPath: {
                         path: [
                             { x: 0,   y: 0 },
-                            { x: -250, y: -250 },
-                            { x: -distancia_oponente, y: 0 }
+                            { x: -distancia_oponente[0], y: -250 },
+                            { x: -distancia_oponente[1], y: 0 }
                         ],
                         curviness: 1.5
                     }
@@ -309,8 +314,8 @@
                     motionPath: {
                         path: [
                             { x: -250,   y: 0 },
-                            { x: -250, y: -250 },
-                            { x: -distancia_oponente, y: 0 }
+                            { x: -distancia_oponente[0], y: -250 },
+                            { x: -distancia_oponente[1], y: 0 }
                         ],
                         curviness: 1.5
                     }
@@ -330,7 +335,7 @@
                     x: 0,
                     y: 0
                 }, {
-                    x: -distancia_oponente,
+                    x: -distancia_oponente[1],
                     y: 0,
                     duration: 0.9,
                     ease: "power1.in"
