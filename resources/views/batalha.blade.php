@@ -17,13 +17,16 @@
                         Você
                     </div>
                 </h4>
-                <img src="{{ asset("assets/images/personagens/" . (session("player.personagem.classe")) . ".png") }}" id="player" class="animate__animated
-                    @if(!session()->has("inicio_player"))
-                        animate__fadeInLeftBig
+                <div class="position-relative">
+                    <img src="{{ asset("assets/images/personagens/" . (session("player.personagem.classe")) . ".png") }}" id="player" class="animate__animated
+                        @if(!session()->has("inicio_player"))
+                            animate__fadeInLeftBig
 
-                        {{ session(["inicio_player" => true]) }}
-                    @endif
-                w-50">
+                            {{ session(["inicio_player" => true]) }}
+                        @endif
+                    w-50">
+                    <img src="{{ asset("assets/images/magias/magia.png") }}" id="magia_player" class="position-absolute top-50 start-50 magias w-50" hidden>
+                </div>
                 <div class="d-grid gap-2 w-50 mx-auto">
                     <div class="barras progress border border-danger bg-black" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                         <div id="hp" class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width: 100%"><label class="fw-bold fs-6">❤️ {{ $batalha->hp }}</label></div>
@@ -102,13 +105,16 @@
                         </div>
                     @endif                    
                 </h4>
-                <img src="{{ asset("assets/images/personagens/$oponente->classe" . "_reverso.png") }}" id="oponente" class="animate__animated
-                    @if(!session()->has("inicio_oponente"))
-                        animate__fadeInRightBig
+                <div class="position-relative">
+                    <img src="{{ asset("assets/images/personagens/$oponente->classe" . "_reverso.png") }}" id="oponente" class="animate__animated
+                        @if(!session()->has("inicio_oponente"))
+                            animate__fadeInRightBig
 
-                        {{ session(["inicio_oponente" => true]) }}
-                    @endif
-                w-50">
+                            {{ session(["inicio_oponente" => true]) }}
+                        @endif
+                    w-50">
+                    <img src="{{ asset("assets/images/magias/magia_reverso.png") }}" id="magia_oponente" class="position-absolute top-50 start-50 magias w-50" hidden>
+                </div>
                 <div class="d-grid gap-2 w-50 mx-auto">
                     <div class="barras progress border border-danger bg-black" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                         <div id="hp_oponente" class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width: 100%"><label class="fw-bold fs-6">❤️ {{ $batalha->hp_oponente }}</label></div>
@@ -145,11 +151,42 @@
 
         const player = document.getElementById("player");
         const oponete = document.getElementById("oponente");
+
+        function getCentroElemento(el) {
+
+            const rect = el.getBoundingClientRect();
+
+            return {
+                x: rect.left + rect.width / 2,
+                y: rect.top  + rect.height / 2
+            };
+        }
+
+        const centroPlayer   = getCentroElemento(player);
+        const centroOponente = getCentroElemento(oponente);
+
+        let distanciaRealX = centroOponente.x - centroPlayer.x;
+        let distanciaRealY = centroOponente.y - centroPlayer.y;
+
+        function atualizarDistancias() {
+            const centroPlayer   = getCentroElemento(player);
+            const centroOponente = getCentroElemento(oponente);
+
+            distanciaRealX = centroOponente.x - centroPlayer.x;
+            distanciaRealY = centroOponente.y - centroPlayer.y;
+        };
+        atualizarDistancias();
+        window.addEventListener("resize", atualizarDistancias);
+
         const skill01 = document.getElementById("btnradio1");
         const skill02 = document.getElementById("btnradio2");
         const skill03 = document.getElementById("btnradio3");
+
         const atacar = document.getElementById("atacar");
         const atacar_oponente = document.getElementById("atacar_oponente");
+
+        const magia_player = document.getElementById("magia_player");
+        const magia_oponente = document.getElementById("magia_oponente");
 
         @if($batalha->vez == 1)
             skill01.disabled = true;
@@ -157,7 +194,7 @@
             skill03.disabled = true;
             setTimeout(() => {
                 document.getElementById("ataque").click();
-            }, 2500);
+            }, 3000);
         @else
             skill01.disabled = false;
             skill02.disabled = false;
@@ -181,19 +218,36 @@
         let distancia_oponente = [0, 0];
 
         @if(session("player.personagem.classe") == "Mago")
-            distancia_player = [50, 100]
+            distancia_player = [50, 100];
         @else
-            distancia_player = [250, 500]
+            distancia_player = [250, distanciaRealX * 0.7];
         @endif
 
         @if($oponente->classe == "Mago")
-            distancia_oponente = [50, 100]
+            distancia_oponente = [50, 100];
         @else
-            distancia_oponente = [250, 500]
+            distancia_oponente = [250, distanciaRealX * 0.7];
         @endif
 
         @if(session("dano_desferido_player"))
             player.src = "{{ asset('assets/images/personagens_ataque/' . session('player.personagem.classe') . '.png') }}";
+
+            @if(session("player.personagem.classe") == "Mago")
+                magia_player.hidden = false;
+                magia_player.style.display = "block";
+
+                gsap.set("#magia_player", {x: 0, y: 0});
+                gtl.to("#magia_player", {
+                    x: distanciaRealX - 85,
+                    y: distanciaRealY,
+                    duration: 0.5,
+                    ease: "power1.inOut"
+                });
+
+                setTimeout(() => {
+                    magia_player.hidden = true;
+                }, 1200);
+            @endif
             
             @if(session()->has("ultimate_player"))
                 gtl.to("#player", {
@@ -201,9 +255,9 @@
                     ease: "power1.inOut",
                     motionPath: {
                         path: [
-                            { x: 0,   y: 0 },
-                            { x: distancia_player[0], y: -250 },
-                            { x: distancia_player[1], y: 0 }
+                            {x: 0, y: 0},
+                            {x: distancia_player[0], y: -250},
+                            {x: distancia_player[1], y: 0}
                         ],
                         curviness: 1.5
                     }
@@ -224,9 +278,9 @@
                     ease: "power1.inOut",
                     motionPath: {
                         path: [
-                            { x: 250,   y: 0 },
-                            { x: distancia_player[0], y: -250 },
-                            { x: distancia_player[1], y: 0 }
+                            {x: 250, y: 0},
+                            {x: distancia_player[0], y: -250},
+                            {x: distancia_player[1], y: 0}
                         ],
                         curviness: 1.5
                     }
@@ -284,15 +338,32 @@
                 oponente.src = "{{ asset('assets/images/personagens/' . $oponente->classe . '_reverso.png') }}";
             }, 2100);
 
+            @if($oponente->classe == "Mago")
+                magia_oponente.hidden = false;
+                magia_oponente.style.display = "block";
+
+                gsap.set("#magia_oponente", {x: 0, y: 0});
+                gsap.to("#magia_oponente", {
+                    x: -distanciaRealX - 75,
+                    y: distanciaRealY,
+                    duration: 0.5,
+                    ease: "power1.inOut"
+                });
+
+                setTimeout(() => {
+                    magia_oponente.hidden = true;
+                }, 1200);
+            @endif
+
             @if(session()->has("ultimate_oponente"))
                 gtl.to("#oponente", {
                     duration: 0.9,
                     ease: "power1.inOut",
                     motionPath: {
                         path: [
-                            { x: 0,   y: 0 },
-                            { x: -distancia_oponente[0], y: -250 },
-                            { x: -distancia_oponente[1], y: 0 }
+                            {x: 0, y: 0},
+                            {x: -distancia_oponente[0], y: -250},
+                            {x: -distancia_oponente[1], y: 0}
                         ],
                         curviness: 1.5
                     }
@@ -313,9 +384,9 @@
                     ease: "power1.inOut",
                     motionPath: {
                         path: [
-                            { x: -250,   y: 0 },
-                            { x: -distancia_oponente[0], y: -250 },
-                            { x: -distancia_oponente[1], y: 0 }
+                            {x: -250, y: 0},
+                            {x: -distancia_oponente[0], y: -250},
+                            {x: -distancia_oponente[1], y: 0}
                         ],
                         curviness: 1.5
                     }

@@ -106,8 +106,9 @@ class VerificarVencedor
                 }
                 
                 $player = Player::find($id);
-                $player->xp = $player->xp + $xp;
                 if ($player->nivel < 70) {
+                    $player->xp = $player->xp + $xp;
+                    
                     if ($player->xp >= 100) {
                         $player->nivel++;
                         $player->xp = 0;

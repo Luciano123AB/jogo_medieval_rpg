@@ -153,6 +153,12 @@
         height: 20px;
     }
 
+    .magias {
+        z-index: 9999;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+    }
+
     .perfil_players {
         width: 25px;
         height: 25px;

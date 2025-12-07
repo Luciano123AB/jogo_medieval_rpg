@@ -13,7 +13,7 @@ class PlayersTableSeeder extends Seeder
     public function run(): void
     {
         DB::table("players")->insert([
-            ["usuario"=>"Luciano123AB","email"=>"luciano@gmail.com","senha"=>encrypt("24032004ABCD123"),"genero"=>"Masculino","pais"=>"BR","foto"=>"nenhuma","nivel"=>70,"xp"=>100.0,"quantidade_vitorias"=>300,"quantidade_derrotas"=>45,"id_personagem"=>2,"created_at"=>date("Y-m-d H:i:s")],
+            ["usuario"=>"Luciano123AB","email"=>"luciano@gmail.com","senha"=>encrypt("24032004ABCD123"),"genero"=>"Masculino","pais"=>"BR","foto"=>"nenhuma","nivel"=>70,"xp"=>00.0,"quantidade_vitorias"=>300,"quantidade_derrotas"=>45,"id_personagem"=>2,"created_at"=>date("Y-m-d H:i:s")],
             ["usuario"=>"Joao123AB","email"=>"joao@gmail.com","senha"=>encrypt("24032004ABCD123"),"genero"=>"Masculino","pais"=>"PT","foto"=>"nenhuma","nivel"=>5,"xp"=>75.0,"quantidade_vitorias"=>3,"quantidade_derrotas"=>1,"id_personagem"=>1,"created_at"=>date("Y-m-d H:i:s")],
             ["usuario"=>"Maria123AB","email"=>"maria@gmail.com","senha"=>encrypt("24032004ABCD123"),"genero"=>"Feminino","pais"=>"ES","foto"=>"nenhuma","nivel"=>8,"xp"=>40.0,"quantidade_vitorias"=>6,"quantidade_derrotas"=>4,"id_personagem"=>2,"created_at"=>date("Y-m-d H:i:s")],
             ["usuario"=>"Pedro123AB","email"=>"pedro@gmail.com","senha"=>encrypt("24032004ABCD123"),"genero"=>"Masculino","pais"=>"AR","foto"=>"nenhuma","nivel"=>12,"xp"=>90.0,"quantidade_vitorias"=>15,"quantidade_derrotas"=>2,"id_personagem"=>3,"created_at"=>date("Y-m-d H:i:s")],
