@@ -271,6 +271,7 @@
 
                 setTimeout(() => {
                     oponete.classList.add("animate__rubberBand");
+                    oponente.src = "{{ asset('assets/images/personagens_dano/' . $oponente->classe . '_reverso.png') }}";
                 }, 900);
             @elseif(session()->has("forte_player"))
                 gtl.to("#player", {
@@ -294,8 +295,13 @@
 
                 setTimeout(() => {
                     oponete.classList.add("animate__shakeX");
+                    oponente.src = "{{ asset('assets/images/personagens_dano/' . $oponente->classe . '_reverso.png') }}";
                 }, 900);
-            @else            
+            @else
+                setTimeout(() => {
+                    oponente.src = "{{ asset('assets/images/personagens_dano/' . $oponente->classe . '_reverso.png') }}";
+                }, 900);
+
                 gtl.fromTo("#player", {
                     x: 0,
                     y: 0
@@ -334,18 +340,15 @@
 
         @if(session("dano_desferido_oponente"))
             oponente.src = "{{ asset('assets/images/personagens_ataque/' . $oponente->classe . '_reverso.png') }}";
-            setTimeout(() => {
-                oponente.src = "{{ asset('assets/images/personagens/' . $oponente->classe . '_reverso.png') }}";
-            }, 2100);
 
             @if($oponente->classe == "Mago")
                 magia_oponente.hidden = false;
                 magia_oponente.style.display = "block";
 
-                gsap.set("#magia_oponente", {x: 0, y: 0});
+                gsap.set("#magia_oponente", {x: 0, y: 0 - 100});
                 gsap.to("#magia_oponente", {
-                    x: -distanciaRealX - 75,
-                    y: distanciaRealY,
+                    x: -distanciaRealX - 70,
+                    y: -distanciaRealY - 100,
                     duration: 0.5,
                     ease: "power1.inOut"
                 });
@@ -377,7 +380,13 @@
 
                 setTimeout(() => {
                     player.classList.add("animate__rubberBand");
+                    player.src = "{{ asset('assets/images/personagens_dano/' . session('player.personagem.classe') . '.png') }}";
                 }, 900);
+
+                setTimeout(() => {
+                    oponente.src = "{{ asset('assets/images/personagens/' . $oponente->classe . '_reverso.png') }}";
+                    player.src = "{{ asset('assets/images/personagens/' . session('player.personagem.classe') . '.png') }}";
+                }, 1600);
             @elseif(session()->has("forte_oponente"))
                 gtl.to("#oponente", {
                     duration: 0.9,
@@ -400,8 +409,18 @@
 
                 setTimeout(() => {
                     player.classList.add("animate__shakeX");
+                    player.src = "{{ asset('assets/images/personagens_dano/' . session('player.personagem.classe') . '.png') }}";
                 }, 900);
+
+                setTimeout(() => {
+                    oponente.src = "{{ asset('assets/images/personagens/' . $oponente->classe . '_reverso.png') }}";
+                    player.src = "{{ asset('assets/images/personagens/' . session('player.personagem.classe') . '.png') }}";
+                }, 1600);
             @else
+                setTimeout(() => {
+                    player.src = "{{ asset('assets/images/personagens_dano/' . session('player.personagem.classe') . '.png') }}";
+                }, 900);
+
                 gtl.fromTo("#oponente", {
                     x: 0,
                     y: 0
@@ -435,6 +454,11 @@
                     duration: 0.7,
                     ease: "power1.in"
                 });
+
+                setTimeout(() => {
+                    oponente.src = "{{ asset('assets/images/personagens/' . $oponente->classe . '_reverso.png') }}";
+                    player.src = "{{ asset('assets/images/personagens/' . session('player.personagem.classe') . '.png') }}";
+                }, 2800);
             @endif
         @endif
 
