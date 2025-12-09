@@ -27,6 +27,7 @@ class Randoms
                 }
 
                 session(["skill01" => true]);
+                session()->flash("normal_player");
             break;
 
             case "$skill02":
@@ -93,6 +94,7 @@ class Randoms
                 }
 
                 session(["skill01_oponente" => true]);
+                session()->flash("normal_oponente");
             break;
 
             case $skill02:

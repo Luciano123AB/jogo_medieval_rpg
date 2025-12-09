@@ -2,14 +2,43 @@
 
     const fundo = document.getElementById("fundo");
     const audio = document.getElementById("trilha_sonora");
+    const som_resultado = document.getElementById("som_final");
+    const click = document.getElementById("click");
 
-    @if(session("musica") === "Desativado")
-        audio.muted = true;
-    @else
+    @if(session("musica") != "Desativado")
         audio.muted = false;
         audio.play().catch(error => {
             console.error("Erro ao reproduzir a trilha sonora:", error);
         });
+    @else
+        audio.muted = true;
+    @endif
+
+    @if(session()->has("vitoria") || session()->has("derrota"))
+        audio.muted = true;
+        som_resultado.muted = false;
+        som_resultado.play().catch(error => {
+            console.error("Erro ao reproduzir o som de final da batalha:", error);
+        });
+
+        let tempo = 0;
+
+        @if(session()->has("vitoria"))
+            tempo = 4300;
+        @else
+            tempo = 1300;
+        @endif
+
+        {{ session()->forget(["vitoria", "derrota"]) }}
+
+        setTimeout(() => {
+            som_resultado.muted = true;
+            @if(session("musica") == "Ativado")
+                audio.muted = false;
+            @endif
+        }, tempo);
+    @else
+        som_resultado.muted = true;
     @endif
 
     document.addEventListener("mousemove", (e) => {
@@ -20,7 +49,41 @@
         fundo.style.transform = `translate(${x}px, ${y}px) scale(1.05)`;
     });
 
+    document.addEventListener("click", function() {
+        click.play();
+    });
+
     document.addEventListener("click", function(e) {
+
+        const ripple = document.createElement("span");
+
+        ripple.classList.add("ripple-rpg");
+        ripple.style.left = (e.pageX - 10) + "px";
+        ripple.style.top  = (e.pageY - 10) + "px";
+
+        document.body.appendChild(ripple);
+
+        setTimeout(() => ripple.remove(), 700);
+
+        for (let i = 0; i < 8; i++) {
+
+            const p = document.createElement("span");
+
+            p.classList.add("particle");
+
+            const x = (Math.random() - 0.5) * 100;
+            const y = (Math.random() - 0.5) * 100;
+
+            p.style.setProperty("--x", x + "px");
+            p.style.setProperty("--y", y + "px");
+            p.style.left = e.pageX + "px";
+            p.style.top  = e.pageY + "px";
+
+            document.body.appendChild(p);
+
+            setTimeout(() => p.remove(), 700);
+        }
+
         if(e.target && e.target.id === "ok") {
             Swal.close();
         }

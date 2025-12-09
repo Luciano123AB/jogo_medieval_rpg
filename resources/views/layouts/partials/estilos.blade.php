@@ -7,6 +7,44 @@
         cursor: url("/assets/images/cursores/cursor_batalha.png"), auto;
     }
 
+    .ripple-rpg {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        transform: scale(0);
+        pointer-events: none;
+        z-index: 9999;
+
+        background: radial-gradient(circle, gold, orange, transparent);
+        animation: ripple-rpg 700ms ease-out;
+    }
+
+    @keyframes ripple-rpg {
+        to {
+            transform: scale(6);
+            opacity: 0;
+        }
+    }
+
+    .particle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: gold;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        animation: particle 700ms ease-out forwards;
+    }
+
+    @keyframes particle {
+        to {
+            transform: translate(var(--x), var(--y));
+            opacity: 0;
+        }
+    }
+
     #fundo {
         content: "";
         position: fixed;

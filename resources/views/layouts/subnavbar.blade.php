@@ -1,21 +1,4 @@
-@php
-
-    $musica = "";
-
-    if ($pagina != "Preparação" && $pagina != "Batalhas" && $pagina != "Batalha") {
-
-        $musica = "trilha_sonora_normal.mp3";
-
-    } else {
-
-        $musica = "trilha_sonora_batalha.mp3";
-
-    }
-@endphp
-
-<audio id="trilha_sonora" autoplay muted loop>
-    <source src="{{ asset("assets/audios/$musica") }}" type="audio/mpeg">
-</audio>
+@include("layouts.partials.audios")
 
 <div class="animate__animated animate__fadeInDown d-flex justify-content-between mb-5">
     <a href="{{ route("musica") }}" class="cursor sombras botoes subnavbar btn {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} border rounded-circle mx-3 px-3 py-2">

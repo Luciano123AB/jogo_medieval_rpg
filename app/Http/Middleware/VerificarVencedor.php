@@ -57,6 +57,7 @@ class VerificarVencedor
                 $batalha->save();
                 $batalha->delete();
                 
+                session(["derrota" => true]);
                 session([
                     "alerta_batalha" => [
                         "titulo" => "Derrota!",
@@ -137,6 +138,7 @@ class VerificarVencedor
                 $batalha->save();
                 $batalha->delete();
                 
+                session(["vitoria" => true]);
                 session([
                     "alerta_batalha" => [
                         "titulo" => "Vitória!",

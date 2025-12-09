@@ -34,9 +34,9 @@
                     
                     @if (session("dano_desferido_oponente"))
                         @if (session("dano_critico"))
-                            <small class="fs-5 fw-bold text-danger">🎯 -{{ session('dano_desferido_oponente') }}</small>
+                            <small class="animate__animated animate__fadeIn fs-5 fw-bold text-danger">🎯 -{{ session('dano_desferido_oponente') }}</small>
                         @else
-                            <small class="cor_fontes_claro fw-bold">🎯 -{{ session('dano_desferido_oponente') }}</small>
+                            <small class="cor_fontes_claro animate__animated animate__fadeIn fw-bold">🎯 -{{ session('dano_desferido_oponente') }}</small>
                         @endif
                     @endif
                     
@@ -122,9 +122,9 @@
 
                     @if (session("dano_desferido_player"))
                         @if (session("dano_critico"))
-                            <small class="fs-5 fw-bold text-danger">🎯 -{{ session('dano_desferido_player') }}</small>
+                            <small class="animate__animated animate__fadeIn fs-5 fw-bold text-danger">🎯 -{{ session('dano_desferido_player') }}</small>
                         @else
-                            <small class="cor_fontes_claro fw-bold">🎯 -{{ session('dano_desferido_player') }}</small>
+                            <small class="cor_fontes_claro animate__animated animate__fadeIn fw-bold">🎯 -{{ session('dano_desferido_player') }}</small>
                         @endif
                     @endif
 
@@ -188,13 +188,35 @@
         const magia_player = document.getElementById("magia_player");
         const magia_oponente = document.getElementById("magia_oponente");
 
+        const som_ataque = document.getElementById("som_ataque");
+
+        @if(session()->has("normal_player") || session()->has("normal_oponente") || session()->has("forte_player") || session()->has("forte_oponente") || session()->has("ultimate_player") || session()->has("ultimate_oponente"))
+            som_ataque.muted = false;
+            som_ataque.play().catch(error => {
+                console.error("Erro ao reproduzir o áudio de ataque:", error);
+            });
+        @else
+            som_ataque.muted = true;
+        @endif
+
         @if($batalha->vez == 1)
             skill01.disabled = true;
             skill02.disabled = true;
             skill03.disabled = true;
-            setTimeout(() => {
-                document.getElementById("ataque").click();
-            }, 3000);
+
+            @if(session()->has("normal_player"))
+                setTimeout(() => {
+                    document.getElementById("ataque").click();
+                }, 3100);
+            @elseif(session()->has("forte_player") || session()->has("ultimate_player"))
+                setTimeout(() => {
+                    document.getElementById("ataque").click();
+                }, 1900);
+            @else
+                setTimeout(() => {
+                    document.getElementById("ataque").click();
+                }, 3000);
+            @endif
         @else
             skill01.disabled = false;
             skill02.disabled = false;
@@ -309,7 +331,7 @@
                     x: distancia_player[1],
                     y: 0,
                     duration: 0.9,
-                    ease: "power1.in"
+                    ease: "power2.in"
                 })
 
                 .fromTo("#oponente", {
@@ -318,8 +340,7 @@
                 }, {
                     x: 150,
                     y: 0,
-                    duration: 0.5,
-                    ease: "power2.in"
+                    duration: 0.5
                 })
 
                 .to("#player", {
@@ -428,7 +449,7 @@
                     x: -distancia_oponente[1],
                     y: 0,
                     duration: 0.9,
-                    ease: "power1.in"
+                    ease: "power2.in"
                 })
 
                 .fromTo("#player", {
@@ -437,8 +458,7 @@
                 }, {
                     x: -150,
                     y: 0,
-                    duration: 0.5,
-                    ease: "power2.in"
+                    duration: 0.5
                 })
 
                 .to("#oponente", {
