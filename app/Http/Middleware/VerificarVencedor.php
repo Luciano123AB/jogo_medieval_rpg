@@ -137,12 +137,18 @@ class VerificarVencedor
                 $batalha->updated_at = date("Y-m-d H:i:s");
                 $batalha->save();
                 $batalha->delete();
+
+                if ($xp == 25.0) {
+                    $xp_ganho = "+250xp";
+                } else {
+                    $xp_ganho = "+335xp";
+                }
                 
                 session(["vitoria" => true]);
                 session([
                     "alerta_batalha" => [
                         "titulo" => "Vitória!",
-                        "texto" => "Parabéns!, continue assim e você se destacará na classificação.",
+                        "texto" => "Parabéns!, continue assim e você se destacará na classificação. $xp_ganho",
                         "icone" => "bi-emoji-sunglasses-fill",
                         "rota" => $rota
                     ]
