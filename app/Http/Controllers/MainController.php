@@ -13,14 +13,7 @@ use Illuminate\Contracts\View\View;
 class MainController extends Controller
 {
     public function regras(): View {
-        session([
-            "alerta" => [
-                "titulo" => "Regras do Jogo!",
-                "icone" => "bi-question-circle-fill",
-                "texto" => "Aqui você entenderá como o jogo funciona.",
-                "pagina" => "regras"
-            ]
-        ]);
+        $this->alerta("Regras do Jogo!", "bi-question-circle-fill", "Aqui você entenderá como o jogo funciona.", "regras");
 
         return view("regras")
             ->with("imagem", "campo_treinamento")
@@ -28,17 +21,9 @@ class MainController extends Controller
     }
 
     public function sobreClasses(): View {
+        $this->alerta("Descrição das Classes!", "bi-person-lines-fill", "Aqui você vai entender como cada classe funciona.", "sobre");
 
         $personagens = Personagem::all();
-
-        session([
-            "alerta" => [
-                "titulo" => "Descrição das Classes!",
-                "icone" => "bi-person-lines-fill",
-                "texto" => "Aqui você vai entender como cada classe funciona.",
-                "pagina" => "sobre"
-            ]
-        ]);
 
         return view("sobre_classes")
             ->with("imagem", "estatuas_classes")
@@ -47,14 +32,7 @@ class MainController extends Controller
     }
 
     public function creditos(): View {
-        session([
-            "alerta" => [
-                "titulo" => "Créditos do Jogo!",
-                "icone" => "bi-body-text",
-                "texto" => "Aqui você verá a lista de todos os desenvolvedores envolvidos.",
-                "pagina" => "creditos"
-            ]
-        ]);
+        $this->alerta("Créditos do Jogo!", "bi-body-text", "Aqui você verá a lista de todos os desenvolvedores envolvidos.", "creditos");
 
         return view("creditos")
             ->with("imagem", "estrada")
@@ -62,18 +40,10 @@ class MainController extends Controller
     }
 
     public function cadastro(): View {
+        $this->alerta("Cadastro de Player!", "bi-person-fill-add", "Aqui você criará sua conta e escolherá sua classe preferencial.", "cadastro");
 
         $personagens = Personagem::all();
         $paises = Paises::paises();
-
-        session([
-            "alerta" => [
-                "titulo" => "Cadastro de Player!",
-                "icone" => "bi-person-fill-add",
-                "texto" => "Aqui você criará sua conta e escolherá sua classe preferencial.",
-                "pagina" => "cadastro"
-            ]
-        ]);
 
         return view("cadastro_atualizacao", compact("paises"))
             ->with("imagem", "recrutamento")
@@ -82,6 +52,7 @@ class MainController extends Controller
     }
 
     public function atualizacao(): View {
+        $this->alerta("Atualização de Player!", "bi-person-fill-down", "Aqui você editará os dados da sua conta e escolherá sua nova classe preferencial.", "atualizacao");
 
         $personagens = Personagem::all();
         $id = session("player.id");
@@ -91,15 +62,6 @@ class MainController extends Controller
         $classe = session("player.personagem.classe");
         $foto = session("player.foto");
         $paises = Paises::paises();
-
-        session([
-            "alerta" => [
-                "titulo" => "Atualização de Player!",
-                "icone" => "bi-person-fill-down",
-                "texto" => "Aqui você editará os dados da sua conta e escolherá sua nova classe preferencial.",
-                "pagina" => "atualizacao"
-            ]
-        ]);
 
         return view("cadastro_atualizacao", compact("paises"))
             ->with("imagem", "recrutamento")
@@ -119,6 +81,7 @@ class MainController extends Controller
     }
 
     public function listagem(): View {
+        $this->alerta("Lista de Players!", "bi-list-stars", "Aqui você vizualizará todos os players existentes e quem está na liderança, e caso queira, poderá desafiá-los para uma batalha, mas só poderá fazer isso 1 vez por dia.", "listagem");
 
         $players = Player::orderBy("usuario", "asc")->get();
         $player_lider_vitorias = Player::orderBy("quantidade_vitorias", "desc")->first();
@@ -126,15 +89,6 @@ class MainController extends Controller
         $desafiou = Desafio::where("id_desafiador", session("player.id"))
                            ->pluck("id_desafiado")
                            ->toArray();
-
-        session([
-            "alerta" => [
-                "titulo" => "Lista de Players!",
-                "icone" => "bi-list-stars",
-                "texto" => "Aqui você vizualizará todos os players existentes e quem está na liderança, e caso queira, poderá desafiá-los para uma batalha, mas só poderá fazer isso 1 vez por dia.",
-                "pagina" => "listagem"
-            ]
-        ]);
 
         return view("listagens/players")
             ->with("imagem", "recrutamento")
@@ -146,6 +100,7 @@ class MainController extends Controller
     }
 
     public function totaisPlayers() {
+        $this->alerta("Totais de Players!", "bi-flag-list", "Aqui você descobri-rá quantos players de cada país estão presentes no jogo.", "totais");
 
         $paises = Paises::paises();
         $totais = [];
@@ -157,15 +112,6 @@ class MainController extends Controller
             ];
         }
 
-        session([
-            "alerta" => [
-                "titulo" => "Totais de Players!",
-                "icone" => "bi-flag-list",
-                "texto" => "Aqui você descobri-rá quantos players de cada país estão presentes no jogo.",
-                "pagina" => "totais"
-            ]
-        ]);
-
         return view("listagens/totais_players")
             ->with("imagem", "recrutamento")
             ->with("pagina", "Totais")
@@ -173,6 +119,7 @@ class MainController extends Controller
     }
 
     public function registroBatalhas(): View {
+        $this->alerta("Registro de Batalhas!", "bi-file-earmark-medical-fill", "Aqui você irá relembrar todas as suas vitórias e derrotas, e caso queira, poderá apagar esses registros.", "registro");
 
         $batalhas_vitorias = Batalha::onlyTrashed()
                                     ->where("ganhou", session("player.usuario"))
@@ -180,15 +127,6 @@ class MainController extends Controller
         $batalhas_derrotas = Batalha::onlyTrashed()
                                     ->where("perdeu", session("player.usuario"))
                                     ->get();
-
-        session([
-            "alerta" => [
-                "titulo" => "Registro de Batalhas!",
-                "icone" => "bi-file-earmark-medical-fill",
-                "texto" => "Aqui você irá relembrar todas as suas vitórias e derrotas, e caso queira, poderá apagar esses registros.",
-                "pagina" => "registro"
-            ]
-        ]);
 
         return view("listagens/registro_batalhas")
             ->with("imagem", "registros")
@@ -198,17 +136,9 @@ class MainController extends Controller
     }
 
     public function batalhasAndamento(): View {
+        $this->alerta("Batalhas em Andamento!", "bi-card-list", "Aqui você irá vizualizar todas as batalhas que estão acontecendo agora.", "batalhas");
 
         $batalhas = Batalha::where("deleted_at", null)->get();
-
-        session([
-            "alerta" => [
-                "titulo" => "Batalhas em Andamento!",
-                "icone" => "bi-card-list",
-                "texto" => "Aqui você irá vizualizar todas as batalhas que estão acontecendo agora.",
-                "pagina" => "batalhas"
-            ]
-        ]);
 
         return view("listagens/batalhas")
             ->with("imagem", "registros")
@@ -217,20 +147,12 @@ class MainController extends Controller
     }
 
     public function preparacao(): View {
+        $this->alerta("Preparação Antes da Batalha!", "⚔️", "Aqui você escolherá quem irá enfrentar usando sua classe.", "preparacao");
 
-        $id = session("player.id");
         $personagens = Personagem::all();
         $classe_player = session("player.personagem.classe");
+        $id = session("player.id");
         $nivel = Player::find($id);
-
-        session([
-            "alerta" => [
-                "titulo" => "Preparação Antes da Batalha!",
-                "icone" => "⚔️",
-                "texto" => "Aqui você escolherá quem irá enfrentar usando sua classe.",
-                "pagina" => "preparacao"
-            ]
-        ]);
 
         return view("preparacao")
             ->with("imagem", "coliseu")
@@ -241,6 +163,8 @@ class MainController extends Controller
     }
 
     public function batalhar(): View {
+        $this->alerta("Batalha!", "bi-phone-landscape-fill", "Agora é a Hora! Aqui você aplicará o que aprendeu na página de regras, e recomendo que para essa página você vire a tela do seu dispositivo. Boa sorte!", "batalha");
+        
         session()->forget("alerta_confirmar");
 
         $batalha = null;
@@ -253,18 +177,15 @@ class MainController extends Controller
         $vez = random_int(0, 1);
 
         if (session()->has("nivel_oponente")) {
-
-            $nivel = session("nivel_oponente");
-            
+            $nivel = session("nivel_oponente");            
         } else {
-
             $nivel = session("player.nivel");
-
         }
         
         if (!session()->has("dados.batalha_comecou")) {
             
             $nova_batalha = new Batalha();
+
             $nova_batalha->nome = session("player.usuario");
             $nova_batalha->nome_oponente = $nome_oponente;
             $nova_batalha->hp_maximo = session("player.personagem.hp") * session("player.nivel");
@@ -279,6 +200,7 @@ class MainController extends Controller
             $nova_batalha->save();
 
             $novo_desafio = new Desafio();
+            
             $novo_desafio->id_desafiador = session("player.id");
             $novo_desafio->id_desafiado = session("id_player");
             $novo_desafio->save();
@@ -299,16 +221,7 @@ class MainController extends Controller
             $id_batalha = session("dados.id_batalha");
 
             $batalha = Batalha::find($id_batalha);            
-        }        
-
-        session([
-            "alerta" => [
-                "titulo" => "Batalha!",
-                "icone" => "bi-phone-landscape-fill",
-                "texto" => "Agora é a Hora! Aqui você aplicará o que aprendeu na página de regras, e recomendo que para essa página você vire a tela do seu dispositivo. Boa sorte!",
-                "pagina" => "batalha"
-            ]
-        ]);
+        }
 
         return view("batalha")
             ->with("imagem", "coliseu")
