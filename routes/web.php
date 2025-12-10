@@ -27,6 +27,7 @@ Route::prefix("/")->group(function () {
     Route::controller(MainController::class)->group(function() {
         Route::middleware(VerificarBatalha::class)->group(function() {
             Route::get("", function(): View {
+                
                 $banco = Boot::testarConexao();
             
                 if ($banco == false) {

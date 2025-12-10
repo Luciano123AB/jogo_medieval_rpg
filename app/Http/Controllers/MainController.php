@@ -136,13 +136,40 @@ class MainController extends Controller
             ]
         ]);
 
-        return view("listagem_players")
+        return view("listagens/players")
             ->with("imagem", "recrutamento")
             ->with("pagina", "Listagem")
             ->with("players", $players)
             ->with("player_lider_vitorias", $player_lider_vitorias)
             ->with("player_lider_nivel", $player_lider_nivel)
             ->with("desafiou", $desafiou);
+    }
+
+    public function totaisPlayers() {
+
+        $paises = Paises::paises();
+        $totais = [];
+        
+        foreach ($paises as $codigo => $nome) {
+            $totais[$codigo] = [
+                "nome" => $nome,
+                "total" => PlayersPais::playersPais($codigo)
+            ];
+        }
+
+        session([
+            "alerta" => [
+                "titulo" => "Totais de Players!",
+                "icone" => "bi-flag-list",
+                "texto" => "Aqui você descobri-rá quantos players de cada país estão presentes no jogo.",
+                "pagina" => "totais"
+            ]
+        ]);
+
+        return view("listagens/totais_players")
+            ->with("imagem", "recrutamento")
+            ->with("pagina", "Totais")
+            ->with("totais", $totais);
     }
 
     public function registroBatalhas(): View {
@@ -163,7 +190,7 @@ class MainController extends Controller
             ]
         ]);
 
-        return view("registro_batalhas")
+        return view("listagens/registro_batalhas")
             ->with("imagem", "registros")
             ->with("pagina", "Registro")
             ->with("batalhas_vitorias", $batalhas_vitorias)
@@ -183,7 +210,7 @@ class MainController extends Controller
             ]
         ]);
 
-        return view("batalhas")
+        return view("listagens/batalhas")
             ->with("imagem", "registros")
             ->with("pagina", "Batalhas")
             ->with("batalhas", $batalhas);
@@ -292,32 +319,5 @@ class MainController extends Controller
             ->with("oponente", $oponente)
             ->with("foto", $foto_oponente)
             ->with("nome", $nome_oponente);
-    }
-
-    public function totaisPlayers() {
-
-        $paises = Paises::paises();
-        $totais = [];
-        
-        foreach ($paises as $codigo => $nome) {
-            $totais[$codigo] = [
-                "nome" => $nome,
-                "total" => PlayersPais::playersPais($codigo)
-            ];
-        }
-
-        session([
-            "alerta" => [
-                "titulo" => "Totais de Players!",
-                "icone" => "bi-flag-list",
-                "texto" => "Aqui você descobri-rá quantos players de cada país estão presentes no jogo.",
-                "pagina" => "totais"
-            ]
-        ]);
-
-        return view("totais_players")
-            ->with("imagem", "recrutamento")
-            ->with("pagina", "Totais")
-            ->with("totais", $totais);
-    }
+    }    
 }
