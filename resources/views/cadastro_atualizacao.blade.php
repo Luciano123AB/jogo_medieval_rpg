@@ -238,7 +238,7 @@
                                                 @if($pagina == "Atualização")
                                                     <div class="form-check mt-2">
                                                         <input class="form-check-input cursor {{ session("tema") == "escuro" ? "border-primary focus-ring focus-ring-primary" : "border-danger focus-ring focus-ring-danger" }}" type="checkbox" name="sem_foto" value="nenhuma" id="sem_foto">
-                                                        <label class="form-check-label" for="semFoto">
+                                                        <label class="form-check-label" for="sem_foto">
                                                             <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Sem Foto</span>
                                                         </label>
                                                     </div>

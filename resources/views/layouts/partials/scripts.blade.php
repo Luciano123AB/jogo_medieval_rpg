@@ -41,6 +41,21 @@
         som_resultado.muted = true;
     @endif
 
+    document.addEventListener("DOMContentLoaded", function () {
+        
+        const sem_foto = document.getElementById("sem_foto");
+        const foto = document.getElementById("foto");
+
+        sem_foto.addEventListener("change", function () {
+            if (this.checked) {
+                foto.disabled = true;
+                foto.value = "";
+            } else {
+                foto.disabled = false;
+            }
+        });
+    });
+
     document.addEventListener("mousemove", (e) => {
 
         const x = (e.clientX / window.innerWidth - 0.5) * 40;

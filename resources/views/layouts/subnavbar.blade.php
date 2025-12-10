@@ -9,8 +9,8 @@
         @if(session()->has("player") && $pagina != "Batalhas" && $pagina != "Batalha")
             <a href="{{ route("batalhas") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} border">
                 <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} d-flex">
-                    <div class="animate__animated animate__swing animate__infinite">
-                        <i class="bi bi-card-list me-2"></i>
+                    <div class="cursor animate__animated animate__swing animate__infinite">
+                        <i class="cursor bi bi-card-list me-2"></i>
                     </div>
                     Batalhas em Andamento
                 </span>
@@ -20,8 +20,8 @@
         @if(session()->has("player") && $pagina != "Totais" && $pagina != "Batalha")
             <a href="{{ route("totais") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} border">
                 <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} d-flex">
-                    <div class="animate__animated animate__headShake animate__infinite">
-                        <i class="bi bi-flag-fill me-2"></i>
+                    <div class="cursor animate__animated animate__headShake animate__infinite">
+                        <i class="cursor bi bi-flag-fill me-2"></i>
                     </div>
                     Total de Players(Países)
                 </span>
