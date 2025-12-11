@@ -80,7 +80,9 @@
                         <span>Oponente</span>
                     </h4>
                 @endif
-                <h1 class="animate__animated animate__fadeInDown my-auto">🆚</h1>
+                <div>
+                    <h1 class="animate__animated animate__fadeInDown my-auto">🆚</h1>
+                </div>
                 <h2 id="alerta" class="animate__animated animate__pulse animate__flash animate__infinite text-warning"></h2>
             </div>
 
