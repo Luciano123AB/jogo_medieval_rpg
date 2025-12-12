@@ -60,7 +60,7 @@
         transition: transform 0.1s ease-out;
     }
 
-    #fogo {
+    .gifs {
         z-index: -1;
     }
 
@@ -185,7 +185,7 @@
 
     #login {
         width: 300px;
-    }
+    }    
 
     .barras {
         height: 20px;

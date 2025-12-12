@@ -26,7 +26,7 @@
         @if(session()->has("vitoria"))
             tempo = 4300;
         @else
-            tempo = 1300;
+            tempo = 1500;
         @endif
 
         {{ session()->forget(["vitoria", "derrota"]) }}

@@ -192,6 +192,7 @@ class Batalhar extends Controller
             $player->save();
         }
         
+        session(["derrota" => true]);
         session([
             "alerta_batalha" => [
                 "titulo" => "Derrota!",
