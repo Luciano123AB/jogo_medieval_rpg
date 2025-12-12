@@ -86,6 +86,7 @@
                     </h4>
                 @endif
                 <div>
+                    <h4 class="text-white"><span id="minutos"></span>:<span id="segundos02"></span><span id="segundos01"></span></h4>
                     <h1 class="animate__animated animate__fadeInDown my-auto">🆚</h1>
                 </div>
                 <h2 id="alerta" class="animate__animated animate__pulse animate__flash animate__infinite text-warning"></h2>
@@ -110,7 +111,7 @@
                             <i class="fi animate__animated animate__jello animate__infinite bg-secondary border-start border-end"></i>
                             Oponente: Computador
                         </div>
-                    @endif                    
+                    @endif
                 </h4>
                 <div class="position-relative">
                     <img src="{{ asset("assets/images/personagens/$oponente->classe" . "_reverso.png") }}" id="oponente" class="animate__animated

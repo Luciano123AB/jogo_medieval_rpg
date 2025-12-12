@@ -15,6 +15,7 @@ use App\Models\Player;
 use App\Services\Boot;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("/")->group(function () {
@@ -97,6 +98,14 @@ Route::prefix("/")->group(function () {
             
             Route::get("batalha", "batalhar")->name("batalhar")->middleware(VerificarVencedor::class);
         });
+    });
+
+    Route::post("atualizar_tempo", function(Request $request) {
+        session(["segundos01" => $request->segundos01]);
+        session(["segundos02" => $request->segundos02]);
+        session(["minutos" => $request->minutos]);
+
+        return response()->json(["ok" => true]);
     });
 
     Route::controller(Cadastrar::class)->group(function() {    

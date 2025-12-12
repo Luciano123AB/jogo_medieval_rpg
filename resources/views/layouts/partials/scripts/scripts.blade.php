@@ -252,7 +252,6 @@
         document.querySelector("#pais").value = "";
         document.querySelector("#countrySelect .selected-option").innerHTML = "🌐 Selecione seu país...";
 
-
         const classe = document.getElementById("classe");
         const perfil_cadastro = document.querySelector(".perfil_cadastro");
         const foto = document.getElementById("foto_preview");

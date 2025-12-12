@@ -2,7 +2,7 @@
     <style>
         #player {
             background-image: url('{{ asset('assets/images/gifs/auras/guerreiro.gif') }}');
-            background-size: 108% 108%;
+            background-size: 150% 110%;
             background-repeat: no-repeat;
             background-position: center;
         }
@@ -11,7 +11,7 @@
     <style>
         #player {
             background-image: url('{{ asset('assets/images/gifs/auras/mago.gif') }}');
-            background-size: 108% 108%;
+            background-size: 150% 110%;
             background-repeat: no-repeat;
             background-position: center;
         }
@@ -20,7 +20,7 @@
     <style>
         #player {
             background-image: url('{{ asset('assets/images/gifs/auras/aura_assassino.gif') }}');
-            background-size: 108% 108%;
+            background-size: 150% 110%;
             background-repeat: no-repeat;
             background-position: center;
         }
@@ -31,7 +31,7 @@
     <style>
         #oponente {
             background-image: url('{{ asset('assets/images/gifs/auras/guerreiro.gif') }}');
-            background-size: 108% 108%;
+            background-size: 150% 110%;
             background-repeat: no-repeat;
             background-position: center;
         }
@@ -40,7 +40,7 @@
     <style>
         #oponente {
             background-image: url('{{ asset('assets/images/gifs/auras/mago.gif') }}');
-            background-size: 108% 108%;
+            background-size: 150% 110%;
             background-repeat: no-repeat;
             background-position: center;
         }
@@ -49,7 +49,7 @@
     <style>
         #oponente {
             background-image: url('{{ asset('assets/images/gifs/auras/assassino.gif') }}');
-            background-size: 108% 108%;
+            background-size: 150% 110%;
             background-repeat: no-repeat;
             background-position: center;
         }

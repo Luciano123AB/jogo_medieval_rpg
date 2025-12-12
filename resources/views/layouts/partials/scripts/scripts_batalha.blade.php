@@ -1,5 +1,41 @@
 <script>
 
+    let segundos01 = {{ session("segundos01") ?? 0 }};
+    let segundos02 = {{ session("segundos02") ?? 0 }};
+    let minutos = {{ session("minutos") ?? 0 }};
+
+    function atualizar() {
+        document.getElementById("segundos01").innerText = segundos01;
+        document.getElementById("segundos02").innerText = segundos02;
+        document.getElementById("minutos").innerText = minutos;
+
+        fetch("atualizar_tempo", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            },
+            body: JSON.stringify({ segundos01, segundos02, minutos })
+        });
+
+        segundos01++;
+
+        if (segundos01 >= 10) {
+            segundos01 = 0;
+            segundos02++;
+        }
+
+        if (segundos02 >= 6 && segundos01 >= 0) {
+            segundos01 = 0;
+            segundos02 = 0;
+            minutos++
+        }
+
+        setTimeout(atualizar, 1000);
+    }
+
+    atualizar();
+
     const player = document.getElementById("player");
     const oponente = document.getElementById("oponente");
 

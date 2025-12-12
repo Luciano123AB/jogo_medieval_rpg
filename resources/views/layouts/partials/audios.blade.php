@@ -4,9 +4,9 @@
     $som_final = "";
 
     if ($pagina != "Preparação" && $pagina != "Batalhas" && $pagina != "Batalha") {
-        $musica = "trilha_sonora_normal.mp3";
+        $musica = "normal.mp3";
     } else {
-        $musica = "trilha_sonora_batalha.mp3";
+        $musica = "batalha.mp3";
     }
 
     if (session()->has("vitoria")) {
@@ -19,7 +19,7 @@
 @endphp
 
 <audio id="trilha_sonora" autoplay muted loop>
-    <source src="{{ asset("assets/audios/$musica") }}" type="audio/mpeg">
+    <source src="{{ asset("assets/audios/trilhas_sonoras/$musica") }}" type="audio/mpeg">
 </audio>
 
 <audio id="som_ataque" muted>

@@ -72,7 +72,7 @@
                                     }
                                 @endphp
                                 <div class="position-relative me-2">
-                                    <img src="{{ $perfil }}" class="cursor sombras perfil_player border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
+                                    <img src="{{ $perfil }}" class="cursor sombras perfil_player border border-3 {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
                                     <img src="{{ $perfil_02 }}" class="position-absolute bottom-0 start-100 translate-middle cursor sombras perfil_players border {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-dark border-danger" }} rounded-circle">
                                 </div>
                                 <div class="cursor">
