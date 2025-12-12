@@ -27,7 +27,7 @@
                             {{ session(["inicio_player" => true]) }}
                         @endif
                     w-50">
-                    <img src="{{ asset("assets/images/magias/magia.png") }}" id="magia_player" class="position-absolute top-50 start-50 magias w-50" hidden>
+                    <img src="{{ asset("assets/images/magias/magia.gif") }}" id="magia_player" class="position-absolute top-50 start-50 magias w-50" hidden>
                     <img src="{{ asset("assets/images/gifs/ataques/normal.gif") }}" id="efeito01_player" class="position-absolute top-50 start-50 translate-middle w-50" hidden>
                     <img src="{{ asset("assets/images/gifs/ataques/forte.gif") }}" id="efeito02_player" class="position-absolute bottom-0 start-50 translate-middle-x w-50" hidden>
                     <img src="{{ asset("assets/images/gifs/ataques/ultimate.gif") }}" id="efeito03_player" class="position-absolute bottom-0 start-50 translate-middle-x w-50" hidden>
@@ -120,7 +120,7 @@
                             {{ session(["inicio_oponente" => true]) }}
                         @endif
                     w-50">
-                    <img src="{{ asset("assets/images/magias/magia_reverso.png") }}" id="magia_oponente" class="position-absolute top-50 start-50 magias w-50" hidden>
+                    <img src="{{ asset("assets/images/magias/magia_reverso.gif") }}" id="magia_oponente" class="position-absolute top-50 start-50 magias w-50" hidden>
                     <img src="{{ asset("assets/images/gifs/ataques/normal.gif") }}" id="efeito01_oponente" class="position-absolute top-50 start-50 translate-middle w-50" hidden>
                     <img src="{{ asset("assets/images/gifs/ataques/forte.gif") }}" id="efeito02_oponente" class="position-absolute bottom-0 start-50 translate-middle-x w-50" hidden>
                     <img src="{{ asset("assets/images/gifs/ataques/ultimate.gif") }}" id="efeito03_oponente" class="position-absolute bottom-0 start-50 translate-middle-x w-50" hidden>

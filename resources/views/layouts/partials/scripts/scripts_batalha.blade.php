@@ -118,7 +118,7 @@
 
             gsap.set("#magia_player", {x: 0, y: 0});
             gtl.to("#magia_player", {
-                x: distanciaRealX - 85,
+                x: distanciaRealX - 160,
                 y: distanciaRealY,
                 duration: 0.5,
                 ease: "power1.inOut"
@@ -242,10 +242,10 @@
             magia_oponente.hidden = false;
             magia_oponente.style.display = "block";
 
-            gsap.set("#magia_oponente", {x: 0, y: 0 - 100});
+            gsap.set("#magia_oponente", {x: 0, y: 0});
             gsap.to("#magia_oponente", {
-                x: -distanciaRealX - 70,
-                y: -distanciaRealY - 100,
+                x: -distanciaRealX + 10,
+                y: -distanciaRealY,
                 duration: 0.5,
                 ease: "power1.inOut"
             });
