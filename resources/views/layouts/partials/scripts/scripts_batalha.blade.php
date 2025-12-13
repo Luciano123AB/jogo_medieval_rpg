@@ -1,8 +1,16 @@
+@php
+    $tempo = Cache::get("batalha_tempo_" . session("dados.id_batalha"), [
+        "segundos01" => 0,
+        "segundos02" => 0,
+        "minutos" => 0
+    ]);
+@endphp
+
 <script>
 
-    let segundos01 = {{ session("segundos01") ?? 0 }};
-    let segundos02 = {{ session("segundos02") ?? 0 }};
-    let minutos = {{ session("minutos") ?? 0 }};
+    let segundos01 = {{ $tempo["segundos01"] ?? 0 }};
+    let segundos02 = {{ $tempo["segundos02"] ?? 0 }};
+    let minutos = {{ $tempo["minutos"] ?? 0 }};
 
     function atualizar() {
         document.getElementById("segundos01").innerText = segundos01;

@@ -16,6 +16,7 @@ use App\Services\Boot;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("/")->group(function () {
@@ -142,9 +143,18 @@ Route::prefix("/")->group(function () {
     });
 
     Route::post("atualizar_tempo", function(Request $request) {
-        session(["segundos01" => $request->segundos01]);
-        session(["segundos02" => $request->segundos02]);
-        session(["minutos" => $request->minutos]);
+        if (!session()->has("dados.batalha_comecou")) {
+            return response()->json(["ok" => false]);
+        }
+
+        $idBatalha = session("dados.id_batalha");
+        $key = "batalha_tempo_$idBatalha";
+
+        Cache::put($key, [
+            "segundos01" => $request->segundos01,
+            "segundos02" => $request->segundos02,
+            "minutos" => $request->minutos
+        ], now()->addMinutes(30));
 
         return response()->json(["ok" => true]);
     });

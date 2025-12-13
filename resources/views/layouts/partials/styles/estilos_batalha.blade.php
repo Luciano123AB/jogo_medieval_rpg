@@ -22,6 +22,8 @@
         background-size: 150% 110%;
         background-repeat: no-repeat;
         background-position: center;
+        position: relative;
+        z-index: 9999;
     }
 
     #oponente {
