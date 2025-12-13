@@ -45,11 +45,11 @@
 
         return {
             x: rect.left + rect.width / 2,
-            y: rect.top  + rect.height / 2
+            y: rect.top + rect.height / 2
         };
     }
 
-    const centroPlayer   = getCentroElemento(player);
+    const centroPlayer = getCentroElemento(player);
     const centroOponente = getCentroElemento(oponente);
 
     let distanciaRealX = centroOponente.x - centroPlayer.x;
