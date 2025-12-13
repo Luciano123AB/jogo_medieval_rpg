@@ -150,7 +150,7 @@ Route::prefix("/")->group(function () {
     });
 
     Route::get("cancelar", function(): RedirectResponse {
-        session()->forget(["alerta_confirmar", "id_player", "id_oponente", "foto_oponente", "pais_oponente", "nome_oponente", "nivel_oponente"]);
+        session()->forget(["alerta_confirmar", "dados", "id_player", "id_oponente", "foto_oponente", "pais_oponente", "nome_oponente", "nivel_oponente"]);
 
         return redirect()->back()->withInput();
     })->name("cancelar");

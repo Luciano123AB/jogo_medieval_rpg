@@ -24,15 +24,7 @@ class Batalhar extends Controller
 
         $id = $request->oponente;
 
-        session([
-            "alerta_confirmar" => [
-                "titulo" => "Confirmar Batalha!",
-                "texto" => "Tem certeza que está pronto para ir para a batalha?",
-                "cancelar" => "cancelar",
-                "sim" => "batalhar"
-            ]
-        ]);
-
+        $this->alertaConfirmar("Confirmar Batalha!", "Tem certeza que está pronto para ir para a batalha?", "cancelar", "batalhar");
         session([
             "id_oponente" => $id,
             "foto_oponente" => "nenhuma",
@@ -44,35 +36,16 @@ class Batalhar extends Controller
 
     public function confirmarDesafio($player, $oponente, $nome_oponente, $nivel): RedirectResponse {
         if ($nivel > session("player.nivel")) {
-            session([
-                "alerta_resultado" => [
-                    "titulo" => "Player Muito Forte!",
-                    "texto" => "Você não pode desafiar um player de nível superior que o seu. Escolha outro.",
-                    "icone" => "bi-hand-thumbs-down-fill"
-                ],
-            ]);
+            $this->alertaResultado("Player Muito Forte!", "Você não pode desafiar um player de nível superior que o seu. Escolha outro.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
         } elseif ($nivel < session("player.nivel")) {
-            session([
-                "alerta_resultado" => [
-                    "titulo" => "Player Muito Fraco!",
-                    "texto" => "Você não pode desafiar um player de nível inferior que o seu. Escolha outro.",
-                    "icone" => "bi-hand-thumbs-down-fill"
-                ],
-            ]);
+            $this->alertaResultado("Player Muito Fraco!", "Você não pode desafiar um player de nível inferior que o seu. Escolha outro.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
         }
-
-        session([
-            "alerta_confirmar" => [
-                "titulo" => "Confirmar Desafio!",
-                "texto" => "Tem certeza que deseja desafiar este player?",
-                "cancelar" => "cancelar",
-                "sim" => "batalhar"
-            ]
-        ]);
+        
+        $this->alertaConfirmar("Confirmar Desafio!", "Tem certeza que deseja desafiar este player?", "cancelar", "batalhar");
 
         $foto_oponente = Player::find($player)->foto;
         $pais_oponente = Player::find($player)->pais;
@@ -144,14 +117,7 @@ class Batalhar extends Controller
     }
 
     public function confirmarRender(): RedirectResponse {
-        session([
-            "alerta_confirmar_render" => [
-                "titulo" => "Confirmar Rendição!",
-                "texto" => "Tem certeza que deseja desistir dessa batalha?",
-                "cancelar" => "cancelarRender",
-                "sim" => "renderSe"
-            ]
-        ]);
+        $this->alertaConfirmarRender("Confirmar Rendição!", "Tem certeza que deseja desistir dessa batalha?", "cancelarRender", "renderSe");
 
         return redirect()->back();
     }
@@ -194,14 +160,7 @@ class Batalhar extends Controller
         }
         
         session(["derrota" => true]);
-        session([
-            "alerta_batalha" => [
-                "titulo" => "Derrota!",
-                "texto" => "Que Pena! Mas não desista, faz parte, infelismente não dá para ganhar todas, continue tentando.",
-                "icone" => "bi-emoji-frown-fill",
-                "rota" => ""
-            ]
-        ]);
+        $this->alertaBatalha("Derrota!", "Que Pena! Mas não desista, faz parte, infelismente não dá para ganhar todas, continue tentando.", "bi-emoji-frown-fill", "");
 
         if (session("nome_oponente") == "Computador") {
             session()->forget("nome_oponente");

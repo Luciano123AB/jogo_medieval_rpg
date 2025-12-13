@@ -88,21 +88,16 @@ class Cadastrar extends Controller
             return redirect()->back()->withInput()->withErrors(["playerExiste" => "Esse player já está cadastrado! Tente novamente."]);
         }
 
+        $this->alertaConfirmar("Confirmação Cadastro!", "Tem certeza que deseja cadastrar esse player?", "cancelar", "cadastrar");
         session([
-            "alerta_confirmar" => [
-                "titulo" => "Confirmação Cadastro!",
-                "texto" => "Tem certeza que deseja cadastrar esse player?",
-                "cancelar" => "cancelar",
-                "sim" => "cadastrar",
-                "dados" => [
-                    "usuario" => $usuario,
-                    "email" => $email,
-                    "senha" => $senha,
-                    "genero" => $genero,
-                    "pais" => $pais,
-                    "classe" => $classe,
-                    "foto" => $foto
-                ]
+            "dados" => [
+                "usuario" => $usuario,
+                "email" => $email,
+                "senha" => $senha,
+                "genero" => $genero,
+                "pais" => $pais,
+                "classe" => $classe,
+                "foto" => $foto
             ]
         ]);
 
@@ -112,17 +107,17 @@ class Cadastrar extends Controller
     public function cadastroSubmit(): RedirectResponse {
 
         $player = new Player();
-        $player->usuario = session("alerta_confirmar.dados.usuario");
-        $player->email = session("alerta_confirmar.dados.email");
-        $player->senha = encrypt(session("alerta_confirmar.dados.senha"));
-        $player->genero = session("alerta_confirmar.dados.genero");
-        $player->pais = session("alerta_confirmar.dados.pais");
-        $player->foto = session("alerta_confirmar.dados.foto");
+        $player->usuario = session("dados.usuario");
+        $player->email = session("dados.email");
+        $player->senha = encrypt(session("dados.senha"));
+        $player->genero = session("dados.genero");
+        $player->pais = session("dados.pais");
+        $player->foto = session("dados.foto");
         $player->nivel = 1;
         $player->xp = 0;
         $player->quantidade_vitorias = 0;
         $player->quantidade_derrotas = 0;
-        $player->id_personagem = session("alerta_confirmar.dados.classe");
+        $player->id_personagem = session("dados.classe");
         $player->created_at = date("Y-m-d H:i:s");
         $player->updated_at = null;
         $player->save();
@@ -130,25 +125,13 @@ class Cadastrar extends Controller
         if (!$player) {
             session()->forget("alerta_confirmar");
 
-            session([
-                "alerta_resultado" => [
-                    "titulo" => "Erro ao Cadastrar!",
-                    "texto" => "Ocorreu um erro ao tentar cadastrar esse player! Tente novamente.",
-                    "icone" => "bi-hand-thumbs-down-fill"
-                ]
-            ]);
+            $this->alertaResultado("Erro ao Cadastrar!", "Ocorreu um erro ao tentar cadastrar esse player! Tente novamente.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back()->withInput();
         } else {
             session()->forget("alerta_confirmar");
             
-            session([
-                "alerta_resultado" => [
-                    "titulo" => "Player Cadastrado com Sucesso!",
-                    "texto" => "Agora você pode realizar o login e acessar a página de batalha.",
-                    "icone" => "bi-hand-thumbs-up-fill"
-                ]
-            ]);
+            $this->alertaResultado("Player Cadastrado com Sucesso!", "Agora você pode realizar o login e acessar a página de batalha.", "bi-hand-thumbs-up-fill");
 
             return redirect()->route("home");
         }

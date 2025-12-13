@@ -10,14 +10,7 @@ use Illuminate\Http\Request;
 class EditarDeletar extends Controller
 {
     public function confirmarDeletar(): RedirectResponse {
-        session([
-            "alerta_confirmar" => [
-                "titulo" => "Confirmar Deleção!",
-                "texto" => "Tem certeza que deseja deletar sua conta? Esse operação é irreversível.",
-                "cancelar" => "cancelar",
-                "sim" => "deletar"
-            ]
-        ]);
+        $this->alertaConfirmar("Confirmar Deleção!", "Tem certeza que deseja deletar sua conta? Esse operação é irreversível.", "cancelar", "deletar");
 
         return redirect()->back();
     }
@@ -32,25 +25,13 @@ class EditarDeletar extends Controller
         if (!$player_deletar) {
             session()->forget("alerta_confirmar");
 
-            session([
-                "alerta_resultado" => [
-                    "titulo" => "Erro ao Deletar!",
-                    "texto" => "Ocorreu um erro ao tentar excluir a conta! Tente novamente.",
-                    "icone" => "bi-hand-thumbs-down-fill"
-                ]
-            ]);
+            $this->alertaResultado("Erro ao Deletar!", "Ocorreu um erro ao tentar excluir a conta! Tente novamente.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
         } else {
             session()->forget(["alerta_confirmar", "player"]);
 
-            session([
-                "alerta_resultado" => [
-                    "titulo" => "Player Deletado com Sucesso!",
-                    "texto" => "Caso queira começar novamente do zero, sinta-se à vontade para criar uma nova conta.",
-                    "icone" => "bi-hand-thumbs-up-fill"
-                ]
-            ]);
+            $this->alertaResultado("Player Deletado com Sucesso!", "Caso queira começar novamente do zero, sinta-se à vontade para criar uma nova conta.", "bi-hand-thumbs-up-fill");
 
             return redirect()->route("home");
         }
@@ -134,19 +115,14 @@ class EditarDeletar extends Controller
             return redirect()->back()->withInput()->withErrors(["playerExiste" => "Esse player já está cadastrado! Tente novamente."]);
         }
 
+        $this->alertaConfirmar("Confirmar Atualização!", "Tem certeza que deseja salvar esses novos dados?", "cancelar", "atualizar");
         session([
-            "alerta_confirmar" => [
-                "titulo" => "Confirmar Atualização!",
-                "texto" => "Tem certeza que deseja salvar esses novos dados?",
-                "cancelar" => "cancelar",
-                "sim" => "atualizar",
-                "dados" => [
-                    "usuario" => $usuario,
-                    "email" => $email,
-                    "senha" => $senha,
-                    "classe" => $classe,
-                    "foto" => $foto
-                ]
+            "dados" => [
+                "usuario" => $usuario,
+                "email" => $email,
+                "senha" => $senha,
+                "classe" => $classe,
+                "foto" => $foto
             ]
         ]);
 
@@ -156,41 +132,28 @@ class EditarDeletar extends Controller
     public function atualizar(): RedirectResponse {
 
         $id = session("player.id");
-        $senha = session("alerta_confirmar.dados.senha");
+        $senha = session("dados.senha");
         
         $novo_player = Player::find($id);
-        $novo_player->usuario = session("alerta_confirmar.dados.usuario");
-        $novo_player->email = session("alerta_confirmar.dados.email");
+        $novo_player->usuario = session("dados.usuario");
+        $novo_player->email = session("dados.email");
         $novo_player->senha = encrypt($senha);
-        $novo_player->id_personagem = session("alerta_confirmar.dados.classe");
-        $novo_player->foto = session("alerta_confirmar.dados.foto");
+        $novo_player->id_personagem = session("dados.classe");
+        $novo_player->foto = session("dados.foto");
         $novo_player->updated_at = date("Y-m-d H:i:s");
         $novo_player->save();
 
         if (!$novo_player) {
             session()->forget("alerta_confirmar");
 
-            session([
-                "alerta_resultado" => [
-                    "titulo" => "Erro ao Atualizar!",
-                    "texto" => "Ocorreu um erro ao tentar atualizar o player! Tente novamente.",
-                    "icone" => "bi-hand-thumbs-down-fill"
-                ]
-            ]);
+            $this->alertaResultado("Erro ao Atualizar!", "Ocorreu um erro ao tentar atualizar o player! Tente novamente.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
         } else {
             session()->forget("alerta_confirmar");
 
             session(["player" => $novo_player]);
-
-            session([
-                "alerta_resultado" => [
-                    "titulo" => "Player Atualizado com Sucesso!",
-                    "texto" => "Para ver seu novo nome de usuário e(ou) classe nova, deslogue e faça o login novamente.",
-                    "icone" => "bi-hand-thumbs-up-fill"
-                ]
-            ]);
+            $this->alertaResultado("Player Atualizado com Sucesso!", "Para ver seu novo nome de usuário e(ou) classe nova, deslogue e faça o login novamente.", "bi-hand-thumbs-up-fill");
 
             return redirect()->route("home");
         }

@@ -14,23 +14,11 @@ class Resetar extends Controller
         $vitorias->forceDelete();
 
         if (!$vitorias) {
-            session([
-                "alerta_resultado" => [
-                    "titulo" => "Erro ao Resetar!",
-                    "texto" => "Ocorreu um erro ao tentar resetar as vitórias! Tente novamente.",
-                    "icone" => "bi-hand-thumbs-down-fill"
-                ]
-            ]);
+            $this->alertaResultado("Erro ao Resetar!", "Ocorreu um erro ao tentar resetar as vitórias! Tente novamente.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
         } else {
-            session([
-                "alerta_resultado" => [
-                    "titulo" => "Vitórias Resetadas com Sucesso!",
-                    "texto" => "Histórico de vitórias limpado com êxito.",
-                    "icone" => "bi-hand-thumbs-up-fill"
-                ]
-            ]);
+            $this->alertaResultado("Vitórias Resetadas com Sucesso!", "Histórico de vitórias limpado com êxito.", "bi-hand-thumbs-up-fill");
 
             return redirect()->back();
         }
@@ -44,23 +32,11 @@ class Resetar extends Controller
         $derrotas->forceDelete();
 
         if (!$derrotas) {
-            session([
-                "alerta_resultado" => [
-                    "titulo" => "Erro ao Resetar!",
-                    "texto" => "Ocorreu um erro ao tentar resetar as derrotas! Tente novamente.",
-                    "icone" => "bi-hand-thumbs-down-fill"
-                ]
-            ]);
+            $this->alertaResultado("Erro ao Resetar!", "Ocorreu um erro ao tentar resetar as derrotas! Tente novamente.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
         } else {
-            session([
-                "alerta_resultado" => [
-                    "titulo" => "Derrotas Resetadas com Sucesso!",
-                    "texto" => "Histórico de derrotas limpado com êxito.",
-                    "icone" => "bi-hand-thumbs-up-fill"
-                ]
-            ]);
+            $this->alertaResultado("Derrotas Resetadas com Sucesso!", "Histórico de derrotas limpado com êxito.", "bi-hand-thumbs-up-fill");
 
             return redirect()->back();
         }

@@ -39,27 +39,15 @@ class LogarSair extends Controller
 
         session([
             "xp" => $player->xp,
-            "player" => $player,
-            
-            "alerta_resultado" => [
-                "titulo" => "Login Efetuado com Sucesso!",
-                "texto" => "Agora você pode acessar a página de batalha.",
-                "icone" => "bi-hand-thumbs-up-fill"
-            ]
+            "player" => $player
         ]);
+        $this->alertaResultado("Login Efetuado com Sucesso!", "Agora você pode acessar a página de batalha.", "bi-hand-thumbs-up-fill");
 
         return redirect()->route("home");
     }
 
     public function confirmarSair(): RedirectResponse {
-        session([
-            "alerta_confirmar" => [
-                "titulo" => "Confirmar Saída!",
-                "texto" => "Tem certeza que deseja sair?",
-                "cancelar" => "cancelar",
-                "sim" => "sair"
-            ]
-        ]);
+        $this->alertaConfirmar("Confirmar Saída!", "Tem certeza que deseja sair?", "cancelar", "sair");
 
         return redirect()->back();
     }
