@@ -100,14 +100,6 @@ Route::prefix("/")->group(function () {
         });
     });
 
-    Route::post("atualizar_tempo", function(Request $request) {
-        session(["segundos01" => $request->segundos01]);
-        session(["segundos02" => $request->segundos02]);
-        session(["minutos" => $request->minutos]);
-
-        return response()->json(["ok" => true]);
-    });
-
     Route::controller(Cadastrar::class)->group(function() {    
         Route::middleware(VerificarDeslogado::class)->group(function() {
             Route::post("confirmar_cadastrar", "confirmarCadastrar")->name("confirmarCadastrar");
@@ -147,6 +139,14 @@ Route::prefix("/")->group(function () {
             Route::get("confirmar_render", "confirmarRender")->name("confirmarRender");
             Route::get("render_se", "renderSe")->name("renderSe");
         });
+    });
+
+    Route::post("atualizar_tempo", function(Request $request) {
+        session(["segundos01" => $request->segundos01]);
+        session(["segundos02" => $request->segundos02]);
+        session(["minutos" => $request->minutos]);
+
+        return response()->json(["ok" => true]);
     });
 
     Route::get("cancelar", function(): RedirectResponse {
