@@ -213,7 +213,7 @@
                                         <div class="border-end {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} pe-3">
                                             <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}"><i class="bi bi-person-circle"></i> Personagem:</label>
                                             <div>
-                                                <img src="{{ asset('assets/images/perfils/' . $classe) }}" class="
+                                                <img src="{{ asset('assets/images/perfils/' . $classe . '.png') }}" class="
                                                     @if($pagina == "Atualização")
                                                         @if($classe == "Guerreiro")
                                                             bg-danger border-danger

@@ -15,7 +15,7 @@
                                 <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">
                                     @php
                                     
-                                        $perfil = asset("assets/images/perfils/" . $player_lider_vitorias->personagem->classe);
+                                        $perfil = asset("assets/images/perfils/" . $player_lider_vitorias->personagem->classe . ".png");
 
                                         if ($player_lider_vitorias->foto != "nenhuma") {
                                             $perfil = "data:image/png;data:image/jpeg;base64," . $player_lider_vitorias->foto;
@@ -45,7 +45,7 @@
                                 <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">
                                     @php
                                     
-                                        $perfil = asset("assets/images/perfils/" . $player_lider_nivel->personagem->classe);
+                                        $perfil = asset("assets/images/perfils/" . $player_lider_nivel->personagem->classe . ".png");
 
                                         if ($player_lider_nivel->foto != "nenhuma") {
                                             $perfil = "data:image/png;data:image/jpeg;base64," . $player_lider_nivel->foto;
@@ -87,7 +87,7 @@
                                         <td class="{{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center px-1">
                                             <img src="
                                                 @if ($player->foto == "nenhuma")
-                                                    {{ asset("assets/images/perfils/" . $player->personagem->classe) }}
+                                                    {{ asset("assets/images/perfils/" . $player->personagem->classe . ".png") }}
                                                 @else
                                                     data:image/png;data:image/jpeg;base64,{{ $player->foto }}
                                                 @endif
