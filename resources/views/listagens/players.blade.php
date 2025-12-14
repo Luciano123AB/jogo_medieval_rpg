@@ -73,7 +73,7 @@
                                 <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border fs-5 px-1"><i class="bi bi-list-ol"></i>Nº</th>
                                 <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border fs-5"><i class="bi bi-person-bounding-box"></i>Perfil</th>
                                 <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border fs-5"><i class="bi bi-person-fill"></i>Usuario</th>
-                                <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border fs-5"><i class="bi bi-person-arms-up"></i>Classe</th>
+                                <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border fs-5 px-1"><i class="bi bi-person-arms-up"></i>Classe</th>
                                 <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border fs-5 px-1"><i class="bi bi-arrow-up-circle-fill"></i>Nível</th>
                                 <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border fs-5 px-1"><i class="bi bi-123"></i>Qtd/Vitórias</th>
                                 <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border fs-5 px-1"><i class="bi bi-123"></i>Qtd/Derrotas</th>
@@ -98,7 +98,6 @@
                                                 <div class="bandeiras d-flex border-3 border-start border-black rounded-top-1">
                                                     <i class="fi fi-{{ strtolower($player->pais) }} animate__animated animate__jello animate__infinite border-start border-end mb-1 me-1"></i>
                                                 </div>
-                                                {{ $player->usuario }}
                                                 @if($player->genero == "Masculino")
                                                     ♂️
                                                 @elseif($player->genero == "Feminino")
@@ -106,6 +105,7 @@
                                                 @else
                                                     ⚧
                                                 @endif
+                                                {{ $player->usuario }}
                                             </div>
                                         </td>
                                         <td class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border px-1">{{ $player->personagem->classe }}</td>
