@@ -9,7 +9,7 @@
                 <h4 class="d-flex justify-content-center text-success">
                     <img src="
                         @if(session("player.foto") == "nenhuma")
-                            {{ asset("assets/images/perfils/vazio_perfil.png") }}
+                            {{ asset("assets/images/perfils/vazio.png") }}
                         @else
                             data:image/png;data:image/jpeg;base64,{{ session("player.foto") }}
                         @endif
@@ -96,7 +96,7 @@
                 <h4 class="d-flex justify-content-center text-danger">
                     <img src="
                         @if($foto == "nenhuma")
-                            {{ asset("assets/images/perfils/vazio_perfil.png") }}
+                            {{ asset("assets/images/perfils/vazio.png") }}
                         @else
                             data:image/png;data:image/jpeg;base64,{{ $foto }}
                         @endif

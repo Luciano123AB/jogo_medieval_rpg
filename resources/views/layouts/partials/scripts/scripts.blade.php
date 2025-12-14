@@ -167,22 +167,22 @@
 
             switch (classeSelecionada) {
                 case "Guerreiro":
-                    perfil.src = basePath + "guerreiro_perfil.png";
+                    perfil.src = basePath + "guerreiro.png";
                     perfil.classList.add("bg-danger", "border-danger");
                 break;
 
                 case "Mago":
-                    perfil.src = basePath + "mago_perfil.png";
+                    perfil.src = basePath + "mago.png";
                     perfil.classList.add("bg-primary", "border-primary");
                 break;
 
                 case "Assassino":
-                    perfil.src = basePath + "assassino_perfil.png";
+                    perfil.src = basePath + "assassino.png";
                     perfil.classList.add("bg-dark", "border-dark");
                 break;
 
                 default:
-                    perfil.src = basePath + "vazio_perfil.png";
+                    perfil.src = basePath + "vazio.png";
                     perfil.classList.add("border-light");
                 break;
             }
@@ -256,8 +256,8 @@
         const perfil_cadastro = document.querySelector(".perfil_cadastro");
         const foto = document.getElementById("foto_preview");
 
-        perfil_cadastro.src = "{{ asset('assets/images/perfils/vazio_perfil.png') }}";
-        foto.src = "{{ asset('assets/images/perfils/vazio_perfil.png') }}";
+        perfil_cadastro.src = "{{ asset('assets/images/perfils/vazio.png') }}";
+        foto.src = "{{ asset('assets/images/perfils/vazio.png') }}";
 
         if (classe) {
             classe.selectedIndex = 0;
