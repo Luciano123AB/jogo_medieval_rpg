@@ -16,14 +16,21 @@
     };
 @endphp
 
+@if(!session()->has("alerta_confirmar_render"))
+    <style>
+        #player {
+            position: relative;
+            z-index: 9999;
+        }
+    </style>
+@endif
+
 <style>
     #player {
         background-image: url('{{ asset("assets/images/gifs/auras/$aura_player.gif") }}');
         background-size: 150% 110%;
         background-repeat: no-repeat;
         background-position: center;
-        position: relative;
-        z-index: 9999;
     }
 
     #oponente {
