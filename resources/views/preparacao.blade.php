@@ -21,7 +21,7 @@
                             <label class="{{ session("tema") == "escuro" ? "cor_niveis" : "text-danger" }} fs-4">Nível: {{ $nivel }}</label>
                         </div>
 
-                        <img src="{{ asset("assets/images/personagens/$classe.png") }}" class="card-img-top border-bottom {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
+                        <img src="{{ asset("assets/images/personagens/" . strtolower($classe) . ".png") }}" class="card-img-top border-bottom {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
                     </div>
                 </div>
 
@@ -44,7 +44,7 @@
                                     <label class="{{ session("tema") == "escuro" ? "cor_niveis" : "text-danger" }}">Nível: {{ $nivel }}</label>
                                 </div>
                                 
-                                <img src="{{ asset("assets/images/personagens/$personagem->classe" . "_reverso.png") }}" class="card-img-top border-bottom {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
+                                <img src="{{ asset("assets/images/personagens/" . strtolower($personagem->classe) . "_reverso.png") }}" class="card-img-top border-bottom {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
 
                                 <div class="form-check d-flex justify-content-center">
                                     <input class="form-check-input cursor {{ session("tema") == "escuro" ? "border-primary focus-ring focus-ring-primary" : "border-danger focus-ring focus-ring-danger" }} my-2 me-1" type="radio" name="oponente" value="{{ $personagem->id }}" id="oponente{{ $loop->index + 1 }}">

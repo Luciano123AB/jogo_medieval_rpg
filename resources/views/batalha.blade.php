@@ -20,7 +20,7 @@
                     </div>
                 </h4>
                 <div class="position-relative">
-                    <img src="{{ asset("assets/images/personagens/" . (session("player.personagem.classe")) . ".png") }}" id="player" class="animate__animated
+                    <img src="{{ asset("assets/images/personagens/" . strtolower(session("player.personagem.classe")) . ".png") }}" id="player" class="animate__animated
                         @if(!session()->has("inicio_player"))
                             animate__fadeInLeftBig
 
@@ -114,7 +114,7 @@
                     @endif
                 </h4>
                 <div class="position-relative">
-                    <img src="{{ asset("assets/images/personagens/$oponente->classe" . "_reverso.png") }}" id="oponente" class="animate__animated
+                    <img src="{{ asset("assets/images/personagens/" . strtolower($oponente->classe) . "_reverso.png") }}" id="oponente" class="animate__animated
                         @if(!session()->has("inicio_oponente"))
                             animate__fadeInRightBig
 
