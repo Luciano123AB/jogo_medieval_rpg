@@ -126,7 +126,7 @@
                     <button class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} dropdown-toggle d-flex border" type="button" data-bs-toggle="dropdown" aria-expanded="{{ $errors->any() ? 'true' : 'false' }}" data-bs-auto-close="false">
                         <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}"><i class="cursor bi bi-box-arrow-in-right animate__animated animate__fadeIn animate__infinite"></i> Logar</span>
                     </button>
-                    <form action="{{ route("logar") }}" method="POST" id="login" class="sombras animate__animated animate__fadeInDown {{ session("tema") == "escuro" ? 'bg-secondary border-primary' : 'bg-black border-danger' }} dropdown-menu dropdown-menu-end p-3">
+                    <form action="{{ route("logar") }}" method="POST" id="login" class="sombras animate__animated animate__fadeInDown {{ session("tema") == "escuro" ? 'bg-secondary border-primary' : 'bg-black border-danger' }} dropdown-menu {{ $pagina == "Cadastro" ? "dropdown-menu-lg-end" : "dropdown-menu-end" }} p-3">
                         @csrf
 
                         <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Email:</label>
