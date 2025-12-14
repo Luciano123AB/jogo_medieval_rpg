@@ -1,9 +1,9 @@
 @extends("layouts.main_layout")
 
 @section("content")
-    <div class="container w-75">
+    <div class="container">
         <div class="{{ session("tema") == "escuro" ? "fundos_card_claro" : "fundos_card_escuro" }} card p-3">
-            <div class="d-grid gap-3">
+            <div class="d-grid gap-3 w-100">
                 <div class="sombras animate__animated animate__zoomInLeft card {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-black border-danger" }} p-3">
                     @php
 
