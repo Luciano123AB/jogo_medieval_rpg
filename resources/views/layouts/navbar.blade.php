@@ -110,7 +110,7 @@
                             <li><a href="{{ route("atualizacao") }}" class="dropdown-item {{ session("tema") == "escuro" ? "cor_fontes_escuro opcoes_player_escuro" : "cor_fontes_claro opcoes_player_claro" }} border-top border-black"><i class="bi bi-pen-fill"></i> Editar</a></li>
                         @endif
                         <li><a href="{{ route("confirmarDeletar") }}" class="dropdown-item {{ session("tema") == "escuro" ? "cor_fontes_escuro opcoes_player_escuro" : "cor_fontes_claro opcoes_player_claro" }} border-top border-black"><i class="bi bi-trash-fill"></i> Excluir Conta</a></li>
-                        <li><a href="{{ route("confirmarSair") }}" class="dropdown-item {{ session("tema") == "escuro" ? "cor_fontes_escuro opcoes_player_escuro" : "cor_fontes_claro opcoes_player_claro" }} border-bottom border-top border-black"><i class="bi bi-box-arrow-left"></i> Sair</a></li>
+                        <li><a href="{{ route("confirmarSair") }}" class="dropdown-item {{ session("tema") == "escuro" ? "cor_fontes_escuro opcoes_player_escuro" : "cor_fontes_claro opcoes_player_claro" }} border-bottom border-top border-black"><i class="bi bi-power"></i> Sair</a></li>
                     </ul>
                 </div>
             </div>
