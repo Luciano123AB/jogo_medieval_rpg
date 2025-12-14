@@ -94,17 +94,18 @@
                                             " class="perfil_player sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
                                         </td>
                                         <td class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border px-1">
-                                            <div class="d-flex">
-                                                <div class="bandeiras d-flex border-3 border-start border-black rounded-top-1">
+                                            <div class="d-flex flex-wrap">
+                                                <div class="bandeiras d-flex border-3 border-start border-black rounded-top-1 me-1">
                                                     <i class="fi fi-{{ strtolower($player->pais) }} animate__animated animate__jello animate__infinite border-start border-end mb-1 me-1"></i>
+                                                    
+                                                    @if($player->genero == "Masculino")
+                                                        ♂️
+                                                    @elseif($player->genero == "Feminino")
+                                                        ♀️
+                                                    @else
+                                                        ⚧
+                                                    @endif
                                                 </div>
-                                                @if($player->genero == "Masculino")
-                                                    ♂️
-                                                @elseif($player->genero == "Feminino")
-                                                    ♀️
-                                                @else
-                                                    ⚧
-                                                @endif
                                                 {{ $player->usuario }}
                                             </div>
                                         </td>
