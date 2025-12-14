@@ -16,7 +16,7 @@
     };
 @endphp
 
-@if(!session()->has("alerta_confirmar_render"))
+@if(!session()->has("alerta_confirmar_render") && !session()->has("alerta_resultado"))
     <style>
         #player {
             position: relative;
