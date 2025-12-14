@@ -63,7 +63,7 @@
                             <div class="cursor d-flex">
                                 @php
                                     
-                                    $perfil = asset("assets/images/perfils/" . (session("player.personagem.classe")) . ".png");
+                                    $perfil = asset("assets/images/perfils/" . strtolower(session("player.personagem.classe")) . ".png");
                                     $perfil_02 = asset("assets/images/perfils/vazio.png");
 
                                     if (session("player.foto") != "nenhuma") {
