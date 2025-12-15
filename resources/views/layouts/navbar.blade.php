@@ -4,7 +4,7 @@
             <a href="{{ route("home") }}" id="home" class="cursor navbar-brand">
                 <img src="{{ asset("assets/images/icones/icone.png") }}" id="icone" class="cursor animate__animated animate__flipOutY animate__infinite">
                 <span class="cursor align-middle fs-3">🎮</span>
-                <span class="cursor {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} fw-bold align-middle fs-3">Jogo Medieval RPG</span>
+                <span class="cursor {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} fw-bold align-middle fs-3">Jogo: Medieval RPG</span>
                 <br class="d-sm-none">
                 <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeIn align-middle fs-3">- 
                     @if ($pagina == "Home")
