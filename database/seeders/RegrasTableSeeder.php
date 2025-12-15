@@ -1,0 +1,65 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class RegrasTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        DB::table("regras")->insert([
+            [
+                "regra" => "Vez",
+                "explicacao" => "Quando a batalha começar, um sorteio decidi-rá quem vai atacar primeiro, e após o ataque ser efetuado a vez passará para o outro.",
+                "icone" => "bi-dice-6-fill",
+                "imagem" => "vez",
+                "animacao" => "animate__fadeInTopLeft",
+            ],
+
+            [
+                "regra" => "Barra de HP",
+                "explicacao" => "Essa é a quantidade de vida de cada personagem, conforme a batalha for acontecendo, essas barras irão diminuindo a cada ataque do seu oponente.",
+                "icone" => "bi-heart-fill",
+                "imagem" => "barras_vida",
+                "animacao" => "animate__fadeInTopRight",
+            ],
+
+            [
+                "regra" => "Skills/Ataques",
+                "explicacao" => "Esses são os tipos de ofensivas que cada personagem possuí, cada uma deles podem ser utilizados apenas 1 vez a cada 3 rodadas.",
+                "icone" => "bi-joystick",
+                "imagem" => "skills",
+                "animacao" => "animate__fadeInLeft",
+            ],
+
+            [
+                "regra" => "Contador de Dano",
+                "explicacao" => "Esses números debaixo das barras de vida irão ser exibidos toda vez que você ou seu oponente desferir um ataque, a quantidade de dano de cada skill nem sempre será igual.",
+                "icone" => "bi-crosshair2",
+                "imagem" => "contador_danos",
+                "animacao" => "animate__fadeInRight",
+            ],
+
+            [
+                "regra" => "Se Render",
+                "explicacao" => "Se o combate estiver se encaminhando para uma derrota certa ou você apenas queira desistir do duelo, haverá sempre um botão de <Render-se> no topo para usar, mas esteja ciente de que se usá-lo, também será somado 1 derrota.",
+                "icone" => "bi-flag-fill",
+                "imagem" => "render",
+                "animacao" => "animate__fadeInBottomLeft",
+            ],
+
+            [
+                "regra" => "Vitória/Derrota",
+                "explicacao" => "Caso a barra de vida do seu oponente cheque ao fim, você vence a batalha, mas caso a sua barra de vida acabe zerando primeiro, você perde.",
+                "icone" => "bi-award-fill",
+                "imagem" => "final",
+                "animacao" => "animate__fadeInBottomRight",
+            ]
+        ]);
+    }
+}

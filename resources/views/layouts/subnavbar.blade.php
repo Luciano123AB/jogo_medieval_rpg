@@ -1,7 +1,7 @@
 @include("layouts.partials.audios")
 
 <div class="animate__animated animate__fadeInDown d-flex justify-content-between mb-5">
-    <a href="{{ route("musica") }}" class="cursor sombras botoes subnavbar btn {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} border rounded-circle mx-3 px-3 py-2">
+    <a href="{{ route("musica") }}" class="cursor sombras botoes subnavbar btn {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} border rounded-circle mx-3">
         <i class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} bi {{ session("musica") == "Desativado" ? "bi-volume-mute-fill" : "bi-volume-up-fill" }} fs-4"></i>
     </a>
 
@@ -29,7 +29,7 @@
         @endif
     </div>
 
-    <a href="{{ route("tema") }}" class="cursor sombras botoes subnavbar btn {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} border rounded-circle mx-3 px-3 py-2">
+    <a href="{{ route("tema") }}" class="cursor sombras botoes subnavbar btn {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} border rounded-circle mx-3">
         <i class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro bi-brightness-high-fill" : "cor_fontes_claro bi-moon-stars-fill" }} bi fs-4"></i>
     </a>
 </div>

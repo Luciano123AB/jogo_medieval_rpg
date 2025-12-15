@@ -6,6 +6,7 @@ use App\Models\Batalha;
 use App\Models\Desafio;
 use App\Models\Personagem;
 use App\Models\Player;
+use App\Models\Regra;
 use App\Services\Paises;
 use App\Services\PlayersPais;
 use Illuminate\Contracts\View\View;
@@ -15,9 +16,12 @@ class MainController extends Controller
     public function regras(): View {
         $this->alerta("Regras do Jogo!", "bi-question-circle-fill", "Aqui você entenderá como o jogo funciona.", "regras");
 
+        $regras = Regra::all();
+
         return view("regras")
             ->with("imagem", "campo_treinamento")
-            ->with("pagina", "Regras");
+            ->with("pagina", "Regras")
+            ->with("regras", $regras);
     }
 
     public function sobreClasses(): View {
