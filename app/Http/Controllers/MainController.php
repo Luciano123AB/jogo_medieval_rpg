@@ -100,15 +100,16 @@ class MainController extends Controller
     }
 
     public function totaisPlayers() {
-        $this->alerta("Totais de Players!", "bi-flag-list", "Aqui você descobri-rá quantos players de cada país estão presentes no jogo.", "totais");
+        $this->alerta("Totais de Players!", "bi-flag-list", "Aqui você descobrirá quantos players de cada país estão presentes no jogo.", "totais");
 
         $paises = Paises::paises();
+        $totaisBanco = PlayersPais::playersPais();
         $totais = [];
-        
+
         foreach ($paises as $codigo => $nome) {
             $totais[$codigo] = [
-                "nome" => $nome,
-                "total" => PlayersPais::playersPais($codigo)
+                "nome"  => $nome,
+                "total" => $totaisBanco[$codigo] ?? 0
             ];
         }
 
