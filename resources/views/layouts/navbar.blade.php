@@ -103,6 +103,7 @@
                         </div>
                     </button>
                     <ul class="dropdown-menu animate__animated animate__fadeInDown {{ session("tema") == "escuro" ? "bg-primary" : "bg-danger" }}">
+                        <li class="border border-1 border-black"></li>
                         @if($pagina != "Registro")
                             <li><a href="{{ route("registro") }}" class="dropdown-item {{ session("tema") == "escuro" ? "cor_fontes_escuro opcoes_player_escuro" : "cor_fontes_claro opcoes_player_claro" }} border-top border-black"><i class="bi bi-file-earmark-medical-fill"></i> Histórico</a></li>
                         @endif
@@ -111,6 +112,7 @@
                         @endif
                         <li><a href="{{ route("confirmarDeletar") }}" class="dropdown-item {{ session("tema") == "escuro" ? "cor_fontes_escuro opcoes_player_escuro" : "cor_fontes_claro opcoes_player_claro" }} border-top border-black"><i class="bi bi-trash-fill"></i> Excluir Conta</a></li>
                         <li><a href="{{ route("confirmarSair") }}" class="dropdown-item {{ session("tema") == "escuro" ? "cor_fontes_escuro opcoes_player_escuro" : "cor_fontes_claro opcoes_player_claro" }} border-bottom border-top border-black"><i class="bi bi-power"></i> Sair</a></li>
+                        <li class="border border-1 border-black"></li>
                     </ul>
                 </div>
             </div>
