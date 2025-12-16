@@ -3,9 +3,9 @@
 @section("content")
     @include("layouts.partials.styles.estilos_batalha")
 
-    <div class="container">
-        <div class="d-flex">
-            <div class="text-center">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-5">
                 <h4 class="d-flex justify-content-center text-success">
                     <img src="
                         @if(session("player.foto") == "nenhuma")
@@ -73,7 +73,7 @@
                 </div>
             </div>
 
-            <div class="d-grid text-center">
+            <div class="col d-grid">
                 @if ($vez == 0)
                     <h4 class="text-success fw-bold">Vez:
                         <br>
@@ -92,7 +92,7 @@
                 <h2 id="alerta" class="animate__animated animate__pulse animate__flash animate__infinite text-warning"></h2>
             </div>
 
-            <div class="text-center">
+            <div class="col-5">
                 <h4 class="d-flex justify-content-center text-danger">
                     <img src="
                         @if($foto == "nenhuma")
@@ -103,12 +103,12 @@
                     " class="perfil_player sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
                     @if($nome != "Computador")
                         <div class="border-3 border-start border-black rounded-top-1 ms-2">
-                            <i class="fi fi-{{ strtolower($bandeira_oponente) }} animate__animated animate__jello animate__infinite border-start border-end"></i>
+                            <i class="fi fi-{{ strtolower($bandeira_oponente) }} animate__animated animate__jello animate__infinite border-start border-end float-start"></i>
                             Oponente: {{ $nome }}
                         </div>
                     @else
-                        <div class="border-3 border-start border-black ms-2">
-                            <i class="fi animate__animated animate__jello animate__infinite bg-secondary border-start border-end"></i>
+                        <div class="border-3 border-start border-black rounded-top-1 ms-2">
+                            <i class="fi animate__animated animate__jello animate__infinite bg-secondary border-start border-end float-start"></i>
                             Oponente: Computador
                         </div>
                     @endif
