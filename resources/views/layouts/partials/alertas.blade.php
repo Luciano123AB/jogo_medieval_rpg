@@ -178,6 +178,13 @@
 
 @if(session("alerta_batalha"))
     <script>
+
+        let footer = "<a href='{{ session('alerta_batalha.rota') }}' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }};' class='cursor sombras botoes animate__animated animate__fadeIn btn {{ session('tema') == 'escuro' ? 'btn-secondary focus-ring focus-ring-primary' : 'btn-danger focus-ring focus-ring-danger' }} btn-sm rounded-pill'><i style='color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }};' class='cursor bi bi-check-circle-fill'></i><span style='color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }}' class='cursor'> OK</span></a>";
+
+        @if(session("alerta_batalha.rota") == "")
+            footer = "<button style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }};' id='ok' class='cursor sombras botoes animate__animated animate__fadeIn btn {{ session('tema') == 'escuro' ? 'btn-secondary focus-ring focus-ring-primary' : 'btn-danger focus-ring focus-ring-danger' }} btn-sm rounded-pill'><i style='color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }};' id='ok' class='cursor bi bi-check-circle-fill'></i><span style='color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }}' id='ok' class='cursor'> OK</span></button>";
+        @endif
+
         Swal.fire({
             position: "center",
             draggable: true,
@@ -191,7 +198,7 @@
                 image: "animate__animated animate__flipOutY animate__infinite"
             },
             title: "<label class='d-grid gap-3 py-2'><span class='{{ session('tema') == 'escuro' ? 'titulos_escuro cor_fontes_escuro border-primary' : 'titulos_claro cor_fontes_claro border-danger' }} border-top border-bottom py-3'>{{ session('alerta_batalha.titulo') }}</span><span class='{{ session('tema') == 'escuro' ? 'cor_fontes_escuro' : 'cor_fontes_claro' }} fs-5'><i class='bi {{ session('alerta_batalha.icone') }}'></i> {{ session('alerta_batalha.texto') }}</span></label>",
-            footer: "<a href='{{ session('alerta_batalha.rota') }}' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }};' class='cursor sombras botoes animate__animated animate__fadeIn btn {{ session('tema') == 'escuro' ? 'btn-secondary focus-ring focus-ring-primary' : 'btn-danger focus-ring focus-ring-danger' }} btn-sm rounded-pill'><i style='color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }};' class='cursor bi bi-check-circle-fill'></i><span style='color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }}' class='cursor'> OK</span></a>",
+            footer: footer,
             showClass: {
                 popup: `
                     animate__animated

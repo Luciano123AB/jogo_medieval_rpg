@@ -48,10 +48,8 @@ class VerificarVencedor
                 }
                 
                 if (session("nome_oponente") == "Computador") {
-
                     $batalha->ganhou = "Computador";
                     $batalha->perdeu = session("player.usuario");
-
                 }
                 $batalha->updated_at = date("Y-m-d H:i:s");
                 $batalha->save();
@@ -86,18 +84,13 @@ class VerificarVencedor
                 ]);
     
                 $id = session("player.id");
-                $rota = route('listagem');
+                $rota = "";
                 $xp = 00.0;
 
                 if (session("nome_oponente") == "Computador") {
-
-                    $rota = route('preparacao');
-
                     $batalha->perdeu = "Computador";
                 } else {
-
                     $batalha->perdeu = session("nome_oponente");
-
                 }
 
                 if (session("nome_oponente") == "Computador") {
