@@ -22,11 +22,19 @@ class RegrasTableSeeder extends Seeder
             ],
 
             [
+                "regra" => "Tempo",
+                "explicacao" => "Enquanto a batalha for se prolongando, um cronômetro no centro aumenta-rá constantemente até que a partida se encerre.",
+                "icone" => "bi-alarm-fill",
+                "imagem" => "tempo",
+                "animacao" => "animate__fadeInTopRight",
+            ],
+
+            [
                 "regra" => "Barra de HP",
                 "explicacao" => "Essa é a quantidade de vida de cada personagem, conforme a batalha for acontecendo, essas barras irão diminuindo a cada ataque do seu oponente.",
                 "icone" => "bi-heart-fill",
                 "imagem" => "barras_vida",
-                "animacao" => "animate__fadeInTopRight",
+                "animacao" => "animate__fadeInLeft",
             ],
 
             [
@@ -34,7 +42,7 @@ class RegrasTableSeeder extends Seeder
                 "explicacao" => "Esses são os tipos de ofensivas que cada personagem possuí, cada uma deles podem ser utilizados apenas 1 vez a cada 3 rodadas.",
                 "icone" => "bi-joystick",
                 "imagem" => "skills",
-                "animacao" => "animate__fadeInLeft",
+                "animacao" => "animate__fadeInRight",
             ],
 
             [
@@ -42,7 +50,7 @@ class RegrasTableSeeder extends Seeder
                 "explicacao" => "Esses números debaixo das barras de vida irão ser exibidos toda vez que você ou seu oponente desferir um ataque, a quantidade de dano de cada skill nem sempre será igual.",
                 "icone" => "bi-crosshair2",
                 "imagem" => "contador_danos",
-                "animacao" => "animate__fadeInRight",
+                "animacao" => "animate__fadeInBottomLeft",
             ],
 
             [
@@ -50,7 +58,7 @@ class RegrasTableSeeder extends Seeder
                 "explicacao" => "Se o combate estiver se encaminhando para uma derrota certa ou você apenas queira desistir do duelo, haverá sempre um botão de <Render-se> no topo para usar, mas esteja ciente de que se usá-lo, também será somado 1 derrota.",
                 "icone" => "bi-flag-fill",
                 "imagem" => "render",
-                "animacao" => "animate__fadeInBottomLeft",
+                "animacao" => "animate__fadeInBottomRight",
             ],
 
             [
@@ -58,7 +66,7 @@ class RegrasTableSeeder extends Seeder
                 "explicacao" => "Caso a barra de vida do seu oponente cheque ao fim, você vence a batalha, mas caso a sua barra de vida acabe zerando primeiro, você perde.",
                 "icone" => "bi-award-fill",
                 "imagem" => "final",
-                "animacao" => "animate__fadeInBottomRight",
+                "animacao" => "animate__fadeInBottomLeft",
             ]
         ]);
     }

@@ -109,7 +109,7 @@
                     @else
                         <div class="border-3 border-start border-black rounded-top-1 ms-2">
                             <i class="fi animate__animated animate__jello animate__infinite bg-secondary border-start border-end float-start me-2"></i>
-                            <span>Oponente: Computador</span>
+                            <span class="d-flex">Oponente: Computador</span>
                         </div>
                     @endif
                 </h4>

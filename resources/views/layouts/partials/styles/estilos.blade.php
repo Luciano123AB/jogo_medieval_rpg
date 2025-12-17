@@ -16,7 +16,7 @@
         pointer-events: none;
         z-index: 9999;
 
-        background: radial-gradient(circle, gold, orange, transparent);
+        background: radial-gradient(circle, #e5a350, orange, transparent);
         animation: ripple-rpg 700ms ease-out;
     }
 
@@ -31,7 +31,7 @@
         position: absolute;
         width: 6px;
         height: 6px;
-        background: gold;
+        background: #e5a350;
         border-radius: 50%;
         pointer-events: none;
         z-index: 9998;
