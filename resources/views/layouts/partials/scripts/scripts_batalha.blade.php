@@ -137,13 +137,13 @@
     @if(session("player.personagem.classe") == "Mago")
         distancia_player = [50, 100];
     @else
-        distancia_player = [250, distanciaRealX * 0.7];
+        distancia_player = [250, distanciaRealX * 0.8];
     @endif
 
     @if($oponente->classe == "Mago")
         distancia_oponente = [50, 100];
     @else
-        distancia_oponente = [250, distanciaRealX * 0.7];
+        distancia_oponente = [250, distanciaRealX * 0.8];
     @endif
 
     const efeito01_player = document.getElementById("efeito01_player");
@@ -162,7 +162,7 @@
 
             gsap.set("#magia_player", {x: 0, y: 0});
             gtl.to("#magia_player", {
-                x: distanciaRealX - 140,
+                x: distanciaRealX - 90,
                 y: distanciaRealY,
                 duration: 0.5,
                 ease: "power1.inOut"
@@ -288,7 +288,7 @@
 
             gsap.set("#magia_oponente", {x: 0, y: 0});
             gsap.to("#magia_oponente", {
-                x: -distanciaRealX + 140,
+                x: -distanciaRealX + 90,
                 y: -distanciaRealY,
                 duration: 0.5,
                 ease: "power1.inOut"

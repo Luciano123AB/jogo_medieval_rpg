@@ -16,16 +16,12 @@
     };
 @endphp
 
-@if(!session()->has("alerta_confirmar_render") && !session()->has("alerta_resultado"))
-    <style>
-        #player {
-            position: relative;
-            z-index: 9999;
-        }
-    </style>
-@endif
-
 <style>
+    .cards_batalha {
+        width: 15%;
+        min-width: 280px;
+    }
+
     #player {
         background-image: url('{{ asset("assets/images/gifs/auras/$aura_player.gif") }}');
         background-size: 150% 110%;
