@@ -17,15 +17,6 @@
         document.getElementById("segundos02").innerText = segundos02;
         document.getElementById("minutos").innerText = minutos;
 
-        fetch("atualizar_tempo", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            },
-            body: JSON.stringify({ segundos01, segundos02, minutos })
-        });
-
         segundos01++;
 
         if (segundos01 >= 10) {
@@ -40,6 +31,16 @@
         }
 
         setTimeout(atualizar, 1000);
+    }
+    function salvar() {
+        fetch("atualizar_tempo", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            },
+            body: JSON.stringify({ segundos01, segundos02, minutos })
+        });
     }
 
     atualizar();
@@ -78,7 +79,7 @@
     const skill03 = document.getElementById("btnradio3");
 
     const atacar = document.getElementById("atacar");
-    const atacar_oponente = document.getElementById("atacar_oponente");
+    const ataque = document.getElementById("ataque");
 
     const magia_player = document.getElementById("magia_player");
     const magia_oponente = document.getElementById("magia_oponente");
@@ -101,21 +102,33 @@
 
         @if(session()->has("normal_player"))
             setTimeout(() => {
-                document.getElementById("ataque").click();
+                salvar();
+
+                ataque.click();
             }, 2800);
         @elseif(session()->has("forte_player") || session()->has("ultimate_player"))
             setTimeout(() => {
-                document.getElementById("ataque").click();
+                salvar();
+
+                ataque.click();
             }, 1900);
         @else
             setTimeout(() => {
-                document.getElementById("ataque").click();
+                salvar();
+                
+                ataque.click();
             }, 3000);
         @endif
     @else
         skill01.disabled = false;
         skill02.disabled = false;
         skill03.disabled = false;
+
+        if (atacar) {
+            atacar.addEventListener("click", function () {
+                salvar();
+            });
+        }
     @endif
 
     @if(session()->has("skill01"))

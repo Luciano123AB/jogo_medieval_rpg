@@ -34,8 +34,7 @@ Route::prefix("/")->group(function () {
             
                 if ($banco == false) {
                     Boot::criarPovoarBanco();
-                }
-                
+                }                
                 if (!is_dir(base_path("node_modules"))) {
                     Boot::dependencias();
                 }
