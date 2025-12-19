@@ -48,8 +48,8 @@
 
                                 <div class="form-check d-flex justify-content-center">
                                     <input class="form-check-input cursor {{ session("tema") == "escuro" ? "border-primary focus-ring focus-ring-primary" : "border-danger focus-ring focus-ring-danger" }} my-2 me-1" type="radio" name="oponente" value="{{ $personagem->id }}" id="oponente{{ $loop->index + 1 }}">
-                                    <label class="form-check-label" for="oponente{{ $loop->index + 1 }}">
-                                        <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} align-middle">SELECIONAR</span>
+                                    <label class="form-check-label pt-1" for="oponente{{ $loop->index + 1 }}">
+                                        <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">SELECIONAR</span>
                                     </label>
                                 </div>
                             </div>

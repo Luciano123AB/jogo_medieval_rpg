@@ -22,7 +22,10 @@
                         <img src="{{ asset("assets/images/personagens/$personagem->imagem") }}" class="card-img-top border-bottom {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
                         
                         <div class="card-body">
-                            <h5 class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} card-title text-center fw-bold"><i class="bi bi-file-text-fill"></i> Sobre:</h5>
+                            <h5 class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} card-title text-center fw-bold">
+                                <i class="bi bi-file-text-fill"></i>
+                                Sobre:
+                            </h5>
                             <p class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} card-text text-center">{{ $personagem->descricao }}</p>                            
                         </div>
 

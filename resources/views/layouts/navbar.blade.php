@@ -158,8 +158,10 @@
             <div class="d-flex gap-3 my-1">
                 @if($pagina != "Cadastro")
                     <a href="{{ route("cadastro") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} d-flex border">
-                        <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">
-                            <i class="cursor bi bi-person-fill-add"></i>
+                        <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} d-flex justify-content-center">
+                            <div class="cursor animate__animated animate__heartBeat animate__infinite">
+                                <i class="cursor bi bi-person-fill-add me-1"></i>
+                            </div>
                             Cadastrar
                         </span>
                     </a>
@@ -219,8 +221,10 @@
                                 </span>
                             </button>
                             <button type="button" class="cursor sombras botoes animate__animated animate__fadeIn btn {{ session("tema") == "escuro" ? "btn-light border-primary" : "btn-dark border-danger" }}" onclick="limparCamposLogin()">
-                                <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">
-                                    <i class="cursor bi bi-x-circle-fill"></i>
+                                <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} d-flex justify-content-center">
+                                    <div class="cursor animate__animated animate__flipOutY animate__infinite">
+                                        <i class="cursor bi bi-x-circle-fill me-1"></i>
+                                    </div>
                                     Limpar
                                 </span>
                             </button>

@@ -23,13 +23,17 @@
                                         <td class="{{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-success text-center fw-bold px-1">{{ $batalha->nome }}</td>
                                         <td class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border text-center">
                                             <div class="barras progress border border-danger bg-black mx-1" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                                <div id="hp" class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width: 100%"><label class="fw-bold fs-6">{{ $batalha->hp }}</label></div>
+                                                <div id="hp" class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width: 100%">
+                                                    <label class="fw-bold fs-6">{{ $batalha->hp }}</label>
+                                                </div>
                                             </div>
                                         </td>
                                         <td class="{{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center">🆚</td>
                                         <td class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border text-center">
                                             <div class="barras progress border border-danger bg-black mx-1" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                                <div id="hp_oponente" class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width: 100%"><label class="fw-bold fs-6">{{ $batalha->hp_oponente }}</label></div>
+                                                <div id="hp_oponente" class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width: 100%">
+                                                    <label class="fw-bold fs-6">{{ $batalha->hp_oponente }}</label>
+                                                </div>
                                             </div>
                                         </td>
                                         <td class="{{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-danger text-center fw-bold px-1">{{ $batalha->nome_oponente }}</td>
