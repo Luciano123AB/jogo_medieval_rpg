@@ -20,7 +20,7 @@
         @if(session()->has("player") && $pagina != "Totais" && $pagina != "Batalha")
             <a href="{{ route("totais") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} border">
                 <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} d-flex">
-                    <div class="cursor animate__animated animate__headShake animate__infinite">
+                    <div class="cursor animate__animated animate__wobble animate__infinite">
                         <i class="cursor bi bi-flag-fill me-2"></i>
                     </div>
                     Total de Players(Países)

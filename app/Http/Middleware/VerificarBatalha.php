@@ -2,11 +2,12 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Controllers\Controller;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class VerificarBatalha
+class VerificarBatalha extends Controller
 {
     /**
      * Handle an incoming request.
@@ -16,13 +17,7 @@ class VerificarBatalha
     public function handle(Request $request, Closure $next): Response
     {
         if (session()->has("dados.batalha_comecou")) {
-            session([
-                "alerta_resultado" => [
-                    "titulo" => "Batalha em Andamento!",
-                    "texto" => "Espere! Para sair, antes você precisa finalizar essa batalha.",
-                    "icone" => "bi-hand-thumbs-down-fill"
-                ],
-            ]);
+            $this->alertaResultado("Batalha em Andamento!", "Espere! Para sair, antes você precisa finalizar essa batalha.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
         }

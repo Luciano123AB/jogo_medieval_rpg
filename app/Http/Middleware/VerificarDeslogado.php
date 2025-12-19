@@ -2,11 +2,12 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Controllers\Controller;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class VerificarDeslogado
+class VerificarDeslogado extends Controller
 {
     /**
      * Handle an incoming request.
@@ -16,13 +17,7 @@ class VerificarDeslogado
     public function handle(Request $request, Closure $next): Response
     {
         if (session()->has("player")) {
-            session([
-                "alerta_resultado" => [
-                    "titulo" => "Acesso Negado!",
-                    "texto" => "Para poder abrir essa página, primeiro você deve deslogar da sua conta.",
-                    "icone" => "bi-hand-thumbs-down-fill"
-                ],
-            ]);
+            $this->alertaResultado("Acesso Negado!", "Para poder abrir essa página, primeiro você deve deslogar da sua conta.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
         }

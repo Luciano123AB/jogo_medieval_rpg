@@ -2,13 +2,14 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Controllers\Controller;
 use App\Models\Batalha;
 use App\Models\Player;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class VerificarVencedor
+class VerificarVencedor extends Controller
 {
     /**
      * Handle an incoming request.
@@ -56,14 +57,7 @@ class VerificarVencedor
                 $batalha->delete();
                 
                 session(["derrota" => true]);
-                session([
-                    "alerta_batalha" => [
-                        "titulo" => "Derrota!",
-                        "texto" => "Que Pena! Mas não desista, faz parte, infelismente não dá para ganhar todas, continue tentando.",
-                        "icone" => "bi-emoji-frown-fill",
-                        "rota" => ""
-                    ]
-                ]);
+                $this->alertaBatalha("Derrota!", "Que Pena! Mas não desista, faz parte, infelismente não dá para ganhar todas, continue tentando.", "bi-emoji-frown-fill", "");
     
                 if (session("nome_oponente") == "Computador") {
                     session()->forget(["id_player", "nome_oponente"]);
@@ -138,14 +132,7 @@ class VerificarVencedor
                 }
                 
                 session(["vitoria" => true]);
-                session([
-                    "alerta_batalha" => [
-                        "titulo" => "Vitória!",
-                        "texto" => "Parabéns!, continue assim e você se destacará na classificação. $xp_ganho",
-                        "icone" => "bi-emoji-sunglasses-fill",
-                        "rota" => $rota
-                    ]
-                ]);
+                $this->alertaBatalha("Vitória!", "Parabéns!, continue assim e você se destacará na classificação. $xp_ganho", "bi-emoji-sunglasses-fill", $rota);
     
                 if (session("nome_oponente") == "Computador") {
                     session()->forget("nome_oponente");
