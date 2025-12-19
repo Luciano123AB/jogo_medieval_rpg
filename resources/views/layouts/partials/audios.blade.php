@@ -18,8 +18,8 @@
     }
 @endphp
 
-<audio id="trilha_sonora" autoplay muted loop>
-    <source src="{{ asset("assets/audios/trilhas_sonoras/$musica") }}" type="audio/mpeg">
+<audio id="trilha_sonora" loop>
+    <source id="source_trilha" src="{{ asset("assets/audios/trilhas_sonoras/$musica") }}" type="audio/mpeg">
 </audio>
 
 <audio id="som_ataque" muted>

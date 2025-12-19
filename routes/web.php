@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AudiosTemas;
+use App\Http\Controllers\Temas;
 use App\Http\Controllers\Cadastrar;
 use App\Http\Controllers\EditarDeletar;
 use App\Http\Controllers\LogarSair;
@@ -20,9 +20,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("/")->group(function () {
-    Route::controller(AudiosTemas::class)->group(function() {
-        Route::get("tocar_musica", "tocarMusica")->name("musica");
-    
+    Route::controller(Temas::class)->group(function() {
         Route::get("mudar_tema", "mudarTema")->name("tema");
     });
 

@@ -1,45 +1,78 @@
 <script>
+    document.addEventListener("DOMContentLoaded", () => {
 
-    const fundo = document.getElementById("fundo");
-    const audio = document.getElementById("trilha_sonora");
-    const som_resultado = document.getElementById("som_final");
-    const click = document.getElementById("click");
+        const audio = document.getElementById("trilha_sonora");
+        const botao = document.getElementById("botao_musica");
+        const icone = document.getElementById("icone_musica");
+        let tocando = sessionStorage.getItem("musica_tocando") === "true";
+        let tempo_salvo = sessionStorage.getItem("musica_tempo");
 
-    @if(session("musica") != "Desativado")
-        audio.muted = false;
-        audio.play().catch(error => {
-            console.error("Erro ao reproduzir a trilha sonora:", error);
+        function atualizarIcone(tocando) {
+            if (tocando) {
+                icone.classList.remove("bi-volume-mute-fill");
+                icone.classList.add("bi-volume-up-fill");
+            } else {
+                icone.classList.remove("bi-volume-up-fill");
+                icone.classList.add("bi-volume-mute-fill");
+            }
+        }        
+
+        if (tempo_salvo) {
+            audio.currentTime = parseFloat(tempo_salvo);
+        }
+
+        if (tocando) {
+            audio.muted = false;
+            audio.play().catch(() => {});
+            icone.classList.replace("bi-volume-up-fill", "bi-volume-mute-fill");
+        }
+
+        botao.addEventListener("click", () => {
+            tocando = !tocando;
+
+            if (tocando) {
+                audio.muted = false;
+                audio.play();
+                icone.classList.replace("bi-volume-mute-fill", "bi-volume-up-fill");
+            } else {
+                audio.pause();
+                icone.classList.replace("bi-volume-up-fill", "bi-volume-mute-fill");
+            }
+
+            sessionStorage.setItem("musica_tocando", tocando);
+            atualizarIcone(tocando);
         });
-    @else
-        audio.muted = true;
-    @endif
 
-    @if(session()->has("vitoria") || session()->has("derrota"))
-        audio.muted = true;
-        som_resultado.muted = false;
-        som_resultado.play().catch(error => {
-            console.error("Erro ao reproduzir o som de final da batalha:", error);
-        });
+        atualizarIcone(tocando);
 
-        let tempo = 0;
+        @if(session()->has("vitoria") || session()->has("derrota"))
 
-        @if(session()->has("vitoria"))
-            tempo = 4300;
-        @else
-            tempo = 1500;
+            const som_resultado = document.getElementById("som_final");
+            const trilhaEstavaTocando = tocando && !audio.paused;
+
+            audio.pause();
+            som_resultado.muted = false;
+            som_resultado.currentTime = 0;
+            som_resultado.play().catch(() => {});
+
+            let tempo = {{ session()->has("vitoria") ? 4300 : 1500 }};
+
+            {{ session()->forget(["vitoria", "derrota"]) }}
+
+            setTimeout(() => {
+                som_resultado.pause();
+                som_resultado.muted = true;
+
+                if (trilhaEstavaTocando) {
+                    audio.play().catch(() => {});
+                }
+            }, tempo);
         @endif
 
-        {{ session()->forget(["vitoria", "derrota"]) }}
-
-        setTimeout(() => {
-            som_resultado.muted = true;
-            @if(session("musica") == "Ativado")
-                audio.muted = false;
-            @endif
-        }, tempo);
-    @else
-        som_resultado.muted = true;
-    @endif
+        window.addEventListener("beforeunload", () => {
+            sessionStorage.setItem("musica_tempo", audio.currentTime);
+        });
+    });
 
     document.addEventListener("DOMContentLoaded", function () {
         
@@ -58,6 +91,7 @@
 
     document.addEventListener("mousemove", (e) => {
 
+        const fundo = document.getElementById("fundo");
         const x = (e.clientX / window.innerWidth - 0.5) * 40;
         const y = (e.clientY / window.innerHeight - 0.5) * 40;
 
@@ -65,6 +99,9 @@
     });
 
     document.addEventListener("click", function() {
+
+        const click = document.getElementById("click");
+
         click.play();
     });
 
