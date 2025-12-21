@@ -222,7 +222,7 @@
                             </button>
                             <button type="button" class="cursor sombras botoes animate__animated animate__fadeIn btn {{ session("tema") == "escuro" ? "btn-light border-primary" : "btn-dark border-danger" }}" onclick="limparCamposLogin()">
                                 <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} d-flex justify-content-center">
-                                    <div class="cursor animate__animated animate__flipOutY animate__infinite">
+                                    <div class="cursor animate__animated animate__bounceOut animate__infinite">
                                         <i class="cursor bi bi-x-circle-fill me-1"></i>
                                     </div>
                                     Limpar

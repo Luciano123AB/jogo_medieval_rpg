@@ -97,9 +97,7 @@
             @endif
             <div>
                 <h4 class="text-white">
-                    <span id="minutos"></span>:
-                    <span id="segundos02"></span>
-                    <span id="segundos01"></span>
+                    <span id="minutos"></span>:<span id="segundos02"></span><span id="segundos01"></span>
                 </h4>
                 <h1 class="gifs animate__animated animate__fadeInDown position-relative my-auto">🆚</h1>
             </div>

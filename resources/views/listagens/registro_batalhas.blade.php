@@ -11,7 +11,7 @@
                             <div></div>
                             <a href="{{ route("resetarVitorias") }}" type="button" class="cursor sombras botoes btn {{ session("tema") == "escuro" ? "btn-light border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }}">
                                 <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} d-flex justify-content-center">
-                                    <div class="cursor animate__animated animate__flipOutY animate__infinite">
+                                    <div class="cursor animate__animated animate__bounceOut animate__infinite">
                                         <i class="cursor bi bi-x-circle-fill me-1"></i>
                                     </div>
                                     Resetar
@@ -60,7 +60,7 @@
                             <div></div>
                             <a href="{{ route("resetarDerrotas") }}" type="button" class="cursor sombras botoes btn {{ session("tema") == "escuro" ? "btn-light border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }}">
                                 <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} d-flex justify-content-center">
-                                    <div class="cursor animate__animated animate__flipOutY animate__infinite">
+                                    <div class="cursor animate__animated animate__bounceOut animate__infinite">
                                         <i class="cursor bi bi-x-circle-fill me-1"></i>
                                     </div>
                                     Resetar

@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string("explicacao", 300)->nullable()->comment("...");
             $table->string("icone", 15)->nullable()->comment("bi-...");
             $table->string("imagem", 20)->nullable()->comment("nome_imagem");
-            $table->string("animacao", 30)->nullable()->comment("animate__...");
+            $table->string("animacao01", 30)->nullable()->comment("animate__...");
+            $table->string("animacao02", 30)->nullable()->comment("animate__...");
             $table->timestamps();
         });
     }

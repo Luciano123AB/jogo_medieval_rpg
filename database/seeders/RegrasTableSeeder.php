@@ -18,7 +18,8 @@ class RegrasTableSeeder extends Seeder
                 "explicacao" => "Quando a batalha começar, um sorteio decidi-rá quem vai atacar primeiro, e após o ataque ser efetuado a vez passará para o outro.",
                 "icone" => "bi-dice-6-fill",
                 "imagem" => "vez",
-                "animacao" => "animate__fadeInTopLeft",
+                "animacao01" => "animate__fadeInTopLeft",
+                "animacao02" => "animate__rotateIn"
             ],
 
             [
@@ -26,7 +27,8 @@ class RegrasTableSeeder extends Seeder
                 "explicacao" => "Enquanto a batalha for se prolongando, um cronômetro no centro aumenta-rá constantemente até que a partida se encerre.",
                 "icone" => "bi-alarm-fill",
                 "imagem" => "tempo",
-                "animacao" => "animate__fadeInTopRight",
+                "animacao01" => "animate__fadeInTopRight",
+                "animacao02" => "animate__tada"
             ],
 
             [
@@ -34,7 +36,8 @@ class RegrasTableSeeder extends Seeder
                 "explicacao" => "Essa é a quantidade de vida de cada personagem, conforme a batalha for acontecendo, essas barras irão diminuindo a cada ataque do seu oponente.",
                 "icone" => "bi-heart-fill",
                 "imagem" => "barras_vida",
-                "animacao" => "animate__fadeInLeft",
+                "animacao01" => "animate__fadeInLeft",
+                "animacao02" => "animate__heartBeat"
             ],
 
             [
@@ -42,7 +45,8 @@ class RegrasTableSeeder extends Seeder
                 "explicacao" => "Esses são os tipos de ofensivas que cada personagem possuí, cada uma deles podem ser utilizados apenas 1 vez a cada 3 rodadas.",
                 "icone" => "bi-joystick",
                 "imagem" => "skills",
-                "animacao" => "animate__fadeInRight",
+                "animacao01" => "animate__fadeInRight",
+                "animacao02" => "animate__headShake"
             ],
 
             [
@@ -50,7 +54,8 @@ class RegrasTableSeeder extends Seeder
                 "explicacao" => "Esses números debaixo das barras de vida irão ser exibidos toda vez que você ou seu oponente desferir um ataque, a quantidade de dano de cada skill nem sempre será igual.",
                 "icone" => "bi-crosshair2",
                 "imagem" => "contador_danos",
-                "animacao" => "animate__fadeInBottomLeft",
+                "animacao01" => "animate__fadeInBottomLeft",
+                "animacao02" => "animate__bounceIn"
             ],
 
             [
@@ -58,7 +63,8 @@ class RegrasTableSeeder extends Seeder
                 "explicacao" => "Se o combate estiver se encaminhando para uma derrota certa ou você apenas queira desistir do duelo, haverá sempre um botão de <Render-se> no topo para usar, mas esteja ciente de que se usá-lo, também será somado 1 derrota.",
                 "icone" => "bi-flag-fill",
                 "imagem" => "render",
-                "animacao" => "animate__fadeInBottomRight",
+                "animacao01" => "animate__fadeInBottomRight",
+                "animacao02" => "animate__wobble"
             ],
 
             [
@@ -66,7 +72,8 @@ class RegrasTableSeeder extends Seeder
                 "explicacao" => "Caso a barra de vida do seu oponente cheque ao fim, você vence a batalha, mas caso a sua barra de vida acabe zerando primeiro, você perde.",
                 "icone" => "bi-award-fill",
                 "imagem" => "final",
-                "animacao" => "animate__fadeInBottomLeft",
+                "animacao01" => "animate__fadeInBottomLeft",
+                "animacao02" => "animate__swing"
             ]
         ]);
     }

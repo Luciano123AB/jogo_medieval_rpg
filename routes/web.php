@@ -6,6 +6,7 @@ use App\Http\Controllers\EditarDeletar;
 use App\Http\Controllers\LogarSair;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Batalhar;
+use App\Http\Controllers\FinalizarBatalha;
 use App\Http\Controllers\Resetar;
 use App\Http\Middleware\VerificarBatalha;
 use App\Http\Middleware\VerificarDeslogado;
@@ -136,6 +137,11 @@ Route::prefix("/")->group(function () {
 
             Route::get("confirmar_render", "confirmarRender")->name("confirmarRender");
             Route::get("render_se", "renderSe")->name("renderSe");
+
+            Route::controller(FinalizarBatalha::class)->group(function() {
+                Route::get("finalizar_vitoria/{batalha}", "finalizarVitoria")->name("vitoria");
+                Route::get("finalizar_derrota/{batalha}", "finalizarDerrota")->name("derrota");
+            });
         });
     });
 

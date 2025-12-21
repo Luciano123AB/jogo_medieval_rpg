@@ -11,6 +11,7 @@ class Regra extends Model
         "explicacao",
         "icone",
         "imagem",
-        "animacao"
+        "animacao01",
+        "animacao02"
     ];
 }
