@@ -47,8 +47,9 @@ class Batalhar extends Controller
         
         $this->alertaConfirmar("Confirmar Desafio!", "Tem certeza que deseja desafiar este player?", "cancelar", "batalhar");
 
-        $foto_oponente = Player::find($player)->foto;
-        $pais_oponente = Player::find($player)->pais;
+        $dados_oponente = Player::find($player);
+        $foto_oponente = $dados_oponente->foto;
+        $pais_oponente = $dados_oponente->pais;
 
         session([
             "id_player" => $player,
