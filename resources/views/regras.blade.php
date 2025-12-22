@@ -2,7 +2,7 @@
 
 @section("content")
     <div class="container">
-        <div class="{{ session("tema") == "escuro" ? "fundos_card_claro" : "fundos_card_escuro" }} card p-3">
+        <div class="fundos_card_{{ $tema }} card p-3">
             <div class="row row-cols-1 row-cols-md-2 g-4">
                 @foreach ($regras as $regra)
                     <div class="col animate__animated {{ $regra->animacao01 }}">
@@ -11,14 +11,14 @@
                             <div class="card-body">
                                 <h4 class="card-title d-flex">
                                     <div class="animate__animated {{ $regra->animacao02 }} animate__infinite">
-                                        <i class="bi {{ $regra->icone }} {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} me-2"></i>
+                                        <i class="bi {{ $regra->icone }} titulos_{{ $tema }} cor_fontes_{{ $tema }} me-2"></i>
                                     </div>
-                                    <span class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }}">{{ $regra->regra }}:</span>
+                                    <span class="titulos_{{ $tema }} cor_fontes_{{ $tema }}">{{ $regra->regra }}:</span>
                                 </h4>
-                                <p class="paragrafos {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} card-text">{{ $regra->explicacao }}</p>
+                                <p class="paragrafos cor_fontes_{{ $tema }} card-text">{{ $regra->explicacao }}</p>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 @endforeach
             </div>            
         </div>

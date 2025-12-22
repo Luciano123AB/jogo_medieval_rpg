@@ -108,13 +108,13 @@
     .sombras {
         box-shadow: 5px 5px 5px 0 rgba(36, 40, 43);
     }
-    
-    .fundos_card_escuro {
-        background-color: rgba(0, 0, 0, 0.3);
-    }
 
     .fundos_card_claro {
-        background-color: rgba(127, 127, 127, 0.3);
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+    
+    .fundos_card_escuro {
+        background-color: rgba(127, 127, 127, 0.3);        
     }
 
     #espacamento {

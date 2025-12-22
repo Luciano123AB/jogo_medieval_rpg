@@ -14,6 +14,7 @@ use App\Http\Middleware\VerificarLogado;
 use App\Http\Middleware\VerificarVencedor;
 use App\Models\Player;
 use App\Services\Boot;
+use App\Services\TemaAtual;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -66,7 +67,8 @@ Route::prefix("/")->group(function () {
                 
                 return view("index")
                     ->with("imagem", "estrada")
-                    ->with("pagina", "Home");
+                    ->with("pagina", "Home")
+                    ->with("tema", TemaAtual::tema());
             })->name("home");
 
             Route::get("regras", "regras")->name("regras");

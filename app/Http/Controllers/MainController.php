@@ -9,6 +9,7 @@ use App\Models\Player;
 use App\Models\Regra;
 use App\Services\Paises;
 use App\Services\PlayersPais;
+use App\Services\TemaAtual;
 use Illuminate\Contracts\View\View;
 
 class MainController extends Controller
@@ -21,7 +22,8 @@ class MainController extends Controller
         return view("regras")
             ->with("imagem", "campo_treinamento")
             ->with("pagina", "Regras")
-            ->with("regras", $regras);
+            ->with("regras", $regras)
+            ->with("tema", TemaAtual::tema());
     }
 
     public function sobreClasses(): View {
@@ -32,7 +34,8 @@ class MainController extends Controller
         return view("sobre_classes")
             ->with("imagem", "estatuas_classes")
             ->with("pagina", "Descrições")
-            ->with("personagens", $personagens);
+            ->with("personagens", $personagens)
+            ->with("tema", TemaAtual::tema());
     }
 
     public function creditos(): View {
@@ -40,7 +43,8 @@ class MainController extends Controller
 
         return view("creditos")
             ->with("imagem", "estrada")
-            ->with("pagina", "Créditos");
+            ->with("pagina", "Créditos")
+            ->with("tema", TemaAtual::tema());
     }
 
     public function cadastro(): View {
@@ -52,7 +56,8 @@ class MainController extends Controller
         return view("cadastro_atualizacao", compact("paises"))
             ->with("imagem", "recrutamento")
             ->with("pagina", "Cadastro")
-            ->with("personagens", $personagens);
+            ->with("personagens", $personagens)
+            ->with("tema", TemaAtual::tema());
     }
 
     public function atualizacao(): View {
@@ -71,6 +76,7 @@ class MainController extends Controller
             ->with("imagem", "recrutamento")
             ->with("pagina", "Atualização")
             ->with("personagens", $personagens)
+            ->with("tema", TemaAtual::tema())
             ->with([
                 "dados" => [
                     "id" => $id,
@@ -100,7 +106,8 @@ class MainController extends Controller
             ->with("players", $players)
             ->with("player_lider_vitorias", $player_lider_vitorias)
             ->with("player_lider_nivel", $player_lider_nivel)
-            ->with("desafiou", $desafiou);
+            ->with("desafiou", $desafiou)
+            ->with("tema", TemaAtual::tema());
     }
 
     public function totaisPlayers() {
@@ -120,7 +127,8 @@ class MainController extends Controller
         return view("listagens/totais_players")
             ->with("imagem", "recrutamento")
             ->with("pagina", "Totais")
-            ->with("totais", $totais);
+            ->with("totais", $totais)
+            ->with("tema", TemaAtual::tema());
     }
 
     public function registroBatalhas(): View {
@@ -137,7 +145,8 @@ class MainController extends Controller
             ->with("imagem", "registros")
             ->with("pagina", "Registro")
             ->with("batalhas_vitorias", $batalhas_vitorias)
-            ->with("batalhas_derrotas", $batalhas_derrotas);
+            ->with("batalhas_derrotas", $batalhas_derrotas)
+            ->with("tema", TemaAtual::tema());
     }
 
     public function batalhasAndamento(): View {
@@ -148,7 +157,8 @@ class MainController extends Controller
         return view("listagens/batalhas")
             ->with("imagem", "registros")
             ->with("pagina", "Batalhas")
-            ->with("batalhas", $batalhas);
+            ->with("batalhas", $batalhas)
+            ->with("tema", TemaAtual::tema());
     }
 
     public function preparacao(): View {
@@ -164,7 +174,8 @@ class MainController extends Controller
             ->with("pagina", "Preparação")
             ->with("personagens", $personagens)
             ->with("classe", $classe_player)
-            ->with("nivel", $nivel->nivel);
+            ->with("nivel", $nivel->nivel)
+            ->with("tema", TemaAtual::tema());
     }
 
     public function batalhar(): View {
@@ -236,6 +247,7 @@ class MainController extends Controller
             ->with("bandeira_oponente", $pais)
             ->with("oponente", $oponente)
             ->with("foto", $foto_oponente)
-            ->with("nome", $nome_oponente);
+            ->with("nome", $nome_oponente)
+            ->with("tema", TemaAtual::tema());
     }    
 }

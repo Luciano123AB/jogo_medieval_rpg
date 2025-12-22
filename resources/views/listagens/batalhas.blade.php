@@ -2,26 +2,26 @@
 
 @section("content")
     <div class="container">
-        <div class="{{ session("tema") == "escuro" ? "fundos_card_claro" : "fundos_card_escuro" }} card p-3">
+        <div class="fundos_card_{{ $tema }} card p-3">
             <div class="d-grid gap-3 w-100">
                 <div class="sombras tabelas card animate__animated animate__zoomInRight {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }} p-3 overflow-x-auto">
                     <div class="tabelas-scroll">
                         <table class="border border-2 {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} w-100">
                             <thead class="text-center">
-                                <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border px-1"><i class="bi bi-list-ol"></i>Nº</th>
-                                <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border">Player</th>
+                                <th class="titulos_{{ $tema }} cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border px-1"><i class="bi bi-list-ol"></i>Nº</th>
+                                <th class="titulos_{{ $tema }} cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border">Player</th>
                                 <th class="{{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border">❤️</th>
-                                <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border px-1">VS</th>
+                                <th class="titulos_{{ $tema }} cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border px-1">VS</th>
                                 <th class="{{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border">❤️</th>
-                                <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border">Oponente</th>
+                                <th class="titulos_{{ $tema }} cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border">Oponente</th>
                             </thead>
 
                             <tbody>
                                 @forelse ($batalhas as $batalha)
                                     <tr>
-                                        <td class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border text-center fw-bold">{{ $loop->index + 1 }}</td>
+                                        <td class="cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center fw-bold">{{ $loop->index + 1 }}</td>
                                         <td class="{{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-success text-center fw-bold px-1">{{ $batalha->nome }}</td>
-                                        <td class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border text-center">
+                                        <td class="cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center">
                                             <div class="barras progress border border-danger bg-black mx-1" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                                                 <div id="hp" class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width: 100%">
                                                     <label class="fw-bold fs-6">{{ $batalha->hp }}</label>
@@ -29,7 +29,7 @@
                                             </div>
                                         </td>
                                         <td class="{{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center">🆚</td>
-                                        <td class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border text-center">
+                                        <td class="cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center">
                                             <div class="barras progress border border-danger bg-black mx-1" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                                                 <div id="hp_oponente" class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width: 100%">
                                                     <label class="fw-bold fs-6">{{ $batalha->hp_oponente }}</label>
@@ -62,7 +62,7 @@
                                     </script>
                                 @empty
                                     <tr class="text-center">
-                                        <td colspan="6" class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">NENHUMA BATALHA ACONTECENDO NO MOMENTO</td>
+                                        <td colspan="6" class="cor_fontes_{{ $tema }}">NENHUMA BATALHA ACONTECENDO NO MOMENTO</td>
                                     </tr>
                                 @endforelse
                             </tbody>

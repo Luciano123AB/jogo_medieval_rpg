@@ -2,7 +2,7 @@
 
 @section("content")
     <div class="container">
-        <div class="{{ session("tema") == "escuro" ? "fundos_card_claro" : "fundos_card_escuro" }} card p-3">
+        <div class="fundos_card_{{ $tema }} card p-3">
             <div class="d-grid gap-3 w-100">
                 <div class="sombras animate__animated animate__zoomInLeft card {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-black border-danger" }} p-3">
                     @php
@@ -29,18 +29,18 @@
 
                         <div class="card-header border border-2 {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} text-center rounded-top">
                             @if ($pagina == "Cadastro")
-                                <i class="bi bi-plus-circle-fill {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} fs-5"></i>
+                                <i class="bi bi-plus-circle-fill titulos_{{ $tema }} cor_fontes_{{ $tema }} fs-5"></i>
                             @else
-                                <i class="bi bi-arrow-repeat {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} fs-5"></i>
+                                <i class="bi bi-arrow-repeat titulos_{{ $tema }} cor_fontes_{{ $tema }} fs-5"></i>
                             @endif
-                            <Label class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} fw-bold fs-5">{{ $titulo }}</Label>
+                            <Label class="titulos_{{ $tema }} cor_fontes_{{ $tema }} fw-bold fs-5">{{ $titulo }}</Label>
                         </div>
 
                         <div class="card-body border-start border-2 border-end {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
-                            <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">{{ $pagina == "Cadastro" ? "Usuário" : "Novo Usuário" }}:</label>
+                            <label class="form-label cor_fontes_{{ $tema }}">{{ $pagina == "Cadastro" ? "Usuário" : "Novo Usuário" }}:</label>
                             <div class="mb-3">
                                 <div class="input-group">
-                                    <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}">
+                                    <span class="input-group-text cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-dark border-danger" }}">
                                         <i class="bi bi-person-fill"></i>
                                     </span>
                                     <input type="text" id="novo_usuario" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="novo_usuario" placeholder="Usuario123" aria-label="Usuario123" aria-describedby="NovoUsuario" value="{{ old("novo_usuario", $values[0]) }}">
@@ -53,10 +53,10 @@
                                 @enderror
                             </div>
 
-                            <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">{{ $pagina == "Cadastro" ? "Email" : "Novo Email" }}:</label>
+                            <label class="form-label cor_fontes_{{ $tema }}">{{ $pagina == "Cadastro" ? "Email" : "Novo Email" }}:</label>
                             <div class="mb-3">
                                 <div class="input-group">
-                                    <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}">
+                                    <span class="input-group-text cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-dark border-danger" }}">
                                         <i class="bi bi-envelope-at-fill"></i>
                                     </span>
                                     <input type="email" id="novo_email" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="novo_email" placeholder="usuario@gmail.com" aria-label="usuario@gmail.com" aria-describedby="NovoEmail" value="{{ old("novo_email", $values[1]) }}">
@@ -68,13 +68,13 @@
                                     </div>
                                 @enderror
                             </div>
-    
-                            <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">{{ $pagina == "Cadastro" ? "Senha" : "Nova Senha" }}:</label>
+
+                            <label class="form-label cor_fontes_{{ $tema }}">{{ $pagina == "Cadastro" ? "Senha" : "Nova Senha" }}:</label>
                             <div class="mb-3">
                                 <div class="input-group">
-                                    <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}">***</span>
+                                    <span class="input-group-text cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-dark border-danger" }}">***</span>
                                     <input type="password" id="nova_senha" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="nova_senha" placeholder="..." aria-label="..." aria-describedby="NovaSenha" value="{{ old("nova_senha", $values[2]) }}">
-                                    <button type="button" id="mostrar_novo" class="cursor input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}">
+                                    <button type="button" id="mostrar_novo" class="cursor input-group-text cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-dark border-danger" }}">
                                         <i class="cursor bi bi-eye-slash-fill"></i>
                                     </button>
                                 </div>
@@ -91,12 +91,12 @@
                                 @enderror
                             </div>
 
-                            <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">{{ $pagina == "Cadastro" ? "Confirmar Senha" : "Confirmar Nova Senha" }}:</label>
+                            <label class="form-label cor_fontes_{{ $tema }}">{{ $pagina == "Cadastro" ? "Confirmar Senha" : "Confirmar Nova Senha" }}:</label>
                             <div class="mb-3">
                                 <div class="input-group">
-                                    <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}">***</span>
+                                    <span class="input-group-text cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-dark border-danger" }}">***</span>
                                     <input type="password" id="confirmar_nova_senha" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="confirmar_nova_senha" placeholder="..." aria-label="..." aria-describedby="ConfirmarNovaSenha" value="{{ old("confirmar_nova_senha", $values[3]) }}">
-                                    <button type="button" id="mostrar_confirmar_novo" class="cursor input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}">
+                                    <button type="button" id="mostrar_confirmar_novo" class="cursor input-group-text cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-dark border-danger" }}">
                                         <i class="cursor bi bi-eye-slash-fill"></i>
                                     </button>
                                 </div>
@@ -117,11 +117,11 @@
                                 @if($pagina != "Atualização")
                                     <div class="d-flex gap-3">
                                         <div class="border-end {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} mb-3 pe-3">
-                                            <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Gênero:</label>
+                                            <label class="form-label cor_fontes_{{ $tema }}">Gênero:</label>
                                             <div class="d-flex mb-3">
                                                 <div>
                                                     <div class="input-group">
-                                                        <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}">
+                                                        <span class="input-group-text cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-dark border-danger" }}">
                                                             <i class="bi bi-sort-down"></i>
                                                         </span>
                                                         <select id="genero" class="form-select cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="genero" aria-label="Generos">
@@ -142,10 +142,10 @@
                                         </div>
 
                                         <div class="w-50">
-                                            <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">País:</label>
+                                            <label class="form-label cor_fontes_{{ $tema }}">País:</label>
                                             <div class="mb-3">
                                                 <div class="input-group">
-                                                    <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}">
+                                                    <span class="input-group-text cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-dark border-danger" }}">
                                                         <i class="bi bi-flag-fill"></i>
                                                     </span>
 
@@ -191,9 +191,9 @@
                                 <div class="d-flex gap-3 mb-3">
                                     <div class="d-flex gap-3">
                                         <div>
-                                            <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">{{ $pagina == "Cadastro" ? "Classe" : "Nova Classe" }}:</label>
+                                            <label class="form-label cor_fontes_{{ $tema }}">{{ $pagina == "Cadastro" ? "Classe" : "Nova Classe" }}:</label>
                                             <div class="input-group">
-                                                <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}">
+                                                <span class="input-group-text cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-dark border-danger" }}">
                                                     <i class="bi bi-sort-down"></i>
                                                 </span>
                                                 <select id="classe" class="form-select cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="classe" aria-label="Classes">
@@ -221,7 +221,7 @@
                                         </div>
 
                                         <div class="border-end {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} pe-3">
-                                            <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">
+                                            <label class="form-label cor_fontes_{{ $tema }}">
                                                 <i class="bi bi-person-circle"></i>
                                                 Personagem:
                                             </label>
@@ -242,10 +242,10 @@
                                         </div>
 
                                         <div>
-                                            <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">{{ $pagina == "Cadastro" ? "Foto (Opcional)" : "Nova Foto (Opcional)" }}:</label>
+                                            <label class="form-label cor_fontes_{{ $tema }}">{{ $pagina == "Cadastro" ? "Foto (Opcional)" : "Nova Foto (Opcional)" }}:</label>
                                             <div class="d-grid">
                                                 <div class="input-group">
-                                                    <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}">
+                                                    <span class="input-group-text cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-dark border-danger" }}">
                                                         <i class="bi bi-file-earmark-person-fill"></i>
                                                     </span>
                                                     <input id="foto" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border border-primary text-black" : "bg-dark border border-danger text-white" }}" type="file" name="foto" accept="image/png, image/jpeg">
@@ -254,7 +254,7 @@
                                                     <div class="form-check mt-2">
                                                         <input class="form-check-input cursor {{ session("tema") == "escuro" ? "border-primary focus-ring focus-ring-primary" : "border-danger focus-ring focus-ring-danger" }}" id="sem_foto" type="checkbox" name="sem_foto" value="nenhuma">
                                                         <label class="form-check-label" for="sem_foto">
-                                                            <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Sem Foto</span>
+                                                            <span class="cursor cor_fontes_{{ $tema }}">Sem Foto</span>
                                                         </label>
                                                     </div>
                                                 @endif
@@ -273,7 +273,7 @@
                                         </div>
 
                                         <div>
-                                            <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">
+                                            <label class="form-label cor_fontes_{{ $tema }}">
                                                 <i class="bi bi-person-bounding-box"></i>
                                                 Perfil:
                                             </label>
@@ -308,7 +308,7 @@
 
                         <div class="card-footer border border-2 {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} d-flex justify-content-center gap-3 text-center py-3">
                             <button type="submit" class="cursor sombras botoes btn {{ session("tema") == "escuro" ? "btn-light border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }}">
-                                <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} d-flex justify-content-center">
+                                <span class="cursor cor_fontes_{{ $tema }} d-flex justify-content-center">
                                     <div class="cursor animate__animated animate__heartBeat animate__infinite">
                                         @if ($pagina == "Cadastro")
                                             <i class="cursor bi bi-person-plus-fill me-1"></i>
@@ -320,7 +320,7 @@
                                 </span>
                             </button>
                             <button type="button" class="cursor sombras botoes btn {{ session("tema") == "escuro" ? "btn-light border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }}" onclick="limparCamposCadastro()">
-                                <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} d-flex justify-content-center">
+                                <span class="cursor cor_fontes_{{ $tema }} d-flex justify-content-center">
                                     <div class="cursor animate__animated animate__bounceOut animate__infinite">
                                         <i class="cursor bi bi-x-circle-fill me-1"></i>
                                     </div>
