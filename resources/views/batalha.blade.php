@@ -53,17 +53,17 @@
 
                     <div class="btn-group animate__animated animate__fadeIn" role="group" aria-label="SkillsPlayer">
                         <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="{{ session("player.personagem.skill01.skill") }}">
-                        <label class="cursor d-grid btn cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "bg-secondary btn-outline-primary" : "bg-dark btn-outline-danger" }}" for="btnradio1">
+                        <label class="cursor d-grid btn cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "bg-secondary btn-outline-primary" : "bg-dark btn-outline-danger" }}" for="btnradio1">
                             🕹
                             <span class="cursor">{{ session("player.personagem.skill01.skill") }}</span>
                         </label>
                         <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="{{ session("player.personagem.skill02.skill") }}">
-                        <label class="cursor d-grid btn cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "bg-secondary btn-outline-primary" : "bg-dark btn-outline-danger" }}" for="btnradio2">
+                        <label class="cursor d-grid btn cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "bg-secondary btn-outline-primary" : "bg-dark btn-outline-danger" }}" for="btnradio2">
                             🕹
                             <span class="cursor">{{ session("player.personagem.skill02.skill") }}</span>
                         </label>
                         <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="{{ session("player.personagem.skill03.skill") }}">
-                        <label class="cursor d-grid btn cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "bg-secondary btn-outline-primary" : "bg-dark btn-outline-danger" }}" for="btnradio3">
+                        <label class="cursor d-grid btn cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "bg-secondary btn-outline-primary" : "bg-dark btn-outline-danger" }}" for="btnradio3">
                             🕹
                             <span class="cursor">{{ session("player.personagem.skill03.skill") }}</span>
                         </label>
@@ -76,7 +76,7 @@
 
                     @if ($batalha->vez == 0)
                         <button id="atacar" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} d-flex border" type="submit">
-                            <span class="cursor cor_fontes_{{ $tema }} mx-auto">ATACAR! 🤜🏼</span>
+                            <span class="cursor cor_fontes_{{ session("tema") }} mx-auto">ATACAR! 🤜🏼</span>
                         </button>
                     @endif
                 </form>
@@ -157,17 +157,17 @@
             <div class="card-footer border border-0">
                 <div class="btn-group animate__animated animate__fadeIn" role="group" aria-label="SkillsOponente">
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" value="{{ $oponente->skill01->skill }}" disabled>
-                    <label class="d-grid btn cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "bg-secondary btn-outline-primary" : "bg-dark btn-outline-danger" }}" for="btnradio4">
+                    <label class="d-grid btn cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "bg-secondary btn-outline-primary" : "bg-dark btn-outline-danger" }}" for="btnradio4">
                         🕹
                         <span>{{ $oponente->skill01->skill }}</span>
                     </label>
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" value="{{ $oponente->skill02->skill }}" disabled>
-                    <label class="d-grid btn cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "bg-secondary btn-outline-primary" : "bg-dark btn-outline-danger" }}" for="btnradio5">
+                    <label class="d-grid btn cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "bg-secondary btn-outline-primary" : "bg-dark btn-outline-danger" }}" for="btnradio5">
                         🕹
                         <span>{{ $oponente->skill02->skill }}</span>
                     </label>
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off" value="{{ $oponente->skill03->skill }}" disabled>
-                    <label class="d-grid btn cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "bg-secondary btn-outline-primary" : "bg-dark btn-outline-danger" }}" for="btnradio6">
+                    <label class="d-grid btn cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "bg-secondary btn-outline-primary" : "bg-dark btn-outline-danger" }}" for="btnradio6">
                         🕹
                         <span>{{ $oponente->skill03->skill }}</span>
                     </label>

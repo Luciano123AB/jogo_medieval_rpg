@@ -4,9 +4,9 @@
             <a href="{{ route("home") }}" id="home" class="cursor navbar-brand">
                 <img src="{{ asset("assets/images/icones/icone.png") }}" id="icone" class="cursor animate__animated animate__flipOutY animate__infinite">
                 <span class="cursor align-middle fs-3">🎮</span>
-                <span class="cursor titulos_{{ $tema }} cor_fontes_{{ $tema }} fw-bold align-middle fs-3">Jogo: Medieval RPG</span>
+                <span class="cursor titulos_{{ session("tema") }} cor_fontes_{{ session("tema") }} fw-bold align-middle fs-3">Jogo: Medieval RPG</span>
                 <br class="d-sm-none">
-                <span class="cursor cor_fontes_{{ $tema }} animate__animated animate__fadeIn align-middle fs-3">- 
+                <span class="cursor cor_fontes_{{ session("tema") }} animate__animated animate__fadeIn align-middle fs-3">- 
                     @if ($pagina == "Home")
                         <i class="bi bi-house-fill"></i>
                     @elseif($pagina == "Créditos")
@@ -37,7 +37,7 @@
             @if($pagina != "Home" && $pagina != "Batalha")
                 <div>
                     <a href="{{ route("home") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} d-flex border my-1">
-                        <span class="cursor cor_fontes_{{ $tema }} d-flex justify-content-center">
+                        <span class="cursor cor_fontes_{{ session("tema") }} d-flex justify-content-center">
                             <div class="cursor animate__animated animate__fadeOutLeft animate__infinite">
                                 <i class="cursor bi bi-arrow-90deg-left"></i>
                             </div>
@@ -50,7 +50,7 @@
 
         @if($pagina == "Batalha")
             <a href="{{ route("confirmarRender") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} d-flex border my-1">
-                <span class="cursor cor_fontes_{{ $tema }}">
+                <span class="cursor cor_fontes_{{ session("tema") }}">
                     <i class="cursor bi bi-arrow-90deg-left animate__animated animate__fadeIn animate__infinite"></i>
                     Render-se
                 </span>
@@ -59,7 +59,7 @@
 
         @if(session()->has("player") && $pagina != "Listagem" && $pagina != "Batalha")
             <a href="{{ route("listagem") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} d-flex border my-1">
-                <span class="cursor cor_fontes_{{ $tema }} d-flex justify-content-center">
+                <span class="cursor cor_fontes_{{ session("tema") }} d-flex justify-content-center">
                     <div class="cursor animate__animated animate__flipInX animate__infinite">
                         <i class="cursor bi bi-list-stars me-2"></i>
                     </div>
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="cursor">
                                     <div class="border-3 border-start border-black rounded-top-1">
-                                        <h4 class="cursor titulos_{{ $tema }} cor_fontes_{{ $tema }}">
+                                        <h4 class="cursor titulos_{{ session("tema") }} cor_fontes_{{ session("tema") }}">
                                             <i class="fi fi-{{ strtolower(session("player.pais")) }} animate__animated animate__jello animate__infinite border-start border-end mb-2 me-1"></i>
                                             {{ session("player.usuario") }}
                                         </h4>
@@ -124,7 +124,7 @@
                         <li class="border border-1 border-black"></li>
                         @if($pagina != "Registro")
                             <li>
-                                <a href="{{ route("registro") }}" class="dropdown-item cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "opcoes_player_escuro" : "opcoes_player_claro" }} border-top border-black">
+                                <a href="{{ route("registro") }}" class="dropdown-item cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "opcoes_player_escuro" : "opcoes_player_claro" }} border-top border-black">
                                     <i class="bi bi-file-earmark-medical-fill"></i>
                                     Histórico
                                 </a>
@@ -132,20 +132,20 @@
                         @endif
                         @if($pagina != "Atualização")
                             <li>
-                                <a href="{{ route("atualizacao") }}" class="dropdown-item cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "opcoes_player_escuro" : "opcoes_player_claro" }} border-top border-black">
+                                <a href="{{ route("atualizacao") }}" class="dropdown-item cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "opcoes_player_escuro" : "opcoes_player_claro" }} border-top border-black">
                                     <i class="bi bi-pen-fill"></i>
                                     Editar
                                 </a>
                             </li>
                         @endif
                         <li>
-                            <a href="{{ route("confirmarDeletar") }}" class="dropdown-item cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "opcoes_player_escuro" : "opcoes_player_claro" }} border-top border-black">
+                            <a href="{{ route("confirmarDeletar") }}" class="dropdown-item cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "opcoes_player_escuro" : "opcoes_player_claro" }} border-top border-black">
                                 <i class="bi bi-trash-fill"></i>
                                 Excluir Conta
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route("confirmarSair") }}" class="dropdown-item cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "opcoes_player_escuro" : "opcoes_player_claro" }} border-bottom border-top border-black">
+                            <a href="{{ route("confirmarSair") }}" class="dropdown-item cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "opcoes_player_escuro" : "opcoes_player_claro" }} border-bottom border-top border-black">
                                 <i class="bi bi-power"></i>
                                 Sair
                             </a>
@@ -158,7 +158,7 @@
             <div class="d-flex gap-3 my-1">
                 @if($pagina != "Cadastro")
                     <a href="{{ route("cadastro") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} d-flex border">
-                        <span class="cursor cor_fontes_{{ $tema }} d-flex justify-content-center">
+                        <span class="cursor cor_fontes_{{ session("tema") }} d-flex justify-content-center">
                             <div class="cursor animate__animated animate__heartBeat animate__infinite">
                                 <i class="cursor bi bi-person-fill-add me-1"></i>
                             </div>
@@ -174,10 +174,10 @@
                     <form action="{{ route("logar") }}" method="POST" id="login" class="sombras animate__animated animate__fadeInDown {{ session("tema") == "escuro" ? 'bg-secondary border-primary' : 'bg-black border-danger' }} dropdown-menu {{ $pagina == "Cadastro" ? "dropdown-menu-lg-end" : "dropdown-menu-end" }} p-3">
                         @csrf
 
-                        <label class="form-label cor_fontes_{{ $tema }}">Email:</label>
+                        <label class="form-label cor_fontes_{{ session("tema") }}">Email:</label>
                         <div class="mb-3">
                             <div class="input-group">
-                                <span class="input-group-text cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-dark border-danger" }}">
+                                <span class="input-group-text cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-dark border-danger" }}">
                                     <i class="bi bi-envelope-at-fill"></i>
                                 </span>
                                 <input type="email" id="email" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="email" placeholder="usuario@gmail.com" aria-label="usuario@gmail.com" aria-describedby="Email" value="{{ old("email") }}">
@@ -189,12 +189,12 @@
                             @enderror
                         </div>
 
-                        <label class="form-label cor_fontes_{{ $tema }}">Senha:</label>
+                        <label class="form-label cor_fontes_{{ session("tema") }}">Senha:</label>
                         <div class="mb-3">
                             <div class="input-group">
-                                <span class="input-group-text cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-dark border-danger" }}">***</span>
+                                <span class="input-group-text cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-dark border-danger" }}">***</span>
                                 <input type="password" id="senha" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="senha" placeholder="..." aria-label="..." aria-describedby="Senha" value="{{ old("senha") }}">
-                                <button type="button" id="mostrar" class="cursor input-group-text cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-dark border-danger" }}">
+                                <button type="button" id="mostrar" class="cursor input-group-text cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-dark border-danger" }}">
                                     <i class="cursor bi bi-eye-slash-fill"></i>
                                 </button>
                             </div>
@@ -215,13 +215,13 @@
 
                         <div class="d-flex justify-content-center gap-3 text-center">
                             <button type="submit" class="cursor sombras botoes animate__animated animate__fadeIn btn {{ session("tema") == "escuro" ? "btn-light border-primary" : "btn-dark border-danger" }}">
-                                <span class="cursor cor_fontes_{{ $tema }}">
+                                <span class="cursor cor_fontes_{{ session("tema") }}">
                                     <i class="cursor bi bi-door-open-fill animate__animated animate__fadeIn animate__infinite"></i>
                                     Entrar
                                 </span>
                             </button>
                             <button type="button" class="cursor sombras botoes animate__animated animate__fadeIn btn {{ session("tema") == "escuro" ? "btn-light border-primary" : "btn-dark border-danger" }}" onclick="limparCamposLogin()">
-                                <span class="cursor cor_fontes_{{ $tema }} d-flex justify-content-center">
+                                <span class="cursor cor_fontes_{{ session("tema") }} d-flex justify-content-center">
                                     <div class="cursor animate__animated animate__bounceOut animate__infinite">
                                         <i class="cursor bi bi-x-circle-fill me-1"></i>
                                     </div>

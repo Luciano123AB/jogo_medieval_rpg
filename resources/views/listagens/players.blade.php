@@ -2,7 +2,7 @@
 
 @section("content")
     <div class="container">
-        <div class="fundos_card_{{ $tema }} card p-3">
+        <div class="fundos_card_{{ session("tema") }} card p-3">
             <div class="d-grid gap-3 w-100">
                 <div class="d-flex gap-3">
                     <div class="cards w-50">
@@ -10,9 +10,9 @@
                             <div class="d-grid text-center">
                                 <div class="d-flex justify-content-center mb-2">
                                     <span class="animate__animated animate__tada animate__infinite fs-4 me-1">🏆</span>
-                                    <h4 class="titulos_{{ $tema }} cor_fontes_{{ $tema }}">Player com Mais Vitórias</h4>
+                                    <h4 class="titulos_{{ session("tema") }} cor_fontes_{{ session("tema") }}">Player com Mais Vitórias</h4>
                                 </div>
-                                <label class="cor_fontes_{{ $tema }}">
+                                <label class="cor_fontes_{{ session("tema") }}">
                                     @php
                                     
                                         $perfil = asset("assets/images/perfils/" . strtolower($player_lider_vitorias->personagem->classe) . ".png");
@@ -30,7 +30,7 @@
                                         {{ $player_lider_vitorias->usuario }}
                                     </div>
                                 </label>
-                                <label class="cor_fontes_{{ $tema }}">Qtd/Vitórias: {{ $player_lider_vitorias->quantidade_vitorias }}</label>
+                                <label class="cor_fontes_{{ session("tema") }}">Qtd/Vitórias: {{ $player_lider_vitorias->quantidade_vitorias }}</label>
                             </div>
                         </div>
                     </div>
@@ -40,9 +40,9 @@
                             <div class="d-grid text-center">
                                 <div class="d-flex justify-content-center mb-2">
                                     <span class="animate__animated animate__tada animate__infinite fs-4 me-1">🏆</span>
-                                    <h4 class="titulos_{{ $tema }} cor_fontes_{{ $tema }}">Player com Maior Nível</h4>
+                                    <h4 class="titulos_{{ session("tema") }} cor_fontes_{{ session("tema") }}">Player com Maior Nível</h4>
                                 </div>
-                                <label class="cor_fontes_{{ $tema }}">
+                                <label class="cor_fontes_{{ session("tema") }}">
                                     @php
                                     
                                         $perfil = asset("assets/images/perfils/" . strtolower($player_lider_nivel->personagem->classe) . ".png");
@@ -60,7 +60,7 @@
                                         {{ $player_lider_nivel->usuario }}
                                     </div>
                                 </label>
-                                <label class="cor_fontes_{{ $tema }}">Nível: {{ $player_lider_nivel->nivel }}</label>
+                                <label class="cor_fontes_{{ session("tema") }}">Nível: {{ $player_lider_nivel->nivel }}</label>
                             </div>
                         </div>
                     </div>
@@ -70,31 +70,31 @@
                     <div class="tabelas-scroll">
                         <table class="border border-2 {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} w-100">
                             <thead class="text-center">
-                                <th class="titulos_{{ $tema }} cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border fs-5 px-1">
+                                <th class="titulos_{{ session("tema") }} cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border fs-5 px-1">
                                     <i class="bi bi-list-ol"></i>
                                     Nº
                                 </th>
-                                <th class="titulos_{{ $tema }} cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border fs-5 px-1">
+                                <th class="titulos_{{ session("tema") }} cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border fs-5 px-1">
                                     <i class="bi bi-person-bounding-box"></i>
                                     Perfil
                                 </th>
-                                <th class="titulos_{{ $tema }} cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border fs-5">
+                                <th class="titulos_{{ session("tema") }} cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border fs-5">
                                     <i class="bi bi-person-fill"></i>
                                     Usuario
                                 </th>
-                                <th class="titulos_{{ $tema }} cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border fs-5 px-1">
+                                <th class="titulos_{{ session("tema") }} cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border fs-5 px-1">
                                     <i class="bi bi-person-arms-up"></i>
                                     Classe
                                 </th>
-                                <th class="titulos_{{ $tema }} cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border fs-5 px-1">
+                                <th class="titulos_{{ session("tema") }} cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border fs-5 px-1">
                                     <i class="bi bi-arrow-up-circle-fill"></i>
                                     Nível
                                 </th>
-                                <th class="titulos_{{ $tema }} cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border fs-5 px-1">
+                                <th class="titulos_{{ session("tema") }} cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border fs-5 px-1">
                                     <i class="bi bi-123"></i>
                                     Qtd/Vitórias
                                 </th>
-                                <th class="titulos_{{ $tema }} cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border fs-5 px-1">
+                                <th class="titulos_{{ session("tema") }} cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border fs-5 px-1">
                                     <i class="bi bi-123"></i>
                                     Qtd/Derrotas
                                 </th>
@@ -104,7 +104,7 @@
                             <tbody>
                                 @forelse ($players as $player)
                                     <tr>
-                                        <td class="cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center fw-bold">{{ $loop->index + 1 }}</td>
+                                        <td class="cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center fw-bold">{{ $loop->index + 1 }}</td>
                                         <td class="{{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center px-1">
                                             <img src="
                                                 @if ($player->foto == "nenhuma")
@@ -130,19 +130,19 @@
                                                 {{ $player->usuario }}
                                             </div>
                                         </td>
-                                        <td class="cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center px-1">{{ $player->personagem->classe }}</td>
-                                        <td class="cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center">{{ $player->nivel }}</td>
-                                        <td class="cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center">{{ $player->quantidade_vitorias }}</td>
-                                        <td class="cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center">{{ $player->quantidade_derrotas }}</td>
-                                        <td id="desafiar" class="cor_fontes_{{ $tema }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center">
+                                        <td class="cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center px-1">{{ $player->personagem->classe }}</td>
+                                        <td class="cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center">{{ $player->nivel }}</td>
+                                        <td class="cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center">{{ $player->quantidade_vitorias }}</td>
+                                        <td class="cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center">{{ $player->quantidade_derrotas }}</td>
+                                        <td id="desafiar" class="cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center">
                                             @if($player->id != session("player.id"))
                                                 @if(in_array($player->id, $desafiou))
                                                     <button type="button" class="cursor sombras botoes btn btn-sm {{ session("tema") == "escuro" ? "btn-light border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} mx-1" disabled>
-                                                        <span class="cursor cor_fontes_{{ $tema }}">🤜🏼Desafiar</span>
+                                                        <span class="cursor cor_fontes_{{ session("tema") }}">🤜🏼Desafiar</span>
                                                     </button>
                                                 @else
                                                     <a href="{{ route("confirmarDesafio", ["player" => $player->id, "oponente" => $player->personagem->id, "nome_oponente" => $player->usuario, "nivel" => $player->nivel]) }}" type="button" class="cursor sombras botoes btn btn-sm {{ session("tema") == "escuro" ? "btn-light border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} mx-1">
-                                                        <span class="cursor cor_fontes_{{ $tema }}">🤜🏼Desafiar</span>
+                                                        <span class="cursor cor_fontes_{{ session("tema") }}">🤜🏼Desafiar</span>
                                                     </a>
                                                 @endif
                                             @endif
@@ -150,7 +150,7 @@
                                     </tr>
                                 @empty
                                     <tr class="text-center">
-                                        <td colspan="8" class="cor_fontes_{{ $tema }}">NENHUM PLAYER EXISTENTE AINDA</td>
+                                        <td colspan="8" class="cor_fontes_{{ session("tema") }}">NENHUM PLAYER EXISTENTE AINDA</td>
                                     </tr>
                                 @endforelse
                             </tbody>
