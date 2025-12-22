@@ -70,7 +70,7 @@
                         <div class="tabelas-scroll">
                             <table class="border border-2 {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} w-100">
                                 <thead class="text-center">
-                                    <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border px-1">
+                                    <th class="titulos_{{ session("tema") }} cor_fontes_{{ session("tema") }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border px-1">
                                         <i class="bi bi-list-ol"></i>
                                         Nº
                                     </th>
