@@ -52,7 +52,7 @@
         left: 0;
         width: 100vw;
         height: 100%;
-        background-image: url('{{ asset('assets/images/fundos/' . (session('tema') === 'escuro' ? "$imagem" . '.png' : "$imagem" . '_noite.png')) }}');
+        background-image: url('{{ asset('assets/images/fundos/' . (session('tema') == 'escuro' ? "$imagem" . '.png' : "$imagem" . '_noite.png')) }}');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
