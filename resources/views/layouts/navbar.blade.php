@@ -189,7 +189,7 @@
                                 <span class="input-group-text cor_fontes_{{ $temas[7] }} bg-{{ $temas[5] }} border-{{ $temas[1] }}">
                                     <i class="bi bi-envelope-at-fill"></i>
                                 </span>
-                                <input type="email" id="email" class="form-control cursor bg-{{ $temas[5] }} border-{{ $temas[1] }} text-{{ $temas[6] }}" name="email" placeholder="usuario@gmail.com" aria-label="usuario@gmail.com" aria-describedby="Email" value="{{ old("email") }}">
+                                <input type="email" id="email" class="form-control cursor bg-{{ $temas[5] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[6] }}" name="email" placeholder="usuario@gmail.com" aria-label="usuario@gmail.com" aria-describedby="Email" value="{{ old("email") }}">
                             </div>
                             @error("email")
                                 <div class="alert alert-danger animate__animated animate__shakeX mt-1 mb-0" role="alert">
@@ -202,7 +202,7 @@
                         <div class="mb-3">
                             <div class="input-group">
                                 <span class="input-group-text cor_fontes_{{ $temas[7] }} bg-{{ $temas[5] }} border-{{ $temas[1] }}">***</span>
-                                <input type="password" id="senha" class="form-control cursor bg-{{ $temas[5] }} border-{{ $temas[1] }} text-{{ $temas[6] }}" name="senha" placeholder="..." aria-label="..." aria-describedby="Senha" value="{{ old("senha") }}">
+                                <input type="password" id="senha" class="form-control cursor bg-{{ $temas[5] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[6] }}" name="senha" placeholder="..." aria-label="..." aria-describedby="Senha" value="{{ old("senha") }}">
                                 <button type="button" id="mostrar" class="cursor input-group-text cor_fontes_{{ $temas[7] }} bg-{{ $temas[5] }} border-{{ $temas[1] }}">
                                     <i class="cursor bi bi-eye-slash-fill"></i>
                                 </button>
