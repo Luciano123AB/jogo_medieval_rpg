@@ -63,10 +63,17 @@ Route::prefix("/")->group(function () {
                         ]);
                     }
                 }
+
+                $temas = ["secondary", "primary", "escuro"];
+        
+                if (session("tema") == "claro" || !session()->has("tema")) {
+                    $temas = ["dark", "danger", "claro"];
+                }
                 
                 return view("index")
                     ->with("imagem", "estrada")
-                    ->with("pagina", "Home");
+                    ->with("pagina", "Home")
+                    ->with("temas", $temas);
             })->name("home");
 
             Route::get("regras", "regras")->name("regras");

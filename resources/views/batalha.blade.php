@@ -3,15 +3,6 @@
 @section("content")
     @include("layouts.partials.styles.estilos_batalha")
 
-    @php
-
-        $temas = ["secondary", "primary", "escuro"];
-        
-        if (session("tema") == "claro" || !session()->has("tema")) {
-            $temas = ["dark", "danger", "claro"];
-        }
-    @endphp
-
     <div class="d-flex justify-content-evenly text-center overflow-x-auto">
         <div class="cards_batalha card bg-transparent border border-0">
             <div class="card-header bg-transparent border border-0 h-100">

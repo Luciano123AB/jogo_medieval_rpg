@@ -17,30 +17,49 @@ class MainController extends Controller
         $this->alerta("Regras do Jogo!", "bi-question-circle-fill", "Aqui você entenderá como o jogo funciona.", "regras");
 
         $regras = Regra::all();
+        $temas = ["secondary", "primary", "escuro"];
+        
+        if (session("tema") == "claro" || !session()->has("tema")) {
+            $temas = ["dark", "danger", "claro"];
+        }
 
         return view("regras")
             ->with("imagem", "campo_treinamento")
             ->with("pagina", "Regras")
-            ->with("regras", $regras);
+            ->with("regras", $regras)
+            ->with("temas", $temas);
     }
 
     public function sobreClasses(): View {
         $this->alerta("Descrição das Classes!", "bi-person-lines-fill", "Aqui você vai entender como cada classe funciona.", "sobre");
 
         $personagens = Personagem::all();
+        $temas = ["secondary", "primary", "escuro"];
+        
+        if (session("tema") == "claro" || !session()->has("tema")) {
+            $temas = ["dark", "danger", "claro"];
+        }
 
         return view("sobre_classes")
             ->with("imagem", "estatuas_classes")
             ->with("pagina", "Descrições")
-            ->with("personagens", $personagens);
+            ->with("personagens", $personagens)
+            ->with("temas", $temas);
     }
 
     public function creditos(): View {
         $this->alerta("Créditos do Jogo!", "bi-body-text", "Aqui você verá a lista de todos os desenvolvedores envolvidos.", "creditos");
 
+        $temas = ["secondary", "primary", "escuro"];
+        
+        if (session("tema") == "claro" || !session()->has("tema")) {
+            $temas = ["dark", "danger", "claro"];
+        }
+
         return view("creditos")
             ->with("imagem", "estrada")
-            ->with("pagina", "Créditos");
+            ->with("pagina", "Créditos")
+            ->with("temas", $temas);
     }
 
     public function cadastro(): View {
@@ -48,11 +67,17 @@ class MainController extends Controller
 
         $personagens = Personagem::all();
         $paises = Paises::paises();
+        $temas = ["secondary", "primary", "light", "black", "escuro"];
+        
+        if (session("tema") == "claro" || !session()->has("tema")) {
+            $temas = ["dark", "danger", "dark", "white", "claro"];
+        }
 
         return view("cadastro_atualizacao", compact("paises"))
             ->with("imagem", "recrutamento")
             ->with("pagina", "Cadastro")
-            ->with("personagens", $personagens);
+            ->with("personagens", $personagens)
+            ->with("temas", $temas);
     }
 
     public function atualizacao(): View {
@@ -66,11 +91,17 @@ class MainController extends Controller
         $classe = session("player.personagem.classe");
         $foto = session("player.foto");
         $paises = Paises::paises();
+        $temas = ["secondary", "primary", "light", "black", "escuro"];
+        
+        if (session("tema") == "claro" || !session()->has("tema")) {
+            $temas = ["dark", "danger", "dark", "white", "claro"];
+        }
 
         return view("cadastro_atualizacao", compact("paises"))
             ->with("imagem", "recrutamento")
             ->with("pagina", "Atualização")
             ->with("personagens", $personagens)
+            ->with("temas", $temas)
             ->with([
                 "dados" => [
                     "id" => $id,
@@ -93,6 +124,11 @@ class MainController extends Controller
         $desafiou = Desafio::where("id_desafiador", session("player.id"))
                            ->pluck("id_desafiado")
                            ->toArray();
+        $temas = ["secondary", "primary", "light", "escuro"];
+        
+        if (session("tema") == "claro" || !session()->has("tema")) {
+            $temas = ["dark", "danger", "dark", "claro"];
+        }
 
         return view("listagens/players")
             ->with("imagem", "recrutamento")
@@ -100,7 +136,8 @@ class MainController extends Controller
             ->with("players", $players)
             ->with("player_lider_vitorias", $player_lider_vitorias)
             ->with("player_lider_nivel", $player_lider_nivel)
-            ->with("desafiou", $desafiou);
+            ->with("desafiou", $desafiou)
+            ->with("temas", $temas);
     }
 
     public function totaisPlayers() {
@@ -117,10 +154,17 @@ class MainController extends Controller
             ];
         }
 
+        $temas = ["secondary", "primary", "escuro"];
+        
+        if (session("tema") == "claro" || !session()->has("tema")) {
+            $temas = ["dark", "danger", "claro"];
+        }
+
         return view("listagens/totais_players")
             ->with("imagem", "recrutamento")
             ->with("pagina", "Totais")
-            ->with("totais", $totais);
+            ->with("totais", $totais)
+            ->with("temas", $temas);
     }
 
     public function registroBatalhas(): View {
@@ -132,23 +176,35 @@ class MainController extends Controller
         $batalhas_derrotas = Batalha::onlyTrashed()
                                     ->where("perdeu", session("player.usuario"))
                                     ->get();
+        $temas = ["secondary", "primary", "light", "escuro"];
+        
+        if (session("tema") == "claro" || !session()->has("tema")) {
+            $temas = ["dark", "danger", "dark", "claro"];
+        }
 
         return view("listagens/registro_batalhas")
             ->with("imagem", "registros")
             ->with("pagina", "Registro")
             ->with("batalhas_vitorias", $batalhas_vitorias)
-            ->with("batalhas_derrotas", $batalhas_derrotas);
+            ->with("batalhas_derrotas", $batalhas_derrotas)
+            ->with("temas", $temas);
     }
 
     public function batalhasAndamento(): View {
         $this->alerta("Batalhas em Andamento!", "bi-card-list", "Aqui você irá vizualizar todas as batalhas que estão acontecendo agora.", "batalhas");
 
         $batalhas = Batalha::where("deleted_at", null)->get();
+        $temas = ["secondary", "primary", "escuro"];
+        
+        if (session("tema") == "claro" || !session()->has("tema")) {
+            $temas = ["dark", "danger", "claro"];
+        }
 
         return view("listagens/batalhas")
             ->with("imagem", "registros")
             ->with("pagina", "Batalhas")
-            ->with("batalhas", $batalhas);
+            ->with("batalhas", $batalhas)
+            ->with("temas", $temas);
     }
 
     public function preparacao(): View {
@@ -158,13 +214,19 @@ class MainController extends Controller
         $classe_player = session("player.personagem.classe");
         $id = session("player.id");
         $nivel = Player::find($id);
+        $temas = ["secondary", "primary", "cor_niveis", "light", "escuro"];
+        
+        if (session("tema") == "claro" || !session()->has("tema")) {
+            $temas = ["dark", "danger", "text-danger", "dark", "claro"];
+        }
 
         return view("preparacao")
             ->with("imagem", "coliseu")
             ->with("pagina", "Preparação")
             ->with("personagens", $personagens)
             ->with("classe", $classe_player)
-            ->with("nivel", $nivel->nivel);
+            ->with("nivel", $nivel->nivel)
+            ->with("temas", $temas);
     }
 
     public function batalhar(): View {
@@ -228,6 +290,12 @@ class MainController extends Controller
             $batalha = Batalha::find($id_batalha);            
         }
 
+        $temas = ["secondary", "primary", "escuro"];
+        
+        if (session("tema") == "claro" || !session()->has("tema")) {
+            $temas = ["dark", "danger", "claro"];
+        }
+
         return view("batalha")
             ->with("imagem", "coliseu")
             ->with("pagina", "Batalha")
@@ -236,6 +304,7 @@ class MainController extends Controller
             ->with("bandeira_oponente", $pais)
             ->with("oponente", $oponente)
             ->with("foto", $foto_oponente)
-            ->with("nome", $nome_oponente);
+            ->with("nome", $nome_oponente)
+            ->with("temas", $temas);
     }    
 }

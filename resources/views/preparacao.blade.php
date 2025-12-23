@@ -1,15 +1,6 @@
 @extends("layouts.main_layout")
 
 @section("content")
-    @php
-
-        $temas = ["secondary", "primary", "cor_niveis", "light", "escuro"];
-        
-        if (session("tema") == "claro" || !session()->has("tema")) {
-            $temas = ["dark", "danger", "text-danger", "dark", "claro"];
-        }
-    @endphp
-
     <div class="container">
         <div class="fundos_card_{{ $temas[4] }} card p-3">
             <div class="d-flex gap-3">

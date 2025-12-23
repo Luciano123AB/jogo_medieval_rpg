@@ -1,14 +1,5 @@
 @extends("layouts.main_layout")
 
-@php
-
-    $temas = ["secondary", "primary", "escuro"];
-        
-    if (session("tema") == "claro" || !session()->has("tema")) {
-        $temas = ["dark", "danger", "claro"];
-    }
-@endphp
-
 @section("content")
     <div class="container">
         <div class="fundos_card_{{ $temas[2] }} card p-3">
