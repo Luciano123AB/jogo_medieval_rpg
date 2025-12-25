@@ -14,7 +14,7 @@ use Illuminate\Contracts\View\View;
 class MainController extends Controller
 {
     public function regras(): View {
-        $this->alerta("Regras do Jogo!", "bi-question-circle-fill", "Aqui você entenderá como o jogo funciona.", "regras");
+        $this->alerta("Regras do Jogo!", "bi-question-circle-fill", "Aqui você entenderá como o jogo funciona, tanto suas regras quanto funcionalidades.", "regras");
 
         $regras = Regra::all();
         $temas = ["secondary", "primary", "escuro"];
@@ -31,7 +31,7 @@ class MainController extends Controller
     }
 
     public function sobreClasses(): View {
-        $this->alerta("Descrição das Classes!", "bi-person-lines-fill", "Aqui você vai entender como cada classe funciona.", "sobre");
+        $this->alerta("Descrição das Classes!", "bi-person-lines-fill", "Aqui você leiará tudo sobre cada classe existente.", "sobre");
 
         $personagens = Personagem::all();
         $temas = ["secondary", "primary", "escuro"];
@@ -141,7 +141,7 @@ class MainController extends Controller
     }
 
     public function totaisPlayers() {
-        $this->alerta("Totais de Players!", "bi-flag-list", "Aqui você descobrirá quantos players de cada país estão presentes no jogo.", "totais");
+        $this->alerta("Totais de Players!", "bi-flag-fill", "Aqui você descobrirá quantos players de cada país estão presentes no jogo.", "totais");
 
         $paises = Paises::paises();
         $totaisBanco = PlayersPais::playersPais();
@@ -168,7 +168,7 @@ class MainController extends Controller
     }
 
     public function registroBatalhas(): View {
-        $this->alerta("Registro de Batalhas!", "bi-file-earmark-medical-fill", "Aqui você irá relembrar todas as suas vitórias e derrotas, e caso queira, poderá apagar esses registros.", "registro");
+        $this->alerta("Registro de Batalhas!", "bi-file-earmark-medical-fill", "Aqui você relembrará todas as suas vitórias e derrotas, e caso queira, poderá apagar esses registros.", "registro");
 
         $batalhas_vitorias = Batalha::onlyTrashed()
                                     ->where("ganhou", session("player.usuario"))
@@ -191,7 +191,7 @@ class MainController extends Controller
     }
 
     public function batalhasAndamento(): View {
-        $this->alerta("Batalhas em Andamento!", "bi-card-list", "Aqui você irá vizualizar todas as batalhas que estão acontecendo agora.", "batalhas");
+        $this->alerta("Batalhas em Andamento!", "bi-card-list", "Aqui você vizualizará todas as batalhas que estão acontecendo agora.", "batalhas");
 
         $batalhas = Batalha::where("deleted_at", null)->get();
         $temas = ["secondary", "primary", "escuro"];

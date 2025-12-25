@@ -41,7 +41,7 @@ class LogarSair extends Controller
             "xp" => $player->xp,
             "player" => $player
         ]);
-        $this->alertaResultado("Login Efetuado com Sucesso!", "Agora você pode acessar a página de batalha.", "bi-hand-thumbs-up-fill");
+        $this->alertaResultado("Login Efetuado com Sucesso!", "Agora você pode acessar a batalha e outras páginas.", "bi-hand-thumbs-up-fill");
 
         return redirect()->route("home");
     }

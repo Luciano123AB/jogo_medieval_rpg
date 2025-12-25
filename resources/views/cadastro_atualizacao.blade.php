@@ -43,7 +43,7 @@
                                     <span class="input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">
                                         <i class="bi bi-person-fill"></i>
                                     </span>
-                                    <input type="text" id="novo_usuario" class="form-control cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-black" name="novo_usuario" placeholder="Usuario123" aria-label="Usuario123" aria-describedby="NovoUsuario" value="{{ old("novo_usuario", $values[0]) }}">
+                                    <input type="text" id="novo_usuario" class="form-control cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}" name="novo_usuario" placeholder="Usuario123" aria-label="Usuario123" aria-describedby="NovoUsuario" value="{{ old("novo_usuario", $values[0]) }}">
                                 </div>
 
                                 @error("novo_usuario")
@@ -59,7 +59,7 @@
                                     <span class="input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">
                                         <i class="bi bi-envelope-at-fill"></i>
                                     </span>
-                                    <input type="email" id="novo_email" class="form-control cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-black" name="novo_email" placeholder="usuario@gmail.com" aria-label="usuario@gmail.com" aria-describedby="NovoEmail" value="{{ old("novo_email", $values[1]) }}">
+                                    <input type="email" id="novo_email" class="form-control cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}" name="novo_email" placeholder="usuario@gmail.com" aria-label="usuario@gmail.com" aria-describedby="NovoEmail" value="{{ old("novo_email", $values[1]) }}">
                                 </div>
 
                                 @error("novo_email")
@@ -73,7 +73,7 @@
                             <div class="mb-3">
                                 <div class="input-group">
                                     <span class="input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">***</span>
-                                    <input type="password" id="nova_senha" class="form-control cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-black" name="nova_senha" placeholder="..." aria-label="..." aria-describedby="NovaSenha" value="{{ old("nova_senha", $values[2]) }}">
+                                    <input type="password" id="nova_senha" class="form-control cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}" name="nova_senha" placeholder="..." aria-label="..." aria-describedby="NovaSenha" value="{{ old("nova_senha", $values[2]) }}">
                                     <button type="button" id="mostrar_novo" class="cursor input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">
                                         <i class="cursor bi bi-eye-slash-fill"></i>
                                     </button>
@@ -95,7 +95,7 @@
                             <div class="mb-3">
                                 <div class="input-group">
                                     <span class="input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">***</span>
-                                    <input type="password" id="confirmar_nova_senha" class="form-control cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-black" name="confirmar_nova_senha" placeholder="..." aria-label="..." aria-describedby="ConfirmarNovaSenha" value="{{ old("confirmar_nova_senha", $values[3]) }}">
+                                    <input type="password" id="confirmar_nova_senha" class="form-control cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}" name="confirmar_nova_senha" placeholder="..." aria-label="..." aria-describedby="ConfirmarNovaSenha" value="{{ old("confirmar_nova_senha", $values[3]) }}">
                                     <button type="button" id="mostrar_confirmar_novo" class="cursor input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">
                                         <i class="cursor bi bi-eye-slash-fill"></i>
                                     </button>
