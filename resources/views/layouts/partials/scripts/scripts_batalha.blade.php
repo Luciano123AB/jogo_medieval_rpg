@@ -1,32 +1,23 @@
 @php
     $tempo = Cache::get("batalha_tempo_" . session("dados.id_batalha"), [
-        "segundos01" => 0,
-        "segundos02" => 0,
+        "segundos" => 0,
         "minutos" => 0
     ]);
 @endphp
 
 <script>
 
-    let segundos01 = {{ $tempo["segundos01"] ?? 0 }};
-    let segundos02 = {{ $tempo["segundos02"] ?? 0 }};
+    let segundos = {{ $tempo["segundos"] ?? 0 }};
     let minutos = {{ $tempo["minutos"] ?? 0 }};
 
     function atualizar() {
-        document.getElementById("segundos01").innerText = segundos01;
-        document.getElementById("segundos02").innerText = segundos02;
+        document.getElementById("segundos").innerText = String(segundos).padStart(2, "0");
         document.getElementById("minutos").innerText = minutos;
 
-        segundos01++;
+        segundos++;
 
-        if (segundos01 >= 10) {
-            segundos01 = 0;
-            segundos02++;
-        }
-
-        if (segundos02 >= 6 && segundos01 >= 0) {
-            segundos01 = 0;
-            segundos02 = 0;
+        if (segundos == 60) {
+            segundos = 0;
             minutos++
         }
 
@@ -39,7 +30,7 @@
                 "Content-Type": "application/json",
                 "X-CSRF-TOKEN": "{{ csrf_token() }}"
             },
-            body: JSON.stringify({ segundos01, segundos02, minutos })
+            body: JSON.stringify({ segundos, minutos })
         });
     }
 

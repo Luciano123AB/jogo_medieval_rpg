@@ -47,7 +47,7 @@
                                 </div>
 
                                 @error("novo_usuario")
-                                    <div class="alert alert-danger animate__animated animate__shakeX mt-1 mb-0" role="alert">
+                                    <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                     </div>
                                 @enderror
@@ -63,7 +63,7 @@
                                 </div>
 
                                 @error("novo_email")
-                                    <div class="alert alert-danger animate__animated animate__shakeX mt-1 mb-0" role="alert">
+                                    <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                     </div>
                                 @enderror
@@ -80,12 +80,12 @@
                                 </div>
 
                                 @error("nova_senha")
-                                    <div class="alert alert-danger animate__animated animate__shakeX mt-1 mb-0" role="alert">
+                                    <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                     </div>
                                 @enderror
                                 @error("senhas")
-                                    <div class="alert alert-danger animate__animated animate__shakeX mt-1 mb-0" role="alert">
+                                    <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                     </div>
                                 @enderror
@@ -102,12 +102,12 @@
                                 </div>
 
                                 @error("confirmar_nova_senha")
-                                    <div class="alert alert-danger animate__animated animate__shakeX mt-1 mb-0" role="alert">
+                                    <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                     </div>
                                 @enderror
                                 @error("senhas")
-                                    <div class="alert alert-danger animate__animated animate__shakeX mt-1 mb-0" role="alert">
+                                    <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                     </div>
                                 @enderror
@@ -133,7 +133,7 @@
                                                     </div>
 
                                                     @error("genero")
-                                                        <div class="alert alert-danger animate__animated animate__shakeX mt-1 mb-0" role="alert">
+                                                        <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
                                                             <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                                         </div>
                                                     @enderror
@@ -179,7 +179,7 @@
                                                 </div>
 
                                                 @error("pais")
-                                                    <div class="alert alert-danger animate__animated animate__shakeX mt-1 mb-0" role="alert">
+                                                    <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
                                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                                     </div>
                                                 @enderror
@@ -214,7 +214,7 @@
                                             </div>
 
                                             @error("classe")
-                                                <div class="alert alert-danger animate__animated animate__shakeX mt-1" role="alert">
+                                                <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1" role="alert">
                                                     <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                                 </div>
                                             @enderror
@@ -261,12 +261,12 @@
                                             </div>
 
                                             @error("fotoTamanho")
-                                                <div class="alert alert-danger animate__animated animate__shakeX mt-1" role="alert">
+                                                <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1" role="alert">
                                                     <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                                 </div>
                                             @enderror
                                             @error("fotoErro")
-                                                <div class="alert alert-danger animate__animated animate__shakeX mt-1" role="alert">
+                                                <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1" role="alert">
                                                     <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                                 </div>
                                             @enderror
@@ -299,7 +299,7 @@
     
                             @error("playerExiste")
                                 <div class="d-flex justify-content-center">
-                                    <div class="alert alert-danger animate__animated animate__shakeX text-center w-50" role="alert">
+                                    <div class="alert alert-danger animate__animated animate__shakeX bg-danger text-center w-50" role="alert">
                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                     </div>
                                 </div>

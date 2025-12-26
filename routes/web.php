@@ -161,8 +161,7 @@ Route::prefix("/")->group(function () {
         $key = "batalha_tempo_$idBatalha";
 
         Cache::put($key, [
-            "segundos01" => $request->segundos01,
-            "segundos02" => $request->segundos02,
+            "segundos" => $request->segundos,
             "minutos" => $request->minutos
         ], now()->addMinutes(30));
 

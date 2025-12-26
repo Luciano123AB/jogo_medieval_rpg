@@ -69,7 +69,7 @@
                         </label>
                     </div>
                     @error("skill")
-                        <div class="alert alert-danger animate__animated animate__shakeX mb-0" role="alert">
+                        <div class="alert alert-danger animate__animated animate__shakeX bg-danger mb-0" role="alert">
                             <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                         </div>
                     @enderror
@@ -97,7 +97,7 @@
             @endif
             <div>
                 <h4 class="text-white">
-                    <span id="minutos"></span>:<span id="segundos02"></span><span id="segundos01"></span>
+                    <span id="minutos"></span>:<span id="segundos"></span>
                 </h4>
                 <h1 class="gifs animate__animated animate__fadeInDown position-relative my-auto">🆚</h1>
             </div>

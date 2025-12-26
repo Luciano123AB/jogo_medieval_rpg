@@ -58,7 +58,7 @@
                         <div>
                             @error("oponente")
                                 <div class="d-flex justify-content-center">
-                                    <div class="alert alert-danger animate__animated animate__shakeX text-center" role="alert">
+                                    <div class="alert alert-danger animate__animated animate__shakeX bg-danger text-center" role="alert">
                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                     </div>
                                 </div>

@@ -13,7 +13,7 @@
             <a href="{{ route("home") }}" id="home" class="cursor navbar-brand">
                 <img src="{{ asset("assets/images/icones/icone.png") }}" id="icone" class="cursor animate__animated animate__flipOutY animate__infinite">
                 <span class="cursor align-middle fs-3">🎮</span>
-                <span class="cursor titulos_{{ $temas[7] }} cor_fontes_{{ $temas[7] }} fw-bold align-middle fs-3">Jogo: Medieval RPG</span>
+                <span class="cursor titulos_{{ $temas[7] }} cor_fontes_{{ $temas[7] }} fw-bold align-middle fs-3">{{ env("APP_NAME") }}</span>
                 <br class="d-sm-none">
                 <span class="cursor cor_fontes_{{ $temas[7] }} animate__animated animate__fadeIn align-middle fs-3">- 
                     @if ($pagina == "Home")
@@ -59,8 +59,10 @@
 
         @if($pagina == "Batalha")
             <a href="{{ route("confirmarRender") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }} d-flex border my-1">
-                <span class="cursor cor_fontes_{{ $temas[7] }}">
-                    <i class="cursor bi bi-arrow-90deg-left animate__animated animate__fadeIn animate__infinite"></i>
+                <span class="cursor cor_fontes_{{ $temas[7] }} d-flex justify-content-center">
+                    <div class="cursor animate__animated animate__fadeOutLeft animate__infinite">
+                        <i class="cursor bi bi-arrow-90deg-left"></i>
+                    </div>
                     Render-se
                 </span>
             </a>
@@ -192,7 +194,7 @@
                                 <input type="email" id="email" class="form-control cursor bg-{{ $temas[5] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[6] }}" name="email" placeholder="usuario@gmail.com" aria-label="usuario@gmail.com" aria-describedby="Email" value="{{ old("email") }}">
                             </div>
                             @error("email")
-                                <div class="alert alert-danger animate__animated animate__shakeX mt-1 mb-0" role="alert">
+                                <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
                                     <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                 </div>
                             @enderror
@@ -208,7 +210,7 @@
                                 </button>
                             </div>
                             @error("senha")
-                                <div class="alert alert-danger animate__animated animate__shakeX mt-1 mb-0" role="alert">
+                                <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
                                     <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                 </div>
                             @enderror
@@ -216,7 +218,7 @@
 
                         @error("playerNaoExiste")
                             <div class="d-flex justify-content-center">
-                                <div class="alert alert-danger animate__animated animate__shakeX text-center w-50" role="alert">
+                                <div class="alert alert-danger animate__animated animate__shakeX bg-danger text-center w-50" role="alert">
                                     <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                 </div>
                             </div>
