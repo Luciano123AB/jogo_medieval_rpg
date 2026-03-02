@@ -120,6 +120,10 @@
     #espacamento {
         margin-bottom: 22%;
     }
+
+    #index_opcoes {
+        width: 75%;
+    }
     
     #direitos {
         width: 40px;
@@ -175,6 +179,11 @@
         height: 18px;
     }
 
+    #total_players {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+
     .opcoes_player_claro:hover {
         background-color: #64553a;
     }
@@ -225,6 +234,10 @@
     }
 
     @media(width <= 430px) {
+        #index_opcoes {
+            width: 100%;
+        }
+
         .horizontal_vertical {
             display: grid;
             grid-template-columns: 1fr;
@@ -232,6 +245,10 @@
 
         #lista_bandeiras {
             width: 100%;
+        }
+
+        #total_players {
+            grid-template-columns: 1fr 1fr;
         }
     }
 </style>

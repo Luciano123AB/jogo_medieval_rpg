@@ -3,7 +3,7 @@
 @section("content")
     <div class="container">
         <div class="fundos_card_{{ $temas[2] }} card p-3">
-            <div class="row row-cols-1 row-cols-md-5 g-4">
+            <div id="total_players" class="gap-3">
                 @foreach ($totais as $codigo => $dados)
                     <div class="col animate__animated animate__fadeInTopLeft">
                         <div class="cards sombras card bg-{{ $temas[0] }} border-{{ $temas[1] }} text-center">
