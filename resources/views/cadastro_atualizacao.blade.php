@@ -113,72 +113,25 @@
                                 @enderror
                             </div>
 
-                            <div class="overflow-x-auto">
-                                @if($pagina != "Atualização")
-                                    <div class="d-flex gap-3">
-                                        <div class="border-end border-{{ $temas[1] }} mb-3 pe-3">
-                                            <label class="form-label cor_fontes_{{ $temas[4] }}">Gênero:</label>
-                                            <div class="d-flex mb-3">
-                                                <div>
-                                                    <div class="input-group">
-                                                        <span class="input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">
-                                                            <i class="bi bi-sort-down"></i>
-                                                        </span>
-                                                        <select id="genero" class="form-select cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}" name="genero" aria-label="Generos">
-                                                            <option selected>Selecione seu gênero...</option>
-                                                            <option value="Masculino" {{ old("genero") == "Masculino" ? "selected" : "" }}>♂️ Masculino</option>
-                                                            <option value="Feminino" {{ old("genero") == "Feminino" ? "selected" : "" }}>♀️ Feminino</option>
-                                                            <option value="Outro" {{ old("genero") == "Outro" ? "selected" : "" }}>⚧ Outro</option>
-                                                        </select>
-                                                    </div>
-
-                                                    @error("genero")
-                                                        <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
-                                                            <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="w-50">
-                                            <label class="form-label cor_fontes_{{ $temas[4] }}">País:</label>
-                                            <div class="mb-3">
+                            @if($pagina != "Atualização")
+                                <div class="horizontal_vertical">
+                                    <div class="mb-3 me-3">
+                                        <label class="form-label cor_fontes_{{ $temas[4] }}">Gênero:</label>
+                                        <div class="d-flex">
+                                            <div>
                                                 <div class="input-group">
                                                     <span class="input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">
-                                                        <i class="bi bi-flag-fill"></i>
+                                                        <i class="bi bi-sort-down"></i>
                                                     </span>
-
-                                                    <div id="countrySelect" class="form-control cursor p-0 bg-{{ $temas[2] }} border-{{ $temas[1] }} text-{{ $temas[3] }}">
-                                                        @php
-
-                                                            $pais_antigo = old("pais");
-
-                                                        @endphp
-
-                                                        <div class="cursor selected-option d-flex align-items-center gap-2 p-1">
-                                                            @if($pais_antigo)
-                                                                <span class="fi fi-{{ strtolower($pais_antigo) }} ms-1"></span> 
-                                                                {{ $paises[$pais_antigo] }}
-                                                            @else
-                                                                🌐 Selecione seu país...
-                                                            @endif
-                                                        </div>
-
-                                                        <div id="paises" class="options border-top border-{{ $temas[1] }} rounded mt-1">
-                                                            @foreach($paises as $codigo => $nome)
-                                                                <div class="cursor option d-flex border-bottom border-{{ $temas[1] }} align-items-center gap-2 p-1" data-value="{{ $codigo }}">
-                                                                    <span class="fi fi-{{ strtolower($codigo) }} ms-1"></span> 
-                                                                    {{ $nome }}
-                                                                </div>
-                                                            @endforeach
-                                                        </div>
-
-                                                        <input type="hidden" name="pais" id="pais" value="{{ $pais_antigo }}">
-                                                    </div>
+                                                    <select id="genero" class="form-select cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}" name="genero" aria-label="Generos">
+                                                        <option selected>Selecione seu gênero...</option>
+                                                        <option value="Masculino" {{ old("genero") == "Masculino" ? "selected" : "" }}>♂️ Masculino</option>
+                                                        <option value="Feminino" {{ old("genero") == "Feminino" ? "selected" : "" }}>♀️ Feminino</option>
+                                                        <option value="Outro" {{ old("genero") == "Outro" ? "selected" : "" }}>⚧ Outro</option>
+                                                    </select>
                                                 </div>
 
-                                                @error("pais")
+                                                @error("genero")
                                                     <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
                                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                                     </div>
@@ -186,115 +139,160 @@
                                             </div>
                                         </div>
                                     </div>
-                                @endif
-        
-                                <div class="d-flex gap-3 mb-3">
-                                    <div class="d-flex gap-3">
-                                        <div>
-                                            <label class="form-label cor_fontes_{{ $temas[4] }}">{{ $pagina == "Cadastro" ? "Classe" : "Nova Classe" }}:</label>
+
+                                    <div id="lista_bandeiras">
+                                        <label class="form-label cor_fontes_{{ $temas[4] }}">País:</label>
+                                        <div class="mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">
-                                                    <i class="bi bi-sort-down"></i>
+                                                    <i class="bi bi-flag-fill"></i>
                                                 </span>
-                                                <select id="classe" class="form-select cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}" name="classe" aria-label="Classes">
-                                                    <option selected>Selecione sua classe...</option>
-                                                    @foreach ($personagens as $personagem)
-                                                        <option value="{{ $personagem->classe }}" {{ old("classe", $values[4]) == "$personagem->classe" ? "selected" : "" }}>
-                                                            @if($personagem->classe == "Guerreiro")
-                                                                🛡️
-                                                            @elseif($personagem->classe == "Mago")
-                                                                🔮
-                                                            @else
-                                                                🗡️
-                                                            @endif
-                                                            {{ $personagem->classe }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
 
-                                            @error("classe")
-                                                <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1" role="alert">
-                                                    <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
+                                                <div id="countrySelect" class="form-control cursor p-0 bg-{{ $temas[2] }} border-{{ $temas[1] }} text-{{ $temas[3] }}">
+                                                    @php
 
-                                        <div class="border-end border-{{ $temas[1] }} pe-3">
-                                            <label class="form-label cor_fontes_{{ $temas[4] }}">
-                                                <i class="bi bi-person-circle"></i>
-                                                Personagem:
-                                            </label>
-                                            <div>
-                                                <img src="{{ asset('assets/images/perfils/' . strtolower($classe) . '.png') }}" class="
-                                                    @if($pagina == "Atualização")
-                                                        @if($classe == "Guerreiro")
-                                                            bg-danger border-danger
-                                                        @elseif($classe == "Mago")
-                                                            bg-primary border-primary
-                                                        @elseif($classe == "Assassino")
-                                                            bg-dark border-dark
+                                                        $pais_antigo = old("pais");
+
+                                                    @endphp
+
+                                                    <div class="cursor selected-option d-flex align-items-center gap-2 p-1">
+                                                        @if($pais_antigo)
+                                                            <span class="fi fi-{{ strtolower($pais_antigo) }} ms-1"></span> 
+                                                            {{ $paises[$pais_antigo] }}
+                                                        @else
+                                                            🌐 Selecione seu país...
                                                         @endif
-                                                    @endif
-                                                    perfil_cadastro border border-3 rounded-circle
-                                                ">
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <label class="form-label cor_fontes_{{ $temas[4] }}">{{ $pagina == "Cadastro" ? "Foto (Opcional)" : "Nova Foto (Opcional)" }}:</label>
-                                            <div class="d-grid">
-                                                <div class="input-group">
-                                                    <span class="input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">
-                                                        <i class="bi bi-file-earmark-person-fill"></i>
-                                                    </span>
-                                                    <input id="foto" class="form-control cursor bg-{{ $temas[2] }} border border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}" type="file" name="foto" accept="image/png, image/jpeg">
-                                                </div>
-                                                @if($pagina == "Atualização")
-                                                    <div class="form-check mt-2">
-                                                        <input class="form-check-input cursor focus-ring border-{{ $temas[1] }} focus-ring-{{ $temas[1] }}" id="sem_foto" type="checkbox" name="sem_foto" value="nenhuma">
-                                                        <label class="form-check-label" for="sem_foto">
-                                                            <span class="cursor cor_fontes_{{ $temas[4] }}">Sem Foto</span>
-                                                        </label>
                                                     </div>
-                                                @endif
+
+                                                    <div id="paises" class="options border-top border-{{ $temas[1] }} rounded mt-1">
+                                                        @foreach($paises as $codigo => $nome)
+                                                            <div class="cursor option d-flex border-bottom border-{{ $temas[1] }} align-items-center gap-2 p-1" data-value="{{ $codigo }}">
+                                                                <span class="fi fi-{{ strtolower($codigo) }} ms-1"></span> 
+                                                                {{ $nome }}
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+
+                                                    <input type="hidden" name="pais" id="pais" value="{{ $pais_antigo }}">
+                                                </div>
                                             </div>
 
-                                            @error("fotoTamanho")
-                                                <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1" role="alert">
-                                                    <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
-                                                </div>
-                                            @enderror
-                                            @error("fotoErro")
-                                                <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1" role="alert">
+                                            @error("pais")
+                                                <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
                                                     <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                                 </div>
                                             @enderror
                                         </div>
-
-                                        <div>
-                                            <label class="form-label cor_fontes_{{ $temas[4] }}">
-                                                <i class="bi bi-person-bounding-box"></i>
-                                                Perfil:
-                                            </label>
-                                            @php
-                                                
-                                                $foto = asset("assets/images/perfils/vazio.png");
-
-                                                if ($pagina == "Atualização") {
-                                                    if ($dados["foto"] != "nenhuma") {
-                                                        
-                                                        $foto = "data:image/png;base64," . $dados["foto"];
-
-                                                    }
-                                                }
-                                            @endphp
-                                            <div>
-                                                <img src="{{ $foto }}" alt="Foto Preview" id="foto_preview" class="perfil_cadastro border border-3 rounded-circle">
-                                            </div>
-                                        </div>
-                                    </div>    
+                                    </div>
                                 </div>
+                            @endif
+    
+                            <div class="d-flex gap-3">
+                                <div class="horizontal_vertical gap-3">
+                                    <div>
+                                        <label class="form-label cor_fontes_{{ $temas[4] }}">{{ $pagina == "Cadastro" ? "Classe" : "Nova Classe" }}:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">
+                                                <i class="bi bi-sort-down"></i>
+                                            </span>
+                                            <select id="classe" class="form-select cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}" name="classe" aria-label="Classes">
+                                                <option selected>Selecione sua classe...</option>
+                                                @foreach ($personagens as $personagem)
+                                                    <option value="{{ $personagem->classe }}" {{ old("classe", $values[4]) == "$personagem->classe" ? "selected" : "" }}>
+                                                        @if($personagem->classe == "Guerreiro")
+                                                            🛡️
+                                                        @elseif($personagem->classe == "Mago")
+                                                            🔮
+                                                        @else
+                                                            🗡️
+                                                        @endif
+                                                        {{ $personagem->classe }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        @error("classe")
+                                            <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
+                                                <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    <div>
+                                        <label class="form-label cor_fontes_{{ $temas[4] }}">
+                                            <i class="bi bi-person-circle"></i>
+                                            Personagem:
+                                        </label>
+                                        <div>
+                                            <img src="{{ asset('assets/images/perfils/' . strtolower($classe) . '.png') }}" class="
+                                                @if($pagina == "Atualização")
+                                                    @if($classe == "Guerreiro")
+                                                        bg-danger border-danger
+                                                    @elseif($classe == "Mago")
+                                                        bg-primary border-primary
+                                                    @elseif($classe == "Assassino")
+                                                        bg-dark border-dark
+                                                    @endif
+                                                @endif
+                                                perfil_cadastro border border-3 rounded-circle
+                                            ">
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label class="form-label cor_fontes_{{ $temas[4] }}">{{ $pagina == "Cadastro" ? "Foto (Opcional)" : "Nova Foto (Opcional)" }}:</label>
+                                        <div class="d-grid">
+                                            <div class="input-group">
+                                                <span class="input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">
+                                                    <i class="bi bi-file-earmark-person-fill"></i>
+                                                </span>
+                                                <input id="foto" class="form-control cursor bg-{{ $temas[2] }} border border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}" type="file" name="foto" accept="image/png, image/jpeg">
+                                            </div>
+                                            @if($pagina == "Atualização")
+                                                <div class="form-check mt-2">
+                                                    <input class="form-check-input cursor focus-ring border-{{ $temas[1] }} focus-ring-{{ $temas[1] }}" id="sem_foto" type="checkbox" name="sem_foto" value="nenhuma">
+                                                    <label class="form-check-label" for="sem_foto">
+                                                        <span class="cursor cor_fontes_{{ $temas[4] }}">Sem Foto</span>
+                                                    </label>
+                                                </div>
+                                            @endif
+                                        </div>
+
+                                        @error("fotoTamanho")
+                                            <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1" role="alert">
+                                                <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
+                                            </div>
+                                        @enderror
+                                        @error("fotoErro")
+                                            <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1" role="alert">
+                                                <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    <div>
+                                        <label class="form-label cor_fontes_{{ $temas[4] }}">
+                                            <i class="bi bi-person-bounding-box"></i>
+                                            Perfil:
+                                        </label>
+                                        @php
+                                            
+                                            $foto = asset("assets/images/perfils/vazio.png");
+
+                                            if ($pagina == "Atualização") {
+                                                if ($dados["foto"] != "nenhuma") {
+                                                    
+                                                    $foto = "data:image/png;base64," . $dados["foto"];
+
+                                                }
+                                            }
+                                        @endphp
+                                        <div>
+                                            <img src="{{ $foto }}" alt="Foto Preview" id="foto_preview" class="perfil_cadastro border border-3 rounded-circle">
+                                        </div>
+                                    </div>
+                                </div>    
                             </div>
     
                             @error("playerExiste")

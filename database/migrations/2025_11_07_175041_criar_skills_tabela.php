@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('skills', function (Blueprint $table) {
-            $table->id()->autoIncrement()->comment("1");
-            $table->string("skill", 21)->nullable()->comment("...");
-            $table->integer("dano01")->nullable()->comment("100");
-            $table->integer("dano02")->nullable()->comment("140");
-            $table->integer("dano03")->nullable()->comment("220");
+            $table->id();
+            $table->string("skill", 21);
+            $table->integer("dano01")->comment("100");
+            $table->integer("dano02")->comment("140");
+            $table->integer("dano03")->comment("220");
             $table->timestamps();
         });
     }

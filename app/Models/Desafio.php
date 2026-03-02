@@ -10,4 +10,9 @@ class Desafio extends Model
         "id_desafiador",
         "id_desafiado"
     ];
+
+    protected $casts = [
+        "id_desafiador" => "integer",
+        "id_desafiado" => "integer"
+    ];
 }

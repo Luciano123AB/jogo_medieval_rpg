@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create("regras", function(Blueprint $table) {
-            $table->id()->autoIncrement()->comment("1");
-            $table->string("regra", 20)->nullable()->comment("...");
-            $table->string("explicacao", 300)->nullable()->comment("...");
-            $table->string("icone", 15)->nullable()->comment("bi-...");
-            $table->string("imagem", 20)->nullable()->comment("nome_imagem");
-            $table->string("animacao01", 30)->nullable()->comment("animate__...");
-            $table->string("animacao02", 30)->nullable()->comment("animate__...");
+            $table->id();
+            $table->string("regra", 20);
+            $table->string("explicacao", 300);
+            $table->string("icone", 15)->comment("bi-...");
+            $table->string("imagem", 20)->comment("nome_imagem");
+            $table->string("animacao01", 30)->comment("animate__...");
+            $table->string("animacao02", 30)->comment("animate__...");
             $table->timestamps();
         });
     }

@@ -263,7 +263,6 @@ class MainController extends Controller
             $nova_batalha->ganhou = null;
             $nova_batalha->perdeu = null;
             $nova_batalha->created_at = date("Y-m-d H:i:s");
-            $nova_batalha->updated_at = null;
             $nova_batalha->save();
 
             $novo_desafio = new Desafio();

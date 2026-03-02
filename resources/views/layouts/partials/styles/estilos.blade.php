@@ -158,6 +158,14 @@
         height: 100px;
     }
 
+    .horizontal_vertical {
+        display: flex;
+    }
+
+    #lista_bandeiras {
+        width: 33%;
+    }
+
     .perfil_player {
         width: 50px;
         height: 50px;
@@ -214,5 +222,16 @@
         max-height: 50vh;
         overflow-y: auto;
         overflow-x: auto;
+    }
+
+    @media(width <= 430px) {
+        .horizontal_vertical {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        #lista_bandeiras {
+            width: 100%;
+        }
     }
 </style>

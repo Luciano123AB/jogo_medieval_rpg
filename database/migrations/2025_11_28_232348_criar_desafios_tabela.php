@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create("desafios", function (Blueprint $table) {
             $table->id();
-            $table->integer("id_desafiador")->nullable();
-            $table->integer("id_desafiado")->nullable();
+            $table->integer("id_desafiador");
+            $table->integer("id_desafiado");
             $table->timestamps();
         });
     }

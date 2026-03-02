@@ -17,6 +17,17 @@ class Personagem extends Model
         "hp"
     ];
 
+    protected $casts = [
+        "classe" => "string",
+        "imagem" => "string",
+        "descricao" => "string",
+        "tipo_dano" => "string",
+        "alcance" => "string",
+        "vida" => "string",
+        "defesa" => "string",
+        "hp" => "integer"
+    ];
+
     public function skills() {
         return $this->hasMany(Skill::class);
     }

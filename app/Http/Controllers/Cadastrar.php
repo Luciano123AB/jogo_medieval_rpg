@@ -119,7 +119,6 @@ class Cadastrar extends Controller
         $player->quantidade_derrotas = 0;
         $player->id_personagem = session("dados.classe");
         $player->created_at = date("Y-m-d H:i:s");
-        $player->updated_at = null;
         $player->save();
 
         if (!$player) {

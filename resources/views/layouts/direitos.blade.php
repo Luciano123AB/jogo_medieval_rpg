@@ -13,8 +13,10 @@
     <div class="bg-{{ $temas[0] }} border-{{ $temas[1] }} rounded-2 border text-center shadow mx-auto" style="max-width: 619px;">
         <img src="{{ asset('assets/images/proprietario.png') }}" style="width: 35px; height: 35px;" class="border border-{{ $temas[1] }} rounded-start-2 rounded-end-2">
         <small class="text-white">
-            <span class="cor_fontes_{{ $temas[2] }}"> © {{ date("Y") }} Jogo RPG - 
-                <span id="direitos" class="me-1">TODOS OS DIREITOS RESERVADOS: Luciano Eduardo Stefanello da Silva</span>
+            <span class="cor_fontes_{{ $temas[2] }}">
+                <span id="direitos">TODOS OS DIREITOS RESERVADOS: Luciano Eduardo Stefanello da Silva</span>
+                <br>
+                © 2025 - {{ date("Y") }} {{ env("APP_NAME") }}
             </span>
         </small>
     </div>

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Batalha extends Model
 {
+    const UPDATED_AT = null;
+
     protected $fillable = [
         "nome",
         "nome_oponente",
@@ -17,6 +19,18 @@ class Batalha extends Model
         "vez",
         "ganhou",
         "perdeu"
+    ];
+
+    protected $casts = [
+        "nome" => "string",
+        "nome_oponente" => "string",
+        "hp_maximo" => "integer",
+        "hp" => "integer",
+        "hp_maximo_oponente" => "integer",
+        "hp_oponente" => "integer",
+        "vez" => "integer",
+        "ganhou" => "string",
+        "perdeu" => "string"
     ];
 
     use SoftDeletes;

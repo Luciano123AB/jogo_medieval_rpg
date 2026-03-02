@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('batalhas', function (Blueprint $table) {
-            $table->id()->autoIncrement()->comment("1");
-            $table->string("nome")->nullable()->comment("Player");
-            $table->string("nome_oponente")->nullable()->comment("Oponente");
-            $table->integer("hp_maximo")->nullable()->comment("2200");
-            $table->integer("hp")->nullable()->comment("2200");
-            $table->integer("hp_maximo_oponente")->nullable()->comment("3200");
-            $table->integer("hp_oponente")->nullable()->comment("3200");
-            $table->integer("vez")->nullable()->comment("0|1");
-            $table->string("ganhou", 30)->nullable()->comment("Player|Oponente");
-            $table->string("perdeu", 30)->nullable()->comment("Player|Oponente");
+            $table->id();
+            $table->string("nome");
+            $table->string("nome_oponente");
+            $table->integer("hp_maximo")->comment("2200");
+            $table->integer("hp")->comment("2200");
+            $table->integer("hp_maximo_oponente")->comment("3200");
+            $table->integer("hp_oponente")->comment("3200");
+            $table->integer("vez")->comment("0|1");
+            $table->string("ganhou", 30)->comment("Player|Oponente");
+            $table->string("perdeu", 30)->comment("Player|Oponente");
             $table->timestamps();
             $table->softDeletes();
         });

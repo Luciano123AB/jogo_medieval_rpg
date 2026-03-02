@@ -12,17 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('players', function (Blueprint $table) {
-            $table->id()->autoIncrement()->comment("1");
-            $table->string("usuario", 30)->nullable()->comment("Usuario123AB");
-            $table->string("email", 100)->nullable()->comment("usuario@gmail.com");
-            $table->string("senha", 255)->nullable()->comment("***");
-            $table->string("genero", 9)->nullable()->comment("Masculino|Feminino|Outro");
-            $table->string("pais", 2)->nullable()->comment("Brasil");
-            $table->longText("foto", 13980320)->nullable()->comment("iVBORw0KGgo...");
-            $table->integer("nivel")->nullable()->default(1)->comment("1");
-            $table->float("xp")->nullable()->default(0)->comment("99");
-            $table->integer("quantidade_vitorias")->default(0)->comment("10");
-            $table->integer("quantidade_derrotas")->default(0)->comment("10");
+            $table->id();
+            $table->string("usuario", 30);
+            $table->string("email", 100);
+            $table->string("senha", 255);
+            $table->string("genero", 9)->comment("Masculino|Feminino|Outro");
+            $table->string("pais", 2);
+            $table->longText("foto", 13980320)->comment("iVBORw0KGgo...");
+            $table->integer("nivel")->default(1);
+            $table->float("xp")->default(0)->comment("100");
+            $table->integer("quantidade_vitorias")->default(0);
+            $table->integer("quantidade_derrotas")->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
