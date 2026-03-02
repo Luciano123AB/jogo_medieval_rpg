@@ -3,8 +3,8 @@
 @section("content")
     <div class="container">
         <div class="fundos_card_{{ $temas[3] }} card p-3">
-            <div class="row row-cols-1 row-cols-md-2 g-3">
-                <div class="col cards">
+            <div class="horizontal_vertical gap-3">
+                <div class="col">
                     <div class="sombras tabelas card animate__animated animate__backInLeft bg-{{ $temas[0] }} border-{{ $temas[1] }} p-3">
                         <div class="d-flex justify-content-between mb-2">
                             <h4 class="cor_fontes_{{ $temas[3] }} titulos_{{ $temas[3] }}">-Vitórias:</h4>
@@ -53,7 +53,7 @@
                     </div>
                 </div>
 
-                <div class="col cards">
+                <div class="col">
                     <div class="sombras tabelas card animate__animated animate__backInRight bg-{{ $temas[0] }} border-{{ $temas[1] }} p-3">
                         <div class="d-flex justify-content-between mb-2">
                             <h4 class="cor_fontes_{{ $temas[3] }} titulos_{{ $temas[3] }}">-Derrotas:</h4>
