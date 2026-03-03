@@ -45,32 +45,31 @@ class EditarDeletar extends Controller
         $request->validate(
             [
                 "novo_usuario" => "required|max:30",
-                "novo_email" => "required|max:100",
-                "nova_senha" => "required|max:60",
-                "confirmar_nova_senha" => "required"
+                "novo_email" => "required|min:11|max:100",
+                "nova_senha" => "required|min:3|max:60|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/",
+                "confirmar_nova_senha" => "required|same:nova_senha"
             ],
 
             [
                 "novo_usuario.required" => "O campo usuário é obrigatório.",
-                "novo_usuario.max" => "O nome de usuário deve ter no máximo 30 caracteres.",
+                "novo_usuario.max" => "O nome de usuário deve ter no máximo :max caracteres.",
                 "novo_email.required" => "O campo email é obrigatório.",
-                "novo_email.max" => "O email deve ter no máximo 100 caracteres.",
+                "novo_email.max" => "O email deve ter no máximo :max caracteres.",
+                "novo_email.min" => "O email deve ter no mínimo :min caracteres.",
                 "nova_senha.required" => "O campo senha é obrigatório.",
-                "nova_senha.max" => "O nome de usuário deve ter no máximo 60 caracteres.",
-                "confirmar_nova_senha.required" => "Confirme sua senha."
+                "nova_senha.min" => "A senha deve ter no mínimo :min caracteres.",
+                "nova_senha.max" => "A senha deve ter no máximo :max caracteres.",
+                "nova_senha.regex" => "A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um número.",
+                "confirmar_nova_senha.required" => "O campo confirmar senha é obrigatório.",
+                "confirmar_nova_senha.same" => "As senhas não coincidem."
             ]
         );
 
         $usuario = $request->input("novo_usuario");
         $email = $request->input("novo_email");
         $senha = $request->input("nova_senha");
-        $confirmar_senha = $request->input("confirmar_nova_senha");
         $foto = "";
         $sem_foto = $request->input("sem_foto");
-
-        if ($senha != $confirmar_senha) {
-            return redirect()->back()->withInput()->withErrors(["senhas" => "As senhas estão diferentes! Tente novamente."]);
-        }
 
         $classe = GenerosClasses::escolhaClasse($classe_escolhida);
 
