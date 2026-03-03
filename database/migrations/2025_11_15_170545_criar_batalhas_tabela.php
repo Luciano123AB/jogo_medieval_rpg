@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer("hp_maximo_oponente")->comment("3200");
             $table->integer("hp_oponente")->comment("3200");
             $table->integer("vez")->comment("0|1");
-            $table->string("ganhou", 30)->comment("Player|Oponente");
-            $table->string("perdeu", 30)->comment("Player|Oponente");
+            $table->string("ganhou", 30)->nullable()->comment("Player|Oponente");
+            $table->string("perdeu", 30)->nullable()->comment("Player|Oponente");
             $table->timestamps();
             $table->softDeletes();
         });
