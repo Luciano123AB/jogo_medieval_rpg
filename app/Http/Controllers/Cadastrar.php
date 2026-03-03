@@ -18,7 +18,7 @@ class Cadastrar extends Controller
         $request->validate(
             [
                 "novo_usuario" => "required|max:30",
-                "novo_email" => "required|min:11|max:100",
+                "novo_email" => "required|min:11|max:100|email",
                 "nova_senha" => "required|min:3|max:60|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/",
                 "confirmar_nova_senha" => "required|same:nova_senha",
                 "pais" => "required"
@@ -28,8 +28,9 @@ class Cadastrar extends Controller
                 "novo_usuario.required" => "O campo usuário é obrigatório.",
                 "novo_usuario.max" => "O nome de usuário deve ter no máximo :max caracteres.",
                 "novo_email.required" => "O campo email é obrigatório.",
-                "novo_email.max" => "O email deve ter no máximo :max caracteres.",
                 "novo_email.min" => "O email deve ter no mínimo :min caracteres.",
+                "novo_email.max" => "O email deve ter no máximo :max caracteres.",
+                "novo_email.email" => "O email deve ser um email válido.",
                 "nova_senha.required" => "O campo senha é obrigatório.",
                 "nova_senha.min" => "A senha deve ter no mínimo :min caracteres.",
                 "nova_senha.max" => "A senha deve ter no máximo :max caracteres.",

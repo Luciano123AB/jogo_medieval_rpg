@@ -28,13 +28,13 @@ class LogarSair extends Controller
                         ->first();        
 
         if (!$player) {
-            return redirect()->back()->withInput()->withErrors(["playerNaoExiste" => "Esse player não está cadastrado! Tente novamente."]);
+            return redirect()->back()->withInput()->withErrors(["playerNaoExiste" => "Esse player não está cadastrado! Tente outro."]);
         }
 
         $player_senha = decrypt($player->senha);
 
         if ($player_senha != $senha) {
-            return redirect()->back()->withInput()->withErrors(["playerNaoExiste" => "Esse player não está cadastrado! Tente novamente."]);
+            return redirect()->back()->withInput()->withErrors(["playerNaoExiste" => "Esse player não está cadastrado! Tente outro."]);
         }
 
         session([

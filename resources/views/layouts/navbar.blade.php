@@ -217,10 +217,8 @@
                         </div>
 
                         @error("playerNaoExiste")
-                            <div class="d-flex justify-content-center">
-                                <div class="alert alert-danger animate__animated animate__shakeX bg-danger text-center w-50" role="alert">
-                                    <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
-                                </div>
+                            <div class="alert alert-danger animate__animated animate__shakeX bg-danger" role="alert">
+                                <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                             </div>
                         @enderror
 
