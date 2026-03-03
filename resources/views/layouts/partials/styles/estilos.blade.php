@@ -147,6 +147,12 @@
         transform: scale(0.95);
     }
 
+    #regras {
+        width: 50%;
+        border-radius: 5px 0 0 5px;
+        border-right: 1px solid #dc3545;
+    }
+
     .paragrafos {
         text-indent: 30px;
     }
@@ -241,6 +247,13 @@
         .horizontal_vertical {
             display: grid;
             grid-template-columns: 1fr;
+        }
+
+        #regras {
+            width: 100%;
+            border-radius: 5px 5px 0 0;
+            border-right: none;
+            border-bottom: 1px solid #dc3545;
         }
 
         #lista_bandeiras {
