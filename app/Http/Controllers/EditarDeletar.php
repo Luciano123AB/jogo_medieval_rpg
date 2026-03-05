@@ -28,13 +28,13 @@ class EditarDeletar extends Controller
             $this->alertaResultado("Erro ao Deletar!", "Ocorreu um erro ao tentar excluir a conta! Tente novamente.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
-        } else {
-            session()->forget(["alerta_confirmar", "player"]);
-
-            $this->alertaResultado("Player Deletado com Sucesso!", "Caso queira começar novamente do zero, sinta-se à vontade para criar uma nova conta.", "bi-hand-thumbs-up-fill");
-
-            return redirect()->route("home");
         }
+
+        session()->forget(["alerta_confirmar", "player"]);
+
+        $this->alertaResultado("Player Deletado com Sucesso!", "Caso queira começar novamente do zero, sinta-se à vontade para criar uma nova conta.", "bi-hand-thumbs-up-fill");
+
+        return redirect()->route("home");
     }
 
     public function confirmarAtualizar(Request $request): RedirectResponse {
@@ -149,13 +149,13 @@ class EditarDeletar extends Controller
             $this->alertaResultado("Erro ao Atualizar!", "Ocorreu um erro ao tentar atualizar o player! Tente novamente.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
-        } else {
-            session()->forget("alerta_confirmar");
-
-            session(["player" => $novo_player]);
-            $this->alertaResultado("Player Atualizado com Sucesso!", "Para ver seu novo nome de usuário e(ou) classe nova, deslogue e faça o login novamente.", "bi-hand-thumbs-up-fill");
-
-            return redirect()->route("home");
         }
+        
+        session()->forget("alerta_confirmar");
+
+        session(["player" => $novo_player]);
+        $this->alertaResultado("Player Atualizado com Sucesso!", "Para ver seu novo nome de usuário e(ou) classe nova, deslogue e faça o login novamente.", "bi-hand-thumbs-up-fill");
+
+        return redirect()->route("home");
     }
 }

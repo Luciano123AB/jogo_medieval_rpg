@@ -140,7 +140,7 @@ class MainController extends Controller
             ->with("temas", $temas);
     }
 
-    public function totaisPlayers() {
+    public function totaisPlayers(): View {
         $this->alerta("Totais de Players!", "bi-flag-fill", "Aqui você descobrirá quantos players de cada país estão presentes no jogo.", "totais");
 
         $paises = Paises::paises();

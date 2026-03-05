@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Batalha;
 use App\Models\Player;
+use Illuminate\Http\RedirectResponse;
 
 Class FinalizarBatalha extends Controller
 {
-    public function finalizarVitoria(Batalha $batalha) {
+    public function finalizarVitoria(Batalha $batalha): RedirectResponse {
         session()->forget([
             "inicio_player", "inicio_oponente",
             "skill01", "skill02", "skill03", "skill01_oponente", "skill02_oponente", "skill03_oponente",
@@ -76,14 +77,14 @@ Class FinalizarBatalha extends Controller
             session()->forget("nome_oponente");
 
             return redirect()->route("preparacao");
-        } else {
-            session()->forget("nome_oponente");
-
-            return redirect()->route("listagem");
         }
+
+        session()->forget("nome_oponente");
+
+        return redirect()->route("listagem");
     }
 
-    public function finalizarDerrota(Batalha $batalha) {
+    public function finalizarDerrota(Batalha $batalha): RedirectResponse {
         session()->forget([
             "inicio_player", "inicio_oponente",
             "skill01", "skill02", "skill03", "skill01_oponente", "skill02_oponente", "skill03_oponente",
@@ -123,10 +124,10 @@ Class FinalizarBatalha extends Controller
             session()->forget(["id_player", "nome_oponente"]);
 
             return redirect()->route("preparacao");
-        } else {
-            session()->forget(["id_player", "nome_oponente"]);
-
-            return redirect()->route("listagem");
         }
+        
+        session()->forget(["id_player", "nome_oponente"]);
+
+        return redirect()->route("listagem");
     }
 }

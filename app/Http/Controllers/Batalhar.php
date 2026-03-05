@@ -166,10 +166,10 @@ class Batalhar extends Controller
             session()->forget("nome_oponente");
 
             return redirect()->route("preparacao");
-        } else {
-            session()->forget("nome_oponente");
-
-            return redirect()->route("listagem");
         }
+        
+        session()->forget("nome_oponente");
+
+        return redirect()->route("listagem");
     }
 }

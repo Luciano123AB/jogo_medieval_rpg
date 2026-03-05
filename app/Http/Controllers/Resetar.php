@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Batalha;
+use Illuminate\Http\RedirectResponse;
 
 class Resetar extends Controller
 {
-    public function resetarVitorias() {
+    public function resetarVitorias(): RedirectResponse {
 
         $player = session("player.usuario");
         $vitorias = Batalha::where("ganhou", $player);
@@ -17,14 +18,14 @@ class Resetar extends Controller
             $this->alertaResultado("Erro ao Resetar!", "Ocorreu um erro ao tentar resetar as vitórias! Tente novamente.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
-        } else {
-            $this->alertaResultado("Vitórias Resetadas com Sucesso!", "Histórico de vitórias limpado com êxito.", "bi-hand-thumbs-up-fill");
-
-            return redirect()->back();
         }
+
+        $this->alertaResultado("Vitórias Resetadas com Sucesso!", "Histórico de vitórias limpado com êxito.", "bi-hand-thumbs-up-fill");
+
+        return redirect()->back();
     }
 
-    public function resetarDerrotas() {
+    public function resetarDerrotas(): RedirectResponse {
         
         $player = session("player.usuario");
         $derrotas = Batalha::where("perdeu", $player);
@@ -35,10 +36,10 @@ class Resetar extends Controller
             $this->alertaResultado("Erro ao Resetar!", "Ocorreu um erro ao tentar resetar as derrotas! Tente novamente.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
-        } else {
-            $this->alertaResultado("Derrotas Resetadas com Sucesso!", "Histórico de derrotas limpado com êxito.", "bi-hand-thumbs-up-fill");
-
-            return redirect()->back();
         }
+
+        $this->alertaResultado("Derrotas Resetadas com Sucesso!", "Histórico de derrotas limpado com êxito.", "bi-hand-thumbs-up-fill");
+
+        return redirect()->back();
     }
 }

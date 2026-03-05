@@ -127,12 +127,12 @@ class Cadastrar extends Controller
             $this->alertaResultado("Erro ao Cadastrar!", "Ocorreu um erro ao tentar cadastrar esse player! Tente novamente.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back()->withInput();
-        } else {
-            session()->forget("alerta_confirmar");
-            
-            $this->alertaResultado("Player Cadastrado com Sucesso!", "Agora você pode realizar o login e acessar a página de batalha.", "bi-hand-thumbs-up-fill");
-
-            return redirect()->route("home");
         }
+        
+        session()->forget("alerta_confirmar");
+        
+        $this->alertaResultado("Player Cadastrado com Sucesso!", "Agora você pode realizar o login e acessar a página de batalha.", "bi-hand-thumbs-up-fill");
+
+        return redirect()->route("home");
     }
 }
