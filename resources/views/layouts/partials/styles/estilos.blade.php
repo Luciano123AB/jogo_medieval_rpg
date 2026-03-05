@@ -124,6 +124,10 @@
     #index_opcoes {
         width: 75%;
     }
+
+    #rodape {
+        max-width: 600px;
+    }
     
     #direitos {
         width: 40px;

@@ -10,7 +10,7 @@
 @endphp
 
 <footer class="animate__animated animate__fadeInUpBig mx-3 mt-5 mb-3">
-    <div class="bg-{{ $temas[0] }} border-{{ $temas[1] }} rounded-2 border text-center shadow mx-auto" style="max-width: 619px;">
+    <div id="rodape" class="bg-{{ $temas[0] }} border-{{ $temas[1] }} rounded-2 border text-center shadow mx-auto">
         <img src="{{ asset('assets/images/proprietario.png') }}" style="width: 35px; height: 35px;" class="border border-{{ $temas[1] }} rounded-start-2 rounded-end-2">
         <small class="text-white">
             <span class="cor_fontes_{{ $temas[2] }}">

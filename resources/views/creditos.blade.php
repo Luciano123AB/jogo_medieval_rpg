@@ -7,21 +7,19 @@
                 <div class="sombras card bg-{{ $temas[0] }} border-{{ $temas[1] }} p-3">
                     <div>
                         <h3 class="titulos_{{ $temas[2] }} cor_fontes_{{ $temas[2] }} animate__animated animate__fadeInUpBig">
-                            <i class="bi bi-arrow-right"></i>
-                            Nome do jogo e introdução inicial:
+                            <i class="bi bi-arrow-right me-1"></i>Nome do jogo e introdução inicial:
                         </h3>
                         <ul>
                             <li class="cor_fontes_{{ $temas[2] }} animate__animated animate__fadeInUpBig">
                                 <img src="{{ asset("assets/images/icones/icone.png") }}" id="icone_creditos">
-                                Jogo: Medieval RPG
+                                {{ env("APP_NAME") }}
                             </li>
                         </ul>
                     </div>
 
                     <div>
                         <h3 class="titulos_{{ $temas[2] }} cor_fontes_{{ $temas[2] }} animate__animated animate__fadeInUpBig">
-                            <i class="bi bi-arrow-right"></i>
-                            Equipe principal do desenvolvimento:
+                            <i class="bi bi-arrow-right me-1"></i>Equipe principal do desenvolvimento:
                         </h3>
                         <ul>
                             <li class="cor_fontes_{{ $temas[2] }} animate__animated animate__fadeInUpBig">Direção: Luciano Eduardo Stefanello da Silva</li>
@@ -33,8 +31,7 @@
 
                     <div>
                         <h3 class="titulos_{{ $temas[2] }} cor_fontes_{{ $temas[2] }} animate__animated animate__fadeInUpBig">
-                            <i class="bi bi-arrow-right"></i>
-                            Equipe de produtores e líderes:
+                            <i class="bi bi-arrow-right me-1"></i>Equipe de produtores e líderes:
                         </h3>
                         <ul>
                             <li class="cor_fontes_{{ $temas[2] }} animate__animated animate__fadeInUpBig">Luciano Eduardo Stefanello da Silva</li>
@@ -43,8 +40,7 @@
 
                     <div>
                         <h3 class="titulos_{{ $temas[2] }} cor_fontes_{{ $temas[2] }} animate__animated animate__fadeInUpBig">
-                            <i class="bi bi-arrow-right"></i>
-                            Equipe de apoio e colaboradores:
+                            <i class="bi bi-arrow-right me-1"></i>Equipe de apoio e colaboradores:
                         </h3>
                         <ul>
                             <li class="cor_fontes_{{ $temas[2] }} animate__animated animate__fadeInUpBig">Testadores: Luciano Eduardo Stefanello da Silva</li>
@@ -55,8 +51,7 @@
 
                     <div>
                         <h3 class="titulos_{{ $temas[2] }} cor_fontes_{{ $temas[2] }} animate__animated animate__fadeInUpBig">
-                            <i class="bi bi-arrow-right"></i>
-                            Música e áudio:
+                            <i class="bi bi-arrow-right me-1"></i>Música e áudio:
                         </h3>
                         <ul>
                             <li class="cor_fontes_{{ $temas[2] }} animate__animated animate__fadeInUpBig">Compositores: Nenhum</li>
@@ -66,8 +61,7 @@
 
                     <div>
                         <h3 class="titulos_{{ $temas[2] }} cor_fontes_{{ $temas[2] }} animate__animated animate__fadeInUpBig">
-                            <i class="bi bi-arrow-right"></i>
-                            Suporte técnico e colaboradores externos:
+                            <i class="bi bi-arrow-right me-1"></i>Suporte técnico e colaboradores externos:
                         </h3>
                         <ul>
                             <li class="cor_fontes_{{ $temas[2] }} animate__animated animate__fadeInUpBig">Luciano Eduardo Stefanello da Silva</li>
@@ -76,8 +70,7 @@
 
                     <div>
                         <h3 class="titulos_{{ $temas[2] }} cor_fontes_{{ $temas[2] }} animate__animated animate__fadeInUpBig">
-                            <i class="bi bi-arrow-right"></i>
-                            Agradecimentos especiais:
+                            <i class="bi bi-arrow-right me-1"></i>Agradecimentos especiais:
                         </h3>
                         <ul>
                             <li class="cor_fontes_{{ $temas[2] }} animate__animated animate__fadeInUpBig">Pessoas: Nenhum</li>
@@ -88,9 +81,7 @@
 
                     <div>
                         <h3 class="titulos_{{ $temas[2] }} cor_fontes_{{ $temas[2] }} animate__animated animate__fadeInUpBig">
-                            <i class="bi bi-arrow-right"></i>
-                            <i class="bi bi-arrow-right"></i>
-                            Lista das empresas e estúdios envolvidos:
+                            <i class="bi bi-arrow-right me-1"></i>Lista das empresas e estúdios envolvidos:
                         </h3>
                         <ul>
                             <li class="cor_fontes_{{ $temas[2] }} animate__animated animate__fadeInUpBig">Nenhum</li>
