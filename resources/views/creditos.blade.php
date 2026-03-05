@@ -3,8 +3,8 @@
 @section("content")
     <div class="container">
         <div class="fundos_card_{{ $temas[2] }} card p-3">
-            <div class="d-grid gap-3 w-100">
-                <div class="sombras card bg-{{ $temas[0] }} border-{{ $temas[1] }} p-3">
+            <div class="w-100">
+                <div class="sombras card d-grid gap-1 bg-{{ $temas[0] }} border-{{ $temas[1] }} p-3">
                     <div>
                         <h3 class="titulos_{{ $temas[2] }} cor_fontes_{{ $temas[2] }} animate__animated animate__fadeInUpBig">
                             <i class="bi bi-arrow-right me-1"></i>Nome do jogo e introdução inicial:
