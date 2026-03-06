@@ -233,6 +233,10 @@
         height: 63px;
     }
 
+    .registro {
+        width: 50%;
+    }
+
     .tabelas {
         height: 50vh;
     }
@@ -266,6 +270,10 @@
 
         #total_players {
             grid-template-columns: 1fr 1fr;
+        }
+
+        .registro {
+            width: 100%;
         }
     }
 </style>
