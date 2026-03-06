@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Batalha;
 use App\Models\Player;
+use App\Services\Salvar;
 use Illuminate\Http\RedirectResponse;
 
 Class FinalizarBatalha extends Controller
@@ -21,48 +22,21 @@ Class FinalizarBatalha extends Controller
         $xp = 00.0;
 
         if (session("nome_oponente") == "Computador") {
-            $batalha->perdeu = "Computador";
-        } else {
-            $batalha->perdeu = session("nome_oponente");
-        }
-
-        if (session("nome_oponente") == "Computador") {
             $xp = 25.0;
         } else {
             $xp = 33.5;
         }
         
         $player = Player::find($id);
-        if ($player->nivel < 70) {
-            $player->xp = $player->xp + $xp;
-            
-            if ($player->xp >= 100) {
-                $player->nivel++;
-                $player->xp = 0;
-                $rota = route('home');
-            }
+
+        if ($player->xp >= 100) {
+            $rota = route('home');
         }
-        $player->quantidade_vitorias = $player->quantidade_vitorias + 1;
-        $player->save();
+
+        Salvar::vitoria($player, $xp, $batalha);
 
         session(["xp" => $player->xp]);
-
-        $batalha->ganhou = $player->usuario;
-
-        if (session()->has("id_player")) {
-
-            $id = session("id_player");
-
-            $player = Player::find($id);
-            $player->quantidade_derrotas = $player->quantidade_derrotas + 1;
-            $player->save();
-        }
-
         session()->forget("id_player");
-        
-        $batalha->updated_at = date("Y-m-d H:i:s");
-        $batalha->save();
-        $batalha->delete();
 
         if ($xp == 25.0) {
             $xp_ganho = "+250xp";
@@ -91,31 +65,10 @@ Class FinalizarBatalha extends Controller
             "alerta_confirmar_render", "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente", "dados"
         ]);
 
-        $id = session("player.id");
-        
+        $id = session("player.id");        
         $player = Player::find($id);
-        $player->quantidade_derrotas = $player->quantidade_derrotas + 1;
-        $player->save();
 
-        if (session()->has("id_player")) {
-
-            $id = session("id_player");
-
-            $player = Player::find($id);
-            $player->quantidade_vitorias = $player->quantidade_vitorias + 1;
-            $player->save();
-
-            $batalha->ganhou = $player->usuario;
-            $batalha->perdeu = session("player.usuario");
-        }
-        
-        if (session("nome_oponente") == "Computador") {
-            $batalha->ganhou = "Computador";
-            $batalha->perdeu = session("player.usuario");
-        }
-        $batalha->updated_at = date("Y-m-d H:i:s");
-        $batalha->save();
-        $batalha->delete();
+        Salvar::derrota($player, $batalha);
         
         session(["derrota" => true]);
         $this->alertaBatalha("Derrota!", "Que Pena! Mas não desista, faz parte, infelismente não dá para ganhar todas, continue tentando.", "bi-emoji-frown-fill", "");

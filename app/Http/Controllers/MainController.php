@@ -9,6 +9,7 @@ use App\Models\Player;
 use App\Models\Regra;
 use App\Services\Paises;
 use App\Services\PlayersPais;
+use App\Services\Salvar;
 use Illuminate\Contracts\View\View;
 
 class MainController extends Controller
@@ -234,17 +235,14 @@ class MainController extends Controller
         
         session()->forget("alerta_confirmar");
 
-        $batalha = null;
         $id = session("id_oponente");
-        $foto_oponente = session("foto_oponente");
-        $nome_oponente = session("nome_oponente");
-        $nivel = null;
-        $pais = session("pais_oponente");
         $oponente = Personagem::find($id);
+        $batalha = null;
+        $nivel = null;
         $vez = random_int(0, 1);
 
         if (session()->has("nivel_oponente")) {
-            $nivel = session("nivel_oponente");            
+            $nivel = session("nivel_oponente");
         } else {
             $nivel = session("player.nivel");
         }
@@ -252,26 +250,11 @@ class MainController extends Controller
         if (!session()->has("dados.batalha_comecou")) {
             
             $nova_batalha = new Batalha();
-
-            $nova_batalha->nome = session("player.usuario");
-            $nova_batalha->nome_oponente = $nome_oponente;
-            $nova_batalha->hp_maximo = session("player.personagem.hp") * session("player.nivel");
-            $nova_batalha->hp = session("player.personagem.hp") * session("player.nivel");
-            $nova_batalha->hp_maximo_oponente = $oponente->hp * $nivel;
-            $nova_batalha->hp_oponente = $oponente->hp * $nivel;
-            $nova_batalha->vez = $vez;
-            $nova_batalha->ganhou = null;
-            $nova_batalha->perdeu = null;
-            $nova_batalha->created_at = date("Y-m-d H:i:s");
-            $nova_batalha->save();
-
             $novo_desafio = new Desafio();
-            
-            $novo_desafio->id_desafiador = session("player.id");
-            $novo_desafio->id_desafiado = session("id_player");
-            $novo_desafio->save();
 
-            $batalha = $nova_batalha;            
+            Salvar::batalharDesafiar($nova_batalha, $oponente, $nivel, $vez, $novo_desafio);
+
+            $batalha = $nova_batalha;
 
             session([
                 "dados" => [
@@ -281,12 +264,12 @@ class MainController extends Controller
                     "hp_oponente_maximo" => $oponente->hp * $nivel,
                     "batalha_comecou" => true
                 ]
-            ]);            
+            ]);
         } else {
 
             $id_batalha = session("dados.id_batalha");
+            $batalha = Batalha::find($id_batalha);
 
-            $batalha = Batalha::find($id_batalha);            
         }
 
         $temas = ["secondary", "primary", "escuro"];
@@ -300,10 +283,10 @@ class MainController extends Controller
             ->with("pagina", "Batalha")
             ->with("batalha", $batalha)
             ->with("vez", $batalha->vez)
-            ->with("bandeira_oponente", $pais)
+            ->with("bandeira_oponente", session("pais_oponente"))
             ->with("oponente", $oponente)
-            ->with("foto", $foto_oponente)
-            ->with("nome", $nome_oponente)
+            ->with("foto", session("foto_oponente"))
+            ->with("nome", session("nome_oponente"))
             ->with("temas", $temas);
     }    
 }

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Desafio extends Model
 {
+    const UPDATED_AT = null;
+    
     protected $fillable = [
         "id_desafiador",
         "id_desafiado"

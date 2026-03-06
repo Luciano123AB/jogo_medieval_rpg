@@ -6,6 +6,7 @@ use App\Models\Batalha;
 use App\Models\Personagem;
 use App\Models\Player;
 use App\Services\Randoms;
+use App\Services\Salvar;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -83,9 +84,13 @@ class Batalhar extends Controller
         }
 
         $batalha = Batalha::find($id_batalha);
-        $batalha->hp_oponente = $batalha->hp_oponente - $dano;
-        $batalha->vez = 1;
-        $batalha->save();
+        $salvar_batalha = Salvar::atacar($batalha, $dano);
+
+        if (!$salvar_batalha) {
+            $this->alertaResultado("Erro ao Atacar!", "Ocorreu um erro ao tentar atacar o oponente! Tente novamente.", "bi-hand-thumbs-down-fill");
+
+            return redirect()->back();
+        }
 
         return redirect()->back()
             ->with("dano_desferido_player", $dano)
@@ -108,9 +113,13 @@ class Batalhar extends Controller
         $dano = Randoms::danoOponenteSorteado($personagem, $nivel);
         
         $batalha = Batalha::find($id_batalha);
-        $batalha->hp = $batalha->hp - $dano;
-        $batalha->vez = 0;
-        $batalha->save();
+        $salvar_batalha = Salvar::ataqueOponente($batalha, $dano);
+
+        if (!$salvar_batalha) {
+            $this->alertaResultado("Erro ao Receber Ataque!", "Ocorreu um erro ao receber o ataque do oponente!", "bi-hand-thumbs-down-fill");
+
+            return redirect()->back();
+        }
 
         return redirect()->back()
             ->with("dano_desferido_oponente", $dano)
@@ -124,41 +133,20 @@ class Batalhar extends Controller
     }
 
     public function renderSe(): RedirectResponse {
-
-        $id_batalha = session("dados.id_batalha");
-
-        $batalha = Batalha::find($id_batalha);
-        if (session("nome_oponente") == "Computador") {
-            $batalha->ganhou = "Computador";
-            $batalha->perdeu = session("player.usuario");
-        } else {
-            $batalha->ganhou = session("nome_oponente");
-            $batalha->perdeu = session("player.usuario");
-        }
-        $batalha->updated_at = date("Y-m-d H:i:s");
-        $batalha->save();
-        $batalha->delete();
-
         session()->forget([
             "inicio_player", "inicio_oponente",
             "skill01", "skill02", "skill03", "skill01_oponente", "skill02_oponente", "skill03_oponente",
-            "alerta_confirmar_render", "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente", "dados"
+            "alerta_confirmar_render", "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente"
         ]);
 
         $id = session("player.id");
-        
         $player = Player::find($id);
-        $player->quantidade_derrotas = $player->quantidade_derrotas + 1;
-        $player->save();
+        $id_batalha = session("dados.id_batalha");
+        $batalha = Batalha::find($id_batalha);
 
-        if (session()->has("id_player")) {
-            $id = session("id_player");
+        Salvar::render($player, $batalha);
 
-            $player = Player::find($id);
-            $player->quantidade_vitorias = $player->quantidade_vitorias + 1;
-            $player->save();
-        }
-        
+        session()->forget(["id_player", "dados"]);
         session(["derrota" => true]);
         $this->alertaBatalha("Derrota!", "Que Pena! Mas não desista, faz parte, infelismente não dá para ganhar todas, continue tentando.", "bi-emoji-frown-fill", "");
 

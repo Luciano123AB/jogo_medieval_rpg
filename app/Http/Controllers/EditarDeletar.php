@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Player;
 use App\Services\GenerosClasses;
+use App\Services\Salvar;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -131,19 +132,12 @@ class EditarDeletar extends Controller
 
     public function atualizar(): RedirectResponse {
 
-        $id = session("player.id");
-        $senha = session("dados.senha");
+        $id = session("player.id");        
         
-        $novo_player = Player::find($id);
-        $novo_player->usuario = session("dados.usuario");
-        $novo_player->email = session("dados.email");
-        $novo_player->senha = encrypt($senha);
-        $novo_player->id_personagem = session("dados.classe");
-        $novo_player->foto = session("dados.foto");
-        $novo_player->updated_at = date("Y-m-d H:i:s");
-        $novo_player->save();
+        $player = Player::find($id);
+        $atualizar_player = Salvar::atualizar($player);
 
-        if (!$novo_player) {
+        if (!$atualizar_player) {
             session()->forget("alerta_confirmar");
 
             $this->alertaResultado("Erro ao Atualizar!", "Ocorreu um erro ao tentar atualizar o player! Tente novamente.", "bi-hand-thumbs-down-fill");
@@ -153,7 +147,7 @@ class EditarDeletar extends Controller
         
         session()->forget("alerta_confirmar");
 
-        session(["player" => $novo_player]);
+        session(["player" => $player]);
         $this->alertaResultado("Player Atualizado com Sucesso!", "Para ver seu novo nome de usuário e(ou) classe nova, deslogue e faça o login novamente.", "bi-hand-thumbs-up-fill");
 
         return redirect()->route("home");

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Player;
 use App\Services\GenerosClasses;
+use App\Services\Salvar;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -106,22 +107,10 @@ class Cadastrar extends Controller
 
     public function cadastroSubmit(): RedirectResponse {
 
-        $player = new Player();
-        $player->usuario = session("dados.usuario");
-        $player->email = session("dados.email");
-        $player->senha = encrypt(session("dados.senha"));
-        $player->genero = session("dados.genero");
-        $player->pais = session("dados.pais");
-        $player->foto = session("dados.foto");
-        $player->nivel = 1;
-        $player->xp = 0;
-        $player->quantidade_vitorias = 0;
-        $player->quantidade_derrotas = 0;
-        $player->id_personagem = session("dados.classe");
-        $player->created_at = date("Y-m-d H:i:s");
-        $player->save();
+        $novo_player = new Player();
+        $cadastrar_novo_player = Salvar::cadastrar($novo_player);
 
-        if (!$player) {
+        if (!$cadastrar_novo_player) {
             session()->forget("alerta_confirmar");
 
             $this->alertaResultado("Erro ao Cadastrar!", "Ocorreu um erro ao tentar cadastrar esse player! Tente novamente.", "bi-hand-thumbs-down-fill");
@@ -131,7 +120,11 @@ class Cadastrar extends Controller
         
         session()->forget("alerta_confirmar");
         
-        $this->alertaResultado("Player Cadastrado com Sucesso!", "Agora você pode realizar o login e acessar a página de batalha.", "bi-hand-thumbs-up-fill");
+        session([
+            "xp" => $novo_player->xp,
+            "player" => $novo_player
+        ]);
+        $this->alertaResultado("Player Cadastrado com Sucesso!", "Agora você pode acessar a batalha e outras páginas.", "bi-hand-thumbs-up-fill");
 
         return redirect()->route("home");
     }
