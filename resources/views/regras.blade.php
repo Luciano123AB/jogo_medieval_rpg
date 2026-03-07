@@ -3,7 +3,7 @@
 @section("content")
     <div class="container">
         <div class="fundos_card_{{ $temas[2] }} card p-3">
-            <div class="row row-cols-1 row-cols-md-2 g-3">
+            <div class="row row-cols-1 row-cols-md-2 d-flex justify-content-center g-3">
                 @foreach ($regras as $regra)
                     <div class="col animate__animated {{ $regra->animacao01 }}">
                         <div class="cards sombras card bg-{{ $temas[0] }} border-{{ $temas[1] }} h-100">
