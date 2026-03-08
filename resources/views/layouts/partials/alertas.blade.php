@@ -103,14 +103,14 @@
                         "</span>" +
                     "</label>",
             footer: "<div class='d-flex gap-2'>" +
-                        "<a href='{{ route(session('alerta_confirmar.cancelar')) }}' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' id='ok' class='cursor sombras botoes animate__animated animate__fadeIn btn btn-danger btn-sm rounded focus-ring focus-ring-danger'>" +
-                            "<span style='color: {{ $temas[2] }}' class='cursor d-flex justify-content-center'>" +
-                                "<div class='cursor animate__animated animate__bounceOut animate__infinite'>" +
-                                    "<i class='cursor bi bi-x-circle-fill me-1'></i>" +
+                        "<button style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' id='ok' class='cursor sombras botoes animate__animated animate__fadeIn btn btn-danger btn-sm rounded focus-ring focus-ring-danger'>" +
+                            "<span style='color: {{ $temas[2] }}' id='ok' class='cursor d-flex justify-content-center'>" +
+                                "<div id='ok' class='cursor animate__animated animate__bounceOut animate__infinite'>" +
+                                    "<i id='ok' class='cursor bi bi-x-circle-fill me-1'></i>" +
                                 "</div>" +
                                 "CANCELAR" +
                             "</span>" +
-                        "</a>" +
+                        "</button>" +
                         "<a href='{{ route(session('alerta_confirmar.sim')) }}' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' class='cursor sombras botoes animate__animated animate__fadeIn btn btn-success btn-sm rounded focus-ring focus-ring-success'>" +
                             "<span style='color: {{ $temas[2] }}' class='cursor d-flex justify-content-center'>" +
                                 "<div class='cursor animate__animated animate__bounceIn animate__infinite'>" +
@@ -170,14 +170,14 @@
                         "</span>" +
                     "</label>",
             footer: "<div class='d-flex gap-2'>" +
-                        "<a href='{{ route(session('alerta_confirmar_render.cancelar')) }}' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' id='ok' class='cursor sombras botoes animate__animated animate__fadeIn btn btn-danger btn-sm rounded focus-ring focus-ring-danger'>" +
-                            "<span style='color: {{ $temas[2] }}' class='cursor d-flex justify-content-center'>" +
-                                "<div class='cursor animate__animated animate__bounceOut animate__infinite'>" +
-                                    "<i class='cursor bi bi-x-circle-fill me-1'></i>" +
+                        "<button style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' id='ok' class='cursor sombras botoes animate__animated animate__fadeIn btn btn-danger btn-sm rounded focus-ring focus-ring-danger'>" +
+                            "<span style='color: {{ $temas[2] }}' id='ok' class='cursor d-flex justify-content-center'>" +
+                                "<div id='ok' class='cursor animate__animated animate__bounceOut animate__infinite'>" +
+                                    "<i id='ok' class='cursor bi bi-x-circle-fill me-1'></i>" +
                                 "</div>" +
                                 "CANCELAR" +
                             "</span>" +
-                        "</a>" +
+                        "</button>" +
                         "<a href='{{ route(session('alerta_confirmar_render.sim')) }}' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' class='cursor sombras botoes animate__animated animate__fadeIn btn btn-success btn-sm rounded focus-ring focus-ring-success'>" +
                             "<span style='color: {{ $temas[2] }}' class='cursor d-flex justify-content-center'>" +
                                 "<div class='cursor animate__animated animate__bounceIn animate__infinite'>" +
@@ -266,8 +266,6 @@
             `,
         });
     </script>
-    
-    {{ session()->forget("alerta_resultado") }}
 @endif
 
 @if(session("alerta_batalha"))
@@ -339,8 +337,6 @@
             `,
         });
     </script>
-    
-    {{ session()->forget("alerta_batalha") }}
 @endif
 
 @if(session("alerta_nivel"))

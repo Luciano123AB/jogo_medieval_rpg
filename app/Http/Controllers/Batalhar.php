@@ -25,7 +25,7 @@ class Batalhar extends Controller
 
         $id = $request->oponente;
 
-        $this->alertaConfirmar("Confirmar Batalha!", "Tem certeza que está pronto para ir para a batalha?", "cancelar", "batalhar");
+        $this->alertaConfirmar("Confirmar Batalha!", "Tem certeza que está pronto para ir para a batalha?", "batalhar");
         session([
             "id_oponente" => $id,
             "foto_oponente" => "nenhuma",
@@ -46,7 +46,7 @@ class Batalhar extends Controller
             return redirect()->back();
         }
         
-        $this->alertaConfirmar("Confirmar Desafio!", "Tem certeza que deseja desafiar este player?", "cancelar", "batalhar");
+        $this->alertaConfirmar("Confirmar Desafio!", "Tem certeza que deseja desafiar este player?", "batalhar");
 
         $dados_oponente = Player::find($player);
         $foto_oponente = $dados_oponente->foto;
@@ -127,7 +127,7 @@ class Batalhar extends Controller
     }
 
     public function confirmarRender(): RedirectResponse {
-        $this->alertaConfirmarRender("Confirmar Rendição!", "Tem certeza que deseja desistir dessa batalha?", "cancelarRender", "renderSe");
+        $this->alertaConfirmarRender("Confirmar Rendição!", "Tem certeza que deseja desistir dessa batalha?", "renderSe");
 
         return redirect()->back();
     }
@@ -136,7 +136,7 @@ class Batalhar extends Controller
         session()->forget([
             "inicio_player", "inicio_oponente",
             "skill01", "skill02", "skill03", "skill01_oponente", "skill02_oponente", "skill03_oponente",
-            "alerta_confirmar_render", "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente"
+            "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente"
         ]);
 
         $id = session("player.id");
@@ -147,7 +147,7 @@ class Batalhar extends Controller
         Salvar::render($player, $batalha);
 
         session()->forget(["id_player", "dados"]);
-        session(["derrota" => true]);
+        session()->flash("derrota", true);
         $this->alertaBatalha("Derrota!", "Que Pena! Mas não desista, faz parte, infelismente não dá para ganhar todas, continue tentando.", "bi-emoji-frown-fill", "");
 
         if (session("nome_oponente") == "Computador") {

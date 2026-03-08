@@ -55,12 +55,12 @@ Route::prefix("/")->group(function () {
                     if (session("player.nivel") < $player->nivel) {
                         session(["player" => $player]);
 
-                        session([
-                            "alerta_nivel" => [
+                        session()->flash(
+                            "alerta_nivel", [
                                 "titulo" => "Nível: $player->nivel",
                                 "texto" => "Parabéns!, você acaba de subir de nível."
                             ]
-                        ]);
+                        );
                     }
                 }
 
@@ -168,21 +168,7 @@ Route::prefix("/")->group(function () {
         return response()->json(["ok" => true]);
     });
 
-    Route::get("cancelar", function(): RedirectResponse {
-        session()->forget(["alerta_confirmar", "dados", "id_player", "id_oponente", "foto_oponente", "pais_oponente", "nome_oponente", "nivel_oponente"]);
-
-        return redirect()->back()->withInput();
-    })->name("cancelar");
-
-    Route::get("cancelar_render", function(): RedirectResponse {
-        session()->forget("alerta_confirmar_render");
-
-        return redirect()->back();
-    })->name("cancelarRender");
-
     Route::get("nivel_up", function(): RedirectResponse {
-        session()->forget("alerta_nivel");
-
         return redirect()->back();
     })->name("nivel");
 

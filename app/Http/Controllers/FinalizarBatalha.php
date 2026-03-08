@@ -14,7 +14,7 @@ Class FinalizarBatalha extends Controller
         session()->forget([
             "inicio_player", "inicio_oponente",
             "skill01", "skill02", "skill03", "skill01_oponente", "skill02_oponente", "skill03_oponente",
-            "alerta_confirmar_render", "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente", "dados"
+            "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente", "dados"
         ]);
 
         $id = session("player.id");
@@ -44,7 +44,7 @@ Class FinalizarBatalha extends Controller
             $xp_ganho = "+335xp";
         }
         
-        session(["vitoria" => true]);
+        session()->flash("vitoria", true);
         $this->alertaBatalha("Vitória!", "Parabéns!, continue assim e você se destacará na classificação. $xp_ganho", "bi-emoji-sunglasses-fill", $rota);
 
         if (session("nome_oponente") == "Computador") {
@@ -62,7 +62,7 @@ Class FinalizarBatalha extends Controller
         session()->forget([
             "inicio_player", "inicio_oponente",
             "skill01", "skill02", "skill03", "skill01_oponente", "skill02_oponente", "skill03_oponente",
-            "alerta_confirmar_render", "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente", "dados"
+            "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente", "dados"
         ]);
 
         $id = session("player.id");        
@@ -70,7 +70,7 @@ Class FinalizarBatalha extends Controller
 
         Salvar::derrota($player, $batalha);
         
-        session(["derrota" => true]);
+        session()->flash("derrota", true);
         $this->alertaBatalha("Derrota!", "Que Pena! Mas não desista, faz parte, infelismente não dá para ganhar todas, continue tentando.", "bi-emoji-frown-fill", "");
 
         if (session("nome_oponente") == "Computador") {

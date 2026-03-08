@@ -89,7 +89,7 @@ class Cadastrar extends Controller
             return redirect()->back()->withInput()->withErrors(["playerExiste" => "Esse player já está cadastrado! Tente novamente."]);
         }
 
-        $this->alertaConfirmar("Confirmação Cadastro!", "Tem certeza que deseja cadastrar esse player?", "cancelar", "cadastrar");
+        $this->alertaConfirmar("Confirmação Cadastro!", "Tem certeza que deseja cadastrar esse player?", "cadastrar");
         session([
             "dados" => [
                 "usuario" => $usuario,
@@ -111,14 +111,10 @@ class Cadastrar extends Controller
         $cadastrar_novo_player = Salvar::cadastrar($novo_player);
 
         if (!$cadastrar_novo_player) {
-            session()->forget("alerta_confirmar");
-
             $this->alertaResultado("Erro ao Cadastrar!", "Ocorreu um erro ao tentar cadastrar esse player! Tente novamente.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back()->withInput();
         }
-        
-        session()->forget("alerta_confirmar");
         
         session([
             "xp" => $novo_player->xp,

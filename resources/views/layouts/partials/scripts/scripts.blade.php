@@ -57,8 +57,6 @@
 
             let tempo = {{ session()->has("vitoria") ? 4300 : 1500 }};
 
-            {{ session()->forget(["vitoria", "derrota"]) }}
-
             setTimeout(() => {
                 som_resultado.pause();
                 som_resultado.muted = true;

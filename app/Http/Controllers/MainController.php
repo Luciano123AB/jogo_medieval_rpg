@@ -233,8 +233,6 @@ class MainController extends Controller
     public function batalhar(): View {
         $this->alerta("Batalha!", "bi-phone-landscape-fill", "Agora é a Hora! Aqui você aplicará o que aprendeu na página de regras, e recomendo que para essa página você vire a tela do seu dispositivo. Boa sorte!", "batalha");
         
-        session()->forget("alerta_confirmar");
-
         $id = session("id_oponente");
         $oponente = Personagem::find($id);
         $batalha = null;
