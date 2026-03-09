@@ -14,7 +14,7 @@
         <i id="icone_musica" class="cursor cor_fontes_{{ $temas[3] }} bi bi-volume-up-fill fs-4"></i>
     </button>
 
-    <div class="d-flex gap-3 flex-column flex-md-row">
+    <div class="horizontal_vertical gap-3">
         @if(session()->has("player") && $pagina != "Batalhas" && $pagina != "Batalha")
             <a href="{{ route("batalhas") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg focus-ring btn-{{ $temas[0] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }} border">
                 <span class="cursor cor_fontes_{{ $temas[3] }} d-flex">
