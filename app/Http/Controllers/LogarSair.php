@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Batalha;
 use App\Models\Player;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -36,6 +37,12 @@ class LogarSair extends Controller
         if ($player_senha != $senha) {
             return redirect()->back()->withInput()->withErrors(["playerNaoExiste" => "Esse player não está cadastrado! Tente outro."]);
         }
+
+        $batalha_inacabada = Batalha::where("nome", $player->usuario)
+                                    ->whereNull("ganhou")
+                                    ->first();
+                                    
+        $batalha_inacabada?->forceDelete();
 
         session([
             "xp" => $player->xp,

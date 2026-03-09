@@ -66,7 +66,7 @@ class Cadastrar extends Controller
             $tamanho_maximo = 10485760;
 
             if ($foto_tamanho > $tamanho_maximo) {
-                return redirect()->back()->withInput()->with("fotoTamanho", "Essa foto é muito grande.");
+                return redirect()->back()->withInput()->with("fotoTamanho", "Essa foto é muito grande! O arquivo deve ter no máximo 10MB.");
             }
 
             $foto_conteudo = file_get_contents($foto_escolhida->getRealPath());
