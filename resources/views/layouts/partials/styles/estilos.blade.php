@@ -248,6 +248,10 @@
     }
 
     @media(width <= 430px) {
+        #icone {
+            width: 50px;
+        }
+
         #index_opcoes {
             width: 100%;
         }

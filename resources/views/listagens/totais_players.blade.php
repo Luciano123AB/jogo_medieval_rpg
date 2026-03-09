@@ -6,7 +6,7 @@
             <div id="total_players" class="gap-3">
                 @foreach ($totais as $codigo => $dados)
                     <div class="col animate__animated animate__fadeInTopLeft">
-                        <div class="cards sombras card bg-{{ $temas[0] }} border-{{ $temas[1] }} text-center">
+                        <div class="cards sombras card bg-{{ $temas[0] }} border-{{ $temas[1] }} text-center h-100">
                             <div class="d-flex border-3 border-start border-black rounded-top-1">
                                 <i class="fi fi-{{ strtolower($codigo) }} animate__animated animate__jello animate__infinite border-start border-end mb-1"></i>
                             </div>
