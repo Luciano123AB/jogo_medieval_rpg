@@ -19,7 +19,7 @@
                             </h4>
                         </div>
 
-                        <img src="{{ asset("assets/images/personagens/$personagem->imagem") }}" class="card-img-top border-bottom border-{{ $temas[1] }}">
+                        <img src="{{ asset('assets/images/personagens/' . strtolower($personagem->classe) . '.png') }}" id="personagem_{{ $loop->index + 1 }}" class="card-img-top border-bottom border-{{ $temas[1] }}">
                         
                         <div class="card-body">
                             <h5 class="cor_fontes_{{ $temas[2] }} card-title text-center fw-bold">
@@ -48,6 +48,19 @@
                             </ul>
                         </div>
                     </div>
+
+                    <script>
+
+                        const imagem_{{ $loop->index + 1 }} = document.getElementById("personagem_{{ $loop->index + 1 }}");
+
+                        setInterval(() => {
+                            if (imagem_{{ $loop->index + 1 }}.src === "{{ asset('assets/images/personagens/' . strtolower($personagem->classe) . '.png') }}") {
+                                imagem_{{ $loop->index + 1 }}.src = "{{ asset('assets/images/personagens_ataque/' . strtolower($personagem->classe) . '.png') }}";
+                            } else {
+                                imagem_{{ $loop->index + 1 }}.src = "{{ asset('assets/images/personagens/' . strtolower($personagem->classe) . '.png') }}";
+                            }
+                        }, 1000);
+                    </script>
                 @endforeach
             </div>
         </div>
