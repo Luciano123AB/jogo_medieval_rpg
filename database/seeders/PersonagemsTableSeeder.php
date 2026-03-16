@@ -22,9 +22,9 @@ class PersonagemsTableSeeder extends Seeder
                 "vida" => "Alta",
                 "defesa" => "Alta",
                 "hp" => 1600,
-                "id_skill01" => 1,
-                "id_skill02" => 2,
-                "id_skill03" => 3
+                "skill01_id" => 1,
+                "skill02_id" => 2,
+                "skill03_id" => 3
             ],
 
             [
@@ -36,9 +36,9 @@ class PersonagemsTableSeeder extends Seeder
                 "vida" => "Baixa",
                 "defesa" => "Baixa",
                 "hp" => 1100,
-                "id_skill01" => 4,
-                "id_skill02" => 5,
-                "id_skill03" => 6
+                "skill01_id" => 4,
+                "skill02_id" => 5,
+                "skill03_id" => 6
             ],
 
             [
@@ -50,9 +50,9 @@ class PersonagemsTableSeeder extends Seeder
                 "vida" => "Média",
                 "defesa" => "Média",
                 "hp" => 1300,
-                "id_skill01" => 7,
-                "id_skill02" => 8,
-                "id_skill03" => 9
+                "skill01_id" => 7,
+                "skill02_id" => 8,
+                "skill03_id" => 9
             ]
         ]);
     }
