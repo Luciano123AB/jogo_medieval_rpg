@@ -37,14 +37,14 @@ class Personagem extends Model
     }
 
     public function skill01() {
-        return $this->belongsTo(Skill::class, "id_skill01");
+        return $this->belongsTo(Skill::class);
     }
 
     public function skill02() {
-        return $this->belongsTo(Skill::class, "id_skill02");
+        return $this->belongsTo(Skill::class);
     }
 
     public function skill03() {
-        return $this->belongsTo(Skill::class, "id_skill03");
+        return $this->belongsTo(Skill::class);
     }
 }

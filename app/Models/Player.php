@@ -40,6 +40,6 @@ class Player extends Model
     }
 
     public function personagem() {
-        return $this->belongsTo(Personagem::class, "id_personagem");
+        return $this->belongsTo(Personagem::class);
     }
 }
