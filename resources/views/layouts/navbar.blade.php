@@ -102,8 +102,7 @@
                                 <div class="cursor">
                                     <div class="border-3 border-start border-black rounded-top-1">
                                         <h4 class="cursor titulos_{{ $temas[6] }} cor_fontes_{{ $temas[6] }}">
-                                            <i class="fi fi-{{ strtolower(session("player.pais")) }} animate__animated animate__jello animate__infinite border-start border-end mb-2 me-1"></i>
-                                            {{ session("player.usuario") }}
+                                            <i class="fi fi-{{ strtolower(session("player.pais")) }} animate__animated animate__jello animate__infinite border-start border-end mb-2 me-2"></i>{{ session("player.usuario") }}
                                         </h4>
                                     </div>
                                     <span class="cursor text-bg-{{ $temas[1] }} {{ session("player.nivel") == 70 ? "text-warning" : "" }} badge">
