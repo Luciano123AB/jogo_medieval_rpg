@@ -10,15 +10,15 @@
                         $rota = "confirmarCadastrar";
                         $titulo = "Novo Player";
                         $id = "";
-                        $values = ["", "", "", "", ""];
+                        $values = ["", "", ""];
                         $classe = "vazio";
 
                         if ($pagina == "Atualização") {
                             $rota = "confirmarAtualizar";
                             $titulo = "Atualizar Player";
                             $id = $dados["id"];
-                            $values = [$dados["usuario"], $dados["email"], $dados["senha"], $dados["confirmar_senha"], $dados["classe"]];
-                            $classe = $values[4];
+                            $values = [$dados["usuario"], $dados["email"], $dados["classe"]];
+                            $classe = $values[2];
                         }
                     @endphp
 
@@ -73,7 +73,7 @@
                             <div class="mb-3">
                                 <div class="input-group">
                                     <span class="input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">***</span>
-                                    <input type="password" id="nova_senha" class="form-control cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}" name="nova_senha" placeholder="..." aria-label="..." aria-describedby="NovaSenha" value="{{ old("nova_senha", $values[2]) }}">
+                                    <input type="password" id="nova_senha" class="form-control cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}" name="nova_senha" placeholder="..." aria-label="..." aria-describedby="NovaSenha" value="{{ old("nova_senha") }}">
                                     <button type="button" id="mostrar_novo" class="cursor input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">
                                         <i class="cursor bi bi-eye-slash-fill"></i>
                                     </button>
@@ -95,7 +95,7 @@
                             <div class="mb-3">
                                 <div class="input-group">
                                     <span class="input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">***</span>
-                                    <input type="password" id="confirmar_nova_senha" class="form-control cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}" name="confirmar_nova_senha" placeholder="..." aria-label="..." aria-describedby="ConfirmarNovaSenha" value="{{ old("confirmar_nova_senha", $values[3]) }}">
+                                    <input type="password" id="confirmar_nova_senha" class="form-control cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}" name="confirmar_nova_senha" placeholder="..." aria-label="..." aria-describedby="ConfirmarNovaSenha" value="{{ old("confirmar_nova_senha") }}">
                                     <button type="button" id="mostrar_confirmar_novo" class="cursor input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">
                                         <i class="cursor bi bi-eye-slash-fill"></i>
                                     </button>
@@ -198,7 +198,7 @@
                                             <select id="classe" class="form-select cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}" name="classe" aria-label="Classes">
                                                 <option selected>Selecione sua classe...</option>
                                                 @foreach ($personagens as $personagem)
-                                                    <option value="{{ $personagem->classe }}" {{ old("classe", $values[4]) == "$personagem->classe" ? "selected" : "" }}>
+                                                    <option value="{{ $personagem->classe }}" {{ old("classe", $values[2]) == "$personagem->classe" ? "selected" : "" }}>
                                                         @if($personagem->classe == "Guerreiro")
                                                             🛡️
                                                         @elseif($personagem->classe == "Mago")

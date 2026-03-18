@@ -4,13 +4,14 @@ namespace App\Services;
 
 use App\Models\Player;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class Salvar
 {
     public static function cadastrar($novo_player) {
         $novo_player->usuario = session("dados.usuario");
         $novo_player->email = session("dados.email");
-        $novo_player->senha = encrypt(session("dados.senha"));
+        $novo_player->senha = Hash::make(session("dados.senha"));
         $novo_player->genero = session("dados.genero");
         $novo_player->pais = session("dados.pais");
         $novo_player->foto = session("dados.foto");
@@ -36,7 +37,7 @@ class Salvar
 
         $player->usuario = session("dados.usuario");
         $player->email = session("dados.email");
-        $player->senha = encrypt($senha);
+        $player->senha = Hash::make($senha);
         $player->personagem_id = session("dados.classe");
         $player->foto = session("dados.foto");
         $player->updated_at = date("Y-m-d H:i:s");

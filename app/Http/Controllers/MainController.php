@@ -88,7 +88,6 @@ class MainController extends Controller
         $id = session("player.id");
         $usuario = session("player.usuario");
         $email = session("player.email");
-        $senha = decrypt(session("player.senha"));
         $classe = session("player.personagem.classe");
         $foto = session("player.foto");
         $paises = Paises::paises();
@@ -108,8 +107,6 @@ class MainController extends Controller
                     "id" => $id,
                     "usuario" => $usuario,
                     "email" => $email,
-                    "senha" => $senha,
-                    "confirmar_senha" => $senha,
                     "classe" => $classe,
                     "foto" => $foto
                 ]

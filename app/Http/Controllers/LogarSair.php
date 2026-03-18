@@ -6,6 +6,7 @@ use App\Models\Batalha;
 use App\Models\Player;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class LogarSair extends Controller
 {
@@ -32,9 +33,7 @@ class LogarSair extends Controller
             return redirect()->back()->withInput()->withErrors(["playerNaoExiste" => "Esse player não está cadastrado! Tente outro."]);
         }
 
-        $player_senha = decrypt($player->senha);
-
-        if ($player_senha != $senha) {
+        if (Hash::check($senha, $player->senha)) {
             return redirect()->back()->withInput()->withErrors(["playerNaoExiste" => "Esse player não está cadastrado! Tente outro."]);
         }
 
