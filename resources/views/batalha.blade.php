@@ -181,4 +181,5 @@
     </div>
 
     @include("layouts.partials.scripts.scripts_batalha")
+    @include("layouts.partials.scripts.animacoes")
 @endsection

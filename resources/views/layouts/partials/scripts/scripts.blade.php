@@ -2,7 +2,6 @@
     document.addEventListener("DOMContentLoaded", () => {
 
         const audio = document.getElementById("trilha_sonora");
-        const botao = document.getElementById("botao_musica");
         const icone = document.getElementById("icone_musica");
         let tocando = sessionStorage.getItem("musica_tocando") === "true";
         let tempo_salvo = sessionStorage.getItem("musica_tempo");
@@ -27,7 +26,7 @@
             icone.classList.replace("bi-volume-up-fill", "bi-volume-mute-fill");
         }
 
-        botao.addEventListener("click", () => {
+        document.getElementById("botao_musica").addEventListener("click", () => {
             tocando = !tocando;
 
             if (tocando) {
@@ -55,8 +54,6 @@
             som_resultado.currentTime = 0;
             som_resultado.play().catch(() => {});
 
-            let tempo = {{ session()->has("vitoria") ? 4300 : 1500 }};
-
             setTimeout(() => {
                 som_resultado.pause();
                 som_resultado.muted = true;
@@ -64,7 +61,7 @@
                 if (trilhaEstavaTocando) {
                     audio.play().catch(() => {});
                 }
-            }, tempo);
+            }, {{ session()->has("vitoria") ? 4300 : 1500 }});
         @endif
 
         window.addEventListener("beforeunload", () => {
@@ -74,10 +71,9 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         
-        const sem_foto = document.getElementById("sem_foto");
         const foto = document.getElementById("foto");
 
-        sem_foto.addEventListener("change", function () {
+        document.getElementById("sem_foto").addEventListener("change", function () {
             if (this.checked) {
                 foto.disabled = true;
                 foto.value = "";
@@ -88,19 +84,11 @@
     });
 
     document.addEventListener("mousemove", (e) => {
-
-        const fundo = document.getElementById("fundo");
-        const x = (e.clientX / window.innerWidth - 0.5) * 40;
-        const y = (e.clientY / window.innerHeight - 0.5) * 40;
-
-        fundo.style.transform = `translate(${x}px, ${y}px) scale(1.05)`;
+        document.getElementById("fundo").style.transform = `translate(${(e.clientX / window.innerWidth - 0.5) * 40}px, ${(e.clientY / window.innerHeight - 0.5) * 40}px) scale(1.05)`;
     });
 
     document.addEventListener("click", function() {
-
-        const click = document.getElementById("click");
-
-        click.play();
+        document.getElementById("click").play();
     });
 
     document.addEventListener("click", function(e) {
@@ -120,12 +108,8 @@
             const p = document.createElement("span");
 
             p.classList.add("particle");
-
-            const x = (Math.random() - 0.5) * 100;
-            const y = (Math.random() - 0.5) * 100;
-
-            p.style.setProperty("--x", x + "px");
-            p.style.setProperty("--y", y + "px");
+            p.style.setProperty("--x", (Math.random() - 0.5) * 100 + "px");
+            p.style.setProperty("--y", (Math.random() - 0.5) * 100 + "px");
             p.style.left = e.pageX + "px";
             p.style.top  = e.pageY + "px";
 
@@ -141,8 +125,7 @@
         if (e.target && (e.target.id === "mostrar_novo" || e.target.closest("#mostrar_novo"))) {
 
             const senha = document.getElementById("nova_senha");
-            const botao = document.getElementById("mostrar_novo");
-            const olho = botao.querySelector("i");
+            const olho = document.getElementById("mostrar_novo").querySelector("i");
 
             if (senha.type === "password") {
                 senha.type = "text";
@@ -158,8 +141,7 @@
         if (e.target && (e.target.id === "mostrar_confirmar_novo" || e.target.closest("#mostrar_confirmar_novo"))) {
 
             const senha = document.getElementById("confirmar_nova_senha");
-            const botao = document.getElementById("mostrar_confirmar_novo");
-            const olho = botao.querySelector("i");
+            const olho = document.getElementById("mostrar_confirmar_novo").querySelector("i");
 
             if (senha.type === "password") {
                 senha.type = "text";
@@ -175,8 +157,7 @@
         if (e.target && (e.target.id === "mostrar" || e.target.closest("#mostrar"))) {
 
             const senha = document.getElementById("senha");
-            const botao = document.getElementById("mostrar");
-            const olho = botao.querySelector("i");
+            const olho = document.getElementById("mostrar").querySelector("i");
 
             if (senha.type === "password") {
                 senha.type = "text";
@@ -194,13 +175,12 @@
         if (e.target && e.target.id === "classe") {
 
             const perfil = document.querySelector(".perfil_cadastro");
-            const classeSelecionada = e.target.value;
             const basePath = "{{ asset('assets/images/perfils') }}/";
 
             perfil.classList.remove("border-light", "border-danger", "border-primary", "border-dark");
             perfil.classList.remove("bg-danger", "bg-primary", "bg-dark");
 
-            switch (classeSelecionada) {
+            switch (e.target.value) {
                 case "Guerreiro":
                     perfil.src = basePath + "guerreiro.png";
                     perfil.classList.add("bg-danger", "border-danger");
@@ -265,11 +245,9 @@
         option.addEventListener("click", function(e) {
 
             const countrySelect = document.querySelector("#countrySelect");
-            const selected = countrySelect.querySelector(".selected-option");
-            const pais = document.querySelector("#pais");
 
-            selected.innerHTML = this.innerHTML;
-            pais.value = this.dataset.value;
+            countrySelect.querySelector(".selected-option").innerHTML = this.innerHTML;
+            document.querySelector("#pais").value = this.dataset.value;
 
             countrySelect.querySelector(".options").style.display = "none";
 
@@ -289,10 +267,9 @@
 
         const classe = document.getElementById("classe");
         const perfil_cadastro = document.querySelector(".perfil_cadastro");
-        const foto = document.getElementById("foto_preview");
 
         perfil_cadastro.src = "{{ asset('assets/images/perfils/vazio.png') }}";
-        foto.src = "{{ asset('assets/images/perfils/vazio.png') }}";
+        document.getElementById("foto_preview").src = "{{ asset('assets/images/perfils/vazio.png') }}";
 
         if (classe) {
             classe.selectedIndex = 0;
