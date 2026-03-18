@@ -18,7 +18,7 @@ class Salvar
         $novo_player->xp = 0;
         $novo_player->quantidade_vitorias = 0;
         $novo_player->quantidade_derrotas = 0;
-        $novo_player->id_personagem = session("dados.classe");
+        $novo_player->personagem_id = session("dados.classe");
         $novo_player->created_at = date("Y-m-d H:i:s");
 
         $salvar = DB::transaction(function () use ($novo_player) {
@@ -37,7 +37,7 @@ class Salvar
         $player->usuario = session("dados.usuario");
         $player->email = session("dados.email");
         $player->senha = encrypt($senha);
-        $player->id_personagem = session("dados.classe");
+        $player->personagem_id = session("dados.classe");
         $player->foto = session("dados.foto");
         $player->updated_at = date("Y-m-d H:i:s");
 
