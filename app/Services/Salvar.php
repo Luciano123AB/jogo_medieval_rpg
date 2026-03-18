@@ -150,10 +150,10 @@ class Salvar
         if (session("nome_oponente") == "Computador") {
             $batalha->ganhou = "Computador";            
         } else {
-            $batalha->ganhou = $player->usuario;
+            $batalha->ganhou = session("nome_oponente");
         }
 
-        $batalha->perdeu = session("player.usuario");
+        $batalha->perdeu = $player->usuario;
         $batalha->updated_at = date("Y-m-d H:i:s");
 
         $salvar = DB::transaction(function () use ($player, $batalha) {
