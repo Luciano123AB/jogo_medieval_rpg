@@ -41,9 +41,9 @@
                 </div>
                 @if (session("dano_desferido_oponente"))
                     @if (session("dano_critico"))
-                        <small class="animate__animated animate__fadeIn fs-5 fw-bold text-danger">🎯 -{{ session('dano_desferido_oponente') }}</small>
+                        <small class="animate__animated animate__fadeIn fs-5 fw-bold text-{{ session("tipo_dano") }}">🎯 -{{ session('dano_desferido_oponente') }}</small>
                     @else
-                        <small class="cor_fontes_claro animate__animated animate__fadeIn fw-bold">🎯 -{{ session('dano_desferido_oponente') }}</small>
+                        <small class="animate__animated animate__fadeIn fw-bold text-{{ session("tipo_dano") }}">🎯 -{{ session('dano_desferido_oponente') }}</small>
                     @endif
                 @endif
             </div>
@@ -148,9 +148,9 @@
                 </div>
                 @if (session("dano_desferido_player"))
                     @if (session("dano_critico"))
-                        <small class="animate__animated animate__fadeIn fs-5 fw-bold text-danger">🎯 -{{ session('dano_desferido_player') }}</small>
+                        <small class="animate__animated animate__fadeIn fs-5 fw-bold text-{{ session("tipo_dano") }}">🎯 -{{ session('dano_desferido_player') }}</small>
                     @else
-                        <small class="cor_fontes_claro animate__animated animate__fadeIn fw-bold">🎯 -{{ session('dano_desferido_player') }}</small>
+                        <small class="animate__animated animate__fadeIn fw-bold text-{{ session("tipo_dano") }}">🎯 -{{ session('dano_desferido_player') }}</small>
                     @endif
                 @endif
             </div>

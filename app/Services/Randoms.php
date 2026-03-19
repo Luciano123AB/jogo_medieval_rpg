@@ -22,20 +22,12 @@ class Randoms
             case "$skill01":
                 $dano = $dano01_sorteado * $nivel;
 
-                if ($dano01_sorteado == $danos_skill01[2]) {
-                    session()->flash("dano_critico");
-                }
-
                 session(["skill01" => true]);
                 session()->flash("normal_player");
             break;
 
             case "$skill02":
                 $dano = $dano02_sorteado * $nivel;
-
-                if ($dano02_sorteado == $danos_skill02[2]) {
-                    session()->flash("dano_critico");
-                }
 
                 session(["skill02" => true]);
                 session()->flash("forte_player");
@@ -44,13 +36,19 @@ class Randoms
             case "$skill03":
                 $dano = $dano03_sorteado * $nivel;
 
-                if ($dano03_sorteado == $danos_skill03[2]) {
-                    session()->flash("dano_critico");
-                }
-
                 session(["skill03" => true]);
                 session()->flash("ultimate_player");
             break;
+        }
+
+        if ($dano01_sorteado == $danos_skill01[2] || $dano02_sorteado == $danos_skill02[2] || $dano03_sorteado == $danos_skill03[2]) {
+            session()->flash("dano_critico");
+        }
+
+        if ($personagem->tipo_dano === "Físico") {
+            session()->flash("tipo_dano", "danger");
+        } else {
+            session()->flash("tipo_dano", "primary");
         }
 
         return $dano;
@@ -87,11 +85,7 @@ class Randoms
 
         switch ($skill_sorteado) {
             case $skill01:
-                $dano = $dano01_sorteado * $nivel;
-
-                if ($dano01_sorteado == $danos_skill01[2]) {
-                    session()->flash("dano_critico");
-                }
+                $dano = $dano01_sorteado * $nivel;                
 
                 session(["skill01_oponente" => true]);
                 session()->flash("normal_oponente");
@@ -100,10 +94,6 @@ class Randoms
             case $skill02:
                 $dano = $dano02_sorteado * $nivel;
 
-                if ($dano02_sorteado == $danos_skill02[2]) {
-                    session()->flash("dano_critico");
-                }
-
                 session(["skill02_oponente" => true]);
                 session()->flash("forte_oponente");
             break;
@@ -111,13 +101,19 @@ class Randoms
             case $skill03:
                 $dano = $dano03_sorteado * $nivel;
 
-                if ($dano03_sorteado == $danos_skill03[2]) {
-                    session()->flash("dano_critico");
-                }
-
                 session(["skill03_oponente" => true]);
                 session()->flash("ultimate_oponente");
             break;
+        }
+
+        if ($dano01_sorteado == $danos_skill01[2] || $dano02_sorteado == $danos_skill02[2] || $dano03_sorteado == $danos_skill03[2]) {
+            session()->flash("dano_critico");
+        }
+
+        if ($personagem->tipo_dano === "Físico") {
+            session()->flash("tipo_dano", "danger");
+        } else {
+            session()->flash("tipo_dano", "primary");
         }
 
         return $dano;

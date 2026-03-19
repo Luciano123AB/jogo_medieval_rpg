@@ -28,6 +28,8 @@ class Salvar
             return true;
         });
 
+        session()->forget("dados");
+
         return $salvar;
     }
 
@@ -47,6 +49,8 @@ class Salvar
 
             return true;
         });
+
+        session()->forget("dados");
 
         return $salvar;
     }
