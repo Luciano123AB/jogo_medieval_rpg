@@ -9,8 +9,7 @@ class Resetar extends Controller
 {
     public function resetarVitorias(): RedirectResponse {
 
-        $player = session("player.usuario");
-        $vitorias = Batalha::where("ganhou", $player);
+        $vitorias = Batalha::where("ganhou", session("player.usuario"));
 
         $vitorias->forceDelete();
 
@@ -27,8 +26,7 @@ class Resetar extends Controller
 
     public function resetarDerrotas(): RedirectResponse {
         
-        $player = session("player.usuario");
-        $derrotas = Batalha::where("perdeu", $player);
+        $derrotas = Batalha::where("perdeu", session("player.usuario"));
 
         $derrotas->forceDelete();
 

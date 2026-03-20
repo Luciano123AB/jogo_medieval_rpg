@@ -6,7 +6,7 @@ class Paises
 {
     public static function paises() {
 
-        $paises = [
+        return [
             "AF" => "Afeganistão",
             "AL" => "Albânia",
             "DZ" => "Argélia",
@@ -183,7 +183,5 @@ class Paises
             "ZM" => "Zâmbia",
             "ZW" => "Zimbábue",
         ];
-
-        return $paises;
     }
 }

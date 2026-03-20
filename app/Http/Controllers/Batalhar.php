@@ -23,11 +23,9 @@ class Batalhar extends Controller
             ]
         );
 
-        $id = $request->oponente;
-
         $this->alertaConfirmar("Confirmar Batalha!", "Tem certeza que está pronto para ir para a batalha?", "batalhar");
         session([
-            "id_oponente" => $id,
+            "id_oponente" => $request->oponente,
             "foto_oponente" => "nenhuma",
             "nome_oponente" => "Computador"
         ]);
@@ -48,15 +46,13 @@ class Batalhar extends Controller
         
         $this->alertaConfirmar("Confirmar Desafio!", "Tem certeza que deseja desafiar este player?", "batalhar");
 
-        $dados_oponente = Player::find($player);
-        $foto_oponente = $dados_oponente->foto;
-        $pais_oponente = $dados_oponente->pais;
+        $dados_oponente = Player::findOrFail($player);
 
         session([
             "id_player" => $player,
             "id_oponente" => $oponente,
-            "foto_oponente" => $foto_oponente,
-            "pais_oponente" => $pais_oponente,
+            "foto_oponente" => $dados_oponente->foto,
+            "pais_oponente" => $dados_oponente->pais,
             "nome_oponente" => $nome_oponente,
             "nivel_oponente" => $nivel
         ]);
@@ -72,21 +68,13 @@ class Batalhar extends Controller
             return redirect()->back()->withErrors(["skill" => "Escolha sua skill primeiro."]);
         }
 
-        $id_batalha = session("dados.id_batalha");
-        $id = session("player.personagem.id");
-        $personagem = Personagem::find($id);       
-        $nivel = session("player.nivel");
-        
-        $dano = Randoms::danoPlayerSorteado($personagem, $nivel, $skill_escolhida);
+        $dano = Randoms::danoPlayerSorteado(Personagem::findOrFail(session("player.personagem.id")), session("player.nivel"), $skill_escolhida);
 
         if (session()->has(["skill01", "skill02", "skill03"])) {
             session()->forget(["skill01", "skill02", "skill03"]);
         }
 
-        $batalha = Batalha::find($id_batalha);
-        $salvar_batalha = Salvar::atacar($batalha, $dano);
-
-        if (!$salvar_batalha) {
+        if (!Salvar::atacar(Batalha::findOrFail(session("dados.id_batalha")), $dano)) {
             $this->alertaResultado("Erro ao Atacar!", "Ocorreu um erro ao tentar atacar o oponente! Tente novamente.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
@@ -99,9 +87,6 @@ class Batalhar extends Controller
 
     public function ataqueOponente(): RedirectResponse {
 
-        $id_batalha = session("dados.id_batalha");
-        $id = session("dados.id_oponente");
-        $personagem = Personagem::find($id);
         $nivel = null;
 
         if (session()->has("nivel_oponente")) {
@@ -110,12 +95,9 @@ class Batalhar extends Controller
             $nivel = session("player.nivel");
         }
               
-        $dano = Randoms::danoOponenteSorteado($personagem, $nivel);
-        
-        $batalha = Batalha::find($id_batalha);
-        $salvar_batalha = Salvar::ataqueOponente($batalha, $dano);
+        $dano = Randoms::danoOponenteSorteado(Personagem::findOrFail(session("dados.id_oponente")), $nivel);
 
-        if (!$salvar_batalha) {
+        if (!Salvar::ataqueOponente(Batalha::findOrFail(session("dados.id_batalha")), $dano)) {
             $this->alertaResultado("Erro ao Receber Ataque!", "Ocorreu um erro ao receber o ataque do oponente!", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
@@ -139,12 +121,7 @@ class Batalhar extends Controller
             "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente"
         ]);
 
-        $id = session("player.id");
-        $player = Player::find($id);
-        $id_batalha = session("dados.id_batalha");
-        $batalha = Batalha::find($id_batalha);
-
-        Salvar::render($player, $batalha);
+        Salvar::render(Player::findOrFail(session("player.id")), Batalha::findOrFail(session("dados.id_batalha")));
 
         session()->forget(["id_player", "dados"]);
         session()->flash("derrota", true);

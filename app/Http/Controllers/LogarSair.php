@@ -23,25 +23,17 @@ class LogarSair extends Controller
             ]
         );
 
-        $email = $request->input("email");
-        $senha = $request->input("senha");
-
-        $player = Player::where("email", $email)
-                        ->first();        
+        $player = Player::where("email", $request->input("email"))->first();
 
         if (!$player) {
             return redirect()->back()->withInput()->withErrors(["playerNaoExiste" => "Esse player não está cadastrado! Tente outro."]);
         }
 
-        if (Hash::check($senha, $player->senha)) {
+        if (!Hash::check($request->input("senha"), $player->senha)) {
             return redirect()->back()->withInput()->withErrors(["playerNaoExiste" => "Esse player não está cadastrado! Tente outro."]);
         }
-
-        $batalha_inacabada = Batalha::where("nome", $player->usuario)
-                                    ->whereNull("ganhou")
-                                    ->first();
                                     
-        $batalha_inacabada?->forceDelete();
+        Batalha::where("nome", $player->usuario)->whereNull("ganhou")->first()?->forceDelete();
 
         session([
             "xp" => $player->xp,

@@ -18,9 +18,8 @@ class EditarDeletar extends Controller
 
     public function deletar(): RedirectResponse {
 
-        $id = session("player.id");
-        
-        $player_deletar = Player::findOrFail($id);
+        $player_deletar = Player::findOrFail(session("player.id"));
+
         $player_deletar->delete();
 
         if (!$player_deletar) {
@@ -38,7 +37,6 @@ class EditarDeletar extends Controller
 
     public function confirmarAtualizar(Request $request): RedirectResponse {
         
-        $classe_escolhida = $request->input("classe");
         $foto_escolhida = $request->file("foto");
         
         $request->validate(
@@ -67,23 +65,16 @@ class EditarDeletar extends Controller
 
         $usuario = $request->input("novo_usuario");
         $email = $request->input("novo_email");
-        $senha = $request->input("nova_senha");
         $foto = "";
-        $sem_foto = $request->input("sem_foto");
-
-        $classe = GenerosClasses::escolhaClasse($classe_escolhida);
+        $classe = GenerosClasses::escolhaClasse($request->input("classe"));
 
         if ($classe == "Selecione sua classe...") {
             return redirect()->back()->withInput()->withErrors(["classe" => "Você deve escolher uma classe primeiro."]);
         }
 
-        if (!$sem_foto) {
+        if (!$request->input("sem_foto")) {
             if ($foto_escolhida && $foto_escolhida->isValid()) {
-
-                $foto_tamanho = $foto_escolhida->getSize();
-                $tamanho_maximo = 10485760;
-
-                if ($foto_tamanho > $tamanho_maximo) {
+                if ($foto_escolhida->getSize() > 10485760) {
                     return redirect()->back()->withInput()->with("fotoTamanho", "Essa foto é muito grande! O arquivo deve ter no máximo 10MB.");
                 }
 
@@ -119,7 +110,7 @@ class EditarDeletar extends Controller
             "dados" => [
                 "usuario" => $usuario,
                 "email" => $email,
-                "senha" => $senha,
+                "senha" => $request->input("nova_senha"),
                 "classe" => $classe,
                 "foto" => $foto
             ]
@@ -130,12 +121,9 @@ class EditarDeletar extends Controller
 
     public function atualizar(): RedirectResponse {
 
-        $id = session("player.id");        
-        
-        $player = Player::find($id);
-        $atualizar_player = Salvar::atualizar($player);
+        $player = Player::findOrFail(session("player.id"));
 
-        if (!$atualizar_player) {
+        if (!Salvar::atualizar($player)) {
             $this->alertaResultado("Erro ao Atualizar!", "Ocorreu um erro ao tentar atualizar o player! Tente novamente.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();

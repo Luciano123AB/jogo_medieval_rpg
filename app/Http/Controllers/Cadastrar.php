@@ -12,8 +12,6 @@ class Cadastrar extends Controller
 {
     public function confirmarCadastrar(Request $request): RedirectResponse {
         
-        $genero_escolhida = $request->input("genero");
-        $classe_escolhida = $request->input("classe");
         $foto_escolhida = $request->file("foto");
         
         $request->validate(
@@ -44,28 +42,22 @@ class Cadastrar extends Controller
 
         $usuario = $request->input("novo_usuario");
         $email = $request->input("novo_email");
-        $senha = $request->input("nova_senha");
-        $pais = $request->input("pais");
         $foto = "";
 
-        $genero = GenerosClasses::escolhaGenero($genero_escolhida);
+        $genero = GenerosClasses::escolhaGenero($request->input("genero"));
 
         if ($genero == "Selecione seu gênero...") {
             return redirect()->back()->withInput()->withErrors(["genero" => "Selecione seu gênero também."]);
         }
 
-        $classe = GenerosClasses::escolhaClasse($classe_escolhida);
+        $classe = GenerosClasses::escolhaClasse($request->input("classe"));
 
         if ($classe == "Selecione sua classe...") {
             return redirect()->back()->withInput()->withErrors(["classe" => "Você deve escolher uma classe primeiro."]);
         }
 
         if ($foto_escolhida && $foto_escolhida->isValid()) {
-
-            $foto_tamanho = $foto_escolhida->getSize();
-            $tamanho_maximo = 10485760;
-
-            if ($foto_tamanho > $tamanho_maximo) {
+            if ($foto_escolhida->getSize() > 10485760) {
                 return redirect()->back()->withInput()->with("fotoTamanho", "Essa foto é muito grande! O arquivo deve ter no máximo 10MB.");
             }
 
@@ -80,12 +72,7 @@ class Cadastrar extends Controller
             $foto = "nenhuma";
         }
 
-        $player_existente = Player::where("usuario", $usuario)
-                                  ->first();
-        $email_existente = Player::where("email", $email)
-                                  ->first();
-
-        if ($player_existente || $email_existente) {
+        if (Player::where("usuario", $usuario)->first() || Player::where("email", $email)->first()) {
             return redirect()->back()->withInput()->withErrors(["playerExiste" => "Esse player já está cadastrado! Tente novamente."]);
         }
 
@@ -94,9 +81,9 @@ class Cadastrar extends Controller
             "dados" => [
                 "usuario" => $usuario,
                 "email" => $email,
-                "senha" => $senha,
+                "senha" => $request->input("nova_senha"),
                 "genero" => $genero,
-                "pais" => $pais,
+                "pais" => $request->input("pais"),
                 "classe" => $classe,
                 "foto" => $foto
             ]
@@ -108,9 +95,8 @@ class Cadastrar extends Controller
     public function cadastroSubmit(): RedirectResponse {
 
         $novo_player = new Player();
-        $cadastrar_novo_player = Salvar::cadastrar($novo_player);
 
-        if (!$cadastrar_novo_player) {
+        if (!Salvar::cadastrar($novo_player)) {
             $this->alertaResultado("Erro ao Cadastrar!", "Ocorreu um erro ao tentar cadastrar esse player! Tente novamente.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back()->withInput();

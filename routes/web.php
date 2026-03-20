@@ -28,12 +28,10 @@ Route::prefix("/")->group(function () {
     Route::controller(MainController::class)->group(function() {
         Route::middleware(VerificarBatalha::class)->group(function() {
             Route::get("", function(): View {
-                
-                $banco = Boot::testarConexao();
-            
-                if ($banco == false) {
+                if (Boot::testarConexao() == false) {
                     Boot::criarPovoarBanco();
-                }                
+                }
+
                 if (!is_dir(base_path("node_modules"))) {
                     Boot::dependencias();
                 }
@@ -49,8 +47,7 @@ Route::prefix("/")->group(function () {
 
                 if (session()->has("player")) {
 
-                    $id = session("player.id");
-                    $player = Player::find($id);
+                    $player = Player::findOrFail(session("player.id"));
 
                     if (session("player.nivel") < $player->nivel) {
                         session(["player" => $player]);
@@ -125,10 +122,10 @@ Route::prefix("/")->group(function () {
     Route::controller(EditarDeletar::class)->group(function() {
         Route::middleware([VerificarLogado::class, VerificarBatalha::class])->group(function() {
             Route::post("confirmar_atualizar", "confirmarAtualizar")->name("confirmarAtualizar");
-            Route::get("atualizar", "atualizar")->name("atualizar");
+            Route::put("atualizar", "atualizar")->name("atualizar");
 
             Route::get("confirmar_deletar", "confirmarDeletar")->name("confirmarDeletar");
-            Route::get("deletar", "deletar")->name("deletar");
+            Route::delete("deletar", "deletar")->name("deletar");
         });
     });
 
@@ -157,10 +154,7 @@ Route::prefix("/")->group(function () {
             return response()->json(["ok" => false]);
         }
 
-        $idBatalha = session("dados.id_batalha");
-        $key = "batalha_tempo_$idBatalha";
-
-        Cache::put($key, [
+        Cache::put("batalha_tempo_" . session("dados.id_batalha"), [
             "segundos" => $request->segundos,
             "minutos" => $request->minutos
         ], now()->addMinutes(30));

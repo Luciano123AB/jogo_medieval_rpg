@@ -19,8 +19,7 @@ class VerificarVencedor extends Controller
     {
         if (session()->has("dados.batalha_comecou")) {
 
-            $id_batalha = session("dados.id_batalha");
-            $batalha = Batalha::find($id_batalha);
+            $batalha = Batalha::findOrFail(session("dados.id_batalha"));
 
             if (!$batalha) {
                 $this->alertaResultado("Erro ao Batalhar!", "Ocorreu um erro ao tentar começar a batalha! Tente novamente.", "bi-hand-thumbs-down-fill");

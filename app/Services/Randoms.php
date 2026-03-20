@@ -6,10 +6,6 @@ class Randoms
 {
     public static function danoPlayerSorteado($personagem, $nivel, $skill_escolhida) {
 
-        $skill01 = $personagem->skill01->skill;
-        $skill02 = $personagem->skill02->skill;
-        $skill03 = $personagem->skill03->skill;
-
         $danos_skill01 = [$personagem->skill01->dano01, $personagem->skill01->dano02, $personagem->skill01->dano03];
         $danos_skill02 = [$personagem->skill02->dano01, $personagem->skill02->dano02, $personagem->skill02->dano03];
         $danos_skill03 = [$personagem->skill03->dano01, $personagem->skill03->dano02, $personagem->skill03->dano03];
@@ -17,29 +13,6 @@ class Randoms
         $dano01_sorteado = $danos_skill01[array_rand($danos_skill01)];
         $dano02_sorteado = $danos_skill02[array_rand($danos_skill02)];
         $dano03_sorteado = $danos_skill03[array_rand($danos_skill03)];
-
-        switch ($skill_escolhida) {
-            case "$skill01":
-                $dano = $dano01_sorteado * $nivel;
-
-                session(["skill01" => true]);
-                session()->flash("normal_player");
-            break;
-
-            case "$skill02":
-                $dano = $dano02_sorteado * $nivel;
-
-                session(["skill02" => true]);
-                session()->flash("forte_player");
-            break;
-
-            case "$skill03":
-                $dano = $dano03_sorteado * $nivel;
-
-                session(["skill03" => true]);
-                session()->flash("ultimate_player");
-            break;
-        }
 
         if ($dano01_sorteado == $danos_skill01[2] || $dano02_sorteado == $danos_skill02[2] || $dano03_sorteado == $danos_skill03[2]) {
             session()->flash("dano_critico");
@@ -51,7 +24,28 @@ class Randoms
             session()->flash("tipo_dano", "primary");
         }
 
-        return $dano;
+        switch ($skill_escolhida) {
+            case $personagem->skill01->skill:
+                session(["skill01" => true]);
+                session()->flash("normal_player");
+
+                return $dano01_sorteado * $nivel;
+            break;
+
+            case $personagem->skill02->skill:
+                session(["skill02" => true]);
+                session()->flash("forte_player");
+
+                return $dano02_sorteado * $nivel;
+            break;
+
+            case $personagem->skill03->skill:
+                session(["skill03" => true]);
+                session()->flash("ultimate_player");
+
+                return $dano03_sorteado * $nivel;
+            break;
+        }
     }
 
     public static function danoOponenteSorteado($personagem, $nivel) {
@@ -68,7 +62,6 @@ class Randoms
         $dano02_sorteado = $danos_skill02[array_rand($danos_skill02)];
         $dano03_sorteado = $danos_skill03[array_rand($danos_skill03)];
 
-        $todasSkills = [$skill01, $skill02, $skill03];
         $skillsDisponiveis = [];
 
         if (!session()->has("skill01_oponente")) $skillsDisponiveis[] = $skill01;
@@ -78,32 +71,7 @@ class Randoms
         if (empty($skillsDisponiveis)) {
             session()->forget(["skill01_oponente", "skill02_oponente", "skill03_oponente"]);
 
-            $skillsDisponiveis = $todasSkills;
-        }
-
-        $skill_sorteado = $skillsDisponiveis[array_rand($skillsDisponiveis)];
-
-        switch ($skill_sorteado) {
-            case $skill01:
-                $dano = $dano01_sorteado * $nivel;                
-
-                session(["skill01_oponente" => true]);
-                session()->flash("normal_oponente");
-            break;
-
-            case $skill02:
-                $dano = $dano02_sorteado * $nivel;
-
-                session(["skill02_oponente" => true]);
-                session()->flash("forte_oponente");
-            break;
-
-            case $skill03:
-                $dano = $dano03_sorteado * $nivel;
-
-                session(["skill03_oponente" => true]);
-                session()->flash("ultimate_oponente");
-            break;
+            $skillsDisponiveis = [$skill01, $skill02, $skill03];
         }
 
         if ($dano01_sorteado == $danos_skill01[2] || $dano02_sorteado == $danos_skill02[2] || $dano03_sorteado == $danos_skill03[2]) {
@@ -116,6 +84,27 @@ class Randoms
             session()->flash("tipo_dano", "primary");
         }
 
-        return $dano;
+        switch ($skillsDisponiveis[array_rand($skillsDisponiveis)]) {
+            case $skill01:
+                session(["skill01_oponente" => true]);
+                session()->flash("normal_oponente");
+
+                return $dano01_sorteado * $nivel;
+            break;
+
+            case $skill02:
+                session(["skill02_oponente" => true]);
+                session()->flash("forte_oponente");
+
+                return $dano02_sorteado * $nivel;
+            break;
+
+            case $skill03:
+                session(["skill03_oponente" => true]);
+                session()->flash("ultimate_oponente");
+
+                return $dano03_sorteado * $nivel;
+            break;
+        }
     }
 }

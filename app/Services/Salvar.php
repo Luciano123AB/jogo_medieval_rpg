@@ -133,7 +133,7 @@ class Salvar
             if (session()->has("id_player")) {
 
                 $id_oponente = session("id_player");
-                $oponente = Player::find($id_oponente);
+                $oponente = Player::findOrFail($id_oponente);
 
                 $oponente->quantidade_derrotas = $oponente->quantidade_derrotas + 1;
                 $oponente->saveOrFail();
@@ -166,7 +166,7 @@ class Salvar
             if (session()->has("id_player")) {
 
                 $id = session("id_player");
-                $player = Player::find($id);
+                $player = Player::findOrFail($id);
 
                 $player->quantidade_vitorias = $player->quantidade_vitorias + 1;
                 $player->saveOrFail();
@@ -199,7 +199,7 @@ class Salvar
             if (session()->has("id_player")) {
 
                 $id = session("id_player");
-                $player = Player::find($id);
+                $player = Player::findOrFail($id);
 
                 $player->quantidade_vitorias = $player->quantidade_vitorias + 1;
                 $player->saveOrFail();

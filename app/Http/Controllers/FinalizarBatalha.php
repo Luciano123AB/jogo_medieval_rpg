@@ -17,9 +17,7 @@ Class FinalizarBatalha extends Controller
             "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente", "dados"
         ]);
 
-        $id = session("player.id");
         $rota = "";
-        $xp = 00.0;
 
         if (session("nome_oponente") == "Computador") {
             $xp = 25.0;
@@ -27,11 +25,7 @@ Class FinalizarBatalha extends Controller
             $xp = 33.5;
         }
         
-        $player = Player::find($id);
-
-        if ($player->xp >= 100) {
-            $rota = route('home');
-        }
+        $player = Player::findOrFail(session("player.id"));
 
         Salvar::vitoria($player, $xp, $batalha);
 
@@ -42,6 +36,10 @@ Class FinalizarBatalha extends Controller
             $xp_ganho = "+250xp";
         } else {
             $xp_ganho = "+335xp";
+        }
+
+        if ($player->nivel > session("player.nivel")) {
+            $rota = route('home');
         }
         
         session()->flash("vitoria", true);
@@ -65,8 +63,7 @@ Class FinalizarBatalha extends Controller
             "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente", "dados"
         ]);
 
-        $id = session("player.id");        
-        $player = Player::find($id);
+        $player = Player::findOrFail(session("player.id"));
 
         Salvar::derrota($player, $batalha);
         

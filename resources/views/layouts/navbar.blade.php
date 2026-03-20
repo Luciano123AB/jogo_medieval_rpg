@@ -115,9 +115,6 @@
                             </div>
                             <div class="cursor barras progress border border-success bg-black" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                                 @php
-
-                                    $nivel = "";
-
                                     if (session("player.nivel") == 70) {
                                         $nivel = "100.0";
                                     } else {
