@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('personagems', function (Blueprint $table) {
             $table->id();
-            $table->string("classe", 9)->comment("Guerreiro|Mago|Assassino");
-            $table->string("imagem", 13)->comment("guerreiro.png|mago.png|assassino.png");
-            $table->string("descricao", 366);
+            $table->string("classe", 9)->unique()->comment("Guerreiro|Mago|Assassino");
+            $table->string("imagem", 13)->unique()->comment("guerreiro.png|mago.png|assassino.png");
+            $table->string("descricao", 366)->unique();
             $table->string("tipo_dano", 6)->comment("Físico|Mágico");
             $table->string("alcance", 5)->comment("Curto|Longo");
             $table->string("vida")->comment("Baixa|Alta");

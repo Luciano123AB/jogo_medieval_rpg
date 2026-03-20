@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('players', function (Blueprint $table) {
             $table->id();
-            $table->string("usuario", 30);
-            $table->string("email", 100);
+            $table->string("usuario", 30)->unique();
+            $table->string("email", 100)->unique();
             $table->string("senha", 255);
             $table->string("genero", 9)->comment("Masculino|Feminino|Outro");
             $table->string("pais", 2);

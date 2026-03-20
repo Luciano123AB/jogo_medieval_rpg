@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create("regras", function(Blueprint $table) {
             $table->id();
-            $table->string("regra", 20);
-            $table->string("explicacao", 300);
+            $table->string("regra", 20)->unique();
+            $table->string("explicacao", 300)->unique();
             $table->string("icone", 15)->comment("bi-...");
-            $table->string("imagem", 20)->comment("nome_imagem");
+            $table->string("imagem", 20)->unique()->comment("nome_imagem");
             $table->string("animacao01", 30)->comment("animate__...");
             $table->string("animacao02", 30)->comment("animate__...");
             $table->timestamps();
