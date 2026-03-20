@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 abstract class Controller
 {
     protected function alerta(string $titulo, string $icone, string $texto, string $pagina) {
-        session()->flash("alerta");
-
         return session()->flash(
             "alerta", [
                 "titulo" => $titulo,
@@ -18,8 +16,6 @@ abstract class Controller
     }
 
     protected function alertaConfirmar(string $titulo, string $texto, string $sim) {
-        session()->flash("alerta");
-
         return session()->flash(
             "alerta_confirmar", [
                 "titulo" => $titulo,
@@ -30,8 +26,6 @@ abstract class Controller
     }
 
     protected function alertaConfirmarRender(string $titulo, string $texto, string $sim) {
-        session()->flash("alerta");
-
         return session()->flash(
             "alerta_confirmar_render", [
                 "titulo" => $titulo,
@@ -42,8 +36,6 @@ abstract class Controller
     }
 
     protected function alertaResultado(string $titulo, string $texto, string $icone) {
-        session()->flash("alerta");
-
         return session()->flash(
             "alerta_resultado", [
                 "titulo" => $titulo,
@@ -54,8 +46,6 @@ abstract class Controller
     }
 
     protected function alertaBatalha(string $titulo, string $texto, string $icone, string $rota) {
-        session()->flash("alerta");
-
         return session()->flash(
             "alerta_batalha", [
                 "titulo" => $titulo,

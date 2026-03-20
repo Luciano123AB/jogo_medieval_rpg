@@ -14,9 +14,7 @@
 <body class="bg-dark fst-italic">
     <div id="fundo"></div>
 
-    @session("alerta")
-        @include("layouts.partials.alertas")
-    @endsession
+    @include("layouts.partials.alertas")
     
     @include("layouts.navbar")
 
