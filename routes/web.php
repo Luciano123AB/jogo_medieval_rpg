@@ -107,7 +107,7 @@ Route::prefix("/")->group(function () {
     Route::controller(Cadastrar::class)->group(function() {    
         Route::middleware(VerificarDeslogado::class)->group(function() {
             Route::post("confirmar_cadastrar", "confirmarCadastrar")->name("confirmarCadastrar");
-            Route::get("cadastro_submit", "cadastroSubmit")->name("cadastrar");
+            Route::post("cadastro_submit", "cadastroSubmit")->name("cadastrar");
         });
     });
 
@@ -172,9 +172,10 @@ Route::prefix("/")->group(function () {
     });
 });
 
-Route::prefix("/resetar_")->group(function () {
+Route::prefix("/resetar")->group(function () {
     Route::controller(Resetar::class)->group(function() {
         Route::get("vitorias", "resetarVitorias")->name("resetarVitorias");
         Route::get("derrotas", "resetarDerrotas")->name("resetarDerrotas");
+        Route::get("batalha/{id}", "excluir")->name("excluir");
     });
 });

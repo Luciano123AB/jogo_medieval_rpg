@@ -29,6 +29,7 @@
                                 <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border px-1">VS</th>
                                 <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border">Oponente</th>
                                 <th class="border-{{ $temas[1] }} border">⚰️</th>
+                                <th class="border-{{ $temas[1] }} border"><i class="cor_fontes_{{ $temas[3] }} bi bi-x-circle-fill"></i></th>
                             </thead>
 
                             <tbody>
@@ -40,6 +41,15 @@
                                         <td class="border-{{ $temas[1] }} border text-center">🆚</td>
                                         <td class="cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center px-1">{{ $vitorias->perdeu }}</td>
                                         <td class="border-{{ $temas[1] }} border text-danger text-center fw-bold px-1">DERROTA</td>
+                                        <td class="border-{{ $temas[1] }} border text-danger text-center fw-bold p-1">
+                                            <a href="{{ route("excluir", ["id" => Crypt::encrypt($vitorias->id)]) }}" type="button" class="cursor sombras botoes btn btn-sm focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }}">
+                                                <span class="cursor cor_fontes_{{ $temas[3] }}">
+                                                    <div class="cursor animate__animated animate__bounceOut animate__infinite">
+                                                        <i class="cursor bi bi-trash-fill"></i>
+                                                    </div>
+                                                </span>
+                                            </a>
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr class="text-center">
@@ -76,6 +86,7 @@
                                 <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border px-1">VS</th>
                                 <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border">Oponente</th>
                                 <th class="border-{{ $temas[1] }} border">👑</th>
+                                <th class="border-{{ $temas[1] }} border"><i class="cor_fontes_{{ $temas[3] }} bi bi-x-circle-fill"></i></th>
                             </thead>
 
                             <tbody>
@@ -87,6 +98,15 @@
                                         <td class="border-{{ $temas[1] }} border text-center">🆚</td>
                                         <td class="cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center px-1">{{ $derrotas->ganhou }}</td>
                                         <td class="border-{{ $temas[1] }} border text-success text-center fw-bold px-1">VITÓRIA</td>
+                                        <td class="border-{{ $temas[1] }} border text-danger text-center fw-bold p-1">
+                                            <a href="{{ route("excluir", ["id" => Crypt::encrypt($derrotas->id)]) }}" type="button" class="cursor sombras botoes btn btn-sm focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }}">
+                                                <span class="cursor cor_fontes_{{ $temas[3] }}">
+                                                    <div class="cursor animate__animated animate__bounceOut animate__infinite">
+                                                        <i class="cursor bi bi-trash-fill"></i>
+                                                    </div>
+                                                </span>
+                                            </a>
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr class="text-center">

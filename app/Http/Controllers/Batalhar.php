@@ -9,6 +9,7 @@ use App\Services\Randoms;
 use App\Services\Salvar;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class Batalhar extends Controller
 {
@@ -46,11 +47,12 @@ class Batalhar extends Controller
         
         $this->alertaConfirmar("Confirmar Desafio!", "Tem certeza que deseja desafiar este player?", "batalhar");
 
+        $player = Crypt::decrypt($player);
         $dados_oponente = Player::findOrFail($player);
 
         session([
             "id_player" => $player,
-            "id_oponente" => $oponente,
+            "id_oponente" => Crypt::decrypt($oponente),
             "foto_oponente" => $dados_oponente->foto,
             "pais_oponente" => $dados_oponente->pais,
             "nome_oponente" => $nome_oponente,
