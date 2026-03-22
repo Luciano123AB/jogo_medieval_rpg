@@ -16,27 +16,9 @@
                 <span class="cursor titulos_{{ $temas[6] }} cor_fontes_{{ $temas[6] }} fw-bold align-middle fs-3">{{ env("APP_NAME") }}</span>
                 <br class="d-sm-none">
                 <span class="cursor cor_fontes_{{ $temas[6] }} animate__animated animate__fadeIn align-middle fs-3">- 
-                    @if ($pagina == "Home")
-                        <i class="bi bi-house-fill"></i>
-                    @elseif($pagina == "Créditos")
-                        <i class="cursor bi bi-body-text"></i>
-                    @elseif($pagina == "Descrições")
-                        <i class="cursor bi bi-person-lines-fill"></i>
-                    @elseif($pagina == "Regras")
-                        <i class="cursor bi bi-question-circle-fill"></i>
-                    @elseif($pagina == "Cadastro")
-                        <i class="cursor bi bi-person-fill-add"></i>
-                    @elseif($pagina == "Atualização")
-                        <i class="cursor bi bi-person-fill-down"></i>
-                    @elseif($pagina == "Listagem")
-                        <i class="bi bi-list-stars"></i>
-                    @elseif($pagina == "Registro")
-                        <i class="bi bi-file-earmark-medical-fill"></i>
-                    @elseif($pagina == "Batalhas")
-                        <i class="bi bi-card-list"></i>
-                    @elseif($pagina == "Totais")
-                        <i class="bi bi-flag-fill"></i>
-                    @elseif($pagina == "Batalha" || $pagina == "Preparação")
+                    @if (!$icone_pagina == "⚔️")
+                        <i class="bi bi-{{ $icone_pagina }}"></i>
+                    @else
                         ⚔️
                     @endif
                     {{ mb_strtoupper($pagina) }}

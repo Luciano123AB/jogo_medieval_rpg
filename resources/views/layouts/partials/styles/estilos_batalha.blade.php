@@ -23,16 +23,28 @@
     }
 
     #player {
-        background-image: url('{{ asset("assets/images/gifs/auras/$aura_player.gif") }}');
         background-size: 150% 110%;
         background-repeat: no-repeat;
         background-position: center;
     }
 
     #oponente {
-        background-image: url('{{ asset("assets/images/gifs/auras/$aura_oponente.gif") }}');
         background-size: 150% 110%;
         background-repeat: no-repeat;
         background-position: center;
     }
 </style>
+
+@if ($vez == 0)
+    <style>
+        #player {
+            background-image: url('{{ asset("assets/images/gifs/auras/$aura_player.gif") }}');
+        }
+    </style>
+@else
+    <style>
+        #oponente {
+            background-image: url('{{ asset("assets/images/gifs/auras/$aura_oponente.gif") }}');
+        }
+    </style>
+@endif

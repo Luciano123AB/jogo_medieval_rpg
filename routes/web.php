@@ -70,6 +70,7 @@ Route::prefix("/")->group(function () {
                 return view("index")
                     ->with("imagem", "estrada")
                     ->with("pagina", "Home")
+                    ->with("icone_pagina", "house-fill")
                     ->with("temas", $temas);
             })->name("home");
 

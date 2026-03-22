@@ -26,6 +26,7 @@ class MainController extends Controller
         return view("regras")
             ->with("imagem", "campo_treinamento")
             ->with("pagina", "Regras")
+            ->with("icone_pagina", "question-circle-fill")
             ->with("regras", Regra::all())
             ->with("temas", $temas);
     }
@@ -42,6 +43,7 @@ class MainController extends Controller
         return view("sobre_classes")
             ->with("imagem", "estatuas_classes")
             ->with("pagina", "Descrições")
+            ->with("icone_pagina", "person-lines-fill")
             ->with("personagens", Personagem::all())
             ->with("temas", $temas);
     }
@@ -58,6 +60,7 @@ class MainController extends Controller
         return view("creditos")
             ->with("imagem", "estrada")
             ->with("pagina", "Créditos")
+            ->with("icone_pagina", "body-text")
             ->with("temas", $temas);
     }
 
@@ -73,6 +76,7 @@ class MainController extends Controller
         return view("cadastro_atualizacao")
             ->with("imagem", "recrutamento")
             ->with("pagina", "Cadastro")
+            ->with("icone_pagina", "person-fill-add")
             ->with("paises", Paises::paises())
             ->with("personagens", Personagem::all())
             ->with("temas", $temas);
@@ -90,6 +94,7 @@ class MainController extends Controller
         return view("cadastro_atualizacao")
             ->with("imagem", "recrutamento")
             ->with("pagina", "Atualização")
+            ->with("icone_pagina", "person-fill-add")
             ->with("paises", Paises::paises())
             ->with("personagens", Personagem::all())
             ->with("temas", $temas)
@@ -116,6 +121,7 @@ class MainController extends Controller
         return view("listagens/players")
             ->with("imagem", "recrutamento")
             ->with("pagina", "Listagem")
+            ->with("icone_pagina", "list-stars")
             ->with("players", Player::orderBy("usuario", "asc")->get())
             ->with("player_lider_vitorias", Player::orderBy("quantidade_vitorias", "desc")->first())
             ->with("player_lider_nivel", Player::orderBy("nivel", "desc")->first())
@@ -142,6 +148,7 @@ class MainController extends Controller
         return view("listagens/totais_players")
             ->with("imagem", "recrutamento")
             ->with("pagina", "Totais")
+            ->with("icone_pagina", "flag-fill")
             ->with("totais", $totais)
             ->with("temas", $temas);
     }
@@ -158,6 +165,7 @@ class MainController extends Controller
         return view("listagens/registro_batalhas")
             ->with("imagem", "registros")
             ->with("pagina", "Registro")
+            ->with("icone_pagina", "file-earmark-medical-fill")
             ->with("batalhas_vitorias", Batalha::onlyTrashed()->where("ganhou", session("player.usuario"))->get())
             ->with("batalhas_derrotas", Batalha::onlyTrashed()->where("perdeu", session("player.usuario"))->get())
             ->with("temas", $temas);
@@ -175,6 +183,7 @@ class MainController extends Controller
         return view("listagens/batalhas")
             ->with("imagem", "registros")
             ->with("pagina", "Batalhas")
+            ->with("icone_pagina", "card-list")
             ->with("batalhas", Batalha::where("deleted_at", null)->get())
             ->with("temas", $temas);
     }
@@ -191,6 +200,7 @@ class MainController extends Controller
         return view("preparacao")
             ->with("imagem", "coliseu")
             ->with("pagina", "Preparação")
+            ->with("icone_pagina", "⚔️")
             ->with("personagens", Personagem::all())
             ->with("classe", session("player.personagem.classe"))
             ->with("nivel", Player::findOrFail(session("player.id"))->nivel)
@@ -240,6 +250,7 @@ class MainController extends Controller
         return view("batalha")
             ->with("imagem", "coliseu")
             ->with("pagina", "Batalha")
+            ->with("icone_pagina", "⚔️")
             ->with("batalha", $batalha)
             ->with("vez", $batalha->vez)
             ->with("bandeira_oponente", session("pais_oponente"))
