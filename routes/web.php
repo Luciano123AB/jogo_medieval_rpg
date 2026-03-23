@@ -173,8 +173,10 @@ Route::prefix("/")->group(function () {
 
 Route::prefix("/resetar")->group(function () {
     Route::controller(Resetar::class)->group(function() {
-        Route::delete("vitorias", "resetarVitorias")->name("resetarVitorias");
-        Route::delete("derrotas", "resetarDerrotas")->name("resetarDerrotas");
-        Route::delete("batalha/{id}", "excluir")->name("excluir");
+        Route::middleware(VerificarLogado::class)->group(function() {
+            Route::delete("vitorias", "resetarVitorias")->name("resetarVitorias");
+            Route::delete("derrotas", "resetarDerrotas")->name("resetarDerrotas");
+            Route::delete("batalha/{id}", "excluir")->name("excluir");
+        });
     });
 });
