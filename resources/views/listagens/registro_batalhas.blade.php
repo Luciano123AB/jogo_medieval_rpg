@@ -8,14 +8,19 @@
                     <div class="d-flex justify-content-between mb-2">
                         <h4 class="cor_fontes_{{ $temas[3] }} titulos_{{ $temas[3] }}">-Vitórias:</h4>
                         <div></div>
-                        <a href="{{ route("resetarVitorias") }}" type="button" class="cursor sombras botoes btn focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }}">
-                            <span class="cursor cor_fontes_{{ $temas[3] }} d-flex justify-content-center">
-                                <div class="cursor animate__animated animate__bounceOut animate__infinite">
-                                    <i class="cursor bi bi-x-circle-fill me-1"></i>
-                                </div>
-                                Resetar
-                            </span>
-                        </a>
+                        <form action="{{ route("resetarVitorias") }}" method="POST">
+                            @csrf
+                            @method("DELETE")
+
+                            <button type="submit" class="cursor sombras botoes btn focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }}">
+                                <span class="cursor cor_fontes_{{ $temas[3] }} d-flex justify-content-center">
+                                    <div class="cursor animate__animated animate__bounceOut animate__infinite">
+                                        <i class="cursor bi bi-x-circle-fill me-1"></i>
+                                    </div>
+                                    Resetar
+                                </span>
+                            </button>
+                        </form>
                     </div>
                     <div class="tabelas-scroll">
                         <table class="border border-2 border-{{ $temas[1] }} w-100">
@@ -42,13 +47,18 @@
                                         <td class="cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center px-1">{{ $vitorias->perdeu }}</td>
                                         <td class="border-{{ $temas[1] }} border text-danger text-center fw-bold px-1">DERROTA</td>
                                         <td class="border-{{ $temas[1] }} border text-danger text-center fw-bold p-1">
-                                            <a href="{{ route("excluir", ["id" => Crypt::encrypt($vitorias->id)]) }}" type="button" class="cursor sombras botoes btn btn-sm focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }}">
-                                                <span class="cursor cor_fontes_{{ $temas[3] }}">
-                                                    <div class="cursor animate__animated animate__bounceOut animate__infinite">
-                                                        <i class="cursor bi bi-trash-fill"></i>
-                                                    </div>
-                                                </span>
-                                            </a>
+                                            <form action="{{ route("excluir", ["id" => $vitorias->id_crypt]) }}" method="POST">
+                                                @csrf
+                                                @method("DELETE")
+
+                                                <button type="submit" class="cursor sombras botoes btn btn-sm focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }}">
+                                                    <span class="cursor cor_fontes_{{ $temas[3] }}">
+                                                        <div class="cursor animate__animated animate__bounceOut animate__infinite">
+                                                            <i class="cursor bi bi-trash-fill"></i>
+                                                        </div>
+                                                    </span>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @empty
@@ -65,14 +75,19 @@
                     <div class="d-flex justify-content-between mb-2">
                         <h4 class="cor_fontes_{{ $temas[3] }} titulos_{{ $temas[3] }}">-Derrotas:</h4>
                         <div></div>
-                        <a href="{{ route("resetarDerrotas") }}" type="button" class="cursor sombras botoes btn focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }}">
-                            <span class="cursor cor_fontes_{{ $temas[3] }} d-flex justify-content-center">
-                                <div class="cursor animate__animated animate__bounceOut animate__infinite">
-                                    <i class="cursor bi bi-x-circle-fill me-1"></i>
-                                </div>
-                                Resetar
-                            </span>
-                        </a>
+                        <form action="{{ route("resetarDerrotas") }}" method="POST">
+                            @csrf
+                            @method("DELETE")
+
+                            <button type="submit" class="cursor sombras botoes btn focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }}">
+                                <span class="cursor cor_fontes_{{ $temas[3] }} d-flex justify-content-center">
+                                    <div class="cursor animate__animated animate__bounceOut animate__infinite">
+                                        <i class="cursor bi bi-x-circle-fill me-1"></i>
+                                    </div>
+                                    Resetar
+                                </span>
+                            </button>
+                        </form>
                     </div>
                     <div class="tabelas-scroll">
                         <table class="border border-2 border-{{ $temas[1] }} w-100">
@@ -99,13 +114,18 @@
                                         <td class="cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center px-1">{{ $derrotas->ganhou }}</td>
                                         <td class="border-{{ $temas[1] }} border text-success text-center fw-bold px-1">VITÓRIA</td>
                                         <td class="border-{{ $temas[1] }} border text-danger text-center fw-bold p-1">
-                                            <a href="{{ route("excluir", ["id" => Crypt::encrypt($derrotas->id)]) }}" type="button" class="cursor sombras botoes btn btn-sm focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }}">
-                                                <span class="cursor cor_fontes_{{ $temas[3] }}">
-                                                    <div class="cursor animate__animated animate__bounceOut animate__infinite">
-                                                        <i class="cursor bi bi-trash-fill"></i>
-                                                    </div>
-                                                </span>
-                                            </a>
+                                            <form action="{{ route("excluir", ["id" => $derrotas->id_crypt]) }}" method="POST">
+                                                @csrf
+                                                @method("DELETE")
+
+                                                <button type="submit" class="cursor sombras botoes btn btn-sm focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }}">
+                                                    <span class="cursor cor_fontes_{{ $temas[3] }}">
+                                                        <div class="cursor animate__animated animate__bounceOut animate__infinite">
+                                                            <i class="cursor bi bi-trash-fill"></i>
+                                                        </div>
+                                                    </span>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @empty

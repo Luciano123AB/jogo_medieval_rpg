@@ -11,6 +11,17 @@ use Illuminate\Http\RedirectResponse;
 Class FinalizarBatalha extends Controller
 {
     public function finalizarVitoria(Batalha $batalha): RedirectResponse {
+
+        $player = Player::findOrFail(session("player.id"));
+
+        if (session("nome_oponente") == "Computador") {
+            $xp = 25.0;
+        } else {
+            $xp = 33.5;
+        }
+
+        Salvar::vitoria($player, $xp, $batalha);
+
         session()->forget([
             "inicio_player", "inicio_oponente",
             "skill01", "skill02", "skill03", "skill01_oponente", "skill02_oponente", "skill03_oponente",
@@ -18,16 +29,6 @@ Class FinalizarBatalha extends Controller
         ]);
 
         $rota = "";
-
-        if (session("nome_oponente") == "Computador") {
-            $xp = 25.0;
-        } else {
-            $xp = 33.5;
-        }
-        
-        $player = Player::findOrFail(session("player.id"));
-
-        Salvar::vitoria($player, $xp, $batalha);
 
         session(["xp" => $player->xp]);
         session()->forget("id_player");
@@ -57,15 +58,16 @@ Class FinalizarBatalha extends Controller
     }
 
     public function finalizarDerrota(Batalha $batalha): RedirectResponse {
+
+        $player = Player::findOrFail(session("player.id"));
+
+        Salvar::derrota($player, $batalha);
+
         session()->forget([
             "inicio_player", "inicio_oponente",
             "skill01", "skill02", "skill03", "skill01_oponente", "skill02_oponente", "skill03_oponente",
             "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente", "dados"
         ]);
-
-        $player = Player::findOrFail(session("player.id"));
-
-        Salvar::derrota($player, $batalha);
         
         session()->flash("derrota", true);
         $this->alertaBatalha("Derrota!", "Que Pena! Mas não desista, faz parte, infelismente não dá para ganhar todas, continue tentando.", "bi-emoji-frown-fill", "");

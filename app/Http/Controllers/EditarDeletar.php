@@ -20,9 +20,7 @@ class EditarDeletar extends Controller
 
         $player_deletar = Player::findOrFail(session("player.id"));
 
-        $player_deletar->delete();
-
-        if (!$player_deletar) {
+        if (!$player_deletar->delete()) {
             $this->alertaResultado("Erro ao Deletar!", "Ocorreu um erro ao tentar excluir a conta! Tente novamente.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();

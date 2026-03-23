@@ -11,6 +11,8 @@ use App\Services\Paises;
 use App\Services\PlayersPais;
 use App\Services\Salvar;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Crypt;
 
 class MainController extends Controller
 {
@@ -122,7 +124,13 @@ class MainController extends Controller
             ->with("imagem", "recrutamento")
             ->with("pagina", "Listagem")
             ->with("icone_pagina", "list-stars")
-            ->with("players", Player::orderBy("usuario", "asc")->get())
+            ->with("players", Player::orderBy("usuario", "asc")
+                            ->get()
+                            ->map(function ($player) {
+                                $player->id_crypt = Crypt::encrypt($player->id);
+
+                                return $player;
+                            }))
             ->with("player_lider_vitorias", Player::orderBy("quantidade_vitorias", "desc")->first())
             ->with("player_lider_nivel", Player::orderBy("nivel", "desc")->first())
             ->with("desafiou", Desafio::where("id_desafiador", session("player.id"))->pluck("id_desafiado")->toArray())
@@ -166,8 +174,20 @@ class MainController extends Controller
             ->with("imagem", "registros")
             ->with("pagina", "Registro")
             ->with("icone_pagina", "file-earmark-medical-fill")
-            ->with("batalhas_vitorias", Batalha::onlyTrashed()->where("ganhou", session("player.usuario"))->get())
-            ->with("batalhas_derrotas", Batalha::onlyTrashed()->where("perdeu", session("player.usuario"))->get())
+            ->with("batalhas_vitorias", Batalha::onlyTrashed()->where("ganhou", session("player.usuario"))
+                                                ->get()
+                                                ->map(function ($vitoria) {
+                                                    $vitoria->id_crypt = Crypt::encrypt($vitoria->id);
+
+                                                    return $vitoria;
+                                                }))
+            ->with("batalhas_derrotas", Batalha::onlyTrashed()->where("perdeu", session("player.usuario"))
+                                                ->get()
+                                                ->map(function ($derrota) {
+                                                    $derrota->id_crypt = Crypt::encrypt($derrota->id);
+
+                                                    return $derrota;
+                                                }))
             ->with("temas", $temas);
     }
 
@@ -188,7 +208,16 @@ class MainController extends Controller
             ->with("temas", $temas);
     }
 
-    public function preparacao(): View {
+    public function preparacao(): View | RedirectResponse {
+
+        $nivel = Player::findOrFail(session("player.id"))->nivel;
+
+        if (!$nivel) {
+            $this->alertaResultado("Erro ao Carregar!", "Ocorreu um erro ao tentar abrir a página de preparação! Tente novamente.", "bi-hand-thumbs-down-fill");
+
+            return redirect()->route("home");
+        }
+
         $this->alerta("Preparação Antes da Batalha!", "⚔️", "Aqui você escolherá quem irá enfrentar usando sua classe.", "preparacao");
 
         $temas = ["secondary", "primary", "cor_niveis", "light", "escuro"];
@@ -203,11 +232,11 @@ class MainController extends Controller
             ->with("icone_pagina", "⚔️")
             ->with("personagens", Personagem::all())
             ->with("classe", session("player.personagem.classe"))
-            ->with("nivel", Player::findOrFail(session("player.id"))->nivel)
+            ->with("nivel", $nivel)
             ->with("temas", $temas);
     }
 
-    public function batalhar(): View {
+    public function batalhar(): View | RedirectResponse {
         $this->alerta("Batalha!", "bi-phone-landscape-fill", "Agora é a Hora! Aqui você aplicará o que aprendeu na página de regras, e recomendo que para essa página você vire a tela do seu dispositivo. Boa sorte!", "batalha");
         
         $oponente = Personagem::findOrFail(session("id_oponente"));
@@ -223,10 +252,13 @@ class MainController extends Controller
         if (!session()->has("dados.batalha_comecou")) {
             
             $nova_batalha = new Batalha();
-
-            Salvar::batalharDesafiar($nova_batalha, $oponente, $nivel, random_int(0, 1), new Desafio());
-
             $batalha = $nova_batalha;
+
+            if (!Salvar::batalharDesafiar($nova_batalha, $oponente, $nivel, random_int(0, 1), new Desafio())) {
+                $this->alertaResultado("Erro ao Batalhar!", "Ocorreu um erro ao tentar começar a batalha! Tente novamente.", "bi-hand-thumbs-down-fill");
+
+                return redirect()->route("preparacao");
+            }
 
             session([
                 "dados" => [

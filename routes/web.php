@@ -51,7 +51,6 @@ Route::prefix("/")->group(function () {
 
                     if (session("player.nivel") < $player->nivel) {
                         session(["player" => $player]);
-
                         session()->flash(
                             "alerta_nivel", [
                                 "titulo" => "Nível: $player->nivel",
@@ -134,7 +133,7 @@ Route::prefix("/")->group(function () {
         Route::middleware(VerificarLogado::class)->group(function() {
             Route::middleware(VerificarBatalha::class)->group(function() {
                 Route::get("confirmar_batalha", "confirmarBatalha")->name("confirmarBatalha");
-                Route::get("confirmar_desafio/{player}/{oponente}/{nome_oponente}/{nivel}", "confirmarDesafio")->name("confirmarDesafio");
+                Route::get("confirmar_desafio/{id}", "confirmarDesafio")->name("confirmarDesafio");
             });
             
             Route::post("atacar", "atacar")->name("atacar");
@@ -174,8 +173,8 @@ Route::prefix("/")->group(function () {
 
 Route::prefix("/resetar")->group(function () {
     Route::controller(Resetar::class)->group(function() {
-        Route::get("vitorias", "resetarVitorias")->name("resetarVitorias");
-        Route::get("derrotas", "resetarDerrotas")->name("resetarDerrotas");
-        Route::get("batalha/{id}", "excluir")->name("excluir");
+        Route::delete("vitorias", "resetarVitorias")->name("resetarVitorias");
+        Route::delete("derrotas", "resetarDerrotas")->name("resetarDerrotas");
+        Route::delete("batalha/{id}", "excluir")->name("excluir");
     });
 });

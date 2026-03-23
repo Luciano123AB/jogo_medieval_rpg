@@ -34,12 +34,21 @@ class Batalhar extends Controller
         return redirect()->back()->withInput();
     }
 
-    public function confirmarDesafio($player, $oponente, $nome_oponente, $nivel): RedirectResponse {
-        if ($nivel > session("player.nivel")) {
+    public function confirmarDesafio($id): RedirectResponse {
+
+        $dados_oponente = Player::findOrFail(Crypt::decrypt($id));
+
+        if (!$dados_oponente) {
+            $this->alertaResultado("Erro ao Carregar Dados!", "Ocorreu um erro ao tentar carregar os dados do player! Tente novamente.", "bi-hand-thumbs-down-fill");
+
+            return redirect()->back();
+        }
+
+        if ($dados_oponente->nivel > session("player.nivel")) {
             $this->alertaResultado("Player Muito Forte!", "Você não pode desafiar um player de nível superior que o seu. Escolha outro.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
-        } elseif ($nivel < session("player.nivel")) {
+        } elseif ($dados_oponente->nivel < session("player.nivel")) {
             $this->alertaResultado("Player Muito Fraco!", "Você não pode desafiar um player de nível inferior que o seu. Escolha outro.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
@@ -47,16 +56,13 @@ class Batalhar extends Controller
         
         $this->alertaConfirmar("Confirmar Desafio!", "Tem certeza que deseja desafiar este player?", "batalhar");
 
-        $player = Crypt::decrypt($player);
-        $dados_oponente = Player::findOrFail($player);
-
         session([
-            "id_player" => $player,
-            "id_oponente" => Crypt::decrypt($oponente),
+            "id_player" => $dados_oponente->id,
+            "id_oponente" => $dados_oponente->personagem->id,
             "foto_oponente" => $dados_oponente->foto,
             "pais_oponente" => $dados_oponente->pais,
-            "nome_oponente" => $nome_oponente,
-            "nivel_oponente" => $nivel
+            "nome_oponente" => $dados_oponente->usuario,
+            "nivel_oponente" => $dados_oponente->nivel
         ]);
 
         return redirect()->back();
@@ -117,13 +123,17 @@ class Batalhar extends Controller
     }
 
     public function renderSe(): RedirectResponse {
+        if (!Salvar::render(Player::findOrFail(session("player.id")), Batalha::findOrFail(session("dados.id_batalha")))) {
+            $this->alertaResultado("Erro ao Render-se!", "Ocorreu um erro ao tentar se render! Tente novamente.", "bi-hand-thumbs-down-fill");
+
+            return redirect()->back();
+        }
+
         session()->forget([
             "inicio_player", "inicio_oponente",
             "skill01", "skill02", "skill03", "skill01_oponente", "skill02_oponente", "skill03_oponente",
             "id_oponente", "foto_oponente", "bandeira_oponente", "nivel_oponente"
         ]);
-
-        Salvar::render(Player::findOrFail(session("player.id")), Batalha::findOrFail(session("dados.id_batalha")));
 
         session()->forget(["id_player", "dados"]);
         session()->flash("derrota", true);

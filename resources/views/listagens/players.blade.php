@@ -141,7 +141,7 @@
                                                         <span class="cursor cor_fontes_{{ $temas[3] }}">🤜🏼Desafiar</span>
                                                     </button>
                                                 @else
-                                                    <a href="{{ route("confirmarDesafio", ["player" => Crypt::encrypt($player->id), "oponente" => Crypt::encrypt($player->personagem->id), "nome_oponente" => $player->usuario, "nivel" => $player->nivel]) }}" type="button" class="cursor sombras botoes btn btn-sm focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }} mx-1">
+                                                    <a href="{{ route("confirmarDesafio", ["id" => $player->id_crypt]) }}" type="button" class="cursor sombras botoes btn btn-sm focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }} mx-1">
                                                         <span class="cursor cor_fontes_{{ $temas[3] }}">🤜🏼Desafiar</span>
                                                     </a>
                                                 @endif

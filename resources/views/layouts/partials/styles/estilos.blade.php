@@ -125,6 +125,20 @@
         width: 75%;
     }
 
+    .perspectiva {
+        perspective: 1000px;
+    }
+
+    .rotacao_direita {
+        transform: rotateY(10deg);
+        transition: 0.3s;
+    }
+
+    .rotacao_esquerda {
+        transform: rotateY(-10deg);
+        transition: 0.3s;
+    }
+
     #rodape {
         max-width: 600px;
     }
@@ -254,6 +268,20 @@
 
         #index_opcoes {
             width: 100%;
+        }
+
+        .perspectiva {
+            perspective: 800px;
+        }
+
+        .rotacao_direita {
+            transform: rotateY(15deg);
+            transition: 0.3s;
+        }
+
+        .rotacao_esquerda {
+            transform: rotateY(-15deg);
+            transition: 0.3s;
         }
 
         .horizontal_vertical {
