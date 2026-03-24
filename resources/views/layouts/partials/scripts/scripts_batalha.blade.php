@@ -136,7 +136,7 @@
     let distancia_player = [0, 0];
     let distancia_oponente = [0, 0];
 
-    @if(session("player.personagem.classe") == "Mago")
+    @if(Auth::user()->personagem->classe == "Mago")
         distancia_player = [50, 100];
     @else
         distancia_player = [250, distanciaRealX * 0.8];

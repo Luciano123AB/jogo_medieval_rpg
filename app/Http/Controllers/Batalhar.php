@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AtualizarTempo;
 use App\Models\Batalha;
 use App\Models\Personagem;
 use App\Models\Player;
 use App\Services\Randoms;
 use App\Services\Salvar;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Crypt;
 
 class Batalhar extends Controller
@@ -44,11 +48,11 @@ class Batalhar extends Controller
             return redirect()->back();
         }
 
-        if ($dados_oponente->nivel > session("player.nivel")) {
+        if ($dados_oponente->nivel > Auth::user()->nivel) {
             $this->alertaResultado("Player Muito Forte!", "Você não pode desafiar um player de nível superior que o seu. Escolha outro.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
-        } elseif ($dados_oponente->nivel < session("player.nivel")) {
+        } elseif ($dados_oponente->nivel < Auth::user()->nivel) {
             $this->alertaResultado("Player Muito Fraco!", "Você não pode desafiar um player de nível inferior que o seu. Escolha outro.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
@@ -76,7 +80,7 @@ class Batalhar extends Controller
             return redirect()->back()->withErrors(["skill" => "Escolha sua skill primeiro."]);
         }
 
-        $dano = Randoms::danoPlayerSorteado(Personagem::findOrFail(session("player.personagem.id")), session("player.nivel"), $skill_escolhida);
+        $dano = Randoms::danoPlayerSorteado(Personagem::findOrFail(Auth::user()->personagem->id), Auth::user()->nivel, $skill_escolhida);
 
         if (session()->has(["skill01", "skill02", "skill03"])) {
             session()->forget(["skill01", "skill02", "skill03"]);
@@ -100,7 +104,7 @@ class Batalhar extends Controller
         if (session()->has("nivel_oponente")) {
             $nivel = session("nivel_oponente");            
         } else {
-            $nivel = session("player.nivel");
+            $nivel = Auth::user()->nivel;
         }
               
         $dano = Randoms::danoOponenteSorteado(Personagem::findOrFail(session("dados.id_oponente")), $nivel);
@@ -122,8 +126,18 @@ class Batalhar extends Controller
         return redirect()->back();
     }
 
+    public function atualizarTempo(AtualizarTempo $request): JsonResponse {
+        Cache::put(
+            "batalha_tempo_" . session("dados.id_batalha"),
+            $request->validated(),
+            now()->addMinutes(30)
+        );
+
+        return response()->json(['ok' => true]);
+    }
+
     public function renderSe(): RedirectResponse {
-        if (!Salvar::render(Player::findOrFail(session("player.id")), Batalha::findOrFail(session("dados.id_batalha")))) {
+        if (!Salvar::render(Player::findOrFail(Auth::user()->id), Batalha::findOrFail(session("dados.id_batalha")))) {
             $this->alertaResultado("Erro ao Render-se!", "Ocorreu um erro ao tentar se render! Tente novamente.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();

@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Batalha;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class Resetar extends Controller
 {
     public function resetarVitorias(): RedirectResponse {
 
-        $vitorias = Batalha::where("ganhou", session("player.usuario"));
+        $vitorias = Batalha::where("ganhou", Auth::user()->usuario);
 
         if (!$vitorias) {
             $this->alertaResultado("Erro ao Resetar!", "Ocorreu um erro ao tentar resetar as vitórias! Tente novamente.", "bi-hand-thumbs-down-fill");
@@ -26,7 +27,7 @@ class Resetar extends Controller
 
     public function resetarDerrotas(): RedirectResponse {
         
-        $derrotas = Batalha::where("perdeu", session("player.usuario"));
+        $derrotas = Batalha::where("perdeu", Auth::user()->usuario);
 
         if (!$derrotas) {
             $this->alertaResultado("Erro ao Resetar!", "Ocorreu um erro ao tentar resetar as derrotas! Tente novamente.", "bi-hand-thumbs-down-fill");

@@ -12,6 +12,7 @@ use App\Services\PlayersPais;
 use App\Services\Salvar;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class MainController extends Controller
@@ -102,11 +103,11 @@ class MainController extends Controller
             ->with("temas", $temas)
             ->with([
                 "dados" => [
-                    "id" => session("player.id"),
-                    "usuario" => session("player.usuario"),
-                    "email" => session("player.email"),
-                    "classe" => session("player.personagem.classe"),
-                    "foto" => session("player.foto")
+                    "id" => Auth::user()->id,
+                    "usuario" => Auth::user()->usuario,
+                    "email" => Auth::user()->email,
+                    "classe" => Auth::user()->personagem->classe,
+                    "foto" => Auth::user()->foto
                 ]
             ]);
     }
@@ -133,7 +134,7 @@ class MainController extends Controller
                             }))
             ->with("player_lider_vitorias", Player::orderBy("quantidade_vitorias", "desc")->first())
             ->with("player_lider_nivel", Player::orderBy("nivel", "desc")->first())
-            ->with("desafiou", Desafio::where("desafiador_id", session("player.id"))->pluck("desafiado_id")->toArray())
+            ->with("desafiou", Desafio::where("desafiador_id", Auth::user()->id)->pluck("desafiado_id")->toArray())
             ->with("temas", $temas);
     }
 
@@ -174,14 +175,14 @@ class MainController extends Controller
             ->with("imagem", "registros")
             ->with("pagina", "Registro")
             ->with("icone_pagina", "file-earmark-medical-fill")
-            ->with("batalhas_vitorias", Batalha::onlyTrashed()->where("ganhou", session("player.usuario"))
+            ->with("batalhas_vitorias", Batalha::onlyTrashed()->where("ganhou", Auth::user()->usuario)
                                                 ->get()
                                                 ->map(function ($vitoria) {
                                                     $vitoria->id_crypt = Crypt::encrypt($vitoria->id);
 
                                                     return $vitoria;
                                                 }))
-            ->with("batalhas_derrotas", Batalha::onlyTrashed()->where("perdeu", session("player.usuario"))
+            ->with("batalhas_derrotas", Batalha::onlyTrashed()->where("perdeu", Auth::user()->usuario)
                                                 ->get()
                                                 ->map(function ($derrota) {
                                                     $derrota->id_crypt = Crypt::encrypt($derrota->id);
@@ -210,7 +211,7 @@ class MainController extends Controller
 
     public function preparacao(): View | RedirectResponse {
 
-        $nivel = Player::findOrFail(session("player.id"))->nivel;
+        $nivel = Player::findOrFail(Auth::user()->id)->nivel;
 
         if (!$nivel) {
             $this->alertaResultado("Erro ao Carregar!", "Ocorreu um erro ao tentar abrir a página de preparação! Tente novamente.", "bi-hand-thumbs-down-fill");
@@ -231,7 +232,7 @@ class MainController extends Controller
             ->with("pagina", "Preparação")
             ->with("icone_pagina", "⚔️")
             ->with("personagens", Personagem::all())
-            ->with("classe", session("player.personagem.classe"))
+            ->with("classe", Auth::user()->personagem->classe)
             ->with("nivel", $nivel)
             ->with("temas", $temas);
     }
@@ -246,7 +247,7 @@ class MainController extends Controller
         if (session()->has("nivel_oponente")) {
             $nivel = session("nivel_oponente");
         } else {
-            $nivel = session("player.nivel");
+            $nivel = Auth::user()->nivel;
         }
         
         if (!session()->has("dados.batalha_comecou")) {
@@ -264,7 +265,7 @@ class MainController extends Controller
                 "dados" => [
                     "id_batalha" => $nova_batalha->id,
                     "id_oponente" => $oponente->id,
-                    "hp_maximo" => session("player.personagem.hp") * session("player.nivel"),
+                    "hp_maximo" => Auth::user()->personagem->hp * Auth::user()->nivel,
                     "hp_oponente_maximo" => $oponente->hp * $nivel,
                     "batalha_comecou" => true
                 ]

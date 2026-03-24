@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Player;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -56,10 +57,10 @@ class Salvar
     }
 
     public static function batalharDesafiar($nova_batalha, $oponente, $nivel, $vez, $novo_desafio) {
-        $nova_batalha->nome = session("player.usuario");
+        $nova_batalha->nome = Auth::user()->usuario;
         $nova_batalha->nome_oponente = session("nome_oponente");
-        $nova_batalha->hp_maximo = session("player.personagem.hp") * session("player.nivel");
-        $nova_batalha->hp = session("player.personagem.hp") * session("player.nivel");
+        $nova_batalha->hp_maximo = Auth::user()->personagem->hp * Auth::user()->nivel;
+        $nova_batalha->hp = Auth::user()->personagem->hp * Auth::user()->nivel;
         $nova_batalha->hp_maximo_oponente = $oponente->hp * $nivel;
         $nova_batalha->hp_oponente = $oponente->hp * $nivel;
         $nova_batalha->vez = $vez;
@@ -67,7 +68,7 @@ class Salvar
         $nova_batalha->perdeu = null;
         $nova_batalha->created_at = date("Y-m-d H:i:s");
 
-        $novo_desafio->desafiador_id = session("player.id");
+        $novo_desafio->desafiador_id = Auth::user()->id;
         $novo_desafio->desafiado_id = session("id_player");
 
         $salvar = DB::transaction(function () use ($nova_batalha, $novo_desafio) {
@@ -112,7 +113,7 @@ class Salvar
             
             if ($player->xp >= 1000) {
                 $player->nivel++;
-                $player->xp = 0;
+                $player->xp = $player->xp - 1000;
             }
         }        
 
@@ -190,7 +191,7 @@ class Salvar
             $batalha->ganhou = session("nome_oponente");            
         }
 
-        $batalha->perdeu = session("player.usuario");
+        $batalha->perdeu = Auth::user()->usuario;
         $batalha->updated_at = date("Y-m-d H:i:s");
 
         $salvar = DB::transaction(function () use ($player, $batalha) {

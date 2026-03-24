@@ -14,9 +14,9 @@
     const gtl = gsap.timeline();
 
     @if(session("dano_desferido_player"))
-        document.getElementById("player").src = "{{ asset('assets/images/personagens_ataque/' . strtolower(session('player.personagem.classe')) . '.png') }}";
+        document.getElementById("player").src = "{{ asset('assets/images/personagens_ataque/' . strtolower(Auth::user()->personagem->classe) . '.png') }}";
 
-        @if(session("player.personagem.classe") == "Mago")
+        @if(Auth::user()->personagem->classe == "Mago")
             magia_player.hidden = false;
             magia_player.style.display = "block";
 
@@ -188,12 +188,12 @@
 
             setTimeout(() => {
                 player.classList.add("animate__rubberBand");
-                player.src = "{{ asset('assets/images/personagens_dano/' . strtolower(session('player.personagem.classe')) . '.png') }}";
+                player.src = "{{ asset('assets/images/personagens_dano/' . strtolower(Auth::user()->personagem->classe) . '.png') }}";
             }, 900);
 
             setTimeout(() => {
                 oponente.src = "{{ asset('assets/images/personagens/' . strtolower($oponente->classe) . '_reverso.png') }}";
-                player.src = "{{ asset('assets/images/personagens/' . strtolower(session('player.personagem.classe')) . '.png') }}";
+                player.src = "{{ asset('assets/images/personagens/' . strtolower(Auth::user()->personagem->classe) . '.png') }}";
             }, 1600);
         @elseif(session()->has("forte_oponente"))
             gtl.to("#oponente", {
@@ -224,16 +224,16 @@
 
             setTimeout(() => {
                 player.classList.add("animate__shakeX");
-                player.src = "{{ asset('assets/images/personagens_dano/' . strtolower(session('player.personagem.classe')) . '.png') }}";
+                player.src = "{{ asset('assets/images/personagens_dano/' . strtolower(Auth::user()->personagem->classe) . '.png') }}";
             }, 900);
 
             setTimeout(() => {
                 oponente.src = "{{ asset('assets/images/personagens/' . strtolower($oponente->classe) . '_reverso.png') }}";
-                player.src = "{{ asset('assets/images/personagens/' . strtolower(session('player.personagem.classe')) . '.png') }}";
+                player.src = "{{ asset('assets/images/personagens/' . strtolower(Auth::user()->personagem->classe) . '.png') }}";
             }, 1600);
         @else
             setTimeout(() => {
-                player.src = "{{ asset('assets/images/personagens_dano/' . strtolower(session('player.personagem.classe')) . '.png') }}";
+                player.src = "{{ asset('assets/images/personagens_dano/' . strtolower(Auth::user()->personagem->classe) . '.png') }}";
             }, 900);
 
             gtl.fromTo("#oponente", {
@@ -275,7 +275,7 @@
 
             setTimeout(() => {
                 oponente.src = "{{ asset('assets/images/personagens/' . strtolower($oponente->classe) . '_reverso.png') }}";
-                player.src = "{{ asset('assets/images/personagens/' . strtolower(session('player.personagem.classe')) . '.png') }}";
+                player.src = "{{ asset('assets/images/personagens/' . strtolower(Auth::user()->personagem->classe) . '.png') }}";
             }, 2500);
         @endif
     @endif

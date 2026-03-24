@@ -7,17 +7,18 @@ use App\Models\Batalha;
 use App\Models\Player;
 use App\Services\Salvar;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 Class FinalizarBatalha extends Controller
 {
     public function finalizarVitoria(Batalha $batalha): RedirectResponse {
 
-        $player = Player::findOrFail(session("player.id"));
+        $player = Player::findOrFail(Auth::user()->id);
 
         if (session("nome_oponente") == "Computador") {
-            $xp = 250;
+            $xp = 200 + random_int(1, 50);
         } else {
-            $xp = 335;
+            $xp = 300 + random_int(1, 50);
         }
 
         Salvar::vitoria($player, $xp, $batalha);
@@ -30,11 +31,11 @@ Class FinalizarBatalha extends Controller
 
         $rota = "";
 
-        session(["xp" => $player->xp]);
+        Auth::user()->xp += $player->xp;
         session()->forget("id_player");
 
-        if ($player->nivel > session("player.nivel")) {
-            $rota = route('home');
+        if ($player->nivel > Auth::user()->nivel) {
+            $rota = route('nivel');
         }
         
         session()->flash("vitoria", true);
@@ -53,7 +54,7 @@ Class FinalizarBatalha extends Controller
 
     public function finalizarDerrota(Batalha $batalha): RedirectResponse {
 
-        $player = Player::findOrFail(session("player.id"));
+        $player = Player::findOrFail(Auth::user()->id);
 
         Salvar::derrota($player, $batalha);
 

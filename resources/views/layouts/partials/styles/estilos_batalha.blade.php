@@ -1,6 +1,6 @@
 @php
 
-    $classe_player = session("player.personagem.classe");
+    $classe_player = Auth::user()->personagem->classe;
     $classe_oponente = $oponente->classe;
 
     $aura_player = match ($classe_player) {

@@ -6,6 +6,7 @@ use App\Models\Batalha;
 use App\Models\Player;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class LogarSair extends Controller
@@ -35,10 +36,7 @@ class LogarSair extends Controller
                                     
         Batalha::where("nome", $player->usuario)->whereNull("ganhou")->first()?->forceDelete();
 
-        session([
-            "xp" => $player->xp,
-            "player" => $player
-        ]);
+        Auth::login($player);
         $this->alertaResultado("Login Efetuado com Sucesso!", "Agora você pode acessar a batalha e outras páginas.", "bi-hand-thumbs-up-fill");
 
         return redirect()->route("home");
@@ -50,8 +48,10 @@ class LogarSair extends Controller
         return redirect()->back();
     }
 
-    public function sair(): RedirectResponse {
-        session()->forget("player");
+    public function sair(Request $request): RedirectResponse {
+        Auth::logout();
+
+        $request->session()->regenerateToken();
 
         return redirect()->route("home");
     }

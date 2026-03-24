@@ -135,15 +135,19 @@
                                         <td class="cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center">{{ $player->quantidade_vitorias }}</td>
                                         <td class="cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center">{{ $player->quantidade_derrotas }}</td>
                                         <td id="desafiar" class="cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center">
-                                            @if($player->id != session("player.id"))
+                                            @if($player->id != Auth::user()->id)
                                                 @if(in_array($player->id, $desafiou))
                                                     <button type="button" class="cursor sombras botoes btn btn-sm focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }} mx-1" disabled>
                                                         <span class="cursor cor_fontes_{{ $temas[3] }}">🤜🏼Desafiar</span>
                                                     </button>
                                                 @else
-                                                    <a href="{{ route("confirmarDesafio", ["id" => $player->id_crypt]) }}" type="button" class="cursor sombras botoes btn btn-sm focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }} mx-1">
-                                                        <span class="cursor cor_fontes_{{ $temas[3] }}">🤜🏼Desafiar</span>
-                                                    </a>
+                                                    <form action="{{ route("confirmarDesafio", ["id" => $player->id_crypt]) }}" method="POST">
+                                                        @csrf
+
+                                                        <button type="sumit" class="cursor sombras botoes btn btn-sm focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }} mx-1">
+                                                            <span class="cursor cor_fontes_{{ $temas[3] }}">🤜🏼Desafiar</span>
+                                                        </button>
+                                                    </form>
                                                 @endif
                                             @endif
                                         </td>

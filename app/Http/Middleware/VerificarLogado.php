@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Http\Controllers\Controller;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class VerificarLogado extends Controller
@@ -16,7 +17,7 @@ class VerificarLogado extends Controller
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!session()->has("player")) {
+        if (!Auth::user()) {
             $this->alertaResultado("Acesso Negado!", "Para poder abrir essa página, primeiro você deve logar na sua conta.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();

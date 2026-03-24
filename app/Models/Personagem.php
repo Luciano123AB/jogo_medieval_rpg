@@ -28,14 +28,6 @@ class Personagem extends Model
         "hp" => "integer"
     ];
 
-    public function skills() {
-        return $this->hasMany(Skill::class);
-    }
-
-    public function player() {
-        return $this->belongsTo(Personagem::class);
-    }
-
     public function skill01() {
         return $this->belongsTo(Skill::class);
     }

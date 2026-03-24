@@ -7,6 +7,7 @@ use App\Services\GenerosClasses;
 use App\Services\Salvar;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Cadastrar extends Controller
 {
@@ -102,10 +103,7 @@ class Cadastrar extends Controller
             return redirect()->back()->withInput();
         }
         
-        session([
-            "xp" => $novo_player->xp,
-            "player" => $novo_player
-        ]);
+        Auth::login($novo_player);
         $this->alertaResultado("Player Cadastrado com Sucesso!", "Agora você pode acessar a batalha e outras páginas.", "bi-hand-thumbs-up-fill");
 
         return redirect()->route("home");

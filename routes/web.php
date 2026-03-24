@@ -13,12 +13,10 @@ use App\Http\Middleware\VerificarBatalhando;
 use App\Http\Middleware\VerificarDeslogado;
 use App\Http\Middleware\VerificarLogado;
 use App\Http\Middleware\VerificarVencedor;
-use App\Models\Player;
 use App\Services\Boot;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("/")->group(function () {
@@ -45,21 +43,6 @@ Route::prefix("/")->group(function () {
                         "pagina" => "home"
                     ],
                 ]);
-
-                if (session()->has("player")) {
-
-                    $player = Player::findOrFail(session("player.id"));
-
-                    if (session("player.nivel") < $player->nivel) {
-                        session(["player" => $player]);
-                        session()->flash(
-                            "alerta_nivel", [
-                                "titulo" => "Nível: $player->nivel",
-                                "texto" => "Parabéns!, você acaba de subir de nível."
-                            ]
-                        );
-                    }
-                }
 
                 $temas = ["secondary", "primary", "escuro"];
         
@@ -100,7 +83,7 @@ Route::prefix("/")->group(function () {
                 Route::get("preparacao", "preparacao")->name("preparacao");
             });
             
-            Route::get("batalha", "batalhar")->name("batalhar")->middleware(VerificarVencedor::class);
+            Route::match(["GET", "POST"], "batalha", "batalhar")->name("batalhar")->middleware(VerificarVencedor::class);
         });
     });
 
@@ -115,8 +98,8 @@ Route::prefix("/")->group(function () {
         Route::post("logar", "logar")->name("logar")->middleware(VerificarDeslogado::class);
 
         Route::middleware([VerificarLogado::class, VerificarBatalha::class])->group(function() {
-            Route::get("confirmar_sair", "confirmarSair")->name("confirmarSair");
-            Route::get("sair", "sair")->name("sair");
+            Route::post("confirmar_sair", "confirmarSair")->name("confirmarSair");
+            Route::post("sair", "sair")->name("sair");
         });
     });
 
@@ -125,7 +108,7 @@ Route::prefix("/")->group(function () {
             Route::post("confirmar_atualizar", "confirmarAtualizar")->name("confirmarAtualizar");
             Route::put("atualizar", "atualizar")->name("atualizar");
 
-            Route::get("confirmar_deletar", "confirmarDeletar")->name("confirmarDeletar");
+            Route::post("confirmar_deletar", "confirmarDeletar")->name("confirmarDeletar");
             Route::delete("deletar", "deletar")->name("deletar");
         });
     });
@@ -133,29 +116,18 @@ Route::prefix("/")->group(function () {
     Route::controller(Batalhar::class)->group(function() {
         Route::middleware(VerificarLogado::class)->group(function() {
             Route::middleware(VerificarBatalha::class)->group(function() {
-                Route::get("confirmar_batalha", "confirmarBatalha")->name("confirmarBatalha");
-                Route::get("confirmar_desafio/{id}", "confirmarDesafio")->name("confirmarDesafio");
+                Route::post("confirmar_batalha", "confirmarBatalha")->name("confirmarBatalha");
+                Route::post("confirmar_desafio/{id}", "confirmarDesafio")->name("confirmarDesafio");
             });
             
             Route::middleware(VerificarBatalhando::class)->group(function() {
                 Route::post("atacar", "atacar")->name("atacar");
                 Route::get("ataque_oponente", "ataqueOponente")->name("ataque");
 
-                Route::post("atualizar_tempo", function(Request $request) {
-                    if (!session()->has("dados.batalha_comecou")) {
-                        return response()->json(["ok" => false]);
-                    }
+                Route::post("atualizar_tempo", [Batalhar::class, "atualizarTempo"]);
 
-                    Cache::put("batalha_tempo_" . session("dados.id_batalha"), [
-                        "segundos" => $request->segundos,
-                        "minutos" => $request->minutos
-                    ], now()->addMinutes(30));
-
-                    return response()->json(["ok" => true]);
-                });
-
-                Route::get("confirmar_render", "confirmarRender")->name("confirmarRender");
-                Route::get("render_se", "renderSe")->name("renderSe");
+                Route::post("confirmar_render", "confirmarRender")->name("confirmarRender");
+                Route::post("render_se", "renderSe")->name("renderSe");
             });
 
             Route::controller(FinalizarBatalha::class)->group(function() {
@@ -166,7 +138,14 @@ Route::prefix("/")->group(function () {
     });
 
     Route::get("nivel_up", function(): RedirectResponse {
-        return redirect()->back();
+        session()->flash(
+            "alerta_nivel", [
+                "titulo" => "Nível: " . Auth::user()->nivel,
+                "texto" => "Parabéns!, você acaba de subir de nível."
+            ]
+        );
+
+        return redirect()->route("home");
     })->name("nivel");
 
     Route::prefix("resetar")->group(function () {

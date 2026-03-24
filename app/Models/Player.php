@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\Models\Personagem;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Player extends Model
+class Player extends Authenticatable
 {
 
     const UPDATED_AT = null;

@@ -79,45 +79,6 @@
 
 @if(session("alerta_confirmar"))
     <script>
-        
-        let footer = "<a href='{{ route(session('alerta_confirmar.sim')) }}' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' class='cursor sombras botoes animate__animated animate__fadeIn btn btn-success btn-sm rounded focus-ring focus-ring-success'>" +
-                        "<span style='color: {{ $temas[2] }}' class='cursor d-flex justify-content-center'>" +
-                            "<div class='cursor animate__animated animate__bounceIn animate__infinite'>" +
-                                "<i class='cursor bi bi-check-circle-fill me-1'></i>" +
-                            "</div>" +
-                            "SIM" +
-                        "</span>" +
-                     "</a>";
-                     
-        @if (session("alerta_confirmar.sim") == "cadastrar")
-            footer = "<form action='{{ route('cadastrar') }}' method='POST'>" +
-                        "<input type='hidden' name='_token' value='{{ csrf_token() }}'>" +
-                        "<button style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' type='submit' class='cursor sombras botoes animate__animated animate__fadeIn btn btn-success btn-sm rounded focus-ring focus-ring-success'>" +
-                            "<span style='color: {{ $temas[2] }}' class='cursor d-flex justify-content-center'>" +
-                                "<div class='cursor animate__animated animate__bounceIn animate__infinite'>" +
-                                    "<i class='cursor bi bi-check-circle-fill me-1'></i>" +
-                                "</div>" +
-                                "SIM" +
-                            "</span>" +
-                        "</button>" +
-                     "</form>";
-        @endif
-
-        @if (session("alerta_confirmar.sim") == "deletar" || session("alerta_confirmar.sim") == "atualizar")
-            footer = "<form action='{{ route(session('alerta_confirmar.sim')) }}' method='POST'>" +
-                        "<input type='hidden' name='_token' value='{{ csrf_token() }}'>" +
-                        "<input type='hidden' name='_method' value='{{ session('alerta_confirmar.sim') == 'atualizar' ? 'PUT' : 'DELETE' }}'>" +
-                        "<button style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' type='submit' class='cursor sombras botoes animate__animated animate__fadeIn btn btn-success btn-sm rounded focus-ring focus-ring-success'>" +
-                            "<span style='color: {{ $temas[2] }}' class='cursor d-flex justify-content-center'>" +
-                                "<div class='cursor animate__animated animate__bounceIn animate__infinite'>" +
-                                    "<i class='cursor bi bi-check-circle-fill me-1'></i>" +
-                                "</div>" +
-                                "SIM" +
-                            "</span>" +
-                        "</button>" +
-                     "</form>";
-        @endif
-
         Swal.fire({
             position: "center",
             draggable: true,
@@ -150,7 +111,20 @@
                                 "CANCELAR" +
                             "</span>" +
                         "</button>" +
-                        footer +
+                        "<form action='{{ route(session('alerta_confirmar.sim')) }}' method='POST'>" +
+                            "<input type='hidden' name='_token' value='{{ csrf_token() }}'>" +
+                            @if (session("alerta_confirmar.sim") == "deletar" || session("alerta_confirmar.sim") == "atualizar")
+                                "<input type='hidden' name='_method' value='{{ session('alerta_confirmar.sim') == 'atualizar' ? 'PUT' : 'DELETE' }}'>" +
+                            @endif
+                            "<button style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' type='submit' class='cursor sombras botoes animate__animated animate__fadeIn btn btn-success btn-sm rounded focus-ring focus-ring-success'>" +
+                                "<span style='color: {{ $temas[2] }}' class='cursor d-flex justify-content-center'>" +
+                                    "<div class='cursor animate__animated animate__bounceIn animate__infinite'>" +
+                                        "<i class='cursor bi bi-check-circle-fill me-1'></i>" +
+                                    "</div>" +
+                                    "SIM" +
+                                "</span>" +
+                            "</button>" +
+                        "</form>" +
                     "</div>",
             showClass: {
                 popup: `
@@ -210,14 +184,17 @@
                                 "CANCELAR" +
                             "</span>" +
                         "</button>" +
-                        "<a href='{{ route(session('alerta_confirmar_render.sim')) }}' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' class='cursor sombras botoes animate__animated animate__fadeIn btn btn-success btn-sm rounded focus-ring focus-ring-success'>" +
-                            "<span style='color: {{ $temas[2] }}' class='cursor d-flex justify-content-center'>" +
-                                "<div class='cursor animate__animated animate__bounceIn animate__infinite'>" +
-                                    "<i class='cursor bi bi-check-circle-fill me-1'></i>" +
-                                "</div>" +
-                                "SIM" +
-                            "</span>" +
-                        "</a>" +
+                        "<form action='{{ route(session('alerta_confirmar_render.sim')) }}' method='POST'>" +
+                            "<input type='hidden' name='_token' value='{{ csrf_token() }}'>" +
+                            "<button style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' type='submit' class='cursor sombras botoes animate__animated animate__fadeIn btn btn-success btn-sm rounded focus-ring focus-ring-success'>" +
+                                "<span style='color: {{ $temas[2] }}' class='cursor d-flex justify-content-center'>" +
+                                    "<div class='cursor animate__animated animate__bounceIn animate__infinite'>" +
+                                        "<i class='cursor bi bi-check-circle-fill me-1'></i>" +
+                                    "</div>" +
+                                    "SIM" +
+                                "</span>" +
+                            "</button>" +
+                        "</form>" +
                     "</div>",
             showClass: {
                 popup: `
@@ -302,27 +279,6 @@
 
 @if(session("alerta_batalha"))
     <script>
-
-        let footer = "<a href='{{ session('alerta_batalha.rota') }}' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' class='cursor sombras botoes animate__animated animate__fadeIn btn focus-ring {{ $temas[4] == 'escuro' ? 'btn-secondary focus-ring-primary' : 'btn-danger focus-ring-danger' }} btn-sm rounded-pill'>" +
-                         "<span style='color: {{ $temas[2] }}' id='ok' class='cursor d-flex justify-content-center'>" +
-                            "<div id='ok' class='cursor animate__animated animate__bounceIn animate__infinite'>" +
-                                "<i id='ok' class='cursor bi bi-check-circle-fill me-1'></i>" +
-                            "</div>" +
-                            "OK" +
-                        "</span>" +
-                     "</a>";
-
-        @if(session("alerta_batalha.rota") == "")
-            footer = "<button style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' id='ok' class='cursor sombras botoes animate__animated animate__fadeIn btn focus-ring {{ $temas[4] == 'escuro' ? 'btn-secondary focus-ring-primary' : 'btn-danger focus-ring-danger' }} btn-sm rounded-pill'>" +
-                         "<span style='color: {{ $temas[2] }}' id='ok' class='cursor d-flex justify-content-center'>" +
-                            "<div id='ok' class='cursor animate__animated animate__bounceIn animate__infinite'>" +
-                                "<i id='ok' class='cursor bi bi-check-circle-fill me-1'></i>" +
-                            "</div>" +
-                            "OK" +
-                        "</span>" +
-                     "</button>";
-        @endif
-
         Swal.fire({
             position: "center",
             draggable: true,
@@ -346,7 +302,22 @@
                             "{{ session('alerta_batalha.texto') }}" +
                         "</span>" +
                     "</label>",
-            footer: footer,
+            footer: @if (session("alerta_batalha.rota") == "")
+                        "<button style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' id='ok' class='cursor sombras botoes animate__animated animate__fadeIn btn focus-ring {{ $temas[4] == 'escuro' ? 'btn-secondary focus-ring-primary' : 'btn-danger focus-ring-danger' }} btn-sm rounded-pill'>" +
+                    @else
+                        "<a href='{{ session('alerta_batalha.rota') }}' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' class='cursor sombras botoes animate__animated animate__fadeIn btn focus-ring {{ $temas[4] == 'escuro' ? 'btn-secondary focus-ring-primary' : 'btn-danger focus-ring-danger' }} btn-sm rounded-pill'>" +
+                    @endif
+                         "<span style='color: {{ $temas[2] }}' id='ok' class='cursor d-flex justify-content-center'>" +
+                            "<div id='ok' class='cursor animate__animated animate__bounceIn animate__infinite'>" +
+                                "<i id='ok' class='cursor bi bi-check-circle-fill me-1'></i>" +
+                            "</div>" +
+                            "OK" +
+                        "</span>" +
+                    @if (session("alerta_batalha.rota") == "")
+                        "</button>",
+                    @else
+                        "</a>",
+                    @endif
             showClass: {
                 popup: `
                     animate__animated
@@ -396,14 +367,14 @@
                             "{{ session('alerta_nivel.texto') }}" +
                         "</span>" +
                     "</label>",
-            footer: "<a href='{{ route('nivel') }}' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' class='cursor sombras botoes animate__animated animate__fadeIn btn focus-ring {{ $temas[4] == 'escuro' ? 'btn-secondary focus-ring-primary' : 'btn-danger focus-ring-danger' }} btn-sm rounded-pill'>" +
+            footer: "<button style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' id='ok' class='cursor sombras botoes animate__animated animate__fadeIn btn focus-ring {{ $temas[4] == 'escuro' ? 'btn-secondary focus-ring-primary' : 'btn-danger focus-ring-danger' }} btn-sm rounded-pill'>" +
                         "<span style='color: {{ $temas[2] }}' id='ok' class='cursor d-flex justify-content-center'>" +
                             "<div id='ok' class='cursor animate__animated animate__bounceIn animate__infinite'>" +
                                 "<i id='ok' class='cursor bi bi-check-circle-fill me-1'></i>" +
                             "</div>" +
                             "OK" +
                         "</span>" +
-                    "</a>",
+                    "</button>",
             showClass: {
                 popup: `
                     animate__animated

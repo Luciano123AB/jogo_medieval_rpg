@@ -7,6 +7,7 @@ use App\Services\GenerosClasses;
 use App\Services\Salvar;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EditarDeletar extends Controller
 {
@@ -18,7 +19,7 @@ class EditarDeletar extends Controller
 
     public function deletar(): RedirectResponse {
 
-        $player_deletar = Player::findOrFail(session("player.id"));
+        $player_deletar = Player::findOrFail(Auth::user()->id);
 
         if (!$player_deletar->delete()) {
             $this->alertaResultado("Erro ao Deletar!", "Ocorreu um erro ao tentar excluir a conta! Tente novamente.", "bi-hand-thumbs-down-fill");
@@ -84,7 +85,7 @@ class EditarDeletar extends Controller
 
                 $foto = base64_encode($foto_conteudo);
             } else {
-                $foto = session("player.foto");
+                $foto = Auth::user()->foto;
             }
         } else {
             $foto = "nenhuma";
@@ -95,11 +96,11 @@ class EditarDeletar extends Controller
         $email_existente = Player::where("email", $email)
                                  ->first();
 
-        if ($player_existente && $player_existente->usuario !== session("player.usuario")) {
+        if ($player_existente && $player_existente->usuario !== Auth::user()->usuario) {
             return redirect()->back()->withInput()->withErrors(["playerExiste" => "Esse player já está cadastrado! Tente novamente."]);
         }
 
-        if ($email_existente && $email_existente->email !== session("player.email")) {
+        if ($email_existente && $email_existente->email !== Auth::user()->email) {
             return redirect()->back()->withInput()->withErrors(["playerExiste" => "Esse player já está cadastrado! Tente novamente."]);
         }
 
@@ -119,7 +120,7 @@ class EditarDeletar extends Controller
 
     public function atualizar(): RedirectResponse {
 
-        $player = Player::findOrFail(session("player.id"));
+        $player = Player::findOrFail(Auth::user()->id);
 
         if (!Salvar::atualizar($player)) {
             $this->alertaResultado("Erro ao Atualizar!", "Ocorreu um erro ao tentar atualizar o player! Tente novamente.", "bi-hand-thumbs-down-fill");
@@ -127,7 +128,7 @@ class EditarDeletar extends Controller
             return redirect()->back();
         }
 
-        session(["player" => $player]);
+        Auth::setUser($player);
         $this->alertaResultado("Player Atualizado com Sucesso!", "Para ver seu novo nome de usuário e(ou) classe nova, deslogue e faça o login novamente.", "bi-hand-thumbs-up-fill");
 
         return redirect()->route("home");

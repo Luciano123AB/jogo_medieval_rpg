@@ -8,20 +8,20 @@
             <div class="card-header bg-transparent border border-0 h-100">
                 <h4 class="d-flex justify-content-center text-success">
                     <img src="
-                        @if(session("player.foto") == "nenhuma")
+                        @if(Auth::user()->foto == "nenhuma")
                             {{ asset("assets/images/perfils/vazio.png") }}
                         @else
-                            data:image/png;data:image/jpeg;base64,{{ session("player.foto") }}
+                            data:image/png;data:image/jpeg;base64,{{ Auth::user()->foto }}
                         @endif
                     " class="perfil_player sombras border border-{{ $temas[1] }} rounded-circle">
                     <div class="border-3 border-start border-black rounded-top-1 ms-2">
-                        <i class="fi fi-{{ strtolower(session("player.pais")) }} animate__animated animate__jello animate__infinite border-start border-end float-start me-2"></i>
+                        <i class="fi fi-{{ strtolower(Auth::user()->pais) }} animate__animated animate__jello animate__infinite border-start border-end float-start me-2"></i>
                         <span>Você</span>
                     </div>
                 </h4>
             </div>
             <div class="position-relative">
-                <img src="{{ asset("assets/images/personagens/" . strtolower(session("player.personagem.classe")) . ".png") }}" id="player" class="card-img-top animate__animated
+                <img src="{{ asset("assets/images/personagens/" . strtolower(Auth::user()->personagem->classe) . ".png") }}" id="player" class="card-img-top animate__animated
                     @if(!session()->has("inicio_player"))
                         animate__fadeInLeftBig
 
@@ -52,20 +52,20 @@
                     @csrf
 
                     <div class="btn-group animate__animated animate__fadeIn" role="group" aria-label="SkillsPlayer">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="{{ session("player.personagem.skill01.skill") }}">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="{{ Auth::user()->personagem->skill01->skill }}">
                         <label class="cursor d-grid btn cor_fontes_{{ $temas[2] }} bg-{{ $temas[0] }} btn-outline-{{ $temas[1] }}" for="btnradio1">
                             🕹
-                            <span class="cursor">{{ session("player.personagem.skill01.skill") }}</span>
+                            <span class="cursor">{{ Auth::user()->personagem->skill01->skill }}</span>
                         </label>
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="{{ session("player.personagem.skill02.skill") }}">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="{{ Auth::user()->personagem->skill02->skill }}">
                         <label class="cursor d-grid btn cor_fontes_{{ $temas[2] }} bg-{{ $temas[0] }} btn-outline-{{ $temas[1] }}" for="btnradio2">
                             🕹
-                            <span class="cursor">{{ session("player.personagem.skill02.skill") }}</span>
+                            <span class="cursor">{{ Auth::user()->personagem->skill02->skill }}</span>
                         </label>
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="{{ session("player.personagem.skill03.skill") }}">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="{{ Auth::user()->personagem->skill03->skill }}">
                         <label class="cursor d-grid btn cor_fontes_{{ $temas[2] }} bg-{{ $temas[0] }} btn-outline-{{ $temas[1] }}" for="btnradio3">
                             🕹
-                            <span class="cursor">{{ session("player.personagem.skill03.skill") }}</span>
+                            <span class="cursor">{{ Auth::user()->personagem->skill03->skill }}</span>
                         </label>
                     </div>
                     @error("skill")

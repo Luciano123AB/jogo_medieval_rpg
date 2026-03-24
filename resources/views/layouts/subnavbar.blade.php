@@ -15,7 +15,7 @@
     </button>
 
     <div class="horizontal_vertical gap-3">
-        @if(session()->has("player") && $pagina != "Batalhas" && $pagina != "Batalha")
+        @if(Auth::user() && $pagina != "Batalhas" && $pagina != "Batalha")
             <a href="{{ route("batalhas") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg focus-ring btn-{{ $temas[0] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }} border">
                 <span class="cursor cor_fontes_{{ $temas[3] }} d-flex">
                     <div class="cursor animate__animated animate__swing animate__infinite">
@@ -26,7 +26,7 @@
             </a>
         @endif
     
-        @if(session()->has("player") && $pagina != "Totais" && $pagina != "Batalha")
+        @if(Auth::user() && $pagina != "Totais" && $pagina != "Batalha")
             <a href="{{ route("totais") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg focus-ring btn-{{ $temas[0] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }} border">
                 <span class="cursor cor_fontes_{{ $temas[3] }} d-flex">
                     <div class="cursor animate__animated animate__wobble animate__infinite">
