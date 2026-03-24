@@ -8,9 +8,6 @@ use Illuminate\Support\Facades\DB;
 class Boot
 {
     public static function testarConexao() {
-        
-        $banco = null;
-
         try {
             DB::connection()->getPdo();
             $banco = true;
