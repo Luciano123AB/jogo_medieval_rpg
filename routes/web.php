@@ -73,6 +73,17 @@ Route::prefix("/")->group(function () {
                 Route::get("registro_batalhas", "registroBatalhas")->name("registro");
 
                 Route::get("batalhas_andamento", "batalhasAndamento")->name("batalhas");
+
+                Route::get("nivel_up", function(): RedirectResponse {
+                    session()->flash(
+                        "alerta_nivel", [
+                            "titulo" => "Nível: " . Auth::user()->nivel,
+                            "texto" => "Parabéns!, você acaba de subir de nível."
+                        ]
+                    );
+
+                    return redirect()->route("home");
+                })->name("nivel");
             });
         });
 
@@ -122,7 +133,7 @@ Route::prefix("/")->group(function () {
             
             Route::middleware(VerificarBatalhando::class)->group(function() {
                 Route::post("atacar", "atacar")->name("atacar");
-                Route::get("ataque_oponente", "ataqueOponente")->name("ataque");
+                Route::post("ataque_oponente", "ataqueOponente")->name("ataque");
 
                 Route::post("atualizar_tempo", [Batalhar::class, "atualizarTempo"]);
 
@@ -131,22 +142,11 @@ Route::prefix("/")->group(function () {
             });
 
             Route::controller(FinalizarBatalha::class)->group(function() {
-                Route::get("finalizar_vitoria/{batalha}", "finalizarVitoria")->name("vitoria");
-                Route::get("finalizar_derrota/{batalha}", "finalizarDerrota")->name("derrota");
+                Route::post("finalizar_vitoria/{batalha}", "finalizarVitoria")->name("vitoria");
+                Route::post("finalizar_derrota/{batalha}", "finalizarDerrota")->name("derrota");
             });
         });
     });
-
-    Route::get("nivel_up", function(): RedirectResponse {
-        session()->flash(
-            "alerta_nivel", [
-                "titulo" => "Nível: " . Auth::user()->nivel,
-                "texto" => "Parabéns!, você acaba de subir de nível."
-            ]
-        );
-
-        return redirect()->route("home");
-    })->name("nivel");
 
     Route::prefix("resetar")->group(function () {
         Route::controller(Resetar::class)->group(function() {

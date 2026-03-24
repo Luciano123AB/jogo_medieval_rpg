@@ -24,7 +24,7 @@ class AtualizarTempo extends FormRequest
     {
         return [
             'minutos'  => ['required', 'integer', 'min:0', 'max:120'],
-            'segundos' => ['required', 'integer', 'min:0', 'max:60'],
+            'segundos' => ['required', 'integer', 'min:0', 'max:59'],
         ];
     }
 }

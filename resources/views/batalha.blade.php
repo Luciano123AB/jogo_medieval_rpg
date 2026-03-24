@@ -174,7 +174,11 @@
                 </div>
 
                 <div hidden>
-                    <a href="{{ route("ataque") }}" id="ataque" type="submit"></a>
+                    <form action="{{ route("ataque") }}" method="POST">
+                        @csrf
+
+                        <button type="submit" id="ataque" type="submit"></a>
+                    </form>
                 </div>
             </div>
         </div>

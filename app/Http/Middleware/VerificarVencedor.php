@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\FinalizarBatalha;
 use App\Models\Batalha;
 use Closure;
 use Illuminate\Http\Request;
@@ -39,10 +40,11 @@ class VerificarVencedor extends Controller
                 }
             } else {
                 if ($batalha->hp <= 0) {
-                    return redirect()->route("derrota", ["batalha" => $batalha]);
+                    return app(FinalizarBatalha::class)->finalizarDerrota($batalha);
                 }
+
                 if ($batalha->hp_oponente <= 0) {
-                    return redirect()->route("vitoria", ["batalha" => $batalha]);
+                    return app(FinalizarBatalha::class)->finalizarVitoria($batalha);
                 }
             }
         }

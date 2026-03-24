@@ -31,7 +31,6 @@ Class FinalizarBatalha extends Controller
 
         $rota = "";
 
-        Auth::user()->xp += $player->xp;
         session()->forget("id_player");
 
         if ($player->nivel > Auth::user()->nivel) {
