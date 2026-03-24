@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string("pais", 2);
             $table->longText("foto", 13980320)->comment("iVBORw0KGgo...");
             $table->integer("nivel")->default(1);
-            $table->float("xp")->default(0)->comment("100");
+            $table->integer("xp")->default(0)->comment("1000");
             $table->integer("quantidade_vitorias")->default(0);
             $table->integer("quantidade_derrotas")->default(0);
             $table->timestamps();

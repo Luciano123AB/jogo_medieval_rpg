@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create("desafios", function (Blueprint $table) {
             $table->id();
-            $table->integer("id_desafiador");
-            $table->integer("id_desafiado")->nullable();
+            $table->foreignId("desafiador_id")->nullable()->constrained("players")->nullOnDelete();
+            $table->foreignId("desafiado_id")->nullable()->constrained("players")->nullOnDelete();
             $table->timestamps();
         });
     }

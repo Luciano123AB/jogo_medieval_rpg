@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Player extends Model
 {
-    const UPDATED_AT = null;
 
+    const UPDATED_AT = null;
     protected $fillable = [
         "usuario",
         "email",
@@ -21,7 +21,6 @@ class Player extends Model
         "quantidade_vitorias",
         "quantidade_derrotas"
     ];
-
     protected $casts = [
         "usuario" => "string",
         "email" => "string",
@@ -34,10 +33,6 @@ class Player extends Model
         "quantidade_vitorias" => "integer",
         "quantidade_derrotas" => "integer"
     ];
-    
-    public function personagens() {
-        return $this->hasMany(Personagem::class);
-    }
 
     public function personagem() {
         return $this->belongsTo(Personagem::class);

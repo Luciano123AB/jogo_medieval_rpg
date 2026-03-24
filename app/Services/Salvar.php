@@ -67,8 +67,8 @@ class Salvar
         $nova_batalha->perdeu = null;
         $nova_batalha->created_at = date("Y-m-d H:i:s");
 
-        $novo_desafio->id_desafiador = session("player.id");
-        $novo_desafio->id_desafiado = session("id_player");
+        $novo_desafio->desafiador_id = session("player.id");
+        $novo_desafio->desafiado_id = session("id_player");
 
         $salvar = DB::transaction(function () use ($nova_batalha, $novo_desafio) {
             $nova_batalha->saveOrFail();
@@ -110,7 +110,7 @@ class Salvar
         if ($player->nivel < 70) {
             $player->xp = $player->xp + $xp;
             
-            if ($player->xp >= 100) {
+            if ($player->xp >= 1000) {
                 $player->nivel++;
                 $player->xp = 0;
             }

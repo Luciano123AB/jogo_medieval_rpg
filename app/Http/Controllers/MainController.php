@@ -133,7 +133,7 @@ class MainController extends Controller
                             }))
             ->with("player_lider_vitorias", Player::orderBy("quantidade_vitorias", "desc")->first())
             ->with("player_lider_nivel", Player::orderBy("nivel", "desc")->first())
-            ->with("desafiou", Desafio::where("id_desafiador", session("player.id"))->pluck("id_desafiado")->toArray())
+            ->with("desafiou", Desafio::where("desafiador_id", session("player.id"))->pluck("desafiado_id")->toArray())
             ->with("temas", $temas);
     }
 

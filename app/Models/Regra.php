@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Regra extends Model
 {
+
     protected $fillable = [
         "regra",
         "explicacao",
@@ -14,7 +15,6 @@ class Regra extends Model
         "animacao01",
         "animacao02"
     ];
-
     protected $casts = [
         "regra" => "string",
         "explicacao" => "string",
@@ -23,4 +23,5 @@ class Regra extends Model
         "animacao01" => "string",
         "animacao02" => "string"
     ];
+    
 }

@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Batalha extends Model
 {
-    const UPDATED_AT = null;
 
+    const UPDATED_AT = null;
     protected $fillable = [
         "nome",
         "nome_oponente",
@@ -20,7 +20,6 @@ class Batalha extends Model
         "ganhou",
         "perdeu"
     ];
-
     protected $casts = [
         "nome" => "string",
         "nome_oponente" => "string",

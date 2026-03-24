@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Skill extends Model
 {
+
     protected $fillable = [
         "skill",
         "dano01",
         "dano02",
         "dano03"
     ];
-
     protected $casts = [
         "skill" => "string",
         "dano01" => "integer",

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Personagem extends Model
 {
+
     protected $fillable = [
         "classe",
         "imagem",
@@ -16,7 +17,6 @@ class Personagem extends Model
         "defesa",
         "hp"
     ];
-
     protected $casts = [
         "classe" => "string",
         "imagem" => "string",

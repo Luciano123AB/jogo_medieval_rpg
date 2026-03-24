@@ -9,6 +9,7 @@ use App\Http\Controllers\Batalhar;
 use App\Http\Controllers\FinalizarBatalha;
 use App\Http\Controllers\Resetar;
 use App\Http\Middleware\VerificarBatalha;
+use App\Http\Middleware\VerificarBatalhando;
 use App\Http\Middleware\VerificarDeslogado;
 use App\Http\Middleware\VerificarLogado;
 use App\Http\Middleware\VerificarVencedor;
@@ -136,11 +137,26 @@ Route::prefix("/")->group(function () {
                 Route::get("confirmar_desafio/{id}", "confirmarDesafio")->name("confirmarDesafio");
             });
             
-            Route::post("atacar", "atacar")->name("atacar");
-            Route::get("ataque_oponente", "ataqueOponente")->name("ataque");
+            Route::middleware(VerificarBatalhando::class)->group(function() {
+                Route::post("atacar", "atacar")->name("atacar");
+                Route::get("ataque_oponente", "ataqueOponente")->name("ataque");
 
-            Route::get("confirmar_render", "confirmarRender")->name("confirmarRender");
-            Route::get("render_se", "renderSe")->name("renderSe");
+                Route::post("atualizar_tempo", function(Request $request) {
+                    if (!session()->has("dados.batalha_comecou")) {
+                        return response()->json(["ok" => false]);
+                    }
+
+                    Cache::put("batalha_tempo_" . session("dados.id_batalha"), [
+                        "segundos" => $request->segundos,
+                        "minutos" => $request->minutos
+                    ], now()->addMinutes(30));
+
+                    return response()->json(["ok" => true]);
+                });
+
+                Route::get("confirmar_render", "confirmarRender")->name("confirmarRender");
+                Route::get("render_se", "renderSe")->name("renderSe");
+            });
 
             Route::controller(FinalizarBatalha::class)->group(function() {
                 Route::get("finalizar_vitoria/{batalha}", "finalizarVitoria")->name("vitoria");
@@ -149,34 +165,21 @@ Route::prefix("/")->group(function () {
         });
     });
 
-    Route::post("atualizar_tempo", function(Request $request) {
-        if (!session()->has("dados.batalha_comecou")) {
-            return response()->json(["ok" => false]);
-        }
-
-        Cache::put("batalha_tempo_" . session("dados.id_batalha"), [
-            "segundos" => $request->segundos,
-            "minutos" => $request->minutos
-        ], now()->addMinutes(30));
-
-        return response()->json(["ok" => true]);
-    });
-
     Route::get("nivel_up", function(): RedirectResponse {
         return redirect()->back();
     })->name("nivel");
 
+    Route::prefix("resetar")->group(function () {
+        Route::controller(Resetar::class)->group(function() {
+            Route::middleware(VerificarLogado::class)->group(function() {
+                Route::delete("vitorias", "resetarVitorias")->name("resetarVitorias");
+                Route::delete("derrotas", "resetarDerrotas")->name("resetarDerrotas");
+                Route::delete("batalha/{id}", "excluir")->name("excluir");
+            });
+        });
+    });
+
     Route::fallback(function(): RedirectResponse {
         return redirect()->route("home");
-    });
-});
-
-Route::prefix("/resetar")->group(function () {
-    Route::controller(Resetar::class)->group(function() {
-        Route::middleware(VerificarLogado::class)->group(function() {
-            Route::delete("vitorias", "resetarVitorias")->name("resetarVitorias");
-            Route::delete("derrotas", "resetarDerrotas")->name("resetarDerrotas");
-            Route::delete("batalha/{id}", "excluir")->name("excluir");
-        });
     });
 });
