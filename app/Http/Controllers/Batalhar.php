@@ -98,9 +98,6 @@ class Batalhar extends Controller
     }
 
     public function ataqueOponente(): RedirectResponse {
-
-        $nivel = null;
-
         if (session()->has("nivel_oponente")) {
             $nivel = session("nivel_oponente");            
         } else {

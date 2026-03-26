@@ -241,8 +241,6 @@ class MainController extends Controller
         $this->alerta("Batalha!", "bi-phone-landscape-fill", "Agora é a Hora! Aqui você aplicará o que aprendeu na página de regras, e recomendo que para essa página você vire a tela do seu dispositivo. Boa sorte!", "batalha");
         
         $oponente = Personagem::findOrFail(session("id_oponente"));
-        $batalha = null;
-        $nivel = null;
 
         if (session()->has("nivel_oponente")) {
             $nivel = session("nivel_oponente");

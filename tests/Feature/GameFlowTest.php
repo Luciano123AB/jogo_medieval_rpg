@@ -11,6 +11,7 @@ uses(RefreshDatabase::class);
 function criarPlayerParaTeste(array $overrides = []): Player
 {
     $personagem = new Personagem();
+
     $personagem->classe = $overrides['classe'] ?? 'C' . fake()->unique()->numberBetween(100, 999);
     $personagem->imagem = $overrides['imagem'] ?? 'img' . fake()->unique()->numberBetween(100, 999);
     $personagem->descricao = $overrides['descricao'] ?? fake()->unique()->sentence(5);
@@ -22,6 +23,7 @@ function criarPlayerParaTeste(array $overrides = []): Player
     $personagem->save();
 
     $player = new Player();
+
     $player->usuario = $overrides['usuario'] ?? 'player_' . fake()->unique()->userName();
     $player->email = $overrides['email'] ?? fake()->unique()->safeEmail();
     $player->senha = Hash::make($overrides['senha_plana'] ?? 'SenhaForte123');
@@ -38,19 +40,20 @@ function criarPlayerParaTeste(array $overrides = []): Player
     return $player;
 }
 
-test('visitante sem login nao acessa atualizacao', function () {
+test('visitante sem login nao acessa atualizacao', function() {
+
     $response = $this->get('/atualizacao');
 
     $response->assertRedirect();
 });
 
-test('login autentica player com credenciais validas', function () {
+test('login autentica player com credenciais validas', function() {
+
     $senha = 'SenhaForte123';
     $player = criarPlayerParaTeste([
         'email' => 'login_teste@example.com',
         'senha_plana' => $senha,
     ]);
-
     $response = $this->post('/logar', [
         'email' => $player->email,
         'senha' => $senha,
@@ -60,9 +63,9 @@ test('login autentica player com credenciais validas', function () {
     $this->assertAuthenticatedAs($player);
 });
 
-test('atualizar_tempo retorna erro de validacao para segundos acima de 60', function () {
-    $player = criarPlayerParaTeste();
+test('atualizar_tempo retorna erro de validacao para segundos acima de 60', function() {
 
+    $player = criarPlayerParaTeste();
     $response = $this->actingAs($player)
         ->withSession([
             'dados' => [
@@ -78,9 +81,9 @@ test('atualizar_tempo retorna erro de validacao para segundos acima de 60', func
     $response->assertSessionHasErrors(['segundos']);
 });
 
-test('atualizar_tempo salva cache e retorna ok quando payload e valido', function () {
-    $player = criarPlayerParaTeste();
+test('atualizar_tempo salva cache e retorna ok quando payload e valido', function() {
 
+    $player = criarPlayerParaTeste();
     $response = $this->actingAs($player)
         ->withSession([
             'dados' => [
