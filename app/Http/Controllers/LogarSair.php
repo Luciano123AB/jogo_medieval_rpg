@@ -35,8 +35,8 @@ class LogarSair extends Controller
         }
                                     
         Batalha::where("nome", $player->usuario)->whereNull("ganhou")->first()?->forceDelete();
-
         Auth::login($player);
+
         $this->alertaResultado("Login Efetuado com Sucesso!", "Agora você pode acessar a batalha e outras páginas.", "bi-hand-thumbs-up-fill");
 
         return redirect()->route("home");

@@ -16,7 +16,7 @@ class VerificarBatalha extends Controller
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (session()->has("dados.batalha_comecou")) {
+        if (session()->has("batalha_comecou")) {
             $this->alertaResultado("Batalha em Andamento!", "Espere! Para sair, antes você precisa finalizar essa batalha.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();

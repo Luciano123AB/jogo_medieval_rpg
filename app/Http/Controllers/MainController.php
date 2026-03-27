@@ -240,36 +240,45 @@ class MainController extends Controller
     public function batalhar(): View | RedirectResponse {
         $this->alerta("Batalha!", "bi-phone-landscape-fill", "Agora é a Hora! Aqui você aplicará o que aprendeu na página de regras, e recomendo que para essa página você vire a tela do seu dispositivo. Boa sorte!", "batalha");
         
-        $oponente = Personagem::findOrFail(session("id_oponente"));
+        $oponente = Personagem::find(session("id_oponente"));
+        $nome_oponente = "Computador";
+        $nivel = Auth::user()->nivel;
 
-        if (session()->has("nivel_oponente")) {
-            $nivel = session("nivel_oponente");
-        } else {
-            $nivel = Auth::user()->nivel;
+        if (session()->has("id_player")) {
+
+            $dados_oponente = Player::find(session("id_player"));
+
+            $oponente = Personagem::find($dados_oponente->personagem->id);
+            $nome_oponente = $dados_oponente->usuario;
+            $nivel = $dados_oponente->nivel;
         }
         
-        if (!session()->has("dados.batalha_comecou")) {
+        if (!session()->has("batalha_comecou")) {
             
             $nova_batalha = new Batalha();
-            $batalha = $nova_batalha;
+            $batalha = $nova_batalha;            
 
-            if (!Salvar::batalharDesafiar($nova_batalha, $oponente, $nivel, random_int(0, 1), new Desafio())) {
+            if (!Salvar::batalharDesafiar($nova_batalha, $oponente, $nome_oponente, $nivel, random_int(0, 1), new Desafio())) {
                 $this->alertaResultado("Erro ao Batalhar!", "Ocorreu um erro ao tentar começar a batalha! Tente novamente.", "bi-hand-thumbs-down-fill");
 
                 return redirect()->route("preparacao");
             }
 
             session([
-                "dados" => [
-                    "id_batalha" => $nova_batalha->id,
-                    "id_oponente" => $oponente->id,
-                    "hp_maximo" => Auth::user()->personagem->hp * Auth::user()->nivel,
-                    "hp_oponente_maximo" => $oponente->hp * $nivel,
-                    "batalha_comecou" => true
-                ]
+                "id_batalha" => $nova_batalha->id,
+                "batalha_comecou" => true
             ]);
         } else {
-            $batalha = Batalha::findOrFail(session("dados.id_batalha"));
+
+            $batalha = Batalha::find(session("id_batalha"));
+
+        }
+
+        if ($batalha->skill01 == false && $batalha->skill02 == false && $batalha->skill03 == false) {
+            $batalha->skill01 = true;
+            $batalha->skill02 = true;
+            $batalha->skill03 = true;
+            $batalha->save();
         }
 
         $temas = ["secondary", "primary", "escuro"];
@@ -284,10 +293,10 @@ class MainController extends Controller
             ->with("icone_pagina", "⚔️")
             ->with("batalha", $batalha)
             ->with("vez", $batalha->vez)
-            ->with("bandeira_oponente", session("pais_oponente"))
+            ->with("bandeira_oponente", $dados_oponente->pais ?? "")
             ->with("oponente", $oponente)
-            ->with("foto", session("foto_oponente"))
-            ->with("nome", session("nome_oponente"))
+            ->with("foto", $dados_oponente->foto ?? "nenhuma")
+            ->with("nome", $nome_oponente)
             ->with("temas", $temas);
     }    
 }

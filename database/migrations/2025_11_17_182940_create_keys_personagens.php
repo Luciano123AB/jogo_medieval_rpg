@@ -27,7 +27,11 @@ return new class extends Migration
             $table->dropForeign(['skill01_id']);
             $table->dropForeign(['skill02_id']);
             $table->dropForeign(['skill03_id']);
-            $table->dropColumn(['skill01_id','skill02_id','skill03_id']);
+            $table->dropColumn([
+                'skill01_id',
+                'skill02_id',
+                'skill03_id'
+            ]);
         });
     }
 };

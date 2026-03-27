@@ -48,7 +48,7 @@
                 @endif
             </div>
             <div class="card-footer border border-0">
-                <form action="{{ route("atacar") }}" method="POST" class="d-grid gap-2" novalidate>
+                <form action="{{ route("atacar", ["batalha" => $batalha]) }}" method="POST" class="d-grid gap-2" novalidate>
                     @csrf
 
                     <div class="btn-group animate__animated animate__fadeIn" role="group" aria-label="SkillsPlayer">
@@ -174,7 +174,7 @@
                 </div>
 
                 <div hidden>
-                    <form action="{{ route("ataque") }}" method="POST">
+                    <form action="{{ route("ataque", ["batalha" => $batalha, "oponente" => $oponente]) }}" method="POST">
                         @csrf
 
                         <button type="submit" id="ataque" type="submit"></a>

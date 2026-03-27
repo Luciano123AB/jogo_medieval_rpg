@@ -25,16 +25,6 @@ abstract class Controller
         );
     }
 
-    protected function alertaConfirmarRender(string $titulo, string $texto, string $sim) {
-        return session()->flash(
-            "alerta_confirmar_render", [
-                "titulo" => $titulo,
-                "texto" => $texto,
-                "sim" => $sim
-            ]
-        );
-    }
-
     protected function alertaResultado(string $titulo, string $texto, string $icone) {
         return session()->flash(
             "alerta_resultado", [

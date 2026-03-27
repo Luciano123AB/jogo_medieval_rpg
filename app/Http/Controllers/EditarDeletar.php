@@ -28,7 +28,6 @@ class EditarDeletar extends Controller
         }
 
         session()->forget("player");
-
         $this->alertaResultado("Player Deletado com Sucesso!", "Caso queira começar novamente do zero, sinta-se à vontade para criar uma nova conta.", "bi-hand-thumbs-up-fill");
 
         return redirect()->route("home");

@@ -108,7 +108,7 @@
                                     }
                                 @endphp
                                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: {{ $nivel }}%">
-                                    <label class="cursor fw-bold fs-6">{{ Auth::user()->xp }} XP</label>
+                                    <label class="cursor fw-bold fs-6">{{ Auth::user()->xp == 0 ? 1000 : Auth::user()->xp }} XP</label>
                                 </div>
                             </div>
                         </div>

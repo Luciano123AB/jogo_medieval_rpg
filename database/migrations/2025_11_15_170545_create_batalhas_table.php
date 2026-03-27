@@ -14,7 +14,13 @@ return new class extends Migration
         Schema::create('batalhas', function (Blueprint $table) {
             $table->id();
             $table->string("nome");
+            $table->boolean("skill01")->default(true);
+            $table->boolean("skill02")->default(true);
+            $table->boolean("skill03")->default(true);
             $table->string("nome_oponente");
+            $table->boolean("skill01_oponente")->default(true);
+            $table->boolean("skill02_oponente")->default(true);
+            $table->boolean("skill03_oponente")->default(true);
             $table->integer("hp_maximo")->comment("2200");
             $table->integer("hp")->comment("2200");
             $table->integer("hp_maximo_oponente")->comment("3200");

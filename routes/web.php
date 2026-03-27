@@ -34,7 +34,7 @@ Route::prefix("/")->group(function () {
                 if (!is_dir(base_path("node_modules"))) {
                     Boot::dependencias();
                 }
-
+                
                 session([
                     "alerta" => [
                         "titulo" => "Seja Muito Bem Vindo!",

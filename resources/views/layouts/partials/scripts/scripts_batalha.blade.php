@@ -1,5 +1,5 @@
 @php
-    $tempo = Cache::get("batalha_tempo_" . session("dados.id_batalha"), [
+    $tempo = Cache::get("batalha_tempo_" . session("id_batalha"), [
         "segundos" => 0,
         "minutos" => 0
     ]);
@@ -121,15 +121,15 @@
         }
     @endif
 
-    @if(session()->has("skill01"))
+    @if($batalha->skill01 == false)
         skill01.disabled = true;
     @endif
 
-    @if(session()->has("skill02"))
+    @if($batalha->skill02 == false)
         skill02.disabled = true;
     @endif
 
-    @if(session()->has("skill03"))
+    @if($batalha->skill03 == false)
         skill03.disabled = true;
     @endif
 
@@ -149,10 +149,10 @@
     @endif
 
     const hp_player = {{ $batalha->hp }};
-    const hp_maximo_player = {{ session("dados.hp_maximo") }};
+    const hp_maximo_player = {{ $batalha->hp_maximo }};
 
     const hp_oponente = {{ $batalha->hp_oponente }};
-    const hp_maximo_oponente = {{ session("dados.hp_oponente_maximo") }};
+    const hp_maximo_oponente = {{ $batalha->hp_maximo_oponente }};
 
     function calcularPorcentagem(atual, maximo) {
         return (atual / maximo) * 100;

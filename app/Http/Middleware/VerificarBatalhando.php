@@ -16,7 +16,7 @@ class VerificarBatalhando extends Controller
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!session()->has("dados.batalha_comecou")) {
+        if (!session()->has("batalha_comecou")) {
             $this->alertaResultado("Fora da Batalha!", "Espere! Para usar essa rota, antes você precisa começar uma batalha.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();

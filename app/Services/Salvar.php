@@ -56,9 +56,9 @@ class Salvar
         return $salvar;
     }
 
-    public static function batalharDesafiar($nova_batalha, $oponente, $nivel, $vez, $novo_desafio) {
+    public static function batalharDesafiar($nova_batalha, $oponente, $nome_oponente, $nivel, $vez, $novo_desafio) {
         $nova_batalha->nome = Auth::user()->usuario;
-        $nova_batalha->nome_oponente = session("nome_oponente");
+        $nova_batalha->nome_oponente = $nome_oponente;
         $nova_batalha->hp_maximo = Auth::user()->personagem->hp * Auth::user()->nivel;
         $nova_batalha->hp = Auth::user()->personagem->hp * Auth::user()->nivel;
         $nova_batalha->hp_maximo_oponente = $oponente->hp * $nivel;
@@ -115,14 +115,14 @@ class Salvar
                 $player->nivel++;
                 $player->xp = $player->xp - 1000;
             }
-        }        
+        }
 
         $player->quantidade_vitorias = $player->quantidade_vitorias + 1;
 
-        if (session("nome_oponente") == "Computador") {
+        if ($batalha->nome_oponente == "Computador") {
             $batalha->perdeu = "Computador";
         } else {
-            $batalha->perdeu = session("nome_oponente");
+            $batalha->perdeu = $batalha->nome_oponente;
         }
 
         $batalha->ganhou = $player->usuario;
@@ -152,10 +152,10 @@ class Salvar
     public static function derrota($player, $batalha) {
         $player->quantidade_derrotas = $player->quantidade_derrotas + 1;
 
-        if (session("nome_oponente") == "Computador") {
+        if ($batalha->nome_oponente == "Computador") {
             $batalha->ganhou = "Computador";            
         } else {
-            $batalha->ganhou = session("nome_oponente");
+            $batalha->ganhou = $batalha->nome_oponente;
         }
 
         $batalha->perdeu = $player->usuario;
@@ -185,10 +185,10 @@ class Salvar
     public static function render($player, $batalha) {
         $player->quantidade_derrotas = $player->quantidade_derrotas + 1;
 
-        if (session("nome_oponente") == "Computador") {
+        if ($batalha->nome_oponente == "Computador") {
             $batalha->ganhou = "Computador";
         } else {
-            $batalha->ganhou = session("nome_oponente");            
+            $batalha->ganhou = $batalha->nome_oponente;            
         }
 
         $batalha->perdeu = Auth::user()->usuario;
