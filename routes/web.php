@@ -14,6 +14,7 @@ use App\Http\Middleware\VerificarDeslogado;
 use App\Http\Middleware\VerificarLogado;
 use App\Http\Middleware\VerificarVencedor;
 use App\Services\Boot;
+use App\Services\SelecionarTemas;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -44,17 +45,14 @@ Route::prefix("/")->group(function () {
                     ],
                 ]);
 
-                $temas = ["secondary", "primary", "escuro"];
-        
-                if (session("tema") == "claro" || !session()->has("tema")) {
-                    $temas = ["dark", "danger", "claro"];
-                }
+                $pagina = "Home";
+                $temas_selecionados = SelecionarTemas::temas($pagina);
                 
                 return view("index")
                     ->with("imagem", "estrada")
-                    ->with("pagina", "Home")
+                    ->with("pagina", $pagina)
                     ->with("icone_pagina", "house-fill")
-                    ->with("temas", $temas);
+                    ->with("temas", $temas_selecionados);
             })->name("home");
 
             Route::get("regras", "regras")->name("regras");

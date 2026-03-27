@@ -11,7 +11,7 @@
                         @if(Auth::user()->foto == "nenhuma")
                             {{ asset("assets/images/perfils/vazio.png") }}
                         @else
-                            data:image/png;data:image/jpeg;base64,{{ Auth::user()->foto }}
+                            {{ asset("storage/" . Auth::user()->foto) }}
                         @endif
                     " class="perfil_player sombras border border-{{ $temas[1] }} rounded-circle">
                     <div class="border-3 border-start border-black rounded-top-1 ms-2">
@@ -22,10 +22,8 @@
             </div>
             <div class="position-relative">
                 <img src="{{ asset("assets/images/personagens/" . strtolower(Auth::user()->personagem->classe) . ".png") }}" id="player" class="card-img-top animate__animated
-                    @if(!session()->has("inicio_player"))
+                    @if($batalha->inicio == false)
                         animate__fadeInLeftBig
-
-                        {{ session(["inicio_player" => true]) }}
                     @endif
                 ">
                 <img src="{{ asset("assets/images/magias/magia.gif") }}" id="magia_player" class="position-absolute top-50 start-50 magias w-50" hidden>
@@ -111,7 +109,7 @@
                         @if($foto == "nenhuma")
                             {{ asset("assets/images/perfils/vazio.png") }}
                         @else
-                            data:image/png;data:image/jpeg;base64,{{ $foto }}
+                            {{ asset("storage/" . $foto) }}
                         @endif
                     " class="perfil_player sombras border border-{{ $temas[1] }} rounded-circle">
                     @if($nome != "Computador")
@@ -129,10 +127,8 @@
             </div>
             <div class="position-relative">
                 <img src="{{ asset("assets/images/personagens/" . strtolower($oponente->classe) . "_reverso.png") }}" id="oponente" class="card-img-top animate__animated
-                    @if(!session()->has("inicio_oponente"))
+                    @if($batalha->inicio == false)
                         animate__fadeInRightBig
-
-                        {{ session(["inicio_oponente" => true]) }}
                     @endif
                 ">
                 <img src="{{ asset("assets/images/magias/magia_reverso.gif") }}" id="magia_oponente" class="position-absolute top-50 start-50 magias w-50" hidden>

@@ -20,7 +20,7 @@ class VerificarDeslogado extends Controller
         if (Auth::user()) {
             $this->alertaResultado("Acesso Negado!", "Para poder abrir essa página, primeiro você deve deslogar da sua conta.", "bi-hand-thumbs-down-fill");
 
-            return redirect()->back();
+            return redirect()->route("/");
         }
 
         return $next($request);

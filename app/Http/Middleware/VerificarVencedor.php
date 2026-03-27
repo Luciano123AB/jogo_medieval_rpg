@@ -20,7 +20,7 @@ class VerificarVencedor extends Controller
     {
         if (session()->has("batalha_comecou")) {
 
-            $batalha = Batalha::findOrFail(session("id_batalha"));
+            $batalha = Batalha::find(session("id_batalha"));
             $nome_oponente = $batalha->nome_oponente;
 
             if (!$batalha) {
@@ -29,8 +29,6 @@ class VerificarVencedor extends Controller
                     "id_player",
                     "id_oponente",
                     "id_batalha",
-                    "inicio_player",
-                    "inicio_oponente",
                     "batalha_comecou"
                 ]);
                 

@@ -10,6 +10,7 @@ class Batalha extends Model
 
     const UPDATED_AT = null;
     protected $fillable = [
+        "inicio",
         "nome",
         "skill01",
         "skill02",
@@ -27,6 +28,7 @@ class Batalha extends Model
         "perdeu"
     ];
     protected $casts = [
+        "inicio" => "boolean",
         "nome" => "string",
         "skill01" => "boolean",
         "skill02" => "boolean",

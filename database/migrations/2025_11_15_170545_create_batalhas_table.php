@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('batalhas', function (Blueprint $table) {
             $table->id();
+            $table->boolean("inicio")->default(false);
             $table->string("nome");
             $table->boolean("skill01")->default(true);
             $table->boolean("skill02")->default(true);

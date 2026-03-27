@@ -283,7 +283,7 @@
                                             if ($pagina == "Atualização") {
                                                 if ($dados["foto"] != "nenhuma") {
                                                     
-                                                    $foto = "data:image/png;base64," . $dados["foto"];
+                                                    $foto = asset("storage/" . $dados["foto"]);
 
                                                 }
                                             }

@@ -43,8 +43,6 @@ class Cadastrar extends Controller
 
         $usuario = $request->input("novo_usuario");
         $email = $request->input("novo_email");
-        $foto = "";
-
         $genero = GenerosClasses::escolhaGenero($request->input("genero"));
 
         if ($genero == "Selecione seu gênero...") {
@@ -62,13 +60,13 @@ class Cadastrar extends Controller
                 return redirect()->back()->withInput()->with("fotoTamanho", "Essa foto é muito grande! O arquivo deve ter no máximo 10MB.");
             }
 
-            $foto_conteudo = file_get_contents($foto_escolhida->getRealPath());
+            $caminho = $foto_escolhida->store("fotos", "public");
 
-            if (!$foto_conteudo) {
+            if (!$caminho) {
                 return redirect()->back()->withInput()->with("fotoErro", "Não foi possível carregar esta foto. Tente novamente.");
             }
 
-            $foto = base64_encode($foto_conteudo);
+            $foto = $caminho;
         } else {
             $foto = "nenhuma";
         }

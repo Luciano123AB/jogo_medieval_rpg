@@ -86,10 +86,8 @@ test('atualizar_tempo salva cache e retorna ok quando payload e valido', functio
     $player = criarPlayerParaTeste();
     $response = $this->actingAs($player)
         ->withSession([
-            'dados' => [
-                'batalha_comecou' => true,
-                'id_batalha' => 99,
-            ],
+            'id_batalha' => 99,
+            'batalha_comecou' => true
         ])
         ->postJson('/atualizar_tempo', [
             'minutos' => 2,

@@ -77,7 +77,7 @@
                                     $perfil_02 = asset("assets/images/perfils/vazio.png");
 
                                     if (Auth::user()->foto != "nenhuma") {
-                                        $perfil = "data:image/png;data:image/jpeg;base64," . Auth::user()->foto;
+                                        $perfil = asset("storage/" . Auth::user()->foto);
                                         $perfil_02 = asset("assets/images/perfils/" . strtolower(Auth::user()->personagem->classe) . ".png");
                                     }
                                 @endphp

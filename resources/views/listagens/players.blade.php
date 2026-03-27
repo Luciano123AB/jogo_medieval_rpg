@@ -18,7 +18,7 @@
                                         $perfil = asset("assets/images/perfils/" . strtolower($player_lider_vitorias->personagem->classe) . ".png");
 
                                         if ($player_lider_vitorias->foto != "nenhuma") {
-                                            $perfil = "data:image/png;data:image/jpeg;base64," . $player_lider_vitorias->foto;
+                                            $perfil = asset("storage/" . $player_lider_vitorias->foto);
                                         }
                                     @endphp
                                     <div class="d-flex flex-wrap justify-content-center">
@@ -48,7 +48,7 @@
                                         $perfil = asset("assets/images/perfils/" . strtolower($player_lider_nivel->personagem->classe) . ".png");
 
                                         if ($player_lider_nivel->foto != "nenhuma") {
-                                            $perfil = "data:image/png;data:image/jpeg;base64," . $player_lider_nivel->foto;
+                                            $perfil = asset("storage/" . $player_lider_nivel->foto);
                                         }
                                     @endphp
                                     <div class="d-flex flex-wrap justify-content-center">
@@ -110,7 +110,7 @@
                                                 @if ($player->foto == "nenhuma")
                                                     {{ asset("assets/images/perfils/" . strtolower($player->personagem->classe) . ".png") }}
                                                 @else
-                                                    data:image/png;data:image/jpeg;base64,{{ $player->foto }}
+                                                    {{ asset("storage/" . $player->foto) }}
                                                 @endif
                                             " class="perfil_player sombras border border-{{ $temas[1] }} rounded-circle">
                                         </td>

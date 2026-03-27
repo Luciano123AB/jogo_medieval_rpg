@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("senha", 255);
             $table->string("genero", 9)->comment("Masculino|Feminino|Outro");
             $table->string("pais", 2);
-            $table->longText("foto", 13980320)->comment("iVBORw0KGgo...");
+            $table->text("foto")->comment("fotos/***.png");
             $table->integer("nivel")->default(1);
             $table->integer("xp")->default(0)->comment("1000");
             $table->integer("quantidade_vitorias")->default(0);

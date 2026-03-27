@@ -63,7 +63,6 @@ class EditarDeletar extends Controller
 
         $usuario = $request->input("novo_usuario");
         $email = $request->input("novo_email");
-        $foto = "";
         $classe = GenerosClasses::escolhaClasse($request->input("classe"));
 
         if ($classe == "Selecione sua classe...") {
@@ -76,13 +75,13 @@ class EditarDeletar extends Controller
                     return redirect()->back()->withInput()->with("fotoTamanho", "Essa foto é muito grande! O arquivo deve ter no máximo 10MB.");
                 }
 
-                $foto_conteudo = file_get_contents($foto_escolhida->getRealPath());
+                $caminho = $foto_escolhida->store("fotos", "public");
 
-                if (!$foto_conteudo) {
+                if (!$caminho) {
                     return redirect()->back()->withInput()->with("fotoErro", "Não foi possível carregar esta foto. Tente novamente.");
                 }
 
-                $foto = base64_encode($foto_conteudo);
+                $foto = $caminho;
             } else {
                 $foto = Auth::user()->foto;
             }

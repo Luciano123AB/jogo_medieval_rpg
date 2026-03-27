@@ -36,7 +36,7 @@ class Batalhar extends Controller
 
     public function confirmarDesafio($id): RedirectResponse {
 
-        $dados_oponente = Player::findOrFail(Crypt::decrypt($id));
+        $dados_oponente = Player::find(Crypt::decrypt($id));
 
         if (!$dados_oponente) {
             $this->alertaResultado("Erro ao Carregar Dados!", "Ocorreu um erro ao tentar carregar os dados do player! Tente novamente.", "bi-hand-thumbs-down-fill");
@@ -140,8 +140,6 @@ class Batalhar extends Controller
             "id_player",
             "id_oponente",
             "id_batalha",
-            "inicio_player",
-            "inicio_oponente",
             "batalha_comecou"
         ]);
         session()->flash("derrota", true);

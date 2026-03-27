@@ -10,6 +10,7 @@ use App\Models\Regra;
 use App\Services\Paises;
 use App\Services\PlayersPais;
 use App\Services\Salvar;
+use App\Services\SelecionarTemas;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -20,15 +21,12 @@ class MainController extends Controller
     public function regras(): View {
         $this->alerta("Regras do Jogo!", "bi-question-circle-fill", "Aqui você entenderá como o jogo funciona, tanto suas regras quanto funcionalidades.", "regras");
 
-        $temas = ["secondary", "primary", "escuro"];
-        
-        if (session("tema") == "claro" || !session()->has("tema")) {
-            $temas = ["dark", "danger", "claro"];
-        }
+        $pagina = "Regras";
+        $temas = SelecionarTemas::temas($pagina);
 
         return view("regras")
             ->with("imagem", "campo_treinamento")
-            ->with("pagina", "Regras")
+            ->with("pagina", $pagina)
             ->with("icone_pagina", "question-circle-fill")
             ->with("regras", Regra::all())
             ->with("temas", $temas);
@@ -37,48 +35,26 @@ class MainController extends Controller
     public function sobreClasses(): View {
         $this->alerta("Descrição das Classes!", "bi-person-lines-fill", "Aqui você leiará tudo sobre cada classe existente.", "sobre");
 
-        $temas = ["secondary", "primary", "escuro"];
-        
-        if (session("tema") == "claro" || !session()->has("tema")) {
-            $temas = ["dark", "danger", "claro"];
-        }
+        $pagina = "Descrições";
+        $temas = SelecionarTemas::temas($pagina);
 
         return view("sobre_classes")
             ->with("imagem", "estatuas_classes")
-            ->with("pagina", "Descrições")
+            ->with("pagina", $pagina)
             ->with("icone_pagina", "person-lines-fill")
             ->with("personagens", Personagem::all())
-            ->with("temas", $temas);
-    }
-
-    public function creditos(): View {
-        $this->alerta("Créditos do Jogo!", "bi-body-text", "Aqui você verá a lista de todos os desenvolvedores envolvidos.", "creditos");
-
-        $temas = ["secondary", "primary", "escuro"];
-        
-        if (session("tema") == "claro" || !session()->has("tema")) {
-            $temas = ["dark", "danger", "claro"];
-        }
-
-        return view("creditos")
-            ->with("imagem", "estrada")
-            ->with("pagina", "Créditos")
-            ->with("icone_pagina", "body-text")
             ->with("temas", $temas);
     }
 
     public function cadastro(): View {
         $this->alerta("Cadastro de Player!", "bi-person-fill-add", "Aqui você criará sua conta e escolherá sua classe preferencial.", "cadastro");
 
-        $temas = ["secondary", "primary", "light", "black", "escuro"];
-        
-        if (session("tema") == "claro" || !session()->has("tema")) {
-            $temas = ["dark", "danger", "dark", "white", "claro"];
-        }
+        $pagina = "Cadastro";
+        $temas = SelecionarTemas::temas($pagina);
 
         return view("cadastro_atualizacao")
             ->with("imagem", "recrutamento")
-            ->with("pagina", "Cadastro")
+            ->with("pagina", $pagina)
             ->with("icone_pagina", "person-fill-add")
             ->with("paises", Paises::paises())
             ->with("personagens", Personagem::all())
@@ -88,15 +64,12 @@ class MainController extends Controller
     public function atualizacao(): View {
         $this->alerta("Atualização de Player!", "bi-person-fill-down", "Aqui você editará os dados da sua conta e escolherá sua nova classe preferencial.", "atualizacao");
 
-        $temas = ["secondary", "primary", "light", "black", "escuro"];
-        
-        if (session("tema") == "claro" || !session()->has("tema")) {
-            $temas = ["dark", "danger", "dark", "white", "claro"];
-        }
+        $pagina = "Atualização";
+        $temas = SelecionarTemas::temas($pagina);
 
         return view("cadastro_atualizacao")
             ->with("imagem", "recrutamento")
-            ->with("pagina", "Atualização")
+            ->with("pagina", $pagina)
             ->with("icone_pagina", "person-fill-add")
             ->with("paises", Paises::paises())
             ->with("personagens", Personagem::all())
@@ -115,15 +88,12 @@ class MainController extends Controller
     public function listagem(): View {
         $this->alerta("Lista de Players!", "bi-list-stars", "Aqui você vizualizará todos os players existentes e quem está na liderança, e caso queira, poderá desafiá-los para uma batalha, mas só poderá fazer isso 1 vez por dia.", "listagem");
 
-        $temas = ["secondary", "primary", "light", "escuro"];
-        
-        if (session("tema") == "claro" || !session()->has("tema")) {
-            $temas = ["dark", "danger", "dark", "claro"];
-        }
+        $pagina = "Listagem";
+        $temas = SelecionarTemas::temas($pagina);
 
         return view("listagens/players")
             ->with("imagem", "recrutamento")
-            ->with("pagina", "Listagem")
+            ->with("pagina", $pagina)
             ->with("icone_pagina", "list-stars")
             ->with("players", Player::orderBy("usuario", "asc")
                             ->get()
@@ -148,15 +118,12 @@ class MainController extends Controller
             ];
         }
 
-        $temas = ["secondary", "primary", "escuro"];
-        
-        if (session("tema") == "claro" || !session()->has("tema")) {
-            $temas = ["dark", "danger", "claro"];
-        }
+        $pagina = "Totais";
+        $temas = SelecionarTemas::temas($pagina);
 
         return view("listagens/totais_players")
             ->with("imagem", "recrutamento")
-            ->with("pagina", "Totais")
+            ->with("pagina", $pagina)
             ->with("icone_pagina", "flag-fill")
             ->with("totais", $totais)
             ->with("temas", $temas);
@@ -165,15 +132,12 @@ class MainController extends Controller
     public function registroBatalhas(): View {
         $this->alerta("Registro de Batalhas!", "bi-file-earmark-medical-fill", "Aqui você relembrará todas as suas vitórias e derrotas, e caso queira, poderá apagar esses registros.", "registro");
 
-        $temas = ["secondary", "primary", "light", "escuro"];
-        
-        if (session("tema") == "claro" || !session()->has("tema")) {
-            $temas = ["dark", "danger", "dark", "claro"];
-        }
+        $pagina = "Registro";
+        $temas = SelecionarTemas::temas($pagina);
 
         return view("listagens/registro_batalhas")
             ->with("imagem", "registros")
-            ->with("pagina", "Registro")
+            ->with("pagina", $pagina)
             ->with("icone_pagina", "file-earmark-medical-fill")
             ->with("batalhas_vitorias", Batalha::onlyTrashed()->where("ganhou", Auth::user()->usuario)
                                                 ->get()
@@ -195,15 +159,12 @@ class MainController extends Controller
     public function batalhasAndamento(): View {
         $this->alerta("Batalhas em Andamento!", "bi-card-list", "Aqui você vizualizará todas as batalhas que estão acontecendo agora.", "batalhas");
 
-        $temas = ["secondary", "primary", "escuro"];
-        
-        if (session("tema") == "claro" || !session()->has("tema")) {
-            $temas = ["dark", "danger", "claro"];
-        }
+        $pagina = "Batalhas";
+        $temas = SelecionarTemas::temas($pagina);
 
         return view("listagens/batalhas")
             ->with("imagem", "registros")
-            ->with("pagina", "Batalhas")
+            ->with("pagina", $pagina)
             ->with("icone_pagina", "card-list")
             ->with("batalhas", Batalha::where("deleted_at", null)->get())
             ->with("temas", $temas);
@@ -211,7 +172,7 @@ class MainController extends Controller
 
     public function preparacao(): View | RedirectResponse {
 
-        $nivel = Player::findOrFail(Auth::user()->id)->nivel;
+        $nivel = Player::find(Auth::user()->id)->nivel;
 
         if (!$nivel) {
             $this->alertaResultado("Erro ao Carregar!", "Ocorreu um erro ao tentar abrir a página de preparação! Tente novamente.", "bi-hand-thumbs-down-fill");
@@ -221,15 +182,12 @@ class MainController extends Controller
 
         $this->alerta("Preparação Antes da Batalha!", "⚔️", "Aqui você escolherá quem irá enfrentar usando sua classe.", "preparacao");
 
-        $temas = ["secondary", "primary", "cor_niveis", "light", "escuro"];
-        
-        if (session("tema") == "claro" || !session()->has("tema")) {
-            $temas = ["dark", "danger", "text-danger", "dark", "claro"];
-        }
+        $pagina = "Preparação";
+        $temas = SelecionarTemas::temas($pagina);
 
         return view("preparacao")
             ->with("imagem", "coliseu")
-            ->with("pagina", "Preparação")
+            ->with("pagina", $pagina)
             ->with("icone_pagina", "⚔️")
             ->with("personagens", Personagem::all())
             ->with("classe", Auth::user()->personagem->classe)
@@ -272,6 +230,10 @@ class MainController extends Controller
 
             $batalha = Batalha::find(session("id_batalha"));
 
+            if ($batalha->inicio == false) {
+                $batalha->inicio = true;
+                $batalha->save();
+            }
         }
 
         if ($batalha->skill01 == false && $batalha->skill02 == false && $batalha->skill03 == false) {
@@ -281,15 +243,12 @@ class MainController extends Controller
             $batalha->save();
         }
 
-        $temas = ["secondary", "primary", "escuro"];
-        
-        if (session("tema") == "claro" || !session()->has("tema")) {
-            $temas = ["dark", "danger", "claro"];
-        }
+        $pagina = "Batalha";
+        $temas = SelecionarTemas::temas($pagina);
 
         return view("batalha")
             ->with("imagem", "coliseu")
-            ->with("pagina", "Batalha")
+            ->with("pagina", $pagina)
             ->with("icone_pagina", "⚔️")
             ->with("batalha", $batalha)
             ->with("vez", $batalha->vez)
@@ -298,5 +257,18 @@ class MainController extends Controller
             ->with("foto", $dados_oponente->foto ?? "nenhuma")
             ->with("nome", $nome_oponente)
             ->with("temas", $temas);
-    }    
+    }
+
+    public function creditos(): View {
+        $this->alerta("Créditos do Jogo!", "bi-body-text", "Aqui você verá a lista de todos os desenvolvedores envolvidos.", "creditos");
+
+        $pagina = "Créditos";
+        $temas = SelecionarTemas::temas($pagina);
+
+        return view("creditos")
+            ->with("imagem", "estrada")
+            ->with("pagina", $pagina)
+            ->with("icone_pagina", "body-text")
+            ->with("temas", $temas);
+    }
 }

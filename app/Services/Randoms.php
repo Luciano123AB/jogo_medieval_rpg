@@ -66,9 +66,9 @@ class Randoms
         $dano03_sorteado = $danos_skill03[array_rand($danos_skill03)];
         $skillsDisponiveis = [];
 
-        if ($batalha->skill01_oponente = true) $skillsDisponiveis[] = $skill01;
-        if ($batalha->skill02_oponente = true) $skillsDisponiveis[] = $skill02;
-        if ($batalha->skill03_oponente = true) $skillsDisponiveis[] = $skill03;
+        if ($batalha->skill01_oponente == true) $skillsDisponiveis[] = $skill01;
+        if ($batalha->skill02_oponente == true) $skillsDisponiveis[] = $skill02;
+        if ($batalha->skill03_oponente == true) $skillsDisponiveis[] = $skill03;
 
         if (empty($skillsDisponiveis)) {
             $batalha->skill01_oponente = true;
