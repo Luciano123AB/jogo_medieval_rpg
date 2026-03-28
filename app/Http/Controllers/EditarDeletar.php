@@ -75,18 +75,21 @@ class EditarDeletar extends Controller
                     return redirect()->back()->withInput()->with("fotoTamanho", "Essa foto é muito grande! O arquivo deve ter no máximo 10MB.");
                 }
 
-                $caminho = $foto_escolhida->store("fotos", "public");
+                $nome_arquivo = time() . "_" . uniqid() . "." . $foto_escolhida->getClientOriginalExtension();
 
-                if (!$caminho) {
-                    return redirect()->back()->withInput()->with("fotoErro", "Não foi possível carregar esta foto. Tente novamente.");
-                }
+                $foto_escolhida->move(public_path("fotos"), $nome_arquivo);
 
-                $foto = $caminho;
+                $foto = "fotos/" . $nome_arquivo;
+                
             } else {
+
                 $foto = Auth::user()->foto;
+
             }
         } else {
-            $foto = "nenhuma";
+
+            $foto = "fotos/vazio.png";
+
         }
 
         $player_existente = Player::where("usuario", $usuario)

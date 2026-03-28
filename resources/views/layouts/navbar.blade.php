@@ -74,10 +74,10 @@
                                 @php
                                     
                                     $perfil = asset("assets/images/perfils/" . strtolower(Auth::user()->personagem->classe) . ".png");
-                                    $perfil_02 = asset("assets/images/perfils/vazio.png");
+                                    $perfil_02 = asset("fotos/vazio.png");
 
-                                    if (Auth::user()->foto != "nenhuma") {
-                                        $perfil = asset("storage/" . Auth::user()->foto);
+                                    if (Auth::user()->foto != "fotos/vazio.png") {
+                                        $perfil = asset(Auth::user()->foto);
                                         $perfil_02 = asset("assets/images/perfils/" . strtolower(Auth::user()->personagem->classe) . ".png");
                                     }
                                 @endphp

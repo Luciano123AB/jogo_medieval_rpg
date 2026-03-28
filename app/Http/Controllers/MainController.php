@@ -254,7 +254,7 @@ class MainController extends Controller
             ->with("vez", $batalha->vez)
             ->with("bandeira_oponente", $dados_oponente->pais ?? "")
             ->with("oponente", $oponente)
-            ->with("foto", $dados_oponente->foto ?? "nenhuma")
+            ->with("foto", $dados_oponente->foto ?? "fotos/vazio.png")
             ->with("nome", $nome_oponente)
             ->with("temas", $temas);
     }

@@ -225,8 +225,10 @@
                                             Personagem:
                                         </label>
                                         <div>
-                                            <img src="{{ asset('assets/images/perfils/' . strtolower($classe) . '.png') }}" class="
-                                                @if($pagina == "Atualização")
+                                            @if($pagina != "Atualização")
+                                                <img src="{{ asset('fotos/vazio.png') }}" class="perfil_cadastro border border-3 rounded-circle">
+                                            @else
+                                                <img src="{{ asset('assets/images/perfils/' . strtolower($classe) . '.png') }}" class="
                                                     @if($classe == "Guerreiro")
                                                         bg-danger border-danger
                                                     @elseif($classe == "Mago")
@@ -234,9 +236,9 @@
                                                     @elseif($classe == "Assassino")
                                                         bg-dark border-dark
                                                     @endif
-                                                @endif
-                                                perfil_cadastro border border-3 rounded-circle
-                                            ">
+                                                    perfil_cadastro border border-3 rounded-circle
+                                                ">
+                                            @endif
                                         </div>
                                     </div>
 
@@ -278,14 +280,10 @@
                                         </label>
                                         @php
                                             
-                                            $foto = asset("assets/images/perfils/vazio.png");
+                                            $foto = asset("fotos/vazio.png");
 
                                             if ($pagina == "Atualização") {
-                                                if ($dados["foto"] != "nenhuma") {
-                                                    
-                                                    $foto = asset("storage/" . $dados["foto"]);
-
-                                                }
+                                                $foto = asset($dados["foto"]);
                                             }
                                         @endphp
                                         <div>

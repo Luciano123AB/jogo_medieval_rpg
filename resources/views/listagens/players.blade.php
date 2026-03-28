@@ -17,8 +17,8 @@
                                     
                                         $perfil = asset("assets/images/perfils/" . strtolower($player_lider_vitorias->personagem->classe) . ".png");
 
-                                        if ($player_lider_vitorias->foto != "nenhuma") {
-                                            $perfil = asset("storage/" . $player_lider_vitorias->foto);
+                                        if ($player_lider_vitorias->foto != "fotos/vazio.png") {
+                                            $perfil = asset($player_lider_vitorias->foto);
                                         }
                                     @endphp
                                     <div class="d-flex flex-wrap justify-content-center">
@@ -47,8 +47,8 @@
                                     
                                         $perfil = asset("assets/images/perfils/" . strtolower($player_lider_nivel->personagem->classe) . ".png");
 
-                                        if ($player_lider_nivel->foto != "nenhuma") {
-                                            $perfil = asset("storage/" . $player_lider_nivel->foto);
+                                        if ($player_lider_nivel->foto != "fotos/vazio.png") {
+                                            $perfil = asset($player_lider_nivel->foto);
                                         }
                                     @endphp
                                     <div class="d-flex flex-wrap justify-content-center">
@@ -107,10 +107,10 @@
                                         <td class="cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center fw-bold">{{ $loop->index + 1 }}</td>
                                         <td class="border-{{ $temas[1] }} border text-center px-1">
                                             <img src="
-                                                @if ($player->foto == "nenhuma")
+                                                @if ($player->foto == "fotos/vazio.png")
                                                     {{ asset("assets/images/perfils/" . strtolower($player->personagem->classe) . ".png") }}
                                                 @else
-                                                    {{ asset("storage/" . $player->foto) }}
+                                                    {{ asset($player->foto) }}
                                                 @endif
                                             " class="perfil_player sombras border border-{{ $temas[1] }} rounded-circle">
                                         </td>

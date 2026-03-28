@@ -7,13 +7,7 @@
         <div class="cards_batalha card bg-transparent border border-0">
             <div class="card-header bg-transparent border border-0 h-100">
                 <h4 class="d-flex justify-content-center text-success">
-                    <img src="
-                        @if(Auth::user()->foto == "nenhuma")
-                            {{ asset("assets/images/perfils/vazio.png") }}
-                        @else
-                            {{ asset("storage/" . Auth::user()->foto) }}
-                        @endif
-                    " class="perfil_player sombras border border-{{ $temas[1] }} rounded-circle">
+                    <img src="{{ asset(Auth::user()->foto) }}" class="perfil_player sombras border border-{{ $temas[1] }} rounded-circle">
                     <div class="border-3 border-start border-black rounded-top-1 ms-2">
                         <i class="fi fi-{{ strtolower(Auth::user()->pais) }} animate__animated animate__jello animate__infinite border-start border-end float-start me-2"></i>
                         <span>Você</span>
@@ -106,10 +100,10 @@
             <div class="card-header bg-transparent border border-0">
                 <h4 class="d-flex justify-content-center text-danger">
                     <img src="
-                        @if($foto == "nenhuma")
-                            {{ asset("assets/images/perfils/vazio.png") }}
+                        @if ($foto == "fotos/vazio.png")
+                            {{ asset($foto) }}
                         @else
-                            {{ asset("storage/" . $foto) }}
+                            {{ asset("assets/images/perfils/" . $foto) }}
                         @endif
                     " class="perfil_player sombras border border-{{ $temas[1] }} rounded-circle">
                     @if($nome != "Computador")

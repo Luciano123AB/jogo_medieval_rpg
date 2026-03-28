@@ -197,7 +197,7 @@
                 break;
 
                 default:
-                    perfil.src = basePath + "vazio.png";
+                    perfil.src = "{{ asset('fotos/vazio.png') }}";
                     perfil.classList.add("border-light");
                 break;
             }
@@ -268,8 +268,8 @@
         const classe = document.getElementById("classe");
         const perfil_cadastro = document.querySelector(".perfil_cadastro");
 
-        perfil_cadastro.src = "{{ asset('assets/images/perfils/vazio.png') }}";
-        document.getElementById("foto_preview").src = "{{ asset('assets/images/perfils/vazio.png') }}";
+        perfil_cadastro.src = "{{ asset('fotos/vazio.png') }}";
+        document.getElementById("foto_preview").src = "{{ asset('fotos/vazio.png') }}";
 
         if (classe) {
             classe.selectedIndex = 0;
