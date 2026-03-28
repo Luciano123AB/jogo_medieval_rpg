@@ -21,7 +21,8 @@ class Cadastrar extends Controller
                 "novo_email" => "required|min:11|max:100|email",
                 "nova_senha" => "required|min:3|max:60|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/",
                 "confirmar_nova_senha" => "required|same:nova_senha",
-                "pais" => "required"
+                "pais" => "required",
+                "foto" => "nullable|image|mimes:png,jpeg,jpg,gif|max:10240"
             ],
 
             [
@@ -37,7 +38,10 @@ class Cadastrar extends Controller
                 "nova_senha.regex" => "A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um número.",
                 "confirmar_nova_senha.required" => "O campo confirmar senha é obrigatório.",
                 "confirmar_nova_senha.same" => "As senhas não coincidem.",
-                "pais.required" => "A seleção do país é obrigatória."
+                "pais.required" => "A seleção do país é obrigatória.",
+                "foto.image" => "O campo foto deve ser uma imagem válida.",
+                "foto.mimes" => "A foto deve ser do tipo: png, jpeg, jpg ou gif.",
+                "foto.max" => "A imagem deve ter no máximo 10MB."
             ]
         );
 
@@ -56,11 +60,8 @@ class Cadastrar extends Controller
         }
 
         if ($foto_escolhida && $foto_escolhida->isValid()) {
-            if ($foto_escolhida->getSize() > 10485760) {
-                return redirect()->back()->withInput()->with("fotoTamanho", "Essa foto é muito grande! O arquivo deve ter no máximo 10MB.");
-            }
 
-            $nome_arquivo = time() . "_" . uniqid() . "." . $foto_escolhida->getClientOriginalExtension();
+            $nome_arquivo = time() . "_" . uniqid() . "." . $foto_escolhida->extension();
 
             $foto_escolhida->move(public_path("fotos"), $nome_arquivo);
 

@@ -45,7 +45,6 @@
                                     </span>
                                     <input type="text" id="novo_usuario" class="form-control cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}" name="novo_usuario" placeholder="Usuario123" aria-label="Usuario123" aria-describedby="NovoUsuario" value="{{ old("novo_usuario", $values[0]) }}">
                                 </div>
-
                                 @error("novo_usuario")
                                     <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
@@ -61,7 +60,6 @@
                                     </span>
                                     <input type="email" id="novo_email" class="form-control cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}" name="novo_email" placeholder="usuario@gmail.com" aria-label="usuario@gmail.com" aria-describedby="NovoEmail" value="{{ old("novo_email", $values[1]) }}">
                                 </div>
-
                                 @error("novo_email")
                                     <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
@@ -78,7 +76,6 @@
                                         <i class="cursor bi bi-eye-slash-fill"></i>
                                     </button>
                                 </div>
-
                                 @error("nova_senha")
                                     <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
@@ -100,7 +97,6 @@
                                         <i class="cursor bi bi-eye-slash-fill"></i>
                                     </button>
                                 </div>
-
                                 @error("confirmar_nova_senha")
                                     <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
@@ -130,7 +126,6 @@
                                                         <option value="Outro" {{ old("genero") == "Outro" ? "selected" : "" }}>⚧ Outro</option>
                                                     </select>
                                                 </div>
-
                                                 @error("genero")
                                                     <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
                                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
@@ -176,7 +171,6 @@
                                                     <input type="hidden" name="pais" id="pais" value="{{ $pais_antigo }}">
                                                 </div>
                                             </div>
-
                                             @error("pais")
                                                 <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
                                                     <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
@@ -211,7 +205,6 @@
                                                 @endforeach
                                             </select>
                                         </div>
-
                                         @error("classe")
                                             <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
                                                 <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
@@ -260,13 +253,7 @@
                                                 </div>
                                             @endif
                                         </div>
-
-                                        @error("fotoTamanho")
-                                            <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1" role="alert">
-                                                <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
-                                            </div>
-                                        @enderror
-                                        @error("fotoErro")
+                                        @error("foto")
                                             <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1" role="alert">
                                                 <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                             </div>
@@ -291,8 +278,7 @@
                                         </div>
                                     </div>
                                 </div>    
-                            </div>
-    
+                            </div>    
                             @error("playerExiste")
                                 <div class="d-flex justify-content-center">
                                     <div class="alert alert-danger animate__animated animate__shakeX bg-danger text-center w-50" role="alert">

@@ -20,8 +20,7 @@ class VerificarVencedor extends Controller
     {
         if (session()->has("batalha_comecou")) {
 
-            $batalha = Batalha::find(session("id_batalha"));
-            $nome_oponente = $batalha->nome_oponente;
+            $batalha = Batalha::find(session("id_batalha"));            
 
             if (!$batalha) {
                 $this->alertaResultado("Erro ao Batalhar!", "Ocorreu um erro ao tentar começar a batalha! Tente novamente.", "bi-hand-thumbs-down-fill");
@@ -31,12 +30,8 @@ class VerificarVencedor extends Controller
                     "id_batalha",
                     "batalha_comecou"
                 ]);
-                
-                if ($nome_oponente == "Computador") {
-                    return redirect()->route("preparacao");
-                }
 
-                return redirect()->route("listagem");                
+                return redirect()->route("home");
             } else {
                 if ($batalha->hp <= 0) {
                     return app(FinalizarBatalha::class)->finalizarDerrota($batalha);

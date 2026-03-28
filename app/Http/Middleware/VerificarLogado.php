@@ -20,7 +20,7 @@ class VerificarLogado extends Controller
         if (!Auth::user()) {
             $this->alertaResultado("Acesso Negado!", "Para poder abrir essa página, primeiro você deve logar na sua conta.", "bi-hand-thumbs-down-fill");
 
-            return redirect()->route("/");
+            return redirect()->route("home");
         }
 
         return $next($request);
