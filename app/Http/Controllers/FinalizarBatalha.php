@@ -27,8 +27,6 @@ Class FinalizarBatalha extends Controller
         Salvar::vitoria($player, $xp ?? 0, $batalha);
 
         session()->forget([
-            "id_player",
-            "id_oponente",
             "id_batalha",
             "batalha_comecou"
         ]);
@@ -40,7 +38,7 @@ Class FinalizarBatalha extends Controller
         }
         
         session()->flash("vitoria", true);
-        $this->alertaBatalha("Vitória!", "Parabéns!, continue assim e você se destacará na classificação. " . ("+" . $xp . "xp" ?? ""), "bi-emoji-sunglasses-fill", $rota ?? "");
+        $this->alertaBatalha("Vitória!", "Parabéns!, continue assim e você se destacará na classificação. " . ($xp ? "+" . $xp . "xp" : ""), "bi-emoji-sunglasses-fill", $rota ?? "");
 
         if ($nome_oponente == "Computador") {
             return redirect()->route("preparacao");
@@ -57,8 +55,6 @@ Class FinalizarBatalha extends Controller
         Salvar::derrota($player, $batalha);
 
         session()->forget([
-            "id_player",
-            "id_oponente",
             "id_batalha",
             "batalha_comecou"
         ]);        

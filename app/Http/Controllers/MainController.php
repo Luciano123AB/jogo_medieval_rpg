@@ -220,7 +220,6 @@ class MainController extends Controller
     public function batalhar(): View | RedirectResponse {
         $this->alerta("Batalha!", "bi-phone-landscape-fill", "Agora é a Hora! Aqui você aplicará o que aprendeu na página de regras, e recomendo que para essa página você vire a tela do seu dispositivo. Boa sorte!", "batalha");
         
-        $oponente = Personagem::find(session("id_oponente"));
         $nome_oponente = "Computador";
         $nivel = Auth::user()->nivel;
 
@@ -235,6 +234,7 @@ class MainController extends Controller
         
         if (!session()->has("batalha_comecou")) {
             
+            $oponente = Personagem::find(session("id_oponente"));
             $nova_batalha = new Batalha();
             $batalha = $nova_batalha;
 
@@ -244,6 +244,10 @@ class MainController extends Controller
                 return redirect()->route("preparacao");
             }
 
+            session()->forget([
+                "id_player",
+                "id_oponente"
+            ]);
             session([
                 "id_batalha" => $nova_batalha->id,
                 "batalha_comecou" => true
@@ -251,6 +255,7 @@ class MainController extends Controller
         } else {
 
             $batalha = Batalha::find(session("id_batalha"));
+            $oponente = Personagem::find($batalha->oponente_id);
 
             if ($batalha->inicio == false) {
                 $batalha->inicio = true;
@@ -258,7 +263,11 @@ class MainController extends Controller
             }
         }
 
-        if ($batalha->skill01 == false && $batalha->skill02 == false && $batalha->skill03 == false) {
+        if (
+            $batalha->skill01 == false &&
+            $batalha->skill02 == false &&
+            $batalha->skill03 == false
+        ) {
             $batalha->skill01 = true;
             $batalha->skill02 = true;
             $batalha->skill03 = true;

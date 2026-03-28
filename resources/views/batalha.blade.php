@@ -164,7 +164,7 @@
                 </div>
 
                 <div hidden>
-                    <form action="{{ route("ataque", ["batalha" => $batalha, "oponente" => $oponente]) }}" method="POST">
+                    <form action="{{ route("ataque", ["id" => $batalha->oponente_id]) }}" method="POST">
                         @csrf
 
                         <button type="submit" id="ataque" type="submit"></a>

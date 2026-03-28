@@ -90,18 +90,12 @@
         skill02.disabled = true;
         skill03.disabled = true;
 
-        @if(session()->has("normal_player"))
+        @if(session()->has("forte_player") || session()->has("ultimate_player"))
             setTimeout(() => {
                 salvar();
 
                 ataque.click();
-            }, 2800);
-        @elseif(session()->has("forte_player") || session()->has("ultimate_player"))
-            setTimeout(() => {
-                salvar();
-
-                ataque.click();
-            }, 1900);
+            }, 2000);
         @else
             setTimeout(() => {
                 salvar();

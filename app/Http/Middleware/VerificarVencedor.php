@@ -25,8 +25,6 @@ class VerificarVencedor extends Controller
             if (!$batalha) {
                 $this->alertaResultado("Erro ao Batalhar!", "Ocorreu um erro ao tentar começar a batalha! Tente novamente.", "bi-hand-thumbs-down-fill");
                 session()->forget([
-                    "id_player",
-                    "id_oponente",
                     "id_batalha",
                     "batalha_comecou"
                 ]);

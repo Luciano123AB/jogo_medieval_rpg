@@ -35,15 +35,7 @@
     }
 </style>
 
-@if (
-    $batalha->skill01 &&
-    $batalha->skill02 &&
-    $batalha->skill03 &&
-    $batalha->skill01_oponente &&
-    $batalha->skill02_oponente &&
-    $batalha->skill03_oponente
-)
-    
+@if (!$batalha->inicio)
 @else
     @if ($vez == 1)
         <style>

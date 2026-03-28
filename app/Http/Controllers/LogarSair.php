@@ -51,6 +51,7 @@ class LogarSair extends Controller
     public function sair(Request $request): RedirectResponse {
         Auth::logout();
 
+        $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return redirect()->route("home");

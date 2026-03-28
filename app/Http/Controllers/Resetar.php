@@ -13,13 +13,12 @@ class Resetar extends Controller
 
         $vitorias = Batalha::where("ganhou", Auth::user()->usuario);
 
-        if (!$vitorias) {
+        if (!$vitorias->forceDelete()) {
             $this->alertaResultado("Erro ao Resetar!", "Ocorreu um erro ao tentar resetar as vitórias! Tente novamente.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
         }
 
-        $vitorias->forceDelete();
         $this->alertaResultado("Vitórias Resetadas com Sucesso!", "Histórico de vitórias limpado com êxito.", "bi-hand-thumbs-up-fill");
 
         return redirect()->back();
@@ -29,13 +28,12 @@ class Resetar extends Controller
         
         $derrotas = Batalha::where("perdeu", Auth::user()->usuario);
 
-        if (!$derrotas) {
+        if (!$derrotas->forceDelete()) {
             $this->alertaResultado("Erro ao Resetar!", "Ocorreu um erro ao tentar resetar as derrotas! Tente novamente.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
         }
 
-        $derrotas->forceDelete();
         $this->alertaResultado("Derrotas Resetadas com Sucesso!", "Histórico de derrotas limpado com êxito.", "bi-hand-thumbs-up-fill");
 
         return redirect()->back();
@@ -43,15 +41,18 @@ class Resetar extends Controller
 
     public function excluir($id) {
 
-        $batalha = Batalha::where("id", Crypt::decrypt($id))->whereNotNull("deleted_at");
+        $batalha = Batalha::where("id", Crypt::decrypt($id))
+                        ->whereNotNull("deleted_at")
+                        ->where(function ($query) {
+                            $query->where("ganhou", Auth::user()->usuario)
+                                  ->orWhere("perdeu", Auth::user()->usuario);
+                        });
 
-        if (!$batalha) {
+        if (!$batalha->forceDelete()) {
             $this->alertaResultado("Erro ao Excluir!", "Ocorreu um erro ao tentar excluir a batalha! Tente novamente.", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
         }
-
-        $batalha->forceDelete();
 
         return redirect()->back();
     }

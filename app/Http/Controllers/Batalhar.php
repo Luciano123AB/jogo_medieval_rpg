@@ -95,7 +95,7 @@ class Batalhar extends Controller
             ->with("dano_recebido_oponente", true);
     }
 
-    public function ataqueOponente(): RedirectResponse {
+    public function ataqueOponente($id): RedirectResponse {
         if (session()->has("nivel_oponente")) {
 
             $nivel = session("nivel_oponente");
@@ -106,7 +106,7 @@ class Batalhar extends Controller
 
         }
               
-        $dano = Randoms::danoOponenteSorteado(Batalha::find(session("id_batalha")), Personagem::findOrFail(session("id_oponente")), $nivel);
+        $dano = Randoms::danoOponenteSorteado(Batalha::find(session("id_batalha")), Personagem::findOrFail($id), $nivel);
 
         if (!Salvar::ataqueOponente(Batalha::findOrFail(session("id_batalha")), $dano)) {
             $this->alertaResultado("Erro ao Receber Ataque!", "Ocorreu um erro ao receber o ataque do oponente!", "bi-hand-thumbs-down-fill");
@@ -147,8 +147,6 @@ class Batalhar extends Controller
         }
 
         session()->forget([
-            "id_player",
-            "id_oponente",
             "id_batalha",
             "batalha_comecou"
         ]);

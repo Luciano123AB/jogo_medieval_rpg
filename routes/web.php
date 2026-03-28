@@ -107,7 +107,7 @@ Route::prefix("/")->group(function () {
             
             Route::middleware(VerificarBatalhando::class)->group(function() {
                 Route::post("atacar", "atacar")->name("atacar");
-                Route::post("ataque_oponente", "ataqueOponente")->name("ataque");
+                Route::post("ataque_oponente/{id}", "ataqueOponente")->name("ataque");
 
                 Route::post("atualizar_tempo", [Batalhar::class, "atualizarTempo"]);
 

@@ -57,6 +57,8 @@ class Salvar
     }
 
     public static function batalharDesafiar($nova_batalha, $oponente, $nome_oponente, $nivel, $vez, $novo_desafio) {
+        $nova_batalha->player_id = session("id_player") ?? null;
+        $nova_batalha->oponente_id = session("id_oponente");
         $nova_batalha->nome = Auth::user()->usuario;
         $nova_batalha->nome_oponente = $nome_oponente;
         $nova_batalha->hp_maximo = Auth::user()->personagem->hp * Auth::user()->nivel;
@@ -131,9 +133,9 @@ class Salvar
         $salvar = DB::transaction(function () use ($player, $batalha) {
             $player->saveOrFail();
 
-            if (session()->has("id_player")) {
+            if ($batalha->player_id != null) {
 
-                $id_oponente = session("id_player");
+                $id_oponente = $batalha->player_id;
                 $oponente = Player::findOrFail($id_oponente);
 
                 $oponente->quantidade_derrotas = $oponente->quantidade_derrotas + 1;
@@ -164,9 +166,9 @@ class Salvar
         $salvar = DB::transaction(function () use ($player, $batalha) {
             $player->saveOrFail();
 
-            if (session()->has("id_player")) {
+            if ($batalha->player_id != null) {
 
-                $id = session("id_player");
+                $id = $batalha->player_id;
                 $player = Player::findOrFail($id);
 
                 $player->quantidade_vitorias = $player->quantidade_vitorias + 1;
@@ -197,9 +199,9 @@ class Salvar
         $salvar = DB::transaction(function () use ($player, $batalha) {
             $player->saveOrFail();
 
-            if (session()->has("id_player")) {
+            if ($batalha->player_id != null) {
 
-                $id = session("id_player");
+                $id = $batalha->player_id;
                 $player = Player::findOrFail($id);
 
                 $player->quantidade_vitorias = $player->quantidade_vitorias + 1;
