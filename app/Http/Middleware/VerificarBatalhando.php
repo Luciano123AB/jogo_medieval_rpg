@@ -22,6 +22,11 @@ class VerificarBatalhando extends Controller
             return redirect()->route("preparacao");
         }
 
+        session()->forget([
+            "id_player_temporario",
+            "id_oponente_temporario"
+        ]);
+
         return $next($request);
     }
 }

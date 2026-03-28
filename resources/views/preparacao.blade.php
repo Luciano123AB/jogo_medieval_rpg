@@ -18,7 +18,7 @@
                                 @endif
                                 <span class="titulos_{{ $temas[4] }}">{{ $classe }}</span>
                             </h3>
-                            <label class="{{ $temas[2] }} fs-4">Nível: {{ $nivel }}</label>
+                            <label class="{{ $temas[2] }} fs-4">Nível: {{ $nivel }}{{ $nivel == 70 ? " Max" : "" }}</label>
                         </div>
 
                         <img src="{{ asset("assets/images/personagens/" . strtolower($classe) . ".png") }}" class="card-img-top border-bottom border-{{ $temas[1] }}">

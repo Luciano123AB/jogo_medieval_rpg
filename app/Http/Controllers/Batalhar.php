@@ -28,8 +28,8 @@ class Batalhar extends Controller
             ]
         );
 
-        $this->alertaConfirmar("Confirmar Batalha!", "Tem certeza que está pronto para ir para a batalha?", "batalhar");
-        session(["id_oponente" => $request->oponente]);
+        $this->alertaConfirmar("Confirmar Batalha!", "Tem certeza que está pronto para ir para a batalha?", "batalhar.iniciar");
+        session(["id_oponente_temporario" => $request->oponente]);
 
         return redirect()->back()->withInput();
     }
@@ -54,13 +54,23 @@ class Batalhar extends Controller
             return redirect()->back();
         }
         
-        $this->alertaConfirmar("Confirmar Desafio!", "Tem certeza que deseja desafiar este player?", "batalhar");
+        $this->alertaConfirmar("Confirmar Desafio!", "Tem certeza que deseja desafiar este player?", "batalhar.iniciar");
         session([
-            "id_player" => $dados_oponente->id,
-            "id_oponente" => $dados_oponente->personagem->id
+            "id_player_temporario" => $dados_oponente->id,
+            "id_oponente_temporario" => $dados_oponente->personagem->id
         ]);
 
         return redirect()->back();
+    }
+
+    public function iniciarBatalha(): RedirectResponse {
+        session(["id_oponente" => session("id_oponente_temporario")]);
+
+        if (session()->has("id_player_temporario")) {
+            session(["id_player" => session("id_player_temporario")]);
+        }
+
+        return redirect()->route("batalhar");
     }
 
     public function atacar(Request $request): RedirectResponse {

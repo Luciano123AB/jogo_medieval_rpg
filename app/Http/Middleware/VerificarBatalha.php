@@ -18,6 +18,10 @@ class VerificarBatalha extends Controller
     {
         if (session()->has("batalha_comecou")) {
             $this->alertaResultado("Batalha em Andamento!", "Espere! Para sair, antes você precisa finalizar essa batalha.", "bi-hand-thumbs-down-fill");
+            session()->forget([
+                "id_player_temporario",
+                "id_oponente_temporario"
+            ]);
 
             return redirect()->route("batalhar");
         }

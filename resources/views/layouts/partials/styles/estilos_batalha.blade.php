@@ -35,16 +35,27 @@
     }
 </style>
 
-@if ($vez == 0)
-    <style>
-        #player {
-            background-image: url('{{ asset("assets/images/gifs/auras/$aura_player.gif") }}');
-        }
-    </style>
+@if (
+    $batalha->skill01 &&
+    $batalha->skill02 &&
+    $batalha->skill03 &&
+    $batalha->skill01_oponente &&
+    $batalha->skill02_oponente &&
+    $batalha->skill03_oponente
+)
+    
 @else
-    <style>
-        #oponente {
-            background-image: url('{{ asset("assets/images/gifs/auras/$aura_oponente.gif") }}');
-        }
-    </style>
+    @if ($vez == 1)
+        <style>
+            #player {
+                background-image: url('{{ asset("assets/images/gifs/auras/$aura_player.gif") }}');
+            }
+        </style>
+    @else
+        <style>
+            #oponente {
+                background-image: url('{{ asset("assets/images/gifs/auras/$aura_oponente.gif") }}');
+            }
+        </style>
+    @endif
 @endif

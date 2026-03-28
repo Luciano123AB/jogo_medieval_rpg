@@ -7,6 +7,7 @@ use App\Models\Desafio;
 use App\Models\Personagem;
 use App\Models\Player;
 use App\Models\Regra;
+use App\Services\Boot;
 use App\Services\Paises;
 use App\Services\PlayersPais;
 use App\Services\Salvar;
@@ -18,6 +19,27 @@ use Illuminate\Support\Facades\Crypt;
 
 class MainController extends Controller
 {
+    public function home(): View {
+        if (Boot::testarConexao() == false) {
+            Boot::criarPovoarBanco();
+        }
+
+        if (!is_dir(base_path("node_modules"))) {
+            Boot::dependencias();
+        }
+        
+        $this->alerta("Seja Muito Bem Vindo!", "bi-house-fill", "Faça seu cadastro caso ainda não tenha feito e divirta-se.", "home");
+
+        $pagina = "Home";
+        $temas_selecionados = SelecionarTemas::temas($pagina);
+        
+        return view("index")
+            ->with("imagem", "estrada")
+            ->with("pagina", $pagina)
+            ->with("icone_pagina", "house-fill")
+            ->with("temas", $temas_selecionados);
+    }
+
     public function regras(): View {
         $this->alerta("Regras do Jogo!", "bi-question-circle-fill", "Aqui você entenderá como o jogo funciona, tanto suas regras quanto funcionalidades.", "regras");
 
@@ -214,7 +236,7 @@ class MainController extends Controller
         if (!session()->has("batalha_comecou")) {
             
             $nova_batalha = new Batalha();
-            $batalha = $nova_batalha;            
+            $batalha = $nova_batalha;
 
             if (!Salvar::batalharDesafiar($nova_batalha, $oponente, $nome_oponente, $nivel, random_int(0, 1), new Desafio())) {
                 $this->alertaResultado("Erro ao Batalhar!", "Ocorreu um erro ao tentar começar a batalha! Tente novamente.", "bi-hand-thumbs-down-fill");

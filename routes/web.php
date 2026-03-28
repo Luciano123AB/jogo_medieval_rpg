@@ -13,9 +13,6 @@ use App\Http\Middleware\VerificarBatalhando;
 use App\Http\Middleware\VerificarDeslogado;
 use App\Http\Middleware\VerificarLogado;
 use App\Http\Middleware\VerificarVencedor;
-use App\Services\Boot;
-use App\Services\SelecionarTemas;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,33 +24,7 @@ Route::prefix("/")->group(function () {
 
     Route::controller(MainController::class)->group(function() {
         Route::middleware(VerificarBatalha::class)->group(function() {
-            Route::get("", function(): View {
-                if (Boot::testarConexao() == false) {
-                    Boot::criarPovoarBanco();
-                }
-
-                if (!is_dir(base_path("node_modules"))) {
-                    Boot::dependencias();
-                }
-                
-                session([
-                    "alerta" => [
-                        "titulo" => "Seja Muito Bem Vindo!",
-                        "icone" => "bi-house-fill",
-                        "texto" => "Faça seu cadastro caso ainda não tenha feito e divirta-se.",
-                        "pagina" => "home"
-                    ],
-                ]);
-
-                $pagina = "Home";
-                $temas_selecionados = SelecionarTemas::temas($pagina);
-                
-                return view("index")
-                    ->with("imagem", "estrada")
-                    ->with("pagina", $pagina)
-                    ->with("icone_pagina", "house-fill")
-                    ->with("temas", $temas_selecionados);
-            })->name("home");
+            Route::get("", "home")->name("home");
 
             Route::get("regras", "regras")->name("regras");
             
@@ -61,7 +32,9 @@ Route::prefix("/")->group(function () {
 
             Route::get("creditos", "creditos")->name("creditos");
 
-            Route::get("cadastro", "cadastro")->name("cadastro")->middleware(VerificarDeslogado::class);
+            Route::get("cadastro", "cadastro")
+                ->name("cadastro")
+                ->middleware(VerificarDeslogado::class);
 
             Route::middleware(VerificarLogado::class)->group(function() {
                 Route::get("atualizacao", "atualizacao")->name("atualizacao");
@@ -92,7 +65,10 @@ Route::prefix("/")->group(function () {
                 Route::get("preparacao", "preparacao")->name("preparacao");
             });
             
-            Route::match(["GET", "POST"], "batalha", "batalhar")->name("batalhar")->middleware(VerificarVencedor::class);
+            Route::get("batalha", "batalhar")
+                ->name("batalhar")
+                ->middleware(VerificarVencedor::class);
+            Route::post("batalha/iniciar", [Batalhar::class, "iniciarBatalha"])->name("batalhar.iniciar");
         });
     });
 

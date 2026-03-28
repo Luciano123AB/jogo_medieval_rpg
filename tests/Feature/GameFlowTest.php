@@ -32,10 +32,6 @@ function criarPersonagemParaTeste(array $overrides = []): Personagem {
     $skill03 = $overrides['skill03'] ?? criarSkillParaTeste(['skill' => 'Ultimate_' . fake()->unique()->numberBetween(100, 999)]);
     $personagem = new Personagem();
  
-    $personagem->classe = $overrides['classe'] ?? 'C' . fake()->unique()->numberBetween(100, 999);
-    $personagem->imagem = $overrides['imagem'] ?? 'img' . fake()->unique()->numberBetween(100, 999);
-    $personagem->descricao = $overrides['descricao'] ?? fake()->unique()->sentence(5);
-    $personagem->tipo_dano = $overrides['tipo_dano'] ?? 'Fisico';
     $personagem->classe = $overrides['classe'] ?? 'Classe_' . fake()->unique()->numberBetween(1000, 9999);
     $personagem->imagem = $overrides['imagem'] ?? 'img_' . fake()->unique()->numberBetween(1000, 9999) . '.png';
     $personagem->descricao = $overrides['descricao'] ?? fake()->unique()->sentence(8);

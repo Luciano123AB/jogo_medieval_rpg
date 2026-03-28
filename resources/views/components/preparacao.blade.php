@@ -10,7 +10,7 @@
             @endif
             <span class="titulos_{{ $temas[4] }}">{{ $personagem->classe }}</span>
         </h4>
-        <label class="{{ $temas[2] }}">Nível: {{ $nivel }}</label>
+        <label class="{{ $temas[2] }}">Nível: {{ $nivel }}{{ $nivel == 70 ? " Max" : "" }}</label>
     </div>
 
     <img src="{{ asset("assets/images/personagens/" . strtolower($personagem->classe) . "_reverso.png") }}" class="card-img-top border-bottom border-{{ $temas[1] }}">
