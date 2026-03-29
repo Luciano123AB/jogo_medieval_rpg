@@ -65,7 +65,7 @@ tests/                    # Testes automatizados
 ## 📸 Demonstração
 
 ![Tela inicial](docs/home.png)
-![Batalha](docs/battle.png)
+![Batalha](docs/batalha.png)
 
 ---
 
