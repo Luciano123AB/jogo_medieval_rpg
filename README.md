@@ -205,4 +205,4 @@ Checklist recomendado:
 
 ## 👨‍💻 Autor
 
-Projeto desenvolvido por **Luciano Eduardo Stefanello da Silva**.
+Projeto desenvolvido por: **Luciano Eduardo Stefanello da Silva**.
