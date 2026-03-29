@@ -39,7 +39,6 @@ function criarPersonagemParaTeste(array $overrides = []): Personagem {
     $personagem->alcance = $overrides['alcance'] ?? 'Curto';
     $personagem->vida = $overrides['vida'] ?? 'Alta';
     $personagem->defesa = $overrides['defesa'] ?? 'Alta';
-    $personagem->hp = $overrides['hp'] ?? 1000;
     $personagem->hp = $overrides['hp'] ?? 1200;
     $personagem->skill01_id = $skill01->id;
     $personagem->skill02_id = $skill02->id;
