@@ -63,9 +63,9 @@ class Cadastrar extends Controller
 
             $nome_arquivo = time() . "_" . uniqid() . "." . $foto_escolhida->extension();
 
-            $foto_escolhida->move(public_path("fotos"), $nome_arquivo);
+            $foto_escolhida->move(public_path("fotos_tmp"), $nome_arquivo);
 
-            $foto = "fotos/" . $nome_arquivo;
+            $foto = $nome_arquivo;
             
         } else {
 
@@ -102,8 +102,22 @@ class Cadastrar extends Controller
 
             return redirect()->back()->withInput();
         }
+
+        if ($novo_player->foto != "fotos/vazio.png") {
+
+            $caminho_foto = public_path("fotos_tmp/" . $novo_player->foto);
+            $novo_caminho = public_path("fotos/" . $novo_player->foto);
+
+            if (file_exists($caminho_foto)) {
+                rename($caminho_foto, $novo_caminho);
+                
+                $novo_player->foto = "fotos/" . $novo_player->foto;
+                $novo_player->save();
+            }
+        }
         
         Auth::login($novo_player);
+
         $this->alertaResultado("Player Cadastrado com Sucesso!", "Agora você pode acessar a batalha e outras páginas.", "bi-hand-thumbs-up-fill");
 
         return redirect()->route("home");

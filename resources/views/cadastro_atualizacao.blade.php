@@ -67,48 +67,6 @@
                                 @enderror
                             </div>
 
-                            <label class="form-label cor_fontes_{{ $temas[4] }}">{{ $pagina == "Cadastro" ? "Senha" : "Nova Senha" }}:</label>
-                            <div class="mb-3">
-                                <div class="input-group">
-                                    <span class="input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">***</span>
-                                    <input type="password" id="nova_senha" class="form-control cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}" name="nova_senha" placeholder="..." aria-label="..." aria-describedby="NovaSenha" value="{{ old("nova_senha") }}">
-                                    <button type="button" id="mostrar_novo" class="cursor input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">
-                                        <i class="cursor bi bi-eye-slash-fill"></i>
-                                    </button>
-                                </div>
-                                @error("nova_senha")
-                                    <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
-                                        <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
-                                    </div>
-                                @enderror
-                                @error("senhas")
-                                    <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
-                                        <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <label class="form-label cor_fontes_{{ $temas[4] }}">{{ $pagina == "Cadastro" ? "Confirmar Senha" : "Confirmar Nova Senha" }}:</label>
-                            <div class="mb-3">
-                                <div class="input-group">
-                                    <span class="input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">***</span>
-                                    <input type="password" id="confirmar_nova_senha" class="form-control cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}" name="confirmar_nova_senha" placeholder="..." aria-label="..." aria-describedby="ConfirmarNovaSenha" value="{{ old("confirmar_nova_senha") }}">
-                                    <button type="button" id="mostrar_confirmar_novo" class="cursor input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">
-                                        <i class="cursor bi bi-eye-slash-fill"></i>
-                                    </button>
-                                </div>
-                                @error("confirmar_nova_senha")
-                                    <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
-                                        <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
-                                    </div>
-                                @enderror
-                                @error("senhas")
-                                    <div class="alert alert-danger animate__animated animate__shakeX bg-danger mt-1 mb-0" role="alert">
-                                        <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
                             @if($pagina != "Atualização")
                                 <div class="horizontal_vertical">
                                     <div class="mb-3 me-3">

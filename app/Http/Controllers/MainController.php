@@ -107,6 +107,19 @@ class MainController extends Controller
             ]);
     }
 
+    public function atualizacaoSenha(): View {
+        $this->alerta("Atualização de Senha!", "bi-person-fill-down", "Aqui você mudará sua senha atual.", "atualizacao_senha");
+
+        $pagina = "Atualização Senha";
+        $temas = SelecionarTemas::temas($pagina);
+
+        return view("mudar_senha")
+            ->with("imagem", "recrutamento")
+            ->with("pagina", $pagina)
+            ->with("icone_pagina", "person-fill-add")
+            ->with("temas", $temas);
+    }
+
     public function listagem(): View {
         $this->alerta("Lista de Players!", "bi-list-stars", "Aqui você vizualizará todos os players existentes e quem está na liderança, e caso queira, poderá desafiá-los para uma batalha, mas só poderá fazer isso 1 vez por dia.", "listagem");
 

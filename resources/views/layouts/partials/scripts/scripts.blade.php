@@ -77,8 +77,10 @@
             if (this.checked) {
                 foto.disabled = true;
                 foto.value = "";
+                foto.classList.remove("cursor");
             } else {
                 foto.disabled = false;
+                foto.classList.add("cursor");
             }
         });
     });
@@ -138,10 +140,10 @@
             }
         }
 
-        if (e.target && (e.target.id === "mostrar_confirmar_novo" || e.target.closest("#mostrar_confirmar_novo"))) {
+        if (e.target && (e.target.id === "mostrar_atual" || e.target.closest("#mostrar_atual"))) {
 
-            const senha = document.getElementById("confirmar_nova_senha");
-            const olho = document.getElementById("mostrar_confirmar_novo").querySelector("i");
+            const senha = document.getElementById("senha_atual");
+            const olho = document.getElementById("mostrar_atual").querySelector("i");
 
             if (senha.type === "password") {
                 senha.type = "text";
@@ -158,6 +160,22 @@
 
             const senha = document.getElementById("senha");
             const olho = document.getElementById("mostrar").querySelector("i");
+
+            if (senha.type === "password") {
+                senha.type = "text";
+                olho.classList.remove("bi-eye-slash-fill");
+                olho.classList.add("bi-eye-fill");
+            } else {
+                senha.type = "password";
+                olho.classList.remove("bi-eye-fill");
+                olho.classList.add("bi-eye-slash-fill");
+            }
+        }
+
+        if (e.target && (e.target.id === "mostrar_confirmar_novo" || e.target.closest("#mostrar_confirmar_novo"))) {
+
+            const senha = document.getElementById("confirmar_nova_senha");
+            const olho = document.getElementById("mostrar_confirmar_novo").querySelector("i");
 
             if (senha.type === "password") {
                 senha.type = "text";

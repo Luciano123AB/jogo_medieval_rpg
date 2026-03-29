@@ -16,7 +16,7 @@
                 <span class="cursor titulos_{{ $temas[6] }} cor_fontes_{{ $temas[6] }} fw-bold align-middle fs-3">{{ env("APP_NAME") }}</span>
                 <br class="d-sm-none">
                 <span class="cursor cor_fontes_{{ $temas[6] }} animate__animated animate__fadeIn align-middle fs-3">- 
-                    @if (!$icone_pagina == "⚔️")
+                    @if ($icone_pagina != "⚔️")
                         <i class="bi bi-{{ $icone_pagina }}"></i>
                     @else
                         ⚔️
@@ -128,6 +128,14 @@
                                 <a href="{{ route("atualizacao") }}" class="dropdown-item cor_fontes_{{ $temas[6] }} opcoes_player_{{ $temas[6] }} border-top border-black">
                                     <i class="bi bi-pen-fill"></i>
                                     Editar
+                                </a>
+                            </li>
+                        @endif
+                        @if($pagina != "Atualização Senha")
+                            <li>
+                                <a href="{{ route("atualizacaoSenha") }}" class="dropdown-item cor_fontes_{{ $temas[6] }} opcoes_player_{{ $temas[6] }} border-top border-black">
+                                    <i class="bi bi-key-fill"></i>
+                                    Mudar Senha
                                 </a>
                             </li>
                         @endif

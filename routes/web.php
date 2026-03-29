@@ -38,6 +38,7 @@ Route::prefix("/")->group(function () {
 
             Route::middleware(VerificarLogado::class)->group(function() {
                 Route::get("atualizacao", "atualizacao")->name("atualizacao");
+                Route::get("atualizacao_senha", "atualizacaoSenha")->name("atualizacaoSenha");
 
                 Route::get("totais_players", "totaisPlayers")->name("totais");
 
@@ -92,6 +93,9 @@ Route::prefix("/")->group(function () {
         Route::middleware([VerificarLogado::class, VerificarBatalha::class])->group(function() {
             Route::post("confirmar_atualizar", "confirmarAtualizar")->name("confirmarAtualizar");
             Route::put("atualizar", "atualizar")->name("atualizar");
+
+            Route::post("confirmar_senha", "confirmarSenha")->name("confirmarSenha");
+            Route::put("atualizar_senha", "atualizarSenha")->name("atualizarSenha");
 
             Route::post("confirmar_deletar", "confirmarDeletar")->name("confirmarDeletar");
             Route::delete("deletar", "deletar")->name("deletar");

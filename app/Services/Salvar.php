@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Player;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -35,15 +36,16 @@ class Salvar
     }
 
     public static function atualizar($player) {
-        
-        $senha = session("dados.senha");
-
         $player->usuario = session("dados.usuario");
         $player->email = session("dados.email");
-        $player->senha = Hash::make($senha);
         $player->personagem_id = session("dados.classe");
+
+        if (session("dados.foto") != "fotos/vazio.png") {
+            session()->flash("foto_antiga", $player->foto);
+        }
+
         $player->foto = session("dados.foto");
-        $player->updated_at = date("Y-m-d H:i:s");
+        $player->updated_at = Carbon::now();
 
         $salvar = DB::transaction(function () use ($player) {
             $player->saveOrFail();
@@ -52,6 +54,23 @@ class Salvar
         });
 
         session()->forget("dados");
+
+        return $salvar;
+    }
+
+    public static function atualizarSenha($player) {
+        
+        $senha = session("nova_senha");
+
+        $player->senha = Hash::make($senha);
+
+        $salvar = DB::transaction(function () use ($player) {
+            $player->saveOrFail();
+
+            return true;
+        });
+
+        session()->forget("nova_senha");
 
         return $salvar;
     }
@@ -128,7 +147,7 @@ class Salvar
         }
 
         $batalha->ganhou = $player->usuario;
-        $batalha->updated_at = date("Y-m-d H:i:s");
+        $batalha->updated_at = Carbon::now();
 
         $salvar = DB::transaction(function () use ($player, $batalha) {
             $player->saveOrFail();
@@ -161,7 +180,7 @@ class Salvar
         }
 
         $batalha->perdeu = $player->usuario;
-        $batalha->updated_at = date("Y-m-d H:i:s");
+        $batalha->updated_at = Carbon::now();
 
         $salvar = DB::transaction(function () use ($player, $batalha) {
             $player->saveOrFail();
@@ -194,7 +213,7 @@ class Salvar
         }
 
         $batalha->perdeu = Auth::user()->usuario;
-        $batalha->updated_at = date("Y-m-d H:i:s");
+        $batalha->updated_at = Carbon::now();
 
         $salvar = DB::transaction(function () use ($player, $batalha) {
             $player->saveOrFail();

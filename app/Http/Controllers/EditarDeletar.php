@@ -27,10 +27,13 @@ class EditarDeletar extends Controller
             return redirect()->back();
         }
 
-        session()->forget("player");
+        if (file_exists(public_path(Auth::user()->foto))) {
+            unlink(public_path(Auth::user()->foto));
+        }
+
         $this->alertaResultado("Player Deletado com Sucesso!", "Caso queira começar novamente do zero, sinta-se à vontade para criar uma nova conta.", "bi-hand-thumbs-up-fill");
 
-        return redirect()->route("home");
+        return redirect()->route("sair");
     }
 
     public function confirmarAtualizar(Request $request): RedirectResponse {
@@ -41,8 +44,6 @@ class EditarDeletar extends Controller
             [
                 "novo_usuario" => "required|max:30",
                 "novo_email" => "required|min:11|max:100|email",
-                "nova_senha" => "required|min:3|max:60|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/",
-                "confirmar_nova_senha" => "required|same:nova_senha",
                 "foto" => "nullable|image|mimes:png,jpeg,jpg,gif|max:10240"
             ],
 
@@ -53,12 +54,6 @@ class EditarDeletar extends Controller
                 "novo_email.min" => "O email deve ter no mínimo :min caracteres.",
                 "novo_email.max" => "O email deve ter no máximo :max caracteres.",
                 "novo_email.email" => "O email deve ser um email válido.",
-                "nova_senha.required" => "O campo senha é obrigatório.",
-                "nova_senha.min" => "A senha deve ter no mínimo :min caracteres.",
-                "nova_senha.max" => "A senha deve ter no máximo :max caracteres.",
-                "nova_senha.regex" => "A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um número.",
-                "confirmar_nova_senha.required" => "O campo confirmar senha é obrigatório.",
-                "confirmar_nova_senha.same" => "As senhas não coincidem.",
                 "foto.image" => "O campo foto deve ser uma imagem válida.",
                 "foto.mimes" => "A foto deve ser do tipo: png, jpeg, jpg ou gif.",
                 "foto.max" => "A imagem deve ter no máximo 10MB."
@@ -78,9 +73,9 @@ class EditarDeletar extends Controller
 
                 $nome_arquivo = time() . "_" . uniqid() . "." . $foto_escolhida->extension();
 
-                $foto_escolhida->move(public_path("fotos"), $nome_arquivo);
+                $foto_escolhida->move(public_path("fotos_tmp"), $nome_arquivo);
 
-                $foto = "fotos/" . $nome_arquivo;
+                $foto = $nome_arquivo;
                 
             } else {
 
@@ -111,7 +106,6 @@ class EditarDeletar extends Controller
             "dados" => [
                 "usuario" => $usuario,
                 "email" => $email,
-                "senha" => $request->input("nova_senha"),
                 "classe" => $classe,
                 "foto" => $foto
             ]
@@ -130,10 +124,71 @@ class EditarDeletar extends Controller
             return redirect()->back();
         }
 
-        unlink(public_path(Auth::user()->foto));
+        if ($player->foto != Auth::user()->foto) {
+
+            $caminho_foto = public_path("fotos_tmp/" . $player->foto);
+            $novo_caminho = public_path("fotos/" . $player->foto);
+
+            if (file_exists($caminho_foto)) {
+                rename($caminho_foto, $novo_caminho);
+                unlink(public_path("fotos/" . session("foto_antiga")));
+
+                $player->foto = "fotos/" . $player->foto;
+                $player->save();
+            }
+        }
+
         Auth::setUser($player);
 
-        $this->alertaResultado("Player Atualizado com Sucesso!", "Para ver seu novo nome de usuário e(ou) classe nova, deslogue e faça o login novamente.", "bi-hand-thumbs-up-fill");
+        $this->alertaResultado("Player Atualizado com Sucesso!", "Suas novas informações já estão em vigor.", "bi-hand-thumbs-up-fill");
+
+        return redirect()->route("home");
+    }
+
+    public function confirmarSenha(Request $request): RedirectResponse {
+        $request->validate(
+            [
+                "senha_atual" => "required",
+                "nova_senha" => "required|min:3|max:60|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/",
+                "confirmar_nova_senha" => "required|same:nova_senha"
+            ],
+
+            [
+                "senha_atual.required" => "O campo senha atual é obrigatório.",
+                "nova_senha.required" => "O campo nova senha é obrigatório.",
+                "nova_senha.min" => "A nova senha deve ter no mínimo :min caracteres.",
+                "nova_senha.max" => "A nova senha deve ter no máximo :max caracteres.",
+                "nova_senha.regex" => "A nova senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um número.",
+                "confirmar_nova_senha.required" => "O campo confirmar nova senha é obrigatório.",
+                "confirmar_nova_senha.same" => "As novas senhas não coincidem."
+            ]
+        );
+
+        if (!password_verify($request->input("senha_atual"), Auth::user()->senha)) {
+            return redirect()->back()->withInput()->withErrors(["senha_invalida" => "A senha atual está incorreta."]);
+        }
+
+        $this->alertaConfirmar("Confirmar Atualização de Senha!", "Tem certeza que deseja salvar essa nova senha?", "atualizarSenha");
+        session([
+            "nova_senha" => $request->input("nova_senha")
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function atualizarSenha(): RedirectResponse {
+
+        $player = Player::findOrFail(Auth::user()->id);
+
+        if (!Salvar::atualizarSenha($player)) {
+            $this->alertaResultado("Erro ao Atualizar Senha!", "Ocorreu um erro ao tentar atualizar a senha! Tente novamente.", "bi-hand-thumbs-down-fill");
+
+            return redirect()->back();
+        }
+
+        Auth::setUser($player);
+
+        $this->alertaResultado("Senha Atualizada com Sucesso!", "Sua nova senha já está em vigor.", "bi-hand-thumbs-up-fill");
 
         return redirect()->route("home");
     }

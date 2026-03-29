@@ -113,8 +113,8 @@
                         "</button>" +
                         "<form action='{{ route(session('alerta_confirmar.sim')) }}' method='POST'>" +
                             "<input type='hidden' name='_token' value='{{ csrf_token() }}'>" +
-                            @if (session("alerta_confirmar.sim") == "deletar" || session("alerta_confirmar.sim") == "atualizar")
-                                "<input type='hidden' name='_method' value='{{ session('alerta_confirmar.sim') == 'atualizar' ? 'PUT' : 'DELETE' }}'>" +
+                            @if (session("alerta_confirmar.sim") == "deletar" || session("alerta_confirmar.sim") == "atualizar" || session("alerta_confirmar.sim") == "atualizarSenha")
+                                "<input type='hidden' name='_method' value='{{ session('alerta_confirmar.sim') == 'atualizar' || session('alerta_confirmar.sim') == 'atualizarSenha' ? 'PUT' : 'DELETE' }}'>" +
                             @endif
                             "<button style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' type='submit' class='cursor sombras botoes animate__animated animate__fadeIn btn btn-success btn-sm rounded focus-ring focus-ring-success'>" +
                                 "<span style='color: {{ $temas[2] }}' class='cursor d-flex justify-content-center'>" +

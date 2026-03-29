@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table("batalhas", function (Blueprint $table) {
             $table->foreignId("player_id")->nullable()->after("id")->constrained("players")->nullOnDelete();
-            $table->foreignId("oponente_id")->nullable()->after("player_id")->constrained("players")->nullOnDelete();
+            $table->foreignId("oponente_id")->nullable()->after("player_id")->constrained("personagems")->nullOnDelete();
         });
     }
 
@@ -22,11 +22,13 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropForeign(["player_id"]);
-        Schema::dropForeign(["oponente_id"]);
-        Schema::dropColumn([
-            "player_id",
-            "oponente_id"
-        ]);
+        Schema::table("batalhas", function (Blueprint $table) {
+            $table->dropForeign(["player_id"]);
+            $table->dropForeign(["oponente_id"]);
+            $table->dropColumn([
+                "player_id",
+                "oponente_id"
+            ]);
+        });
     }
 };

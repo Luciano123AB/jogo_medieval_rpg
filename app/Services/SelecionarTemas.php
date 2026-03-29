@@ -11,7 +11,7 @@ class SelecionarTemas
             if (session("tema") == "claro" || !session()->has("tema")) {
                 $temas = ["dark", "danger", "claro"];
             }
-        } elseif ($pagina == "Cadastro" || $pagina == "Atualização") {
+        } elseif ($pagina == "Cadastro" || $pagina == "Atualização" || $pagina == "Atualização Senha") {
             $temas = ["secondary", "primary", "light", "black", "escuro"];
             
             if (session("tema") == "claro" || !session()->has("tema")) {
