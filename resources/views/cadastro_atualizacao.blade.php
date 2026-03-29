@@ -68,7 +68,7 @@
                             </div>
                             
                             @if($pagina != "Atualização")
-                                <label class="form-label cor_fontes_{{ $temas[4] }}">Nova Senha:</label>
+                                <label class="form-label cor_fontes_{{ $temas[4] }}">Senha:</label>
                                 <div class="mb-3">
                                     <div class="input-group">
                                         <span class="input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">***</span>
@@ -89,7 +89,7 @@
                                     @enderror
                                 </div>
 
-                                <label class="form-label cor_fontes_{{ $temas[4] }}">Confirmar Nova Senha:</label>
+                                <label class="form-label cor_fontes_{{ $temas[4] }}">Confirmar Senha:</label>
                                 <div class="mb-3">
                                     <div class="input-group">
                                         <span class="input-group-text cor_fontes_{{ $temas[4] }} bg-{{ $temas[2] }} border-{{ $temas[1] }}">***</span>
