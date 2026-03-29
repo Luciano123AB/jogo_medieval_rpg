@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer("xp")->default(0)->comment("1000");
             $table->integer("quantidade_vitorias")->default(0);
             $table->integer("quantidade_derrotas")->default(0);
+            $table->boolean("online")->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

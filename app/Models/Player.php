@@ -19,7 +19,8 @@ class Player extends Authenticatable
         "nivel",
         "subir_nivel",
         "quantidade_vitorias",
-        "quantidade_derrotas"
+        "quantidade_derrotas",
+        "online"
     ];
     protected $casts = [
         "usuario" => "string",
@@ -31,7 +32,8 @@ class Player extends Authenticatable
         "nivel" => "integer",
         "subir_nivel" => "float",
         "quantidade_vitorias" => "integer",
-        "quantidade_derrotas" => "integer"
+        "quantidade_derrotas" => "integer",
+        "online" => "boolean"
     ];
 
     public function personagem() {

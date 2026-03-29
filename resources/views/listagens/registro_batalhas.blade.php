@@ -26,15 +26,20 @@
                         <table class="border border-2 border-{{ $temas[1] }} w-100">
                             <thead class="text-center">
                                 <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border px-1">
-                                    <i class="bi bi-list-ol"></i>
-                                    Nº
+                                    <i class="bi bi-list-ol titulos_colunas"></i>Nº
                                 </th>
-                                <th class="border-{{ $temas[1] }} border">👑</th>
-                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border">Você</th>
+                                <th class="border-{{ $temas[1] }} border px-1">👑</th>
+                                <th class="border-{{ $temas[1] }} border px-1">
+                                    <i class="titulos_colunas">🤜🏻</i>
+                                    <span class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }}">Você</span>
+                                </th>
                                 <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border px-1">VS</th>
-                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border">Oponente</th>
-                                <th class="border-{{ $temas[1] }} border">⚰️</th>
-                                <th class="border-{{ $temas[1] }} border"><i class="cor_fontes_{{ $temas[3] }} bi bi-x-circle-fill"></i></th>
+                                <th class="border-{{ $temas[1] }} border px-1">
+                                    <i class="titulos_colunas">🤛🏻</i>
+                                    <span class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }}">Oponente</span>
+                                </th>
+                                <th class="border-{{ $temas[1] }} border px-1">⚰️</th>
+                                <th class="border-{{ $temas[1] }} border px-1"><i class="cor_fontes_{{ $temas[3] }} bi bi-x-circle-fill"></i></th>
                             </thead>
 
                             <tbody>
@@ -63,7 +68,7 @@
                                     </tr>
                                 @empty
                                     <tr class="text-center">
-                                        <td colspan="6" class="cor_fontes_{{ $temas[3] }}">NENHUMA VITÓRIA EXISTENTE AINDA</td>
+                                        <td colspan="7" class="cor_fontes_{{ $temas[3] }}">NENHUMA VITÓRIA EXISTENTE AINDA</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -93,15 +98,20 @@
                         <table class="border border-2 border-{{ $temas[1] }} w-100">
                             <thead class="text-center">
                                 <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border px-1">
-                                    <i class="bi bi-list-ol"></i>
-                                    Nº
+                                    <i class="bi bi-list-ol titulos_colunas"></i>Nº
                                 </th>
-                                <th class="border-{{ $temas[1] }} border">⚰️</th>
-                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border">Você</th>
+                                <th class="border-{{ $temas[1] }} border px-1">⚰️</th>
+                                <th class="border-{{ $temas[1] }} border px-1">
+                                    <i class="titulos_colunas">🤜🏻</i>
+                                    <span class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }}">Você</span>
+                                </th>
                                 <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border px-1">VS</th>
-                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border">Oponente</th>
-                                <th class="border-{{ $temas[1] }} border">👑</th>
-                                <th class="border-{{ $temas[1] }} border"><i class="cor_fontes_{{ $temas[3] }} bi bi-x-circle-fill"></i></th>
+                                <th class="border-{{ $temas[1] }} border px-1">
+                                    <i class="titulos_colunas">🤛🏻</i>
+                                    <span class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }}">Oponente</span>
+                                </th>
+                                <th class="border-{{ $temas[1] }} border px-1">👑</th>
+                                <th class="border-{{ $temas[1] }} border px-1"><i class="cor_fontes_{{ $temas[3] }} bi bi-x-circle-fill"></i></th>
                             </thead>
 
                             <tbody>
@@ -130,7 +140,7 @@
                                     </tr>
                                 @empty
                                     <tr class="text-center">
-                                        <td colspan="6" class="cor_fontes_{{ $temas[3] }}">NENHUMA DERROTA EXISTENTE AINDA</td>
+                                        <td colspan="7" class="cor_fontes_{{ $temas[3] }}">NENHUMA DERROTA EXISTENTE AINDA</td>
                                     </tr>
                                 @endforelse
                             </tbody>

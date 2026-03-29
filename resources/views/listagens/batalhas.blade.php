@@ -8,12 +8,18 @@
                     <div class="tabelas-scroll">
                         <table class="border border-2 border-{{ $temas[1] }} w-100">
                             <thead class="text-center">
-                                <th class="titulos_{{ $temas[2] }} cor_fontes_{{ $temas[2] }} border-{{ $temas[1] }} border px-1"><i class="bi bi-list-ol"></i>Nº</th>
-                                <th class="titulos_{{ $temas[2] }} cor_fontes_{{ $temas[2] }} border-{{ $temas[1] }} border">Player</th>
-                                <th class="border-{{ $temas[1] }} border">❤️</th>
+                                <th class="titulos_{{ $temas[2] }} cor_fontes_{{ $temas[2] }} border-{{ $temas[1] }} border px-1"><i class="bi bi-list-ol titulos_colunas"></i>Nº</th>
+                                <th class="border-{{ $temas[1] }} border px-1">
+                                    <i class="titulos_colunas">🤜🏻</i>
+                                    <span class="titulos_{{ $temas[2] }} cor_fontes_{{ $temas[2] }}">Player</span>
+                                </th>
+                                <th class="border-{{ $temas[1] }} border px-1">❤️</th>
                                 <th class="titulos_{{ $temas[2] }} cor_fontes_{{ $temas[2] }} border-{{ $temas[1] }} border px-1">VS</th>
-                                <th class="border-{{ $temas[1] }} border">❤️</th>
-                                <th class="titulos_{{ $temas[2] }} cor_fontes_{{ $temas[2] }} border-{{ $temas[1] }} border">Oponente</th>
+                                <th class="border-{{ $temas[1] }} border px-1">❤️</th>
+                                <th class="border-{{ $temas[1] }} border px-1">
+                                    <i class="titulos_colunas">🤛🏻</i>
+                                    <span class="titulos_{{ $temas[2] }} cor_fontes_{{ $temas[2] }}">Oponente</span>
+                                </th>
                             </thead>
 
                             <tbody>

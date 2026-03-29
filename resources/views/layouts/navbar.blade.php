@@ -86,9 +86,12 @@
                                     <img src="{{ $perfil_02 }}" class="position-absolute bottom-0 start-100 translate-middle cursor sombras perfil_players border bg-{{ $temas[0] }} border-{{ $temas[1] }} rounded-circle">
                                 </div>
                                 <div class="cursor">
-                                    <div class="border-3 border-start border-black rounded-top-1">
+                                    <div class="d-flex border-3 border-start border-black rounded-top-1">
                                         <h4 class="cursor titulos_{{ $temas[6] }} cor_fontes_{{ $temas[6] }}">
                                             <i class="fi fi-{{ strtolower(Auth::user()->pais) }} animate__animated animate__jello animate__infinite border-start border-end mb-2 me-2"></i>{{ Auth::user()->usuario }}
+                                        </h4>
+                                        <h4 class="cursor">
+                                            {{ Auth::user()->online == true ? "🟢" : "🔴" }}
                                         </h4>
                                     </div>
                                     <span class="cursor text-bg-{{ $temas[1] }} {{ Auth::user()->nivel == 70 ? "text-warning" : "" }} badge">

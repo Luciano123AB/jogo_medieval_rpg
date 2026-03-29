@@ -92,6 +92,10 @@
         -webkit-text-stroke-width: 2px;
         -webkit-text-stroke-color: #64553a;
     }
+
+    .titulos_colunas {
+        margin-right: 4px;
+    }
     
     .botoes {
         transition: transform 0.3s ease;
@@ -264,6 +268,10 @@
     @media(width <= 430px) {
         #icone {
             width: 50px;
+        }
+
+        .titulos_colunas {
+            margin-right: 0px;
         }
 
         #index_opcoes {

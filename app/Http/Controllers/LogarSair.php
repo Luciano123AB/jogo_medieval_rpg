@@ -33,6 +33,9 @@ class LogarSair extends Controller
         if (!Hash::check($request->input("senha"), $player->senha)) {
             return redirect()->back()->withInput()->withErrors(["playerNaoExiste" => "Esse player não está cadastrado! Tente outro."]);
         }
+
+        $player->online = true;
+        $player->save();
                                     
         Batalha::where("nome", $player->usuario)->whereNull("ganhou")->first()?->forceDelete();
         Auth::login($player);
@@ -49,6 +52,10 @@ class LogarSair extends Controller
     }
 
     public function sair(Request $request): RedirectResponse {
+        $player = Player::find(Auth::user()->id);
+        $player->online = false;
+        $player->save();
+
         Auth::logout();
 
         $request->session()->invalidate();
