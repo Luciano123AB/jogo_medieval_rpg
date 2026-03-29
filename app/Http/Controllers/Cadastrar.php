@@ -115,6 +115,9 @@ class Cadastrar extends Controller
                 $novo_player->save();
             }
         }
+
+        $novo_player->online = true;
+        $novo_player->save();
         
         Auth::login($novo_player);
 
