@@ -131,7 +131,12 @@ class EditarDeletar extends Controller
 
             if (file_exists($caminho_foto)) {
                 rename($caminho_foto, $novo_caminho);
-                unlink(public_path("photos/" . session("foto_antiga")));
+
+                $foto_antiga = "photos/" . session("foto_antiga");
+
+                if (file_exists(public_path($foto_antiga)) && session("foto_antiga") != "vazio.png") {
+                    unlink(public_path($foto_antiga));
+                }
 
                 $player->foto = "photos/" . $player->foto;
                 $player->save();
