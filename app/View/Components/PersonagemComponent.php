@@ -9,13 +9,17 @@ use Illuminate\View\Component;
 
 class PersonagemComponent extends Component
 {
+    
     public Personagem $personagem;
     public $temas;
 
     /**
      * Create a new component instance.
      */
-    public function __construct(Personagem $personagem, $temas)
+    public function __construct(
+        Personagem $personagem,
+        $temas
+    )
     {
         $this->personagem = $personagem;
         $this->temas = $temas;

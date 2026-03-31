@@ -100,7 +100,7 @@
             <div class="card-header bg-transparent border border-0">
                 <h4 class="d-flex justify-content-center text-danger">
                     <img src="
-                        @if ($foto == "fotos/vazio.png")
+                        @if ($foto == "photos/vazio.png")
                             {{ asset($foto) }}
                         @else
                             {{ asset("assets/images/perfils/" . $foto) }}

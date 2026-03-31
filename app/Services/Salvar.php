@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Hash;
 class Salvar
 {
     public static function cadastrar($novo_player) {
-        $novo_player->usuario = session("dados.usuario");
+        $novo_player->user = session("dados.usuario");
         $novo_player->email = session("dados.email");
-        $novo_player->senha = Hash::make(session("dados.senha"));
+        $novo_player->password = Hash::make(session("dados.senha"));
         $novo_player->genero = session("dados.genero");
         $novo_player->pais = session("dados.pais");
         $novo_player->foto = session("dados.foto");
@@ -36,11 +36,11 @@ class Salvar
     }
 
     public static function atualizar($player) {
-        $player->usuario = session("dados.usuario");
+        $player->user = session("dados.usuario");
         $player->email = session("dados.email");
         $player->personagem_id = session("dados.classe");
 
-        if (session("dados.foto") != "fotos/vazio.png") {
+        if (session("dados.foto") != "photos/vazio.png") {
             session()->flash("foto_antiga", $player->foto);
         }
 
@@ -62,7 +62,7 @@ class Salvar
         
         $senha = session("nova_senha");
 
-        $player->senha = Hash::make($senha);
+        $player->password = Hash::make($senha);
 
         $salvar = DB::transaction(function () use ($player) {
             $player->saveOrFail();
@@ -78,7 +78,7 @@ class Salvar
     public static function batalharDesafiar($nova_batalha, $oponente, $nome_oponente, $nivel, $vez, $novo_desafio) {
         $nova_batalha->player_id = session("id_player") ?? null;
         $nova_batalha->oponente_id = session("id_oponente");
-        $nova_batalha->nome = Auth::user()->usuario;
+        $nova_batalha->nome = Auth::user()->user;
         $nova_batalha->nome_oponente = $nome_oponente;
         $nova_batalha->hp_maximo = Auth::user()->personagem->hp * Auth::user()->nivel;
         $nova_batalha->hp = Auth::user()->personagem->hp * Auth::user()->nivel;
@@ -146,7 +146,7 @@ class Salvar
             $batalha->perdeu = $batalha->nome_oponente;
         }
 
-        $batalha->ganhou = $player->usuario;
+        $batalha->ganhou = $player->user;
         $batalha->updated_at = Carbon::now();
 
         $salvar = DB::transaction(function () use ($player, $batalha) {
@@ -179,7 +179,7 @@ class Salvar
             $batalha->ganhou = $batalha->nome_oponente;
         }
 
-        $batalha->perdeu = $player->usuario;
+        $batalha->perdeu = $player->user;
         $batalha->updated_at = Carbon::now();
 
         $salvar = DB::transaction(function () use ($player, $batalha) {
@@ -212,7 +212,7 @@ class Salvar
             $batalha->ganhou = $batalha->nome_oponente;            
         }
 
-        $batalha->perdeu = Auth::user()->usuario;
+        $batalha->perdeu = Auth::user()->user;
         $batalha->updated_at = Carbon::now();
 
         $salvar = DB::transaction(function () use ($player, $batalha) {

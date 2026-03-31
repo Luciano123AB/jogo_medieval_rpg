@@ -1,74 +1,4 @@
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-
-        const audio = document.getElementById("trilha_sonora");
-        const icone = document.getElementById("icone_musica");
-        let tocando = sessionStorage.getItem("musica_tocando") === "true";
-        let tempo_salvo = sessionStorage.getItem("musica_tempo");
-
-        function atualizarIcone(tocando) {
-            if (tocando) {
-                icone.classList.remove("bi-volume-mute-fill");
-                icone.classList.add("bi-volume-up-fill");
-            } else {
-                icone.classList.remove("bi-volume-up-fill");
-                icone.classList.add("bi-volume-mute-fill");
-            }
-        }        
-
-        if (tempo_salvo) {
-            audio.currentTime = parseFloat(tempo_salvo);
-        }
-
-        if (tocando) {
-            audio.muted = false;
-            audio.play().catch(() => {});
-            icone.classList.replace("bi-volume-up-fill", "bi-volume-mute-fill");
-        }
-
-        document.getElementById("botao_musica").addEventListener("click", () => {
-            tocando = !tocando;
-
-            if (tocando) {
-                audio.muted = false;
-                audio.play();
-                icone.classList.replace("bi-volume-mute-fill", "bi-volume-up-fill");
-            } else {
-                audio.pause();
-                icone.classList.replace("bi-volume-up-fill", "bi-volume-mute-fill");
-            }
-
-            sessionStorage.setItem("musica_tocando", tocando);
-            atualizarIcone(tocando);
-        });
-
-        atualizarIcone(tocando);
-
-        @if(session()->has("vitoria") || session()->has("derrota"))
-
-            const som_resultado = document.getElementById("som_final");
-            const trilhaEstavaTocando = tocando && !audio.paused;
-
-            audio.pause();
-            som_resultado.muted = false;
-            som_resultado.currentTime = 0;
-            som_resultado.play().catch(() => {});
-
-            setTimeout(() => {
-                som_resultado.pause();
-                som_resultado.muted = true;
-
-                if (trilhaEstavaTocando) {
-                    audio.play().catch(() => {});
-                }
-            }, {{ session()->has("vitoria") ? 4300 : 1500 }});
-        @endif
-
-        window.addEventListener("beforeunload", () => {
-            sessionStorage.setItem("musica_tempo", audio.currentTime);
-        });
-    });
-
     document.addEventListener("DOMContentLoaded", function () {
         
         const foto = document.getElementById("foto");
@@ -124,6 +54,22 @@
             Swal.close();
         }
 
+        if (e.target && (e.target.id === "mostrar" || e.target.closest("#mostrar"))) {
+
+            const senha = document.getElementById("senha");
+            const olho = document.getElementById("mostrar").querySelector("i");
+
+            if (senha.type === "password") {
+                senha.type = "text";
+                olho.classList.remove("bi-eye-slash-fill");
+                olho.classList.add("bi-eye-fill");
+            } else {
+                senha.type = "password";
+                olho.classList.remove("bi-eye-fill");
+                olho.classList.add("bi-eye-slash-fill");
+            }
+        }
+
         if (e.target && (e.target.id === "mostrar_novo" || e.target.closest("#mostrar_novo"))) {
 
             const senha = document.getElementById("nova_senha");
@@ -144,22 +90,6 @@
 
             const senha = document.getElementById("senha_atual");
             const olho = document.getElementById("mostrar_atual").querySelector("i");
-
-            if (senha.type === "password") {
-                senha.type = "text";
-                olho.classList.remove("bi-eye-slash-fill");
-                olho.classList.add("bi-eye-fill");
-            } else {
-                senha.type = "password";
-                olho.classList.remove("bi-eye-fill");
-                olho.classList.add("bi-eye-slash-fill");
-            }
-        }
-
-        if (e.target && (e.target.id === "mostrar" || e.target.closest("#mostrar"))) {
-
-            const senha = document.getElementById("senha");
-            const olho = document.getElementById("mostrar").querySelector("i");
 
             if (senha.type === "password") {
                 senha.type = "text";
@@ -195,8 +125,8 @@
             const perfil = document.querySelector(".perfil_cadastro");
             const basePath = "{{ asset('assets/images/perfils') }}/";
 
-            perfil.classList.remove("border-light", "border-danger", "border-primary", "border-dark");
-            perfil.classList.remove("bg-danger", "bg-primary", "bg-dark");
+            perfil.classList.remove("border-light", "border-danger", "border-primary", "border-black");
+            perfil.classList.remove("bg-danger", "bg-primary", "bg-black");
 
             switch (e.target.value) {
                 case "Guerreiro":
@@ -211,11 +141,11 @@
 
                 case "Assassino":
                     perfil.src = basePath + "assassino.png";
-                    perfil.classList.add("bg-dark", "border-dark");
+                    perfil.classList.add("bg-black", "border-black");
                 break;
 
                 default:
-                    perfil.src = "{{ asset('fotos/vazio.png') }}";
+                    perfil.src = "{{ asset('photos/vazio.png') }}";
                     perfil.classList.add("border-light");
                 break;
             }
@@ -286,12 +216,12 @@
         const classe = document.getElementById("classe");
         const perfil_cadastro = document.querySelector(".perfil_cadastro");
 
-        perfil_cadastro.src = "{{ asset('fotos/vazio.png') }}";
-        document.getElementById("foto_preview").src = "{{ asset('fotos/vazio.png') }}";
+        perfil_cadastro.src = "{{ asset('photos/vazio.png') }}";
+        document.getElementById("foto_preview").src = "{{ asset('photos/vazio.png') }}";
 
         if (classe) {
             classe.selectedIndex = 0;
-            perfil_cadastro.classList.remove("border-danger", "border-primary", "border-dark");
+            perfil_cadastro.classList.remove("border-danger", "border-primary", "border-black");
             perfil_cadastro.classList.add("border-light");
         }
     }

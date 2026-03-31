@@ -10,7 +10,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('app:resetar-desafios')->daily();
-        $schedule->command('fotos:limpar')->hourly();
+        $schedule->command('photos:limpar')->hourly();
     }
 
     protected function commands(): void

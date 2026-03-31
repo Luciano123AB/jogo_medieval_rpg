@@ -25,8 +25,6 @@
                     <form action="{{ route("$rota") }}" method="post" enctype="multipart/form-data" novalidate>
                         @csrf
 
-                        <input type="hidden" name="id" value="{{ $id }}">
-
                         <div class="card-header border border-2 border-{{ $temas[1] }} text-center rounded-top">
                             @if ($pagina == "Cadastro")
                                 <i class="bi bi-plus-circle-fill titulos_{{ $temas[4] }} cor_fontes_{{ $temas[4] }} fs-5"></i>
@@ -219,7 +217,7 @@
                                         </label>
                                         <div>
                                             @if($pagina != "Atualização")
-                                                <img src="{{ asset('fotos/vazio.png') }}" class="perfil_cadastro border border-3 rounded-circle">
+                                                <img src="{{ asset('photos/vazio.png') }}" class="perfil_cadastro border border-3 rounded-circle">
                                             @else
                                                 <img src="{{ asset('assets/images/perfils/' . strtolower($classe) . '.png') }}" class="
                                                     @if($classe == "Guerreiro")
@@ -227,7 +225,7 @@
                                                     @elseif($classe == "Mago")
                                                         bg-primary border-primary
                                                     @elseif($classe == "Assassino")
-                                                        bg-dark border-dark
+                                                        bg-black border-black
                                                     @endif
                                                     perfil_cadastro border border-3 rounded-circle
                                                 ">
@@ -267,7 +265,7 @@
                                         </label>
                                         @php
                                             
-                                            $foto = asset("fotos/vazio.png");
+                                            $foto = asset("photos/vazio.png");
 
                                             if ($pagina == "Atualização") {
                                                 $foto = asset($dados["foto"]);

@@ -11,7 +11,7 @@ class Resetar extends Controller
 {
     public function resetarVitorias(): RedirectResponse {
 
-        $vitorias = Batalha::where("ganhou", Auth::user()->usuario);
+        $vitorias = Batalha::where("ganhou", Auth::user()->user);
 
         if (!$vitorias->forceDelete()) {
             $this->alertaResultado("Erro ao Resetar!", "Ocorreu um erro ao tentar resetar as vitórias! Tente novamente.", "bi-hand-thumbs-down-fill");
@@ -26,7 +26,7 @@ class Resetar extends Controller
 
     public function resetarDerrotas(): RedirectResponse {
         
-        $derrotas = Batalha::where("perdeu", Auth::user()->usuario);
+        $derrotas = Batalha::where("perdeu", Auth::user()->user);
 
         if (!$derrotas->forceDelete()) {
             $this->alertaResultado("Erro ao Resetar!", "Ocorreu um erro ao tentar resetar as derrotas! Tente novamente.", "bi-hand-thumbs-down-fill");
@@ -44,8 +44,8 @@ class Resetar extends Controller
         $batalha = Batalha::where("id", Crypt::decrypt($id))
                         ->whereNotNull("deleted_at")
                         ->where(function ($query) {
-                            $query->where("ganhou", Auth::user()->usuario)
-                                  ->orWhere("perdeu", Auth::user()->usuario);
+                            $query->where("ganhou", Auth::user()->user)
+                                  ->orWhere("perdeu", Auth::user()->user);
                         });
 
         if (!$batalha->forceDelete()) {

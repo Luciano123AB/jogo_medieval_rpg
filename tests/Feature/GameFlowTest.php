@@ -53,12 +53,12 @@ function criarPlayerParaTeste(array $overrides = []): Player {
     $personagem = $overrides['personagem'] ?? criarPersonagemParaTeste();
     $player = new Player();
 
-    $player->usuario = $overrides['usuario'] ?? 'player_' . fake()->unique()->userName();
+    $player->user = $overrides['usuario'] ?? 'player_' . fake()->unique()->userName();
     $player->email = $overrides['email'] ?? fake()->unique()->safeEmail();
-    $player->senha = Hash::make($overrides['senha_plana'] ?? 'SenhaForte123');
+    $player->password = Hash::make($overrides['senha_plana'] ?? 'SenhaForte123');
     $player->genero = $overrides['genero'] ?? 'Masculino';
     $player->pais = $overrides['pais'] ?? 'BR';
-    $player->foto = $overrides['foto'] ?? 'fotos/vazio.png';
+    $player->foto = $overrides['foto'] ?? 'photos/vazio.png';
     $player->nivel = $overrides['nivel'] ?? 1;
     $player->xp = $overrides['xp'] ?? 0;
     $player->quantidade_vitorias = $overrides['quantidade_vitorias'] ?? 0;

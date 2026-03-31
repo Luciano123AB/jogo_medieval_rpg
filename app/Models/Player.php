@@ -10,9 +10,9 @@ class Player extends Authenticatable
 
     const UPDATED_AT = null;
     protected $fillable = [
-        "usuario",
+        "user",
         "email",
-        "senha",
+        "password",
         "genero",
         "pais",
         "foto",
@@ -23,9 +23,9 @@ class Player extends Authenticatable
         "online"
     ];
     protected $casts = [
-        "usuario" => "string",
+        "user" => "string",
         "email" => "string",
-        "senha" => "string",
+        "password" => "string",
         "genero" => "string",
         "pais" => "string",
         "foto" => "string",

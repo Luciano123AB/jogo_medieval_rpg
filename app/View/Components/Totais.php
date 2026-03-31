@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 
 class Totais extends Component
 {
+    
     public $dados;
     public $codigo;
     public $temas;
@@ -15,7 +16,11 @@ class Totais extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct($dados, $codigo, $temas)
+    public function __construct(
+        $dados,
+        $codigo,
+        $temas
+    )
     {
         $this->dados = $dados;
         $this->codigo = $codigo;

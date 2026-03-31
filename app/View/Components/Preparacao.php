@@ -9,6 +9,7 @@ use Illuminate\View\Component;
 
 class Preparacao extends Component
 {
+    
     public Personagem $personagem;
     public $nivel;
     public $temas;
@@ -16,7 +17,11 @@ class Preparacao extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(Personagem $personagem, $nivel, $temas)
+    public function __construct(
+        Personagem $personagem,
+        $nivel,
+        $temas
+    )
     {
         $this->personagem = $personagem;
         $this->nivel = $nivel;

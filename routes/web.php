@@ -18,9 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("/")->group(function () {
-    Route::controller(Temas::class)->group(function() {
-        Route::get("mudar_tema", "mudarTema")->name("tema");
-    });
+    Route::get("mudar_tema", [Temas::class, "mudarTema"])->name("tema");
 
     Route::controller(MainController::class)->group(function() {
         Route::middleware(VerificarBatalha::class)->group(function() {
@@ -53,6 +51,7 @@ Route::prefix("/")->group(function () {
                             "texto" => "Parabéns!, você acaba de subir de nível."
                         ]
                     );
+                    session()->flash("level_up", true);
 
                     return redirect()->route("home");
                 })->name("nivel");

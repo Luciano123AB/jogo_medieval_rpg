@@ -74,9 +74,9 @@
                                 @php
                                     
                                     $perfil = asset("assets/images/perfils/" . strtolower(Auth::user()->personagem->classe) . ".png");
-                                    $perfil_02 = asset("fotos/vazio.png");
+                                    $perfil_02 = asset("photos/vazio.png");
 
-                                    if (Auth::user()->foto != "fotos/vazio.png") {
+                                    if (Auth::user()->foto != "photos/vazio.png") {
                                         $perfil = asset(Auth::user()->foto);
                                         $perfil_02 = asset("assets/images/perfils/" . strtolower(Auth::user()->personagem->classe) . ".png");
                                     }
@@ -88,7 +88,7 @@
                                 <div class="cursor">
                                     <div class="d-flex border-3 border-start border-black rounded-top-1">
                                         <h4 class="cursor titulos_{{ $temas[6] }} cor_fontes_{{ $temas[6] }}">
-                                            <i class="fi fi-{{ strtolower(Auth::user()->pais) }} animate__animated animate__jello animate__infinite border-start border-end mb-2 me-2"></i>{{ Auth::user()->usuario }}
+                                            <i class="fi fi-{{ strtolower(Auth::user()->pais) }} animate__animated animate__jello animate__infinite border-start border-end mb-2 me-2"></i>{{ Auth::user()->user }}
                                         </h4>
                                         <h4 class="cursor">
                                             {{ Auth::user()->online == true ? "🟢" : "🔴" }}

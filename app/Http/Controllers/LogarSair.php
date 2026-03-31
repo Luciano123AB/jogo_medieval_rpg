@@ -30,14 +30,14 @@ class LogarSair extends Controller
             return redirect()->back()->withInput()->withErrors(["playerNaoExiste" => "Esse player não está cadastrado! Tente outro."]);
         }
 
-        if (!Hash::check($request->input("senha"), $player->senha)) {
+        if (!Hash::check($request->input("senha"), $player->password)) {
             return redirect()->back()->withInput()->withErrors(["playerNaoExiste" => "Esse player não está cadastrado! Tente outro."]);
         }
 
         $player->online = true;
         $player->save();
                                     
-        Batalha::where("nome", $player->usuario)->whereNull("ganhou")->first()?->forceDelete();
+        Batalha::where("nome", $player->user)->whereNull("ganhou")->first()?->forceDelete();
         Auth::login($player);
 
         $this->alertaResultado("Login Efetuado com Sucesso!", "Agora você pode acessar a batalha e outras páginas.", "bi-hand-thumbs-up-fill");

@@ -53,8 +53,8 @@ database/
   seeders/                # Dados iniciais
 public/
   assets/                 # Imagens usadas pelo site (ícones, fundos, etc.)
-  fotos/                  # Fotos dos players
-  fotos_tmp/              # Fotos temporárias dos players
+  photos/                 # Fotos dos players
+  temp_photos/            # Fotos temporárias dos players
 resources/
   views/                  # Telas Blade
 routes/

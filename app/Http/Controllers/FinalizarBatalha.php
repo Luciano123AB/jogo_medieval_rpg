@@ -34,11 +34,11 @@ Class FinalizarBatalha extends Controller
         if ($player->nivel > Auth::user()->nivel) {
 
             $rota = route("nivel");
-
+            
         }
         
         session()->flash("vitoria", true);
-        $this->alertaBatalha("Vitória!", "Parabéns!, continue assim e você se destacará na classificação. " . ($xp ? "+$xp" . "xp" : ""), "bi-emoji-sunglasses-fill", $rota ?? "");
+        $this->alertaBatalha("Vitória!", "Parabéns!, continue assim e você se destacará na classificação. " . ($xp ? "+$xp" . "exp" : ""), "bi-emoji-sunglasses-fill", $rota ?? "");
 
         if ($nome_oponente == "Computador") {
             return redirect()->route("preparacao");

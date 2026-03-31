@@ -63,17 +63,17 @@ class Cadastrar extends Controller
 
             $nome_arquivo = time() . "_" . uniqid() . "." . $foto_escolhida->extension();
 
-            $foto_escolhida->move(public_path("fotos_tmp"), $nome_arquivo);
+            $foto_escolhida->move(public_path("temp_photos"), $nome_arquivo);
 
             $foto = $nome_arquivo;
             
         } else {
 
-            $foto = "fotos/vazio.png";
+            $foto = "photos/vazio.png";
 
         }
 
-        if (Player::where("usuario", $usuario)->first() || Player::where("email", $email)->first()) {
+        if (Player::where("user", $usuario)->first() || Player::where("email", $email)->first()) {
             return redirect()->back()->withInput()->withErrors(["playerExiste" => "Esse player já está cadastrado! Tente novamente."]);
         }
 
@@ -103,15 +103,15 @@ class Cadastrar extends Controller
             return redirect()->back()->withInput();
         }
 
-        if ($novo_player->foto != "fotos/vazio.png") {
+        if ($novo_player->foto != "photos/vazio.png") {
 
-            $caminho_foto = public_path("fotos_tmp/" . $novo_player->foto);
-            $novo_caminho = public_path("fotos/" . $novo_player->foto);
+            $caminho_foto = public_path("temp_photos/" . $novo_player->foto);
+            $novo_caminho = public_path("photos/" . $novo_player->foto);
 
             if (file_exists($caminho_foto)) {
                 rename($caminho_foto, $novo_caminho);
                 
-                $novo_player->foto = "fotos/" . $novo_player->foto;
+                $novo_player->foto = "photos/" . $novo_player->foto;
                 $novo_player->save();
             }
         }

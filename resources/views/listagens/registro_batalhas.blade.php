@@ -4,7 +4,7 @@
     <div class="container">
         <div class="fundos_card_{{ $temas[3] }} card p-3">
             <div class="horizontal_vertical gap-3">
-                <div class="sombras tabelas registro card animate__animated animate__backInLeft bg-{{ $temas[0] }} border-{{ $temas[1] }} p-3">
+                <div class="sombras tabelas registro card bg-{{ $temas[0] }} border-{{ $temas[1] }} p-3">
                     <div class="d-flex justify-content-between mb-2">
                         <h4 class="cor_fontes_{{ $temas[3] }} titulos_{{ $temas[3] }}">-Vitórias:</h4>
                         <div></div>
@@ -76,7 +76,7 @@
                     </div>
                 </div>
 
-                <div class="sombras tabelas registro card animate__animated animate__backInRight bg-{{ $temas[0] }} border-{{ $temas[1] }} p-3">
+                <div class="sombras tabelas registro card bg-{{ $temas[0] }} border-{{ $temas[1] }} p-3">
                     <div class="d-flex justify-content-between mb-2">
                         <h4 class="cor_fontes_{{ $temas[3] }} titulos_{{ $temas[3] }}">-Derrotas:</h4>
                         <div></div>

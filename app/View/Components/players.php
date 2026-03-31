@@ -2,26 +2,33 @@
 
 namespace App\View\Components;
 
+use App\Models\Player;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Regras extends Component
+class players extends Component
 {
-    
-    public $regra;
+
+    public $player;
     public $temas;
+    public $desafiou;
+    public $loop;
 
     /**
      * Create a new component instance.
      */
     public function __construct(
-        $regra,
-        $temas
+        Player $player,
+        $temas,
+        $desafiou,
+        $loop
     )
     {
-        $this->regra = $regra;
+        $this->player = $player;
         $this->temas = $temas;
+        $this->desafiou = $desafiou;
+        $this->loop = $loop;
     }
 
     /**
@@ -29,6 +36,6 @@ class Regras extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.regras');
+        return view('components.players');
     }
 }

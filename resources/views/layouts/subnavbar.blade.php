@@ -1,5 +1,3 @@
-@include("layouts.partials.audios")
-
 @php
 
     $temas = ["secondary", "primary", "brightness-high", "escuro"];
@@ -42,3 +40,6 @@
         <i class="cursor cor_fontes_{{ $temas[3] }} bi-{{ $temas[2] }}-fill bi fs-4"></i>
     </a>
 </div>
+
+@include("layouts.partials.audios")
+@include("layouts.partials.scripts.tocar_sons")

@@ -99,7 +99,7 @@ class MainController extends Controller
             ->with([
                 "dados" => [
                     "id" => Auth::user()->id,
-                    "usuario" => Auth::user()->usuario,
+                    "usuario" => Auth::user()->user,
                     "email" => Auth::user()->email,
                     "classe" => Auth::user()->personagem->classe,
                     "foto" => Auth::user()->foto
@@ -130,7 +130,7 @@ class MainController extends Controller
             ->with("imagem", "recrutamento")
             ->with("pagina", $pagina)
             ->with("icone_pagina", "list-stars")
-            ->with("players", Player::orderBy("usuario", "asc")
+            ->with("players", Player::orderBy("user", "asc")
                             ->get()
                             ->map(function ($player) {
                                 $player->id_crypt = Crypt::encrypt($player->id);
@@ -174,14 +174,14 @@ class MainController extends Controller
             ->with("imagem", "registros")
             ->with("pagina", $pagina)
             ->with("icone_pagina", "file-earmark-medical-fill")
-            ->with("batalhas_vitorias", Batalha::onlyTrashed()->where("ganhou", Auth::user()->usuario)
+            ->with("batalhas_vitorias", Batalha::onlyTrashed()->where("ganhou", Auth::user()->user)
                                                 ->get()
                                                 ->map(function ($vitoria) {
                                                     $vitoria->id_crypt = Crypt::encrypt($vitoria->id);
 
                                                     return $vitoria;
                                                 }))
-            ->with("batalhas_derrotas", Batalha::onlyTrashed()->where("perdeu", Auth::user()->usuario)
+            ->with("batalhas_derrotas", Batalha::onlyTrashed()->where("perdeu", Auth::user()->user)
                                                 ->get()
                                                 ->map(function ($derrota) {
                                                     $derrota->id_crypt = Crypt::encrypt($derrota->id);
@@ -241,7 +241,7 @@ class MainController extends Controller
             $dados_oponente = Player::find(session("id_player"));
 
             $oponente = Personagem::find($dados_oponente->personagem->id);
-            $nome_oponente = $dados_oponente->usuario;
+            $nome_oponente = $dados_oponente->user;
             $nivel = $dados_oponente->nivel;
         }
         
@@ -298,7 +298,7 @@ class MainController extends Controller
             ->with("vez", $batalha->vez)
             ->with("bandeira_oponente", $dados_oponente->pais ?? "")
             ->with("oponente", $oponente)
-            ->with("foto", $dados_oponente->foto ?? "fotos/vazio.png")
+            ->with("foto", $dados_oponente->foto ?? "photos/vazio.png")
             ->with("nome", $nome_oponente)
             ->with("temas", $temas);
     }

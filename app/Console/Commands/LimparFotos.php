@@ -11,7 +11,7 @@ class LimparFotos extends Command
      *
      * @var string
      */
-    protected $signature = 'fotos:limpar';
+    protected $signature = 'photos:limpar';
 
     /**
      * The console command description.
@@ -26,7 +26,7 @@ class LimparFotos extends Command
     public function handle()
     {
 
-        $path = public_path('fotos');
+        $path = public_path('temp_photos');
         $arquivos = scandir($path);
 
         foreach ($arquivos as $arquivo) {

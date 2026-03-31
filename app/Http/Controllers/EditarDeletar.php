@@ -73,7 +73,7 @@ class EditarDeletar extends Controller
 
                 $nome_arquivo = time() . "_" . uniqid() . "." . $foto_escolhida->extension();
 
-                $foto_escolhida->move(public_path("fotos_tmp"), $nome_arquivo);
+                $foto_escolhida->move(public_path("temp_photos"), $nome_arquivo);
 
                 $foto = $nome_arquivo;
                 
@@ -84,16 +84,16 @@ class EditarDeletar extends Controller
             }
         } else {
 
-            $foto = "fotos/vazio.png";
+            $foto = "photos/vazio.png";
 
         }
 
-        $player_existente = Player::where("usuario", $usuario)
+        $player_existente = Player::where("user", $usuario)
                                   ->first();
         $email_existente = Player::where("email", $email)
                                  ->first();
 
-        if ($player_existente && $player_existente->usuario !== Auth::user()->usuario) {
+        if ($player_existente && $player_existente->user !== Auth::user()->user) {
             return redirect()->back()->withInput()->withErrors(["playerExiste" => "Esse player já está cadastrado! Tente novamente."]);
         }
 
@@ -126,14 +126,14 @@ class EditarDeletar extends Controller
 
         if ($player->foto != Auth::user()->foto) {
 
-            $caminho_foto = public_path("fotos_tmp/" . $player->foto);
-            $novo_caminho = public_path("fotos/" . $player->foto);
+            $caminho_foto = public_path("temp_photos/" . $player->foto);
+            $novo_caminho = public_path("photos/" . $player->foto);
 
             if (file_exists($caminho_foto)) {
                 rename($caminho_foto, $novo_caminho);
-                unlink(public_path("fotos/" . session("foto_antiga")));
+                unlink(public_path("photos/" . session("foto_antiga")));
 
-                $player->foto = "fotos/" . $player->foto;
+                $player->foto = "photos/" . $player->foto;
                 $player->save();
             }
         }
@@ -164,7 +164,7 @@ class EditarDeletar extends Controller
             ]
         );
 
-        if (!password_verify($request->input("senha_atual"), Auth::user()->senha)) {
+        if (!password_verify($request->input("senha_atual"), Auth::user()->password)) {
             return redirect()->back()->withInput()->withErrors(["senha_invalida" => "A senha atual está incorreta."]);
         }
 
