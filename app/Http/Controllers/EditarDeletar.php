@@ -27,7 +27,7 @@ class EditarDeletar extends Controller
             return redirect()->back();
         }
 
-        if (file_exists(public_path(Auth::user()->foto))) {
+        if (file_exists(public_path(Auth::user()->foto)) && Auth::user()->foto != "photos/vazio.png") {
             unlink(public_path(Auth::user()->foto));
         }
 
