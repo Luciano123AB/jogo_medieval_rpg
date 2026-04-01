@@ -71,28 +71,8 @@
         }
     });
 
-    function limparCampos() {
+    function limparCamposLogin() {
         document.getElementById("email").value = "";
-        document.getElementById("senha").value = "";
-        document.getElementById("novo_usuario").value = "";
-        document.getElementById("novo_email").value = "";
-        document.getElementById("nova_senha").value = "";
-        document.getElementById("confirmar_nova_senha").value = "";
-        document.getElementById("genero").selectedIndex = 0;
-        document.getElementById("foto").value = "";
-        document.querySelector("#pais").value = "";
-        document.querySelector("#countrySelect .selected-option").innerHTML = "🌐 Selecione seu país...";
-
-        const classe = document.getElementById("classe");
-        const perfil_cadastro = document.querySelector(".perfil_cadastro");
-
-        perfil_cadastro.src = "{{ asset('photos/vazio.png') }}";
-        document.getElementById("foto_preview").src = "{{ asset('photos/vazio.png') }}";
-
-        if (classe) {
-            classe.selectedIndex = 0;
-            perfil_cadastro.classList.remove("border-danger", "border-primary", "border-black");
-            perfil_cadastro.classList.add("border-light");
-        }
+        document.getElementById("senha").value = "";        
     }
 </script>
