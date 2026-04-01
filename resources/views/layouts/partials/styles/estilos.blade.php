@@ -144,7 +144,8 @@
     }
 
     #rodape {
-        max-width: 600px;
+        box-shadow: 0 -20px 20px 0;
+        border-style: double;
     }
     
     #direitos {

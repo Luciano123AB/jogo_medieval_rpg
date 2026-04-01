@@ -17,7 +17,7 @@ class EditarDeletar extends Controller
         return redirect()->back();
     }
 
-    public function deletar(): RedirectResponse {
+    public function deletar(Request $request): RedirectResponse {
 
         $player_deletar = Player::findOrFail(Auth::user()->id);
 
@@ -33,7 +33,12 @@ class EditarDeletar extends Controller
 
         $this->alertaResultado("Player Deletado com Sucesso!", "Caso queira começar novamente do zero, sinta-se à vontade para criar uma nova conta.", "bi-hand-thumbs-up-fill");
 
-        return redirect()->route("sair");
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route("home");
     }
 
     public function confirmarAtualizar(Request $request): RedirectResponse {

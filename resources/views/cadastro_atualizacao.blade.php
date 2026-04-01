@@ -210,7 +210,7 @@
                                         @enderror
                                     </div>
 
-                                    <div>
+                                    <div class="d-grid justify-content-center">
                                         <label class="form-label cor_fontes_{{ $temas[4] }}">
                                             <i class="bi bi-person-circle"></i>
                                             Personagem:
@@ -258,7 +258,7 @@
                                         @enderror
                                     </div>
 
-                                    <div>
+                                    <div class="d-grid justify-content-center">
                                         <label class="form-label cor_fontes_{{ $temas[4] }}">
                                             <i class="bi bi-person-bounding-box"></i>
                                             Perfil:
@@ -299,7 +299,7 @@
                                     {{ $pagina == "Cadastro" ? "Cadastrar" : "Atualizar" }}
                                 </span>
                             </button>
-                            <button type="button" class="cursor sombras botoes btn focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }}" onclick="limparCamposCadastro()">
+                            <button type="button" class="cursor sombras botoes btn focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }}" onclick="limparCampos()">
                                 <span class="cursor cor_fontes_{{ $temas[4] }} d-flex justify-content-center">
                                     <div class="cursor animate__animated animate__bounceOut animate__infinite">
                                         <i class="cursor bi bi-x-circle-fill me-1"></i>
@@ -313,4 +313,6 @@
             </div>
         </div>
     </div>
+
+    @include("layouts.partials.scripts.scripts_cadastro")
 @endsection

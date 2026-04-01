@@ -230,7 +230,7 @@
                                     Entrar
                                 </span>
                             </button>
-                            <button type="button" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-{{ $temas[4] }} border-{{ $temas[1] }}" onclick="limparCamposLogin()">
+                            <button type="button" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-{{ $temas[4] }} border-{{ $temas[1] }}" onclick="limparCampos()">
                                 <span class="cursor cor_fontes_{{ $temas[6] }} d-flex justify-content-center">
                                     <div class="cursor animate__animated animate__bounceOut animate__infinite">
                                         <i class="cursor bi bi-x-circle-fill me-1"></i>
