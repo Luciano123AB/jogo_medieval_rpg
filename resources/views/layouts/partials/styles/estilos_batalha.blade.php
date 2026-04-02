@@ -33,6 +33,12 @@
         background-repeat: no-repeat;
         background-position: center;
     }
+
+    @media (height <= 900px) {
+        #player, #oponente {
+            width: 50%;            
+        }
+    }
 </style>
 
 @if (!$batalha->inicio)
