@@ -35,7 +35,17 @@
     }
 
     @media (height <= 900px) {
-        #player, #oponente {
+        #player,
+        #magia_player,
+        #efeito01_player,
+        #efeito02_player,
+        #efeito03_player,
+        #oponente,
+        #magia_oponente,
+        #efeito01_oponente,
+        #efeito02_oponente,
+        #efeito03_oponente
+        {
             width: 50%;            
         }
     }
