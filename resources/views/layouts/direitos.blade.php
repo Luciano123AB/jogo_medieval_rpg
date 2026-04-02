@@ -26,7 +26,7 @@
             <h6 class="cor_fontes_{{ $temas[2] }}">Tecnologias:</h6>
             <div class="d-flex flex-wrap gap-3 justify-content-center">
                 @foreach(array_combine($icones, $links) as $icone => $link)
-                    <a href="http://{{ $link }}">
+                    <a href="http://{{ $link }}" class="animate__animated animate__fadeInRight">
                         <img src="{{ asset("assets/images/icones/$icone.png") }}" class="cursor icones botoes">
                     </a>
                 @endforeach

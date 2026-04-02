@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="cursor">
                                     <div class="d-flex border-3 border-start border-black rounded-top-1">
-                                        <h4 class="cursor titulos_{{ $temas[6] }} cor_fontes_{{ $temas[6] }}">
+                                        <h4 class="cursor titulos_{{ $temas[6] }} cor_fontes_{{ $temas[6] }} me-1">
                                             <i class="fi fi-{{ strtolower(Auth::user()->pais) }} animate__animated animate__jello animate__infinite border-start border-end mb-2 me-2"></i>{{ Auth::user()->user }}
                                         </h4>
                                         <h4 class="cursor">

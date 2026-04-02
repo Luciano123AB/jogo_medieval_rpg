@@ -69,6 +69,21 @@
         }
     }
 
+    const tela_cheia = document.getElementById("tela_cheia");
+    const icone_tela = document.getElementById("icone_tela_cheia");
+
+    tela_cheia.addEventListener("click", function() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+            icone_tela.classList.remove("bi-arrows-angle-expand");
+            icone_tela.classList.add("bi-arrows-angle-contract");
+        } else {
+            document.exitFullscreen();
+            icone_tela.classList.remove("bi-arrows-angle-contract");
+            icone_tela.classList.add("bi-arrows-angle-expand");
+        }
+    });
+
     window.addEventListener("resize", checkOrientation);
     window.addEventListener("load", checkOrientation);
 
