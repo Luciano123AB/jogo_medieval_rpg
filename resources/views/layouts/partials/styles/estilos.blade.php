@@ -15,7 +15,6 @@
         transform: scale(0);
         pointer-events: none;
         z-index: 9999;
-
         background: radial-gradient(circle, #e5a350, orange, transparent);
         animation: ripple-rpg 700ms ease-out;
     }
@@ -119,10 +118,6 @@
     
     .fundos_card_escuro {
         background-color: rgba(127, 127, 127, 0.3);        
-    }
-
-    #espacamento {
-        margin-bottom: 22%;
     }
 
     #index_opcoes {

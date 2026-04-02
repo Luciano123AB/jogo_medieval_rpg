@@ -9,7 +9,8 @@
     }
 @endphp
 
-<footer id="rodape" class="bg-{{ $temas[0] }} border-{{ $temas[1] }} border-5 rounded-top-5 text-center mt-5 py-3">
+<div class="mt-5"></div>
+<footer id="rodape" class="bg-{{ $temas[0] }} border-{{ $temas[1] }} border-5 rounded-top-5 text-center mt-auto py-3">
     <div class="d-flex justify-content-center gap-5 flex-wrap align-items-center">
         <div>
             <img src="{{ asset('assets/images/proprietario.png') }}" style="width: 35px; height: 35px;" class="border border-{{ $temas[1] }} rounded-2">

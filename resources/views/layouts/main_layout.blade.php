@@ -11,7 +11,7 @@
 
     @include("layouts.partials.styles.estilos")
 </head>
-<body class="bg-dark fst-italic">
+<body class="bg-dark fst-italic d-flex flex-column min-vh-100">
     <div id="fundo"></div>
 
     @include("layouts.partials.alertas")

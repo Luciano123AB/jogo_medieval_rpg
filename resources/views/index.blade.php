@@ -1,7 +1,7 @@
 @extends("layouts.main_layout")
 
 @section("content")
-    <div id="espacamento" class="container text-center">
+    <div class="container text-center">
         <div id="index_opcoes" class="fundos_card_{{ $temas[2] }} card mx-auto p-3">
             <div class="perspectiva animate__animated animate__zoomInDown d-grid gap-3">
                 <a href="{{ route("preparacao") }}" class="cursor rotacao_direita sombras botoes btn btn-lg focus-ring btn-{{ $temas[0] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }} border border-3">
