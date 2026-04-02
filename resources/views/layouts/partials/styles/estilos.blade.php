@@ -120,7 +120,7 @@
         background-color: rgba(127, 127, 127, 0.3);        
     }
 
-    #index_opcoes {
+    #home_opcoes {
         width: 75%;
     }
 
@@ -136,6 +136,10 @@
     .rotacao_esquerda {
         transform: rotateY(-10deg);
         transition: 0.3s;
+    }
+
+    #espacamento {
+        margin-top: 120px;
     }
 
     #rodape {
@@ -270,7 +274,7 @@
             margin-right: 0px;
         }
 
-        #index_opcoes {
+        #home_opcoes {
             width: 100%;
         }
 

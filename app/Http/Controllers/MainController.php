@@ -33,7 +33,7 @@ class MainController extends Controller
         $pagina = "Home";
         $temas_selecionados = SelecionarTemas::temas($pagina);
         
-        return view("index")
+        return view("home")
             ->with("imagem", "estrada")
             ->with("pagina", $pagina)
             ->with("icone_pagina", "house-fill")
@@ -74,7 +74,7 @@ class MainController extends Controller
         $pagina = "Cadastro";
         $temas = SelecionarTemas::temas($pagina);
 
-        return view("cadastro_atualizacao")
+        return view("auth.cadastro")
             ->with("imagem", "recrutamento")
             ->with("pagina", $pagina)
             ->with("icone_pagina", "person-fill-add")
@@ -89,10 +89,10 @@ class MainController extends Controller
         $pagina = "Atualização";
         $temas = SelecionarTemas::temas($pagina);
 
-        return view("cadastro_atualizacao")
+        return view("auth.atualizacao")
             ->with("imagem", "recrutamento")
             ->with("pagina", $pagina)
-            ->with("icone_pagina", "person-fill-add")
+            ->with("icone_pagina", "save-fill")
             ->with("paises", Paises::paises())
             ->with("personagens", Personagem::all())
             ->with("temas", $temas)
@@ -113,7 +113,7 @@ class MainController extends Controller
         $pagina = "Atualização Senha";
         $temas = SelecionarTemas::temas($pagina);
 
-        return view("mudar_senha")
+        return view("auth.mudar_senha")
             ->with("imagem", "recrutamento")
             ->with("pagina", $pagina)
             ->with("icone_pagina", "person-fill-add")
@@ -126,7 +126,7 @@ class MainController extends Controller
         $pagina = "Listagem";
         $temas = SelecionarTemas::temas($pagina);
 
-        return view("listagens/players")
+        return view("listagens.players")
             ->with("imagem", "recrutamento")
             ->with("pagina", $pagina)
             ->with("icone_pagina", "list-stars")
@@ -156,7 +156,7 @@ class MainController extends Controller
         $pagina = "Totais";
         $temas = SelecionarTemas::temas($pagina);
 
-        return view("listagens/totais_players")
+        return view("listagens.totais_players")
             ->with("imagem", "recrutamento")
             ->with("pagina", $pagina)
             ->with("icone_pagina", "flag-fill")
@@ -170,7 +170,7 @@ class MainController extends Controller
         $pagina = "Registro";
         $temas = SelecionarTemas::temas($pagina);
 
-        return view("listagens/registro_batalhas")
+        return view("listagens.registro_batalhas")
             ->with("imagem", "registros")
             ->with("pagina", $pagina)
             ->with("icone_pagina", "file-earmark-medical-fill")
@@ -197,7 +197,7 @@ class MainController extends Controller
         $pagina = "Batalhas";
         $temas = SelecionarTemas::temas($pagina);
 
-        return view("listagens/batalhas")
+        return view("listagens.batalhas")
             ->with("imagem", "registros")
             ->with("pagina", $pagina)
             ->with("icone_pagina", "card-list")

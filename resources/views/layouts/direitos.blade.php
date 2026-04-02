@@ -9,11 +9,11 @@
     }
 @endphp
 
-<div class="mt-5"></div>
+<div id="espacamento"></div>
 <footer id="rodape" class="bg-{{ $temas[0] }} border-{{ $temas[1] }} border-5 rounded-top-5 text-center mt-auto py-3">
     <div class="d-flex justify-content-center gap-5 flex-wrap align-items-center">
         <div>
-            <img src="{{ asset('assets/images/proprietario.png') }}" style="width: 35px; height: 35px;" class="border border-{{ $temas[1] }} rounded-2">
+            <img src="{{ asset("assets/images/proprietario.png") }}" style="width: 35px; height: 35px;" class="border border-{{ $temas[1] }} rounded-2">
             <small class="text-white">
                 <span class="cor_fontes_{{ $temas[2] }}">
                     <span id="direitos">TODOS OS DIREITOS RESERVADOS: Luciano Eduardo Stefanello da Silva</span>

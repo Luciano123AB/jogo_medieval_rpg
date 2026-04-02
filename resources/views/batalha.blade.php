@@ -76,24 +76,20 @@
         </div>
 
         <div class="d-grid mx-3">
-            @if ($vez == 0)
-                <h4 class="text-success fw-bold">Vez:
-                    <br>
-                    <span>Você</span>
-                </h4>
-            @else
-                <h4 class="text-danger fw-bold">Vez:
-                    <br>
-                    <span>Oponente</span>
-                </h4>
-            @endif
+            <h4 class="text-{{ $vez == 0 ? "success" : "danger" }} fw-bold">Vez:
+                <br>
+                <span>{{ $vez == 0 ? "Você" : "Oponente" }}</span>
+            </h4>
             <div>
                 <h4 class="text-white">
                     <span id="minutos"></span>:<span id="segundos"></span>
                 </h4>
                 <h1 class="gifs animate__animated animate__fadeInDown position-relative my-auto">🆚</h1>
             </div>
-            <h2 id="alerta" class="animate__animated animate__pulse animate__flash animate__infinite text-warning"></h2>
+            
+            <div class="d-flex justify-content-center w-25 mx-auto">
+                <h2 id="momento" class="animate__animated animate__pulse animate__flash animate__infinite text-warning"></h2>
+            </div>
         </div>
 
         <div class="cards_batalha card bg-transparent border border-0 h-100">
@@ -174,6 +170,6 @@
         </div>
     </div>
 
-    @include("layouts.partials.scripts.scripts_batalha")
+    @include("layouts.partials.scripts.batalha")
     @include("layouts.partials.scripts.animacoes")
 @endsection
