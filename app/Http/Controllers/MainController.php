@@ -276,19 +276,20 @@ class MainController extends Controller
             }
         }
 
-        if (
-            $batalha->skill01 == false &&
-            $batalha->skill02 == false &&
-            $batalha->skill03 == false
-        ) {
-            $batalha->skill01 = true;
-            $batalha->skill02 = true;
-            $batalha->skill03 = true;
-            $batalha->save();
-        }
-
         $pagina = "Batalha";
         $temas = SelecionarTemas::temas($pagina);
+
+        if (Auth::user()->personagem->tipo_dano == "Físico") {
+            $tipo_dano_player = "danger";
+        } else {
+            $tipo_dano_player = "primary";
+        }
+
+        if ($oponente->tipo_dano == "Físico") {
+            $tipo_dano_oponente = "danger";
+        } else {
+            $tipo_dano_oponente = "primary";
+        }
 
         return view("batalha")
             ->with("imagem", "coliseu")
@@ -300,6 +301,10 @@ class MainController extends Controller
             ->with("oponente", $oponente)
             ->with("foto", $dados_oponente->foto ?? "photos/vazio.png")
             ->with("nome", $nome_oponente)
+            ->with("tipo_dano", [
+                "player" => $tipo_dano_player,
+                "oponente" => $tipo_dano_oponente
+            ])
             ->with("temas", $temas);
     }
 

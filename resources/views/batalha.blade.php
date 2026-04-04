@@ -26,24 +26,18 @@
                 <img src="{{ asset("assets/images/gifs/ataques/ultimate.gif") }}" id="efeito03_player" class="position-absolute bottom-0 start-50 translate-middle-x" hidden>
             </div>
             <div class="card-body border border-0">
-                <div class="barras card-title progress border border-danger bg-black" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                <div class="barras card-title progress border border-danger bg-black mb-0" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                     <div id="hp" class="progress-bar progress-bar-striped progress-bar-animated bg-danger">
                         <label class="fw-bold fs-6">❤️ {{ $batalha->hp }}</label>
                     </div>
                 </div>
-                @if (session("dano_desferido_oponente"))
-                    @if (session("dano_critico"))
-                        <small class="animate__animated animate__fadeIn fs-5 fw-bold text-{{ session("tipo_dano") }}">🎯 -{{ session('dano_desferido_oponente') }}</small>
-                    @else
-                        <small class="animate__animated animate__fadeIn fw-bold text-{{ session("tipo_dano") }}">🎯 -{{ session('dano_desferido_oponente') }}</small>
-                    @endif
-                @endif
+                <small id="dano_oponente" class="animate__animated animate__fadeIn fw-bold text-{{ $tipo_dano["oponente"] }}" hidden></small>
             </div>
             <div class="card-footer border border-0">
                 <form action="{{ route("atacar", ["batalha" => $batalha]) }}" method="POST" class="d-grid gap-2" novalidate>
                     @csrf
 
-                    <div class="btn-group animate__animated animate__fadeIn" role="group" aria-label="SkillsPlayer">
+                    <div class="sombras btn-group animate__animated animate__fadeIn" role="group" aria-label="SkillsPlayer">
                         <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="{{ Auth::user()->personagem->skill01->skill }}">
                         <label class="cursor d-grid btn cor_fontes_{{ $temas[2] }} bg-{{ $temas[0] }} btn-outline-{{ $temas[1] }}" for="btnradio1">
                             🕹
@@ -60,25 +54,21 @@
                             <span class="cursor">{{ Auth::user()->personagem->skill03->skill }}</span>
                         </label>
                     </div>
-                    @error("skill")
-                        <div class="alert alert-danger animate__animated animate__shakeX bg-danger mb-0" role="alert">
-                            <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
-                        </div>
-                    @enderror
+                    <div id="escolha" class="alert alert-danger animate__animated animate__shakeX bg-danger mb-0" role="alert" hidden>
+                        <i class="bi bi-info-circle-fill me-3"></i>Escolha sua skill primeiro!
+                    </div>
 
-                    @if ($batalha->vez == 0)
-                        <button id="atacar" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg focus-ring btn-{{ $temas[0] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }} d-flex border" type="submit">
-                            <span class="cursor cor_fontes_{{ $temas[2] }} mx-auto">ATACAR! 🤜🏼</span>
-                        </button>
-                    @endif
+                    <button type="button" id="atacar" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg focus-ring btn-{{ $temas[0] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }} d-flex border">
+                        <span class="cursor cor_fontes_{{ $temas[2] }} mx-auto">ATACAR! 🤜🏼</span>
+                    </button>
                 </form>
             </div>
         </div>
 
         <div class="d-grid mx-3">
-            <h4 class="text-{{ $vez == 0 ? "success" : "danger" }} fw-bold">Vez:
+            <h4 class="cor_vez fw-bold">Vez:
                 <br>
-                <span>{{ $vez == 0 ? "Você" : "Oponente" }}</span>
+                <span id="vez" class="cor_vez"></span>
             </h4>
             <div>
                 <h4 class="text-white">
@@ -88,7 +78,7 @@
             </div>
             
             <div class="d-flex justify-content-center w-25 mx-auto">
-                <h2 id="momento" class="animate__animated animate__pulse animate__flash animate__infinite text-warning"></h2>
+                <h2 id="momento" class="animate__animated animate__pulse animate__flash animate__infinite text-warning">Momento Decisivo!</h2>
             </div>
         </div>
 
@@ -127,33 +117,27 @@
                 <img src="{{ asset("assets/images/gifs/ataques/ultimate.gif") }}" id="efeito03_oponente" class="position-absolute bottom-0 start-50 translate-middle-x" hidden>
             </div>
             <div class="card-body border border-0">
-                <div class="barras card-title progress border border-danger bg-black" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                <div class="barras card-title progress border border-danger bg-black mb-0" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                     <div id="hp_oponente" class="progress-bar progress-bar-striped progress-bar-animated bg-danger">
                         <label class="fw-bold fs-6">❤️ {{ $batalha->hp_oponente }}</label>
                     </div>
                 </div>
-                @if (session("dano_desferido_player"))
-                    @if (session("dano_critico"))
-                        <small class="animate__animated animate__fadeIn fs-5 fw-bold text-{{ session("tipo_dano") }}">🎯 -{{ session('dano_desferido_player') }}</small>
-                    @else
-                        <small class="animate__animated animate__fadeIn fw-bold text-{{ session("tipo_dano") }}">🎯 -{{ session('dano_desferido_player') }}</small>
-                    @endif
-                @endif
+                <small id="dano_player" class="animate__animated animate__fadeIn fw-bold text-{{ $tipo_dano["player"] }}" hidden></small>
             </div>
             <div class="card-footer border border-0">
-                <div class="btn-group animate__animated animate__fadeIn" role="group" aria-label="SkillsOponente">
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" value="{{ $oponente->skill01->skill }}" disabled>
-                    <label class="d-grid btn cor_fontes_{{ $temas[2] }} bg-{{ $temas[0] }} btn-outline-{{ $temas[1] }}" for="btnradio4">
+                <div class="btn-group animate__animated animate__fadeIn" role="group">
+                    <input type="radio" class="btn-check" autocomplete="off" value="{{ $oponente->skill01->skill }}" disabled>
+                    <label class="d-grid btn cor_fontes_{{ $temas[2] }} bg-{{ $temas[0] }} btn-outline-{{ $temas[1] }}">
                         🕹
                         <span>{{ $oponente->skill01->skill }}</span>
                     </label>
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" value="{{ $oponente->skill02->skill }}" disabled>
-                    <label class="d-grid btn cor_fontes_{{ $temas[2] }} bg-{{ $temas[0] }} btn-outline-{{ $temas[1] }}" for="btnradio5">
+                    <input type="radio" class="btn-check" autocomplete="off" value="{{ $oponente->skill02->skill }}" disabled>
+                    <label class="d-grid btn cor_fontes_{{ $temas[2] }} bg-{{ $temas[0] }} btn-outline-{{ $temas[1] }}">
                         🕹
                         <span>{{ $oponente->skill02->skill }}</span>
                     </label>
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off" value="{{ $oponente->skill03->skill }}" disabled>
-                    <label class="d-grid btn cor_fontes_{{ $temas[2] }} bg-{{ $temas[0] }} btn-outline-{{ $temas[1] }}" for="btnradio6">
+                    <input type="radio" class="btn-check" autocomplete="off" value="{{ $oponente->skill03->skill }}" disabled>
+                    <label class="d-grid btn cor_fontes_{{ $temas[2] }} bg-{{ $temas[0] }} btn-outline-{{ $temas[1] }}">
                         🕹
                         <span>{{ $oponente->skill03->skill }}</span>
                     </label>
@@ -163,13 +147,13 @@
                     <form action="{{ route("ataque", ["id" => $batalha->oponente_id]) }}" method="POST">
                         @csrf
 
-                        <button type="submit" id="ataque" type="submit"></a>
+                        <button type="button" id="ataque"></a>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    @include("layouts.partials.scripts.batalha")
     @include("layouts.partials.scripts.animacoes")
+    @include("layouts.partials.scripts.batalha")
 @endsection

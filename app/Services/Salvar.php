@@ -79,6 +79,9 @@ class Salvar
         $nova_batalha->player_id = session("id_player") ?? null;
         $nova_batalha->oponente_id = session("id_oponente");
         $nova_batalha->nome = Auth::user()->user;
+        $nova_batalha->skill01 = true;
+        $nova_batalha->skill02 = true;
+        $nova_batalha->skill03 = true;
         $nova_batalha->nome_oponente = $nome_oponente;
         $nova_batalha->hp_maximo = Auth::user()->personagem->hp * Auth::user()->nivel;
         $nova_batalha->hp = Auth::user()->personagem->hp * Auth::user()->nivel;
@@ -106,6 +109,12 @@ class Salvar
         $batalha->hp_oponente = $batalha->hp_oponente - $dano;
         $batalha->vez = 1;
 
+        if (!$batalha->skill01 && !$batalha->skill02 && !$batalha->skill03) {
+            $batalha->skill01 = true;
+            $batalha->skill02 = true;
+            $batalha->skill03 = true;
+        }
+
         $salvar = DB::transaction(function () use ($batalha) {
             $batalha->saveOrFail();
 
@@ -118,6 +127,12 @@ class Salvar
     public static function ataqueOponente($batalha, $dano) {
         $batalha->hp = $batalha->hp - $dano;
         $batalha->vez = 0;
+
+        if (!$batalha->skill01_oponente && !$batalha->skill02_oponente && !$batalha->skill03_oponente) {
+            $batalha->skill01_oponente = true;
+            $batalha->skill02_oponente = true;
+            $batalha->skill03_oponente = true;
+        }
 
         $salvar = DB::transaction(function () use ($batalha) {
             $batalha->saveOrFail();

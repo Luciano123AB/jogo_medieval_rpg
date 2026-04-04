@@ -73,12 +73,14 @@ class Batalhar extends Controller
         return redirect()->route("batalhar");
     }
 
-    public function atacar(Request $request): RedirectResponse {
+    public function atacar(Request $request): JsonResponse | RedirectResponse {
 
         $skill_escolhida = $request->input("btnradio");
 
         if (!$skill_escolhida) {
-            return redirect()->back()->withErrors(["skill" => "Escolha sua skill primeiro."]);
+            return response()->json([
+                "success" => false
+            ]);
         }
 
         $batalha = Batalha::find(session("id_batalha"));
@@ -90,12 +92,22 @@ class Batalhar extends Controller
             return redirect()->back();
         }
 
-        return redirect()->back()
-            ->with("dano_desferido_player", $dano)
-            ->with("dano_recebido_oponente", true);
+        $batalha->refresh();
+
+        return response()->json([
+            "classe" => Auth::user()->personagem->classe,
+            "dano" => $dano,
+            "hp_player" => $batalha->hp,
+            "hp_oponente" => $batalha->hp_oponente,
+            "skill01" => $batalha->skill01,
+            "skill02" => $batalha->skill02,
+            "skill03" => $batalha->skill03,
+            "vez" => $batalha->vez,
+            "success" => true
+        ]);
     }
 
-    public function ataqueOponente($id): RedirectResponse {
+    public function ataqueOponente($id): JsonResponse | RedirectResponse {
         if (session()->has("nivel_oponente")) {
 
             $nivel = session("nivel_oponente");
@@ -106,17 +118,29 @@ class Batalhar extends Controller
 
         }
               
-        $dano = Randoms::danoOponenteSorteado(Batalha::find(session("id_batalha")), Personagem::findOrFail($id), $nivel);
+        $batalha = Batalha::find(session("id_batalha"));
+        $resultado = Randoms::danoOponenteSorteado(Batalha::find(session("id_batalha")), Personagem::findOrFail($id), $nivel);
 
-        if (!Salvar::ataqueOponente(Batalha::findOrFail(session("id_batalha")), $dano)) {
+        if (!Salvar::ataqueOponente(Batalha::findOrFail(session("id_batalha")), $resultado["dano"])) {
             $this->alertaResultado("Erro ao Receber Ataque!", "Ocorreu um erro ao receber o ataque do oponente!", "bi-hand-thumbs-down-fill");
 
             return redirect()->back();
         }
 
-        return redirect()->back()
-            ->with("dano_desferido_oponente", $dano)
-            ->with("dano_recebido_player", true);
+        $batalha->refresh();
+
+        return response()->json([
+            "classe" => Personagem::findOrFail($id)->classe,
+            "dano" => $resultado["dano"],
+            "tipo_ataque" => $resultado["tipo_ataque"],
+            "hp_player" => $batalha->hp,
+            "hp_oponente" => $batalha->hp_oponente,
+            "skill01" => $batalha->skill01,
+            "skill02" => $batalha->skill02,
+            "skill03" => $batalha->skill03,
+            "vez" => $batalha->vez,
+            "success" => true
+        ]);
     }
 
     public function confirmarRender(): RedirectResponse {
