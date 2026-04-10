@@ -10,7 +10,10 @@
     @include("layouts.partials.links")
 
     @include("layouts.partials.styles.estilos")
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite([
+        'resources/css/app.css',
+        'resources/js/app.js'
+    ])
 </head>
 <body class="bg-dark fst-italic d-flex flex-column min-vh-100">
     <div id="fundo"></div>
