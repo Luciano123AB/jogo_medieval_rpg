@@ -22,7 +22,7 @@ Aplicação web de RPG por turnos desenvolvida com **Laravel**, com foco em:
 - Sistema de XP/nível.
 - Resete do registro de vitórias e derrotas.
 - Listagens de players, batalhas em andamento e totais de players por país.
-- Trilha sonora mudo/tocando via sessão.
+- Trilha sonora mudo/tocando via JS.
 - Tema escuro/claro via sessão.
 
 ---
