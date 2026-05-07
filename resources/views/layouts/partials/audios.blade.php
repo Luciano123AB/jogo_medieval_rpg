@@ -1,6 +1,5 @@
 @php
 
-    $musica = "";
     $som_final = "";
 
     if ($pagina != "Preparação" && $pagina != "Batalhas" && $pagina != "Batalha") {

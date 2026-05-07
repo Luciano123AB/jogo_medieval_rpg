@@ -68,30 +68,30 @@
 
                 <div class="sombras tabelas card animate__animated animate__fadeInUp bg-{{ $temas[0] }} border-{{ $temas[1] }} p-3 overflow-x-auto">
                     <div class="tabelas-scroll">
-                        <table class="border border-2 border-{{ $temas[1] }} w-100">
+                        <table id="tabela" class="border border-2 border-{{ $temas[1] }} w-100">
                             <thead class="text-center">
-                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border fs-5 px-1">
+                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center fs-5 px-1">
                                     <i class="bi bi-list-ol titulos_colunas"></i>Nº
                                 </th>
-                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border fs-5 px-1">
+                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center fs-5 px-1">
                                     <i class="bi bi-person-bounding-box titulos_colunas"></i>Perfil
                                 </th>
-                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border fs-5 px-1">
+                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center fs-5 px-1">
                                     <i class="bi bi-person-fill titulos_colunas"></i>Usuario/Status
                                 </th>
-                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border fs-5 px-1">
+                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center fs-5 px-1">
                                     <i class="bi bi-person-arms-up titulos_colunas"></i>Classe
                                 </th>
-                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border fs-5 px-1">
+                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center fs-5 px-1">
                                     <i class="bi bi-arrow-up-circle-fill titulos_colunas"></i>Nível
                                 </th>
-                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border fs-5 px-1">
+                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center fs-5 px-1">
                                     <i class="bi bi-123 titulos_colunas"></i>Qtd/Vitórias
                                 </th>
-                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border fs-5 px-1">
+                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center fs-5 px-1">
                                     <i class="bi bi-123 titulos_colunas"></i>Qtd/Derrotas
                                 </th>
-                                <th class="border-{{ $temas[1] }} border fs-5 px-1">⚔️</th>
+                                <th class="border-{{ $temas[1] }} border text-center fs-5 px-1">⚔️</th>
                             </thead>
 
                             <tbody>
@@ -114,4 +114,6 @@
             </div>
         </div>
     </div>
+
+    @include("layouts.partials.styles.estilos_tabela")
 @endsection
