@@ -1,6 +1,8 @@
 @extends("layouts.main_layout")
 
 @section("content")
+    @include("layouts.partials.styles.estilos_tabelas")
+
     <div class="container">
         <div class="fundos_card_{{ $temas[3] }} card p-3">
             <div class="horizontal_vertical gap-3">
@@ -23,27 +25,29 @@
                         </form>
                     </div>
                     <div class="tabelas-scroll">
-                        <table class="border border-2 border-{{ $temas[1] }} w-100">
+                        <table id="tabela" class="border border-2 border-{{ $temas[1] }} w-100">
                             <thead class="text-center">
-                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border px-1">
-                                    <i class="bi bi-list-ol titulos_colunas"></i>Nº
-                                </th>
-                                <th class="border-{{ $temas[1] }} border px-1">👑</th>
-                                <th class="border-{{ $temas[1] }} border px-1">
-                                    <i class="titulos_colunas">🤜🏻</i>
-                                    <span class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }}">Você</span>
-                                </th>
-                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border px-1">VS</th>
-                                <th class="border-{{ $temas[1] }} border px-1">
-                                    <i class="titulos_colunas">🤛🏻</i>
-                                    <span class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }}">Oponente</span>
-                                </th>
-                                <th class="border-{{ $temas[1] }} border px-1">⚰️</th>
-                                <th class="border-{{ $temas[1] }} border px-1"><i class="cor_fontes_{{ $temas[3] }} bi bi-x-circle-fill"></i></th>
+                                <tr>
+                                    <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center px-1">
+                                        <i class="bi bi-list-ol titulos_colunas"></i>Nº
+                                    </th>
+                                    <th class="border-{{ $temas[1] }} border text-center px-1">👑</th>
+                                    <th class="border-{{ $temas[1] }} border text-center px-1">
+                                        <i class="titulos_colunas">🤜🏻</i>
+                                        <span class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }}">Você</span>
+                                    </th>
+                                    <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center px-1">VS</th>
+                                    <th class="border-{{ $temas[1] }} border text-center px-1">
+                                        <i class="titulos_colunas">🤛🏻</i>
+                                        <span class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }}">Oponente</span>
+                                    </th>
+                                    <th class="border-{{ $temas[1] }} border text-center px-1">⚰️</th>
+                                    <th class="border-{{ $temas[1] }} border text-center px-1"><i class="cor_fontes_{{ $temas[3] }} bi bi-x-circle-fill"></i></th>
+                                </tr>
                             </thead>
 
                             <tbody>
-                                @forelse ($batalhas_vitorias as $vitorias)
+                                @foreach ($batalhas_vitorias as $vitorias)
                                     <tr>
                                         <td class="cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center fw-bold">{{ $loop->index + 1 }}</td>
                                         <td class="border-{{ $temas[1] }} border text-success text-center fw-bold px-1">VITÓRIA</td>
@@ -66,11 +70,7 @@
                                             </form>
                                         </td>
                                     </tr>
-                                @empty
-                                    <tr class="text-center">
-                                        <td colspan="7" class="cor_fontes_{{ $temas[3] }}">NENHUMA VITÓRIA EXISTENTE AINDA</td>
-                                    </tr>
-                                @endforelse
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -95,27 +95,27 @@
                         </form>
                     </div>
                     <div class="tabelas-scroll">
-                        <table class="border border-2 border-{{ $temas[1] }} w-100">
+                        <table id="tabela02" class="border border-2 border-{{ $temas[1] }} w-100">
                             <thead class="text-center">
-                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border px-1">
+                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center px-1">
                                     <i class="bi bi-list-ol titulos_colunas"></i>Nº
                                 </th>
-                                <th class="border-{{ $temas[1] }} border px-1">⚰️</th>
-                                <th class="border-{{ $temas[1] }} border px-1">
+                                <th class="border-{{ $temas[1] }} border text-center px-1">⚰️</th>
+                                <th class="border-{{ $temas[1] }} border text-center px-1">
                                     <i class="titulos_colunas">🤜🏻</i>
                                     <span class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }}">Você</span>
                                 </th>
-                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border px-1">VS</th>
-                                <th class="border-{{ $temas[1] }} border px-1">
+                                <th class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center px-1">VS</th>
+                                <th class="border-{{ $temas[1] }} border text-center px-1">
                                     <i class="titulos_colunas">🤛🏻</i>
                                     <span class="titulos_{{ $temas[3] }} cor_fontes_{{ $temas[3] }}">Oponente</span>
                                 </th>
-                                <th class="border-{{ $temas[1] }} border px-1">👑</th>
-                                <th class="border-{{ $temas[1] }} border px-1"><i class="cor_fontes_{{ $temas[3] }} bi bi-x-circle-fill"></i></th>
+                                <th class="border-{{ $temas[1] }} border text-center px-1">👑</th>
+                                <th class="border-{{ $temas[1] }} border text-center px-1"><i class="cor_fontes_{{ $temas[3] }} bi bi-x-circle-fill"></i></th>
                             </thead>
 
                             <tbody>
-                                @forelse ($batalhas_derrotas as $derrotas)
+                                @foreach ($batalhas_derrotas as $derrotas)
                                     <tr>
                                         <td class="cor_fontes_{{ $temas[3] }} border-{{ $temas[1] }} border text-center fw-bold">{{ $loop->index + 1 }}</td>
                                         <td class="border-{{ $temas[1] }} border text-danger text-center fw-bold px-1">DERROTA</td>
@@ -138,11 +138,7 @@
                                             </form>
                                         </td>
                                     </tr>
-                                @empty
-                                    <tr class="text-center">
-                                        <td colspan="7" class="cor_fontes_{{ $temas[3] }}">NENHUMA DERROTA EXISTENTE AINDA</td>
-                                    </tr>
-                                @endforelse
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -150,4 +146,6 @@
             </div>
         </div>
     </div>
+
+    @include("layouts.partials.scripts.tabelas")
 @endsection

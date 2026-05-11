@@ -71,23 +71,6 @@
         }
     });
 
-    let table = new DataTable('#tabela', {
-        pageLength: 10,
-        responsive: true,
-        lengthMenu: [5, 10, 20, 40, 80],
-        dom:
-            "<'row mb-3 align-items-center'<'col-md-6'f><'col-md-6 text-end'l>>" +
-            "t" +
-            "<'row mt-3 align-items-center'<'col-md-6'i><'col-md-6'p>>"
-    });
-
-    $('.dt-search input').addClass(
-        'cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}'
-    );
-    $('.dt-length select').addClass(
-        'cursor bg-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring focus-ring-{{ $temas[1] }} text-{{ $temas[3] }}'
-    );
-
     function limparCamposLogin() {
         document.getElementById("email").value = "";
         document.getElementById("senha").value = "";        

@@ -1,8 +1,38 @@
 @php
             
-    $icones = ["laravel", "php", "html5", "javascript", "css", "bootstrap", "animate_css", "gsap", "jsdelivr", "sweetalert", "mysql"];
-    $links = ["laravel.com", "php.net", "developer.mozilla.org/en-US/docs/Glossary/HTML5", "developer.mozilla.org/pt-BR/docs/Web/JavaScript", "developer.mozilla.org/pt-BR/docs/Web/CSS", "getbootstrap.com", "animate.style", "gsap.com", "cdn.jsdelivr.net", "sweetalert2.github.io", "mysql.com"];
-    $temas = ["light", "primary", "escuro"];
+    $icones = [
+        "laravel",
+        "php",
+        "html5",
+        "javascript",
+        "css",
+        "bootstrap",
+        "animate_css",
+        "gsap",
+        "jsdelivr",
+        "datatables",
+        "sweetalert",
+        "mysql"
+    ];
+    $links = [
+        "laravel.com",
+        "php.net",
+        "developer.mozilla.org/en-US/docs/Glossary/HTML5",
+        "developer.mozilla.org/pt-BR/docs/Web/JavaScript",
+        "developer.mozilla.org/pt-BR/docs/Web/CSS",
+        "getbootstrap.com",
+        "animate.style",
+        "gsap.com",
+        "cdn.jsdelivr.net",
+        "datatables.net/",
+        "sweetalert2.github.io",
+        "mysql.com"
+    ];
+    $temas = [
+        "light",
+        "primary",
+        "escuro"
+    ];
         
     if (session("tema") == "claro" || !session()->has("tema")) {
         $temas = ["black", "danger", "claro"];
@@ -23,7 +53,7 @@
             </small>
         </div>
         <div>
-            <h6 class="cor_fontes_{{ $temas[2] }}">Tecnologias:</h6>
+            <h6 class="cor_fontes_{{ $temas[2] }}">Tecnologias/Bibliotecas:</h6>
             <div class="d-flex flex-wrap gap-3 justify-content-center">
                 @foreach(array_combine($icones, $links) as $icone => $link)
                     <a href="http://{{ $link }}" class="animate__animated animate__fadeInRight">
