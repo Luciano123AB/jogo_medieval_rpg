@@ -157,11 +157,11 @@ composer test
 Ajuste pelo menos:
 
 - `APP_NAME`, `APP_ENV`, `APP_KEY`, `APP_DEBUG`, `APP_URL`
-- `LOG_CHANNEL`, `LOG_LEVEL`
-- `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`
-- `SESSION_DRIVER`, `SESSION_HTTP_ONLY`, `SESSION_SECURE_COOKIE`
 - `CACHE_STORE`
+- `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`
+- `LOG_CHANNEL`, `LOG_LEVEL`
 - `QUEUE_CONNECTION`
+- `SESSION_DRIVER`, `SESSION_HTTP_ONLY`, `SESSION_SECURE_COOKIE`
 
 ---
 
@@ -173,13 +173,13 @@ Exemplo de build e run:
 
 ```bash
 docker build -t jogo-rpg .
-docker run -p 8000:8000 --env-file .env jogo-rpg
+docker run -p 8080:8080 --env-file .env jogo-rpg
 ```
 
 Comando de start definido no container:
 
 ```bash
-php artisan migrate --force && php artisan optimize && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
+php artisan migrate --force && php artisan optimize && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}
 ```
 
 ---
