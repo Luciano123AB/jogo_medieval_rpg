@@ -16,14 +16,15 @@ Aplicação web de RPG por turnos desenvolvida com **Laravel**, com foco em:
 ## ✨ Funcionalidades
 
 - Listagens de regras, descrições das classes e créditos.
-- Cadastro, login, atualização, mudança de senha e exclusão de player.
+- Cadastro, login, mudança de senha.
 - Escolha de classe(Personagem).
 - Batalha por turnos contra computador ou outros players.
 - Sistema de XP/nível.
-- Resete do registro de vitórias e derrotas.
-- Listagens de players, batalhas em andamento e totais de players por país.
+- Resete do registro de vitórias/derrotas.
+- Listagens de players, batalhas em andamento, totais de players por país.
 - Trilha sonora mudo/tocando via JS.
 - Tema escuro/claro via sessão.
+- Atualização de dados, exclusão de player
 
 ---
 
@@ -32,7 +33,7 @@ Aplicação web de RPG por turnos desenvolvida com **Laravel**, com foco em:
 - **Backend:** PHP 8.5.3 + Laravel 12
 - **Frontend build:** Vite + CSS/JS
 - **Banco de dados:** MySQL 8
-- **Testes:** Pest/PHPUnit (Feature tests)
+- **Testes:** PestPHP (Feature tests)
 - **Containerização:** Docker
 
 ---
