@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('skills', function (Blueprint $table) {
             $table->id();
-            $table->string("skill", 21)->unique();
-            $table->integer("dano01")->comment("100");
-            $table->integer("dano02")->comment("140");
-            $table->integer("dano03")->comment("220");
+            $table->string('skill', 21)->unique();
+            $table->integer('dano01')->comment('100');
+            $table->integer('dano02')->comment('140');
+            $table->integer('dano03')->comment('220');
             $table->timestamps();
         });
     }

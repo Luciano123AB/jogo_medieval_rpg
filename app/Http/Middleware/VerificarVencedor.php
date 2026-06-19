@@ -18,18 +18,18 @@ class VerificarVencedor extends Controller
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (session()->has("batalha_comecou")) {
+        if (session()->has('batalha_comecou')) {
 
-            $batalha = Batalha::find(session("id_batalha"));            
+            $batalha = Batalha::find(session('id_batalha'));            
 
             if (!$batalha) {
-                $this->alertaResultado("Erro ao Batalhar!", "Ocorreu um erro ao tentar começar a batalha! Tente novamente.", "bi-hand-thumbs-down-fill");
+                $this->alertaResultado('Erro ao Batalhar!', 'Ocorreu um erro ao tentar começar a batalha! Tente novamente.', 'bi-hand-thumbs-down-fill');
                 session()->forget([
-                    "id_batalha",
-                    "batalha_comecou"
+                    'id_batalha',
+                    'batalha_comecou'
                 ]);
 
-                return redirect()->route("home");
+                return redirect()->route('home');
             } else {
                 if ($batalha->hp <= 0) {
                     return app(FinalizarBatalha::class)->finalizarDerrota($batalha);

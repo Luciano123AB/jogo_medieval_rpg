@@ -5,7 +5,7 @@
         <div class="fundos_card_{{ $temas[4] }} card p-3">
             <div class="d-grid gap-3 w-100">
                 <div class="sombras animate__animated animate__zoomInLeft card bg-{{ $temas[0] }} border-{{ $temas[1] }} p-3">
-                    <form action="{{ route("confirmarAtualizar") }}" method="post" enctype="multipart/form-data" novalidate>
+                    <form action="{{ route("confirmar.atualizar") }}" method="post" enctype="multipart/form-data" novalidate>
                         @csrf
 
                         <div class="card-header border border-2 border-{{ $temas[1] }} text-center rounded-top">

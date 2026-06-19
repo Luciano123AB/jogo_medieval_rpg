@@ -5,10 +5,10 @@
         <div class="fundos_card_{{ $temas[4] }} card p-3">
             <div class="d-grid gap-3 w-100">
                 <div class="sombras animate__animated animate__zoomInLeft card bg-{{ $temas[0] }} border-{{ $temas[1] }} p-3">
-                    <form action="{{ route("confirmarSenha") }}" method="POST" novalidate>
+                    <form action="{{ route("confirmar.senha") }}" method="POST" novalidate>
                         @csrf
 
-                        <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+                        <input type="hidden" name="id" value="{{ auth()->user()->id }}">
 
                         <div class="card-header border border-2 border-{{ $temas[1] }} text-center rounded-top">
                             <i class="bi bi-arrow-repeat titulos_{{ $temas[4] }} cor_fontes_{{ $temas[4] }} fs-5"></i>

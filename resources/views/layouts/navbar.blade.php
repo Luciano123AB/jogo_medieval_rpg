@@ -40,7 +40,7 @@
         </div>
 
         @if($pagina == "Batalha")
-            <form action="{{ route("confirmarRender") }}" method="POST">
+            <form action="{{ route("confirmar.render") }}" method="POST">
                 @csrf
 
                 <button type="submit" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }} d-flex border my-1">
@@ -54,7 +54,7 @@
             </form>
         @endif
 
-        @if(Auth::user() && $pagina != "Listagem" && $pagina != "Batalha")
+        @if(auth()->user() && $pagina != "Listagem" && $pagina != "Batalha")
             <a href="{{ route("listagem") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }} d-flex border my-1">
                 <span class="cursor cor_fontes_{{ $temas[6] }} d-flex justify-content-center">
                     <div class="cursor animate__animated animate__flipInX animate__infinite">
@@ -65,7 +65,7 @@
             </a>
         @endif
 
-        @if(Auth::user() && $pagina != "Batalha")
+        @if(auth()->user() && $pagina != "Batalha")
             <div class="d-flex">
                 <div class="input-group my-1">
                     <button class="cursor sombras animate__animated animate__fadeIn btn btn-lg focus-ring btn-{{ $temas[2] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }} dropdown-toggle d-flex border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -73,12 +73,12 @@
                             <div class="cursor d-flex">
                                 @php
                                     
-                                    $perfil = asset("assets/images/perfils/" . strtolower(Auth::user()->personagem->classe) . ".png");
+                                    $perfil = asset("assets/images/perfils/" . strtolower(auth()->user()->personagem->classe) . ".png");
                                     $perfil_02 = asset("photos/vazio.png");
 
-                                    if (Auth::user()->foto != "photos/vazio.png") {
-                                        $perfil = asset(Auth::user()->foto);
-                                        $perfil_02 = asset("assets/images/perfils/" . strtolower(Auth::user()->personagem->classe) . ".png");
+                                    if (auth()->user()->foto != "photos/vazio.png") {
+                                        $perfil = asset(auth()->user()->foto);
+                                        $perfil_02 = asset("assets/images/perfils/" . strtolower(auth()->user()->personagem->classe) . ".png");
                                     }
                                 @endphp
                                 <div class="position-relative me-2">
@@ -88,15 +88,15 @@
                                 <div class="cursor">
                                     <div class="d-flex border-3 border-start border-black rounded-top-1">
                                         <h4 class="cursor titulos_{{ $temas[6] }} cor_fontes_{{ $temas[6] }} me-1">
-                                            <i class="fi fi-{{ strtolower(Auth::user()->pais) }} animate__animated animate__jello animate__infinite border-start border-end mb-2 me-2"></i>{{ Auth::user()->user }}
+                                            <i class="fi fi-{{ strtolower(auth()->user()->pais) }} animate__animated animate__jello animate__infinite border-start border-end mb-2 me-2"></i>{{ auth()->user()->user }}
                                         </h4>
                                         <h4 class="cursor">
-                                            {{ Auth::user()->online == true ? "🟢" : "🔴" }}
+                                            {{ auth()->user()->online == true ? "🟢" : "🔴" }}
                                         </h4>
                                     </div>
-                                    <span class="cursor text-bg-{{ $temas[1] }} {{ Auth::user()->nivel == 70 ? "text-warning" : "" }} badge">
-                                        Nível: {{ Auth::user()->nivel }}
-                                        @if(Auth::user()->nivel == 70)
+                                    <span class="cursor text-bg-{{ $temas[1] }} {{ auth()->user()->nivel == 70 ? "text-warning" : "" }} badge">
+                                        Nível: {{ auth()->user()->nivel }}
+                                        @if(auth()->user()->nivel == 70)
                                             Max
                                         @endif
                                     </span>
@@ -104,14 +104,14 @@
                             </div>
                             <div class="cursor barras progress border border-success bg-black" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                                 @php
-                                    if (Auth::user()->nivel == 70) {
+                                    if (auth()->user()->nivel == 70) {
                                         $nivel = "100.0";
                                     } else {
-                                        $nivel = number_format(Auth::user()->xp / 10, "1", ".", "");
+                                        $nivel = number_format(auth()->user()->xp / 10, "1", ".", "");
                                     }
                                 @endphp
                                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: {{ $nivel }}%">
-                                    <label class="cursor fw-bold fs-6">{{ Auth::user()->xp == 0 ? 1000 : Auth::user()->xp }} XP</label>
+                                    <label class="cursor fw-bold fs-6">{{ auth()->user()->xp == 0 ? 1000 : auth()->user()->xp }} XP</label>
                                 </div>
                             </div>
                         </div>
@@ -136,14 +136,14 @@
                         @endif
                         @if($pagina != "Atualização Senha")
                             <li>
-                                <a href="{{ route("atualizacaoSenha") }}" class="dropdown-item cor_fontes_{{ $temas[6] }} opcoes_player_{{ $temas[6] }} border-top border-black">
+                                <a href="{{ route("atualizacao.senha") }}" class="dropdown-item cor_fontes_{{ $temas[6] }} opcoes_player_{{ $temas[6] }} border-top border-black">
                                     <i class="bi bi-key-fill"></i>
                                     Mudar Senha
                                 </a>
                             </li>
                         @endif
                         <li>
-                            <form action="{{ route("confirmarDeletar") }}" method="POST">
+                            <form action="{{ route("confirmar.deletar") }}" method="POST">
                                 @csrf
 
                                 <button type="submit" class="dropdown-item cor_fontes_{{ $temas[6] }} opcoes_player_{{ $temas[6] }} border-top border-black">
@@ -153,7 +153,7 @@
                             </form>
                         </li>
                         <li>
-                            <form action="{{ route("confirmarSair") }}" method="POST">
+                            <form action="{{ route("confirmar.sair") }}" method="POST">
                                 @csrf
 
                                 <button type="submit" class="dropdown-item cor_fontes_{{ $temas[6] }} opcoes_player_{{ $temas[6] }} border-bottom border-top border-black">

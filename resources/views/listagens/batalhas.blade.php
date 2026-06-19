@@ -1,7 +1,20 @@
 @extends("layouts.main_layout")
 
 @section("content")
-    @include("layouts.partials.styles.estilos_tabelas")
+    @if ($temas[1] == "primary")
+        <style>
+            .dt-container {
+                color: #493722;
+            }
+        </style>
+    @else
+        <style>
+            .dt-container {
+                color: #e5a350;
+            }
+        </style>
+    @endif
+    @vite('resources/css/tabelas.css')
 
     <div class="container">
         <div class="fundos_card_{{ $temas[2] }} card p-3">

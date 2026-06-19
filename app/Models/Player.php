@@ -3,37 +3,39 @@
 namespace App\Models;
 
 use App\Models\Personagem;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Player extends Authenticatable
 {
+    use HasFactory;
 
     const UPDATED_AT = null;
     protected $fillable = [
-        "user",
-        "email",
-        "password",
-        "genero",
-        "pais",
-        "foto",
-        "nivel",
-        "subir_nivel",
-        "quantidade_vitorias",
-        "quantidade_derrotas",
-        "online"
+        'user',
+        'email',
+        'password',
+        'genero',
+        'pais',
+        'foto',
+        'nivel',
+        'subir_nivel',
+        'quantidade_vitorias',
+        'quantidade_derrotas',
+        'online'
     ];
     protected $casts = [
-        "user" => "string",
-        "email" => "string",
-        "password" => "string",
-        "genero" => "string",
-        "pais" => "string",
-        "foto" => "string",
-        "nivel" => "integer",
-        "subir_nivel" => "float",
-        "quantidade_vitorias" => "integer",
-        "quantidade_derrotas" => "integer",
-        "online" => "boolean"
+        'user' => 'string',
+        'email' => 'string',
+        'password' => 'string',
+        'genero' => 'string',
+        'pais' => 'string',
+        'foto' => 'string',
+        'nivel' => 'integer',
+        'subir_nivel' => 'float',
+        'quantidade_vitorias' => 'integer',
+        'quantidade_derrotas' => 'integer',
+        'online' => 'boolean'
     ];
 
     public function personagem() {

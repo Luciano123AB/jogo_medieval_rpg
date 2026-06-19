@@ -28,6 +28,6 @@ class ResetarDesafios extends Command
     {
         Desafio::truncate();
 
-        $this->info("Todos os desafios foram resetados!");
+        $this->info('Todos os desafios foram resetados!');
     }
 }

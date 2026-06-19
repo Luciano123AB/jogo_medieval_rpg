@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("/")->group(function () {
-    Route::get("mudar_tema", [Temas::class, "mudarTema"])->name("tema");
+    Route::get("mudar-tema", [Temas::class, "mudarTema"])->name("tema");
 
     Route::controller(MainController::class)->group(function() {
         Route::middleware(VerificarBatalha::class)->group(function() {
@@ -26,7 +26,7 @@ Route::prefix("/")->group(function () {
 
             Route::get("regras", "regras")->name("regras");
             
-            Route::get("sobre_classes", "sobreClasses")->name("sobre");
+            Route::get("sobre-classes", "sobreClasses")->name("sobre");
 
             Route::get("creditos", "creditos")->name("creditos");
 
@@ -36,15 +36,15 @@ Route::prefix("/")->group(function () {
 
             Route::middleware(VerificarLogado::class)->group(function() {
                 Route::get("atualizacao", "atualizacao")->name("atualizacao");
-                Route::get("atualizacao_senha", "atualizacaoSenha")->name("atualizacaoSenha");
+                Route::get("atualizacao-senha", "atualizacaoSenha")->name("atualizacao.senha");
 
-                Route::get("totais_players", "totaisPlayers")->name("totais");
+                Route::get("totais-players", "totaisPlayers")->name("totais");
 
-                Route::get("registro_batalhas", "registroBatalhas")->name("registro");
+                Route::get("registro-batalhas", "registroBatalhas")->name("registro");
 
-                Route::get("batalhas_andamento", "batalhasAndamento")->name("batalhas");
+                Route::get("batalhas-andamento", "batalhasAndamento")->name("batalhas");
 
-                Route::get("nivel_up", function(): RedirectResponse {
+                Route::get("nivel-up", function(): RedirectResponse {
                     session()->flash(
                         "alerta_nivel", [
                             "titulo" => "Nível: " . Auth::user()->nivel,
@@ -74,8 +74,8 @@ Route::prefix("/")->group(function () {
 
     Route::controller(Cadastrar::class)->group(function() {    
         Route::middleware(VerificarDeslogado::class)->group(function() {
-            Route::post("confirmar_cadastrar", "confirmarCadastrar")->name("confirmarCadastrar");
-            Route::post("cadastro_submit", "cadastroSubmit")->name("cadastrar");
+            Route::post("confirmar-cadastrar", "confirmarCadastrar")->name("confirmar.cadastrar");
+            Route::post("cadastro-submit", "cadastroSubmit")->name("cadastrar");
         });
     });
 
@@ -83,20 +83,20 @@ Route::prefix("/")->group(function () {
         Route::post("logar", "logar")->name("logar")->middleware(VerificarDeslogado::class);
 
         Route::middleware([VerificarLogado::class, VerificarBatalha::class])->group(function() {
-            Route::post("confirmar_sair", "confirmarSair")->name("confirmarSair");
+            Route::post("confirmar-sair", "confirmarSair")->name("confirmar.sair");
             Route::post("sair", "sair")->name("sair");
         });
     });
 
     Route::controller(EditarDeletar::class)->group(function() {
         Route::middleware([VerificarLogado::class, VerificarBatalha::class])->group(function() {
-            Route::post("confirmar_atualizar", "confirmarAtualizar")->name("confirmarAtualizar");
+            Route::post("confirmar-atualizar", "confirmarAtualizar")->name("confirmar.atualizar");
             Route::put("atualizar", "atualizar")->name("atualizar");
 
-            Route::post("confirmar_senha", "confirmarSenha")->name("confirmarSenha");
-            Route::put("atualizar_senha", "atualizarSenha")->name("atualizarSenha");
+            Route::post("confirmar-senha", "confirmarSenha")->name("confirmar.senha");
+            Route::put("atualizar-senha", "atualizarSenha")->name("atualizar.senha");
 
-            Route::post("confirmar_deletar", "confirmarDeletar")->name("confirmarDeletar");
+            Route::post("confirmar-deletar", "confirmarDeletar")->name("confirmar.deletar");
             Route::delete("deletar", "deletar")->name("deletar");
         });
     });
@@ -104,23 +104,23 @@ Route::prefix("/")->group(function () {
     Route::controller(Batalhar::class)->group(function() {
         Route::middleware(VerificarLogado::class)->group(function() {
             Route::middleware(VerificarBatalha::class)->group(function() {
-                Route::post("confirmar_batalha", "confirmarBatalha")->name("confirmarBatalha");
-                Route::post("confirmar_desafio/{id}", "confirmarDesafio")->name("confirmarDesafio");
+                Route::post("confirmar-batalha", "confirmarBatalha")->name("confirmar.batalha");
+                Route::post("confirmar-desafio/{id}", "confirmarDesafio")->name("confirmar.desafio");
             });
             
             Route::middleware(VerificarBatalhando::class)->group(function() {
                 Route::post("atacar", "atacar")->name("atacar");
-                Route::post("ataque_oponente/{id}", "ataqueOponente")->name("ataque");
+                Route::post("ataque-oponente/{id}", "ataqueOponente")->name("ataque");
 
-                Route::post("atualizar_tempo", [Batalhar::class, "atualizarTempo"]);
+                Route::post("atualizar-tempo", [Batalhar::class, "atualizarTempo"]);
 
-                Route::post("confirmar_render", "confirmarRender")->name("confirmarRender");
-                Route::post("render_se", "renderSe")->name("renderSe");
+                Route::post("confirmar-render", "confirmarRender")->name("confirmar.render");
+                Route::post("render-se", "renderSe")->name("renderSe");
             });
 
             Route::controller(FinalizarBatalha::class)->group(function() {
-                Route::post("finalizar_vitoria/{batalha}", "finalizarVitoria")->name("vitoria");
-                Route::post("finalizar_derrota/{batalha}", "finalizarDerrota")->name("derrota");
+                Route::post("finalizar-vitoria/{batalha}", "finalizarVitoria")->name("vitoria");
+                Route::post("finalizar-derrota/{batalha}", "finalizarDerrota")->name("derrota");
             });
         });
     });
@@ -128,8 +128,8 @@ Route::prefix("/")->group(function () {
     Route::prefix("resetar")->group(function () {
         Route::controller(Resetar::class)->group(function() {
             Route::middleware(VerificarLogado::class)->group(function() {
-                Route::delete("vitorias", "resetarVitorias")->name("resetarVitorias");
-                Route::delete("derrotas", "resetarDerrotas")->name("resetarDerrotas");
+                Route::delete("vitorias", "resetarVitorias")->name("resetar.vitorias");
+                Route::delete("derrotas", "resetarDerrotas")->name("resetar.derrotas");
                 Route::delete("batalha/{id}", "excluir")->name("excluir");
             });
         });

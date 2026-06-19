@@ -9,7 +9,26 @@
 
     @include("layouts.partials.links")
 
-    @include("layouts.partials.styles.estilos")
+    @php
+        if (session('tema') === "escuro") {
+            $imagem_fundo = "$imagem.png";
+        } else {
+            $imagem_fundo = "$imagem" . "_noite.png";
+        }
+    @endphp
+    <style>
+        * {
+            cursor: url("/assets/images/cursores/cursor.png"), auto;
+        }
+
+        .cursor:hover {
+            cursor: url("/assets/images/cursores/cursor_batalha.png"), auto;
+        }
+
+        #fundo {
+            background-image: url('{{ asset("assets/images/fundos/" . $imagem_fundo) }}');
+        }
+    </style>
     @vite([
         'resources/css/app.css',
         'resources/js/app.js'

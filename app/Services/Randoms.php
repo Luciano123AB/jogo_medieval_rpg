@@ -64,8 +64,8 @@ class Randoms
                 $batalha->save();
 
                 return [
-                    "dano" => $dano01_sorteado * $nivel,
-                    "tipo_ataque" => "normal"
+                    'dano' => $dano01_sorteado * $nivel,
+                    'tipo_ataque' => 'normal'
                 ];
             break;
 
@@ -74,8 +74,8 @@ class Randoms
                 $batalha->save();
 
                 return [
-                    "dano" => $dano02_sorteado * $nivel,
-                    "tipo_ataque" => "forte"
+                    'dano' => $dano02_sorteado * $nivel,
+                    'tipo_ataque' => 'forte'
                 ];
             break;
 
@@ -84,8 +84,8 @@ class Randoms
                 $batalha->save();
 
                 return [
-                    "dano" => $dano03_sorteado * $nivel,
-                    "tipo_ataque" => "ultimate"
+                    'dano' => $dano03_sorteado * $nivel,
+                    'tipo_ataque' => 'ultimate'
                 ];
             break;
         }

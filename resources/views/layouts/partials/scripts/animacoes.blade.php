@@ -29,7 +29,7 @@
 
         const distancia_x = Math.abs(distancia_real_x) * 0.8;
 
-        if ("{{ Auth::user()->personagem->classe }}" !== "Mago") {
+        if ("{{ auth()->user()->personagem->classe }}" !== "Mago") {
             distancia_player = [250, distancia_x];
         }
 
@@ -225,12 +225,12 @@
                 }, 1.1);
 
                 gtl.add(() => {
-                    player.src = "{{ asset('assets/images/personagens_dano/' . strtolower(Auth::user()->personagem->classe) . '.png') }}";
+                    player.src = "{{ asset('assets/images/personagens_dano/' . strtolower(auth()->user()->personagem->classe) . '.png') }}";
                 }, 0.9);
 
                 gtl.add(() => {
                     oponente.src = "{{ asset('assets/images/personagens/' . strtolower($oponente->classe) . '_reverso.png') }}";
-                    player.src = "{{ asset('assets/images/personagens/' . strtolower(Auth::user()->personagem->classe) . '.png') }}";
+                    player.src = "{{ asset('assets/images/personagens/' . strtolower(auth()->user()->personagem->classe) . '.png') }}";
                 }, 2.5);
 
                 break;
@@ -266,12 +266,12 @@
                     player.classList.remove("animate__shakeX");
                     void player.offsetWidth;
                     player.classList.add("animate__shakeX");
-                    player.src = "{{ asset('assets/images/personagens_dano/' . strtolower(Auth::user()->personagem->classe) . '.png') }}";
+                    player.src = "{{ asset('assets/images/personagens_dano/' . strtolower(auth()->user()->personagem->classe) . '.png') }}";
                 }, 0.9);
 
                 gtl.add(() => {
                     oponente.src = "{{ asset('assets/images/personagens/' . strtolower($oponente->classe) . '_reverso.png') }}";
-                    player.src = "{{ asset('assets/images/personagens/' . strtolower(Auth::user()->personagem->classe) . '.png') }}";
+                    player.src = "{{ asset('assets/images/personagens/' . strtolower(auth()->user()->personagem->classe) . '.png') }}";
                 }, 1.6);
 
                 break;
@@ -307,12 +307,12 @@
                     player.classList.remove("animate__rubberBand");
                     void player.offsetWidth;
                     player.classList.add("animate__rubberBand");
-                    player.src = "{{ asset('assets/images/personagens_dano/' . strtolower(Auth::user()->personagem->classe) . '.png') }}";
+                    player.src = "{{ asset('assets/images/personagens_dano/' . strtolower(auth()->user()->personagem->classe) . '.png') }}";
                 }, 0.9);
 
                 gtl.add(() => {
                     oponente.src = "{{ asset('assets/images/personagens/' . strtolower($oponente->classe) . '_reverso.png') }}";
-                    player.src = "{{ asset('assets/images/personagens/' . strtolower(Auth::user()->personagem->classe) . '.png') }}";
+                    player.src = "{{ asset('assets/images/personagens/' . strtolower(auth()->user()->personagem->classe) . '.png') }}";
                 }, 1.6);
 
                 break;

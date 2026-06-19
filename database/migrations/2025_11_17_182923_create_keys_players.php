@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table("players", function (Blueprint $table) {
-            $table->foreignId("personagem_id")->after("id")->constrained("personagems")->comment("1|2|3");
+        Schema::table('players', function (Blueprint $table) {
+            $table->foreignId('personagem_id')->after('id')->constrained('personagems')->comment('1 | 2 | 3');
         });
     }
 

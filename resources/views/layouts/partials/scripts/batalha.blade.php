@@ -206,7 +206,7 @@
             skill03.disabled = true;
 
             oponente.style.backgroundImage = "url('')";
-            player.style.backgroundImage = "url({{ asset('assets/images/gifs/auras/' . strtolower(Auth::user()->personagem->classe) . '.gif') }})";
+            player.style.backgroundImage = "url({{ asset('assets/images/gifs/auras/' . strtolower(auth()->user()->personagem->classe) . '.gif') }})";
 
             if (batalha_iniciada == false) {
                 batalha_iniciada = true;
@@ -259,10 +259,10 @@
                     hp_player = data.hp_player;
                     hp_oponente = data.hp_oponente;
 
-                    player.src = "{{ asset('assets/images/personagens_ataque/' . strtolower(Auth::user()->personagem->classe) . '.png') }}";
+                    player.src = "{{ asset('assets/images/personagens_ataque/' . strtolower(auth()->user()->personagem->classe) . '.png') }}";
 
                     setTimeout(() => {
-                        player.src = "{{ asset('assets/images/personagens/' . strtolower(Auth::user()->personagem->classe) . '.png') }}";
+                        player.src = "{{ asset('assets/images/personagens/' . strtolower(auth()->user()->personagem->classe) . '.png') }}";
                         oponente.src = "{{ asset('assets/images/personagens/' . strtolower($oponente->classe) . '_reverso.png') }}";
                     }, 3000);
 
@@ -333,7 +333,7 @@
                 oponente.src = "{{ asset('assets/images/personagens_ataque/' . strtolower($oponente->classe) . '_reverso.png') }}";
 
                 setTimeout(() => {
-                    player.src = "{{ asset('assets/images/personagens/' . strtolower(Auth::user()->personagem->classe) . '.png') }}";
+                    player.src = "{{ asset('assets/images/personagens/' . strtolower(auth()->user()->personagem->classe) . '.png') }}";
                     oponente.src = "{{ asset('assets/images/personagens/' . strtolower($oponente->classe) . '_reverso.png') }}";
                 }, 3000);
 

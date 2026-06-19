@@ -23,8 +23,18 @@ class AtualizarTempo extends FormRequest
     public function rules(): array
     {
         return [
-            'minutos'  => ['required', 'integer', 'min:0', 'max:120'],
-            'segundos' => ['required', 'integer', 'min:0', 'max:59'],
+            'minutos'  => [
+                'required',
+                'integer',
+                'min:0',
+                'max:120'
+            ],
+            'segundos' => [
+                'required',
+                'integer',
+                'min:0',
+                'max:59'
+            ]
         ];
     }
 }

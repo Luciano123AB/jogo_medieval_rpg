@@ -17,7 +17,7 @@ Class FinalizarBatalha extends Controller
         $nome_oponente = $batalha->nome_oponente;
 
         if (Auth::user()->nivel < 70) {
-            if (session("nome_oponente") == "Computador") {
+            if (session('nome_oponente') == 'Computador') {
                 $xp = 200 + random_int(1, 50);
             } else {
                 $xp = 300 + random_int(1, 50);
@@ -27,24 +27,24 @@ Class FinalizarBatalha extends Controller
         Salvar::vitoria($player, $xp ?? 0, $batalha);
 
         session()->forget([
-            "id_batalha",
-            "batalha_comecou"
+            'id_batalha',
+            'batalha_comecou'
         ]);
 
         if ($player->nivel > Auth::user()->nivel) {
 
-            $rota = route("nivel");
+            $rota = route('nivel');
             
         }
         
-        session()->flash("vitoria", true);
-        $this->alertaBatalha("Vitória!", "Parabéns!, continue assim e você se destacará na classificação. " . (isset($xp) ? "+$xp" . "exp" : ""), "bi-emoji-sunglasses-fill", $rota ?? "");
+        session()->flash('vitoria', true);
+        $this->alertaBatalha('Vitória!', 'Parabéns!, continue assim e você se destacará na classificação. ' . (isset($xp) ? "+$xp" . 'exp' : ''), 'bi-emoji-sunglasses-fill', $rota ?? '');
 
-        if ($nome_oponente == "Computador") {
-            return redirect()->route("preparacao");
+        if ($nome_oponente == 'Computador') {
+            return redirect()->route('preparacao');
         }
 
-        return redirect()->route("listagem");
+        return redirect()->route('listagem');
     }
 
     public function finalizarDerrota(Batalha $batalha): RedirectResponse {
@@ -55,16 +55,16 @@ Class FinalizarBatalha extends Controller
         Salvar::derrota($player, $batalha);
 
         session()->forget([
-            "id_batalha",
-            "batalha_comecou"
+            'id_batalha',
+            'batalha_comecou'
         ]);        
-        session()->flash("derrota", true);
-        $this->alertaBatalha("Derrota!", "Que Pena! Mas não desista, faz parte, infelismente não dá para ganhar todas, continue tentando.", "bi-emoji-frown-fill", "");
+        session()->flash('derrota', true);
+        $this->alertaBatalha('Derrota!', 'Que Pena! Mas não desista, faz parte, infelismente não dá para ganhar todas, continue tentando.', 'bi-emoji-frown-fill', '');
 
-        if ($nome_oponente == "Computador") {
-            return redirect()->route("preparacao");
+        if ($nome_oponente == 'Computador') {
+            return redirect()->route('preparacao');
         }
 
-        return redirect()->route("listagem");
+        return redirect()->route('listagem');
     }
 }

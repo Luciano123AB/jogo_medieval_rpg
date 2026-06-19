@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table("personagems", function (Blueprint $table) {
-            $table->foreignId("skill01_id")->nullable()->after("id")->constrained("skills")->nullOnDelete();
-            $table->foreignId("skill02_id")->nullable()->after("skill01_id")->constrained("skills")->nullOnDelete();
-            $table->foreignId("skill03_id")->nullable()->after("skill02_id")->constrained("skills")->nullOnDelete();
+        Schema::table('personagems', function (Blueprint $table) {
+            $table->foreignId('skill01_id')->nullable()->after('id')->constrained('skills')->nullOnDelete();
+            $table->foreignId('skill02_id')->nullable()->after('skill01_id')->constrained('skills')->nullOnDelete();
+            $table->foreignId('skill03_id')->nullable()->after('skill02_id')->constrained('skills')->nullOnDelete();
         });
     }
 

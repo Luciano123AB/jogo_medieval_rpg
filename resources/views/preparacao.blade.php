@@ -27,7 +27,7 @@
 
                 <div id="oponentes" class="animate__animated animate__fadeInRight">
                     <h1 class="titulos_{{ $temas[4] }} cor_fontes_{{ $temas[4] }} text-center fw-bold">Oponentes:</h1>
-                    <form action="{{ route("confirmarBatalha") }}" method="POST" class="d-grid gap-3">
+                    <form action="{{ route("confirmar.batalha") }}" method="POST" class="d-grid gap-3">
                         @csrf
 
                         @foreach ($personagens as $personagem)

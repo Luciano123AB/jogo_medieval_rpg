@@ -1,7 +1,20 @@
 @extends("layouts.main_layout")
 
 @section("content")
-    @include("layouts.partials.styles.estilos_tabelas")
+    @if ($temas[1] == "primary")
+        <style>
+            .dt-container {
+                color: #493722;
+            }
+        </style>
+    @else
+        <style>
+            .dt-container {
+                color: #e5a350;
+            }
+        </style>
+    @endif
+    @vite('resources/css/tabelas.css')
 
     <div class="container">
         <div class="fundos_card_{{ $temas[3] }} card p-3">
@@ -10,7 +23,7 @@
                     <div class="d-flex justify-content-between mb-2">
                         <h4 class="cor_fontes_{{ $temas[3] }} titulos_{{ $temas[3] }}">-Vitórias:</h4>
                         <div></div>
-                        <form action="{{ route("resetarVitorias") }}" method="POST">
+                        <form action="{{ route("resetar.vitorias") }}" method="POST">
                             @csrf
                             @method("DELETE")
 
@@ -80,7 +93,7 @@
                     <div class="d-flex justify-content-between mb-2">
                         <h4 class="cor_fontes_{{ $temas[3] }} titulos_{{ $temas[3] }}">-Derrotas:</h4>
                         <div></div>
-                        <form action="{{ route("resetarDerrotas") }}" method="POST">
+                        <form action="{{ route("resetar.derrotas") }}" method="POST">
                             @csrf
                             @method("DELETE")
 

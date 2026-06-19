@@ -16,15 +16,15 @@ class VerificarBatalhando extends Controller
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!session()->has("batalha_comecou")) {
-            $this->alertaResultado("Fora da Batalha!", "Espere! Para usar essa rota, antes você precisa começar uma batalha.", "bi-hand-thumbs-down-fill");
+        if (!session()->has('batalha_comecou')) {
+            $this->alertaResultado('Fora da Batalha!', 'Espere! Para usar essa rota, antes você precisa começar uma batalha.', 'bi-hand-thumbs-down-fill');
 
-            return redirect()->route("preparacao");
+            return redirect()->route('preparacao');
         }
 
         session()->forget([
-            "id_player_temporario",
-            "id_oponente_temporario"
+            'id_player_temporario',
+            'id_oponente_temporario'
         ]);
 
         return $next($request);

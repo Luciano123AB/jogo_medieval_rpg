@@ -1,21 +1,21 @@
 @extends("layouts.main_layout")
 
 @section("content")
-    @include("layouts.partials.styles.estilos_batalha")
+    @vite('resources/css/batalha.css')
 
     <div class="d-flex justify-content-evenly text-center overflow-x-auto">
         <div class="cards_batalha card bg-transparent border border-0">
             <div class="card-header bg-transparent border border-0 h-100">
                 <h4 class="d-flex justify-content-center text-success">
-                    <img src="{{ asset(Auth::user()->foto) }}" class="perfil_player sombras border border-{{ $temas[1] }} rounded-circle">
+                    <img src="{{ asset(auth()->user()->foto) }}" class="perfil_player sombras border border-{{ $temas[1] }} rounded-circle">
                     <div class="border-3 border-start border-black rounded-top-1 ms-2">
-                        <i class="fi fi-{{ strtolower(Auth::user()->pais) }} animate__animated animate__jello animate__infinite border-start border-end float-start me-2"></i>
+                        <i class="fi fi-{{ strtolower(auth()->user()->pais) }} animate__animated animate__jello animate__infinite border-start border-end float-start me-2"></i>
                         <span>Você</span>
                     </div>
                 </h4>
             </div>
             <div class="position-relative">
-                <img src="{{ asset("assets/images/personagens/" . strtolower(Auth::user()->personagem->classe) . ".png") }}" id="player" class="card-img-top animate__animated
+                <img src="{{ asset("assets/images/personagens/" . strtolower(auth()->user()->personagem->classe) . ".png") }}" id="player" class="card-img-top animate__animated
                     @if($batalha->inicio == false)
                         animate__fadeInLeftBig
                     @endif
@@ -38,20 +38,20 @@
                     @csrf
 
                     <div class="sombras btn-group animate__animated animate__fadeIn" role="group" aria-label="SkillsPlayer">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="{{ Auth::user()->personagem->skill01->skill }}">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="{{ auth()->user()->personagem->skill01->skill }}">
                         <label class="cursor d-grid btn cor_fontes_{{ $temas[2] }} bg-{{ $temas[0] }} btn-outline-{{ $temas[1] }}" for="btnradio1">
                             🕹
-                            <span class="cursor">{{ Auth::user()->personagem->skill01->skill }}</span>
+                            <span class="cursor">{{ auth()->user()->personagem->skill01->skill }}</span>
                         </label>
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="{{ Auth::user()->personagem->skill02->skill }}">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="{{ auth()->user()->personagem->skill02->skill }}">
                         <label class="cursor d-grid btn cor_fontes_{{ $temas[2] }} bg-{{ $temas[0] }} btn-outline-{{ $temas[1] }}" for="btnradio2">
                             🕹
-                            <span class="cursor">{{ Auth::user()->personagem->skill02->skill }}</span>
+                            <span class="cursor">{{ auth()->user()->personagem->skill02->skill }}</span>
                         </label>
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="{{ Auth::user()->personagem->skill03->skill }}">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="{{ auth()->user()->personagem->skill03->skill }}">
                         <label class="cursor d-grid btn cor_fontes_{{ $temas[2] }} bg-{{ $temas[0] }} btn-outline-{{ $temas[1] }}" for="btnradio3">
                             🕹
-                            <span class="cursor">{{ Auth::user()->personagem->skill03->skill }}</span>
+                            <span class="cursor">{{ auth()->user()->personagem->skill03->skill }}</span>
                         </label>
                     </div>
                     <div id="escolha" class="alert alert-danger animate__animated animate__shakeX bg-danger mb-0" role="alert" hidden>
