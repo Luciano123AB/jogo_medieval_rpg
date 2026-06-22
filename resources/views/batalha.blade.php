@@ -154,6 +154,50 @@
         </div>
     </div>
 
-    @include("layouts.partials.scripts.animacoes")
-    @include("layouts.partials.scripts.batalha")
+    @php
+
+        $tempo = Cache::get('batalha_tempo_' . session('id_batalha'), [
+            'segundos' => 0,
+            'minutos' => 0
+        ]);
+        
+    @endphp
+
+    <script>
+        window.gameData = {
+            segundos: @json($tempo['segundos'] ?? 0),
+            minutos: @json($tempo['minutos'] ?? 0),
+
+            csrf: @json(csrf_token()),
+            
+            hp_player: @json($batalha->hp),
+            hp_maximo_player: @json($batalha->hp_maximo),
+            hp_oponente: @json($batalha->hp_oponente),
+            hp_maximo_oponente: @json($batalha->hp_maximo_oponente),
+
+            vez: @json($batalha->vez),
+
+            skill01_disponivel: @json($batalha->skill01 ? 'true' : 'false'),
+            skill02_disponivel: @json($batalha->skill02 ? 'true' : 'false'),
+            skill03_disponivel: @json($batalha->skill03 ? 'true' : 'false'),
+
+            classe_player: @json(auth()->user()->personagem->classe),
+            classe_oponente: @json($oponente->classe),
+
+            img_player: @json(asset('assets/images/personagens/' . strtolower(auth()->user()->personagem->classe) . '.png')),
+            img_player_ataque: @json(asset('assets/images/personagens_ataque/' . strtolower(auth()->user()->personagem->classe) . '.png')),
+            img_player_dano: @json(asset('assets/images/personagens_dano/' . strtolower(auth()->user()->personagem->classe) . '.png')),
+            aura_player: @json(asset('assets/images/gifs/auras/' . strtolower(auth()->user()->personagem->classe) . '.gif')),
+
+            img_oponente: @json(asset('assets/images/personagens/' . strtolower($oponente->classe) . '_reverso.png')),
+            img_oponente_ataque: @json(asset('assets/images/personagens_ataque/' . strtolower($oponente->classe) . '_reverso.png')),
+            img_oponente_dano: @json(asset('assets/images/personagens_dano/' . strtolower($oponente->classe) . '_reverso.png')),
+            aura_oponente: @json(asset('assets/images/gifs/auras/' . strtolower($oponente->classe) . '.gif')),
+
+            rota_atacar: @json(route('atacar')),
+            rota_ataque: @json(route('ataque', ['id' => $batalha->oponente_id]))
+        };
+    </script>
+    <script src="{{ asset('assets/js/animacoes.js') }}"></script>
+    <script src="{{ asset('assets/js/batalha.js') }}"></script>
 @endsection

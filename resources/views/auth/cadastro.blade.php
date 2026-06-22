@@ -258,5 +258,11 @@
         </div>
     </div>
 
-    @include("layouts.partials.scripts.cadastro_atualizacao")
+    <script>
+        window.gameData = {
+            perfils: @json(asset('assets/images/perfils')),
+            foto_vazio: @json(asset('photos/vazio.png'))
+        }
+    </script>
+    <script src="{{ asset('assets/js/cadastro_atualizacao.js') }}"></script>
 @endsection
