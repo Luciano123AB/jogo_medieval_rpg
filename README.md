@@ -58,6 +58,7 @@ database/
 docs/                     # Imagens usadas pelo site (Documentação do projeto)
 public/
   assets/                 # Imagens usadas pelo site (Fundos, Ícones, GIFs, etc.)
+    js/                   # Interatividade do frontend
   photos/                 # Fotos dos players
   temp_photos/            # Fotos temporárias dos players
 resources/
