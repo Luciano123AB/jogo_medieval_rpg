@@ -187,7 +187,5 @@ class DatabaseSeeder extends Seeder
                 'skill03_id' => 9
             ]
         ]);
-
-        Player::factory(50)->create();
     }
 }
