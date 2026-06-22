@@ -328,3 +328,62 @@
         });
     </script>
 @endif
+
+<script>
+    function checkOrientation() {
+        if (window.innerHeight > window.innerWidth) {
+            Swal.fire({
+                position: "center",
+                draggable: true,
+                showCloseButton: true,
+                showConfirmButton: false,
+                theme: "dark",
+                background: "{{ $temas[0] }}",
+                imageUrl: "{{ asset('assets/images/icones/icone.png') }}",
+                imageHeight: 150,
+                customClass: {
+                    image: "animate__animated animate__flipOutY animate__infinite"
+                },
+                title: "<label class='d-grid gap-3 py-2'>" +
+                            "<span class='titulos_{{ $temas[4] }} cor_fontes_{{ $temas[4] }} border-{{ $temas[1] }} border-top border-bottom py-3'>" +
+                                "Virar Dispositivo!" +
+                            "</span>" +
+                            "<span class='cor_fontes_{{ $temas[4] }} d-flex justify-content-center fs-5'>" +
+                                "<div class='cursor animate__animated animate__swing animate__infinite'>" +
+                                    "<i class='cursor bi {{ session('alerta_resultado.icone') }} me-1'></i>" +
+                                "</div>" +
+                                "Por favor, para uma melhor esperiência, vira a tela do seu dispositivo." +
+                            "</span>" +
+                        "</label>",
+                footer: "<button style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ $temas[2] }};' id='ok' class='cursor sombras botoes animate__animated animate__fadeIn btn focus-ring {{ $temas[4] == 'escuro' ? 'btn-secondary focus-ring-primary' : 'btn-danger focus-ring-danger' }} btn-sm rounded-pill'>" +
+                            "<span style='color: {{ $temas[2] }}' id='ok' class='cursor d-flex justify-content-center'>" +
+                                "<div id='ok' class='cursor animate__animated animate__bounceIn animate__infinite'>" +
+                                    "<i id='ok' class='cursor bi bi-check-circle-fill me-1'></i>" +
+                                "</div>" +
+                                "OK" +
+                            "</span>" +
+                        "</button>",
+                showClass: {
+                    popup: `
+                        animate__animated
+                        animate__fadeInUp
+                        animate__faster
+                    `
+                },
+                hideClass: {
+                    popup: `
+                        animate__animated
+                        animate__fadeOutDown
+                        animate__faster
+                    `
+                },
+                backdrop: `
+                    rgba(0, 0, 0, 0.4)
+                    url("/images/nyan-cat.gif")
+                    left top
+                    no-repeat
+                `,
+            });
+        }
+    }
+</script>

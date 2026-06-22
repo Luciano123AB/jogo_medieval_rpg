@@ -132,5 +132,26 @@
         </div>
     </div>
 
-    @include("layouts.partials.scripts.tabelas")    
+    @php
+
+        $mensagem = "ACONTECENDO NO MOMENTO.";
+        $tema_bg = "light";
+
+        if ($pagina == "Registro") {
+            $mensagem = "REGISTRADA AINDA.";
+        }
+
+        if (session()->has("tema") && session("tema") == "claro") {
+            $tema_bg = "dark";
+        }
+    @endphp
+
+    <script>
+        window.gameData = {
+            mensagem_tabela: @json($mensagem),
+            tema_background: @json($tema_bg),
+            tema: @json($temas[1])
+        }
+    </script>
+    <script src="{{ asset('assets/js/tabelas.js') }}"></script>
 @endsection

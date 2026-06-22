@@ -37,7 +37,7 @@
 
         @if ($pagina == "Batalha")
             <button id="tela_cheia" class="cursor sombras botoes btn focus-ring btn-{{ $temas[0] }} border-{{ $temas[1] }} focus-ring-{{ $temas[1] }} border">
-                <i id="icone_tela" class="cursor cor_fontes_{{ $temas[3] }} bi bi-arrows-angle-expand fs-4"></i>
+                <i id="icone_tela_cheia" class="cursor cor_fontes_{{ $temas[3] }} bi bi-arrows-angle-expand fs-4"></i>
             </button>
         @endif
     </div>
@@ -48,4 +48,3 @@
 </div>
 
 @include("layouts.partials.audios")
-@include("layouts.partials.scripts.tocar_sons")
