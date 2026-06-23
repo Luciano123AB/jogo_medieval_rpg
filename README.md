@@ -43,31 +43,32 @@ Aplicação web de RPG por turnos desenvolvida com **Laravel**, com foco em:
 ```text
 app/
   Console/
-    Commands/             # Fluxos automáticos
+    Commands/             # Comandos Artisan personalizados.
   Http/    
-    Controllers/          # Fluxos principais (Cadastro, Login, Batalha, etc.)
-    Middleware/           # Regras de acesso
+    Controllers/          # Controladores da aplicação. (MainController, Cadastrar, etc.)
+    Middleware/           # Regras de acesso.
     Requests/             # Validações
-  Models/                 # Entidades (Player, Batalha, Personagem, etc.)
-  Services/               # Regras de negócio auxiliares
-  View/                   # Contrutores dos componentes
+  Models/                 # Modelos Eloquent. (Player, Batalha, Personagem, etc.)
+  Services/               # Regras de negócio auxiliares.
+  View/
+    Components/           # Classes de componentes Blade.
 database/
-  factories/              # Dados gerados
-  migrations/             # Estrutura do banco
-  seeders/                # Dados iniciais
-docs/                     # Imagens usadas pelo site (Documentação do projeto)
+  factories/              # Geração de dados fictícios para testes e seeders. (PlayerFactory)
+  migrations/             # Estrutura do banco.
+  seeders/                # População inicial do banco de dados. (DatabaseSeeder)
+docs/                     # Imagens usadas pelo site. (Documentação do projeto)
 public/
-  assets/                 # Imagens usadas pelo site (Fundos, Ícones, GIFs, etc.)
-    audios/               # Sons usados pelo site (Temas, Resultados, etc.)
-    images/               # Imagens usadas pelo site (Fundos)
-    js/                   # Interatividade do frontend
-  photos/                 # Fotos dos players
-  temp_photos/            # Fotos temporárias dos players
+  assets/
+    audios/               # Sons usados pelo site. (Temas, Resultados, etc.)
+    images/               # Imagens usadas pelo site. (Fundos, Ícones, GIFs, etc.)
+    js/                   # Scripts carregados diretamente.
+  photos/                 # Fotos dos players.
+  temp_photos/            # Fotos temporárias dos players.
 resources/
-  css/                    # Estilos personalizados
-  views/                  # Telas Blade
+  css/                    # Estilos personalizados.
+  views/                  # Telas Blade.
 routes/
-  web.php                 # Rotas da aplicação
+  web.php                 # Rotas da aplicação.
 ```
 
 ## 📸 Demonstração
