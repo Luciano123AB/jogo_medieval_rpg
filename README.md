@@ -1,7 +1,29 @@
 ![Laravel](https://img.shields.io/badge/Laravel-12-red)
 ![PHP](https://img.shields.io/badge/PHP-8.5-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
 
 # ⚔️ Jogo RPG
+- Status: 🟢 Concluído
+
+---
+
+## 📑 Índice
+
+- Sobre
+- Funcionalidades
+- Stack
+- Estrutura
+- Demonstração
+- Pré-Requisitos
+- Instalação
+- Variáveis
+- Docker
+- Deploy
+- Roadmap
+- Licença
+- Autor
+
+---
 
 ## 📜 Sobre
 
@@ -42,39 +64,40 @@ Aplicação web de RPG por turnos desenvolvida com **Laravel**, com foco em:
 
 ```text
 app/
-  Console/
-    Commands/             # Comandos Artisan personalizados.
-  Http/    
-    Controllers/          # Controladores da aplicação. (MainController, Cadastrar, etc.)
-    Middleware/           # Regras de acesso.
-    Requests/             # Validações
-  Models/                 # Modelos Eloquent. (Player, Batalha, Personagem, etc.)
-  Services/               # Regras de negócio auxiliares.
-  View/
-    Components/           # Classes de componentes Blade.
+├── Console/
+    └── Commands/         # Comandos Artisan personalizados.
+├── Http/    
+    ├── Controllers/      # Controladores da aplicação. (MainController, Cadastrar, etc.)
+    ├── Middleware/       # Regras de acesso.
+    └── Requests/         # Validações
+├── Models/               # Modelos Eloquent. (Player, Batalha, Personagem, etc.)
+├── Services/             # Regras de negócio auxiliares.
+└── View/
+    └── Components/       # Classes de componentes Blade.
 database/
-  factories/              # Geração de dados fictícios para testes e seeders. (PlayerFactory)
-  migrations/             # Estrutura do banco.
-  seeders/                # População inicial do banco de dados. (DatabaseSeeder)
+├── factories/            # Geração de dados fictícios para testes e seeders. (PlayerFactory)
+├── migrations/           # Estrutura do banco.
+└── seeders/              # População inicial do banco de dados. (DatabaseSeeder)
 docs/                     # Imagens usadas pelo site. (Documentação do projeto)
 public/
-  assets/
-    audios/               # Sons usados pelo site. (Temas, Resultados, etc.)
-    images/               # Imagens usadas pelo site. (Fundos, Ícones, GIFs, etc.)
-    js/                   # Scripts carregados diretamente.
-  photos/                 # Fotos dos players.
-  temp_photos/            # Fotos temporárias dos players.
+├── assets/
+    ├── audios/           # Sons usados pelo site. (Temas, Resultados, etc.)
+    ├── images/           # Imagens usadas pelo site. (Fundos, Ícones, GIFs, etc.)
+    └── js/               # Scripts carregados diretamente.
+├── photos/               # Fotos dos players.
+└── temp_photos/          # Fotos temporárias dos players.
 resources/
-  css/                    # Estilos personalizados.
-  views/                  # Telas Blade.
+├── css/                  # Estilos personalizados.
+└── views/                # Telas Blade.
 routes/
-  web.php                 # Rotas da aplicação.
+└── web.php               # Rotas da aplicação.
 ```
 
 ## 📸 Demonstração
 
-![Tela Home](docs/home.png)
-![Tela Batalha](docs/batalha.png)
+| Tela Home | Tela Batalha |
+|-------------|-----------|
+| ![](docs/home.png) | ![](docs/batalha.png) |
 
 ---
 
@@ -143,22 +166,6 @@ composer run dev
 > O comando acima executa `php artisan serve`, `queue:listen` e `npm run dev` em paralelo.
 
 ---
- 
-## 🧪 Testes
-
-Rodar suíte de testes:
- 
-```bash
-php artisan test
-```
-
-Ou via Composer:
- 
-```bash
-composer test
-```
- 
----
 
 ## ⚙️ Variáveis de Ambiente Importantes
 
@@ -203,12 +210,19 @@ Checklist recomendado:
  
 ---
 
+```md
 ## 🗺️ Roadmap Técnico Sugerido (Melhorias)
 
-- Reforçar autenticação/autorização (policies/guards).
-- Evoluir cobertura de testes para fluxos PvP e edge cases.
-- Melhorar observabilidade (logs, métricas, alertas).
-- Balanceamento de classes e progressão.
+- [ ] Reforçar autenticação/autorização (policies/guards).
+- [ ] Evoluir cobertura de testes para fluxos PvP e edge cases.
+- [ ] Melhorar observabilidade (logs, métricas, alertas).
+- [ ] Balanceamento de classes e progressão.
+```
+
+---
+## 📄 Licença
+
+Este projeto está licenciado sob a licença MIT.
 
 ---
 
