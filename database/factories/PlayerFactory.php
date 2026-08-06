@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Player;
 use App\Services\Paises;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * @extends Factory<Player>
@@ -22,15 +23,16 @@ class PlayerFactory extends Factory
         $paises = Paises::paises();
 
         return [
+            'personagem_id' => random_int(1, 3),
             'user' => $this->faker->name(),
             'email' => $this->faker->email(),
-            'password' => $this->faker->password(),
+            'password' => Hash::make($this->faker->password()),
             'genero' => $this->faker->randomElement([
                 'Masculino',
                 'Feminino',
                 'Outro'
             ]),
-            'pais' => $this->faker->randomElement($paises),
+            'pais' => $this->faker->randomElement(array_keys($paises)),
             'foto' => 'photos/vazio.png',
             'nivel' => random_int(1, 70),
             'xp' => random_int(0, 1000),
