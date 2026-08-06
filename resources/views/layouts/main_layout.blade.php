@@ -10,7 +10,7 @@
     @include("layouts.partials.links")
 
     @php
-        if (session('tema') === "escuro") {
+        if (Cache::get('tema') === 'escuro') {
             $imagem_fundo = "$imagem.png";
         } else {
             $imagem_fundo = "$imagem" . "_noite.png";
@@ -49,6 +49,6 @@
 
     <script src="{{ asset('assets/js/main_scripts.js') }}"></script>
 
-    <img src="{{ asset('assets/images/gifs/' . (session('tema') == 'escuro' ? 'fogo_invertido.gif' : 'fogo.gif')) }}" class="gifs position-fixed bottom-0 start-50 translate-middle-x opacity-25 w-100 h-50">
+    <img src="{{ asset('assets/images/gifs/' . (Cache::get('tema') === 'escuro' ? 'fogo_invertido.gif' : 'fogo.gif')) }}" class="gifs position-fixed bottom-0 start-50 translate-middle-x opacity-25 w-100 h-50">
 </body>
 </html>

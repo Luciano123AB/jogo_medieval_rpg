@@ -34,7 +34,7 @@
         "escuro"
     ];
         
-    if (session("tema") == "claro" || !session()->has("tema")) {
+    if (Cache::get('tema') === 'claro' || !Cache::has('tema')) {
         $temas = ["black", "danger", "claro"];
     }
 @endphp

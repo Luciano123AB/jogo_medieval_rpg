@@ -10,7 +10,7 @@
         $icone = "⚔️";
     }
 
-    if (session("tema") == "claro" || !session()->has("tema")) {
+    if (Cache::get('tema') === 'claro' || !Cache::has('tema')) {
         $temas = ["#323232", "danger", "#e5a350", "danger", "claro"];
     }
 @endphp
