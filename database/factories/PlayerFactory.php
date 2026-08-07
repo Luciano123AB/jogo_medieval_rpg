@@ -26,7 +26,7 @@ class PlayerFactory extends Factory
             'personagem_id' => random_int(1, 3),
             'user' => $this->faker->name(),
             'email' => $this->faker->email(),
-            'password' => Hash::make($this->faker->password()),
+            'password' => Hash::make('#24032004ABcd123'),
             'genero' => $this->faker->randomElement([
                 'Masculino',
                 'Feminino',
