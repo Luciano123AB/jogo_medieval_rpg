@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Player;
 use App\Services\Paises;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * @extends Factory<Player>
@@ -24,7 +25,7 @@ class PlayerFactory extends Factory
         return [
             'user' => $this->faker->name(),
             'email' => $this->faker->email(),
-            'password' => $this->faker->password(),
+            'password' => Hash::make('#24032004ABcd123'),
             'genero' => $this->faker->randomElement([
                 'Masculino',
                 'Feminino',

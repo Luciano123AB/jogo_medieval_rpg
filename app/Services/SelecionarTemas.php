@@ -2,35 +2,37 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Cache;
+
 class SelecionarTemas
 {
     public static function temas($pagina) {
         if (
-            $pagina == 'Home' ||
-            $pagina == 'Regras' ||
-            $pagina == 'Descrições' ||
-            $pagina == 'Totais' ||
-            $pagina == 'Batalhas' ||
-            $pagina == 'Batalha' ||
-            $pagina == 'Créditos')
+            $pagina === 'Home' ||
+            $pagina === 'Regras' ||
+            $pagina === 'Descrições' ||
+            $pagina === 'Totais' ||
+            $pagina === 'Batalhas' ||
+            $pagina === 'Batalha' ||
+            $pagina === 'Créditos')
         {
 
             $temas = ['secondary', 'primary', 'escuro'];
             
-            if (session('tema') == 'claro' || !session()->has('tema')) {
+            if (Cache::get('tema') === 'claro' || !Cache::has('tema')) {
 
                 $temas = ['dark', 'danger', 'claro'];
 
             }
         } elseif (
-            $pagina == 'Cadastro' ||
-            $pagina == 'Atualização' ||
-            $pagina == 'Atualização Senha')
+            $pagina === 'Cadastro' ||
+            $pagina === 'Atualização' ||
+            $pagina === 'Atualização Senha')
         {
 
             $temas = ['secondary', 'primary', 'light', 'black', 'escuro'];
             
-            if (session('tema') == 'claro' || !session()->has('tema')) {
+            if (Cache::get('tema') === 'claro' || !Cache::has('tema')) {
 
                 $temas = ['dark', 'danger', 'dark', 'white', 'claro'];
 
@@ -39,7 +41,7 @@ class SelecionarTemas
 
             $temas = ['secondary', 'primary', 'light', 'escuro'];
             
-            if (session('tema') == 'claro' || !session()->has('tema')) {
+            if (Cache::get('tema') === 'claro' || !Cache::has('tema')) {
 
                 $temas = ['dark', 'danger', 'dark', 'claro'];
 
@@ -48,7 +50,7 @@ class SelecionarTemas
 
             $temas = ['secondary', 'primary', 'cor_niveis', 'light', 'escuro'];
             
-            if (session('tema') == 'claro' || !session()->has('tema')) {
+            if (Cache::get('tema') === 'claro' || !Cache::has('tema')) {
 
                 $temas = ['dark', 'danger', 'text-danger', 'dark', 'claro'];
 

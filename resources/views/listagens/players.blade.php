@@ -141,7 +141,7 @@
             $mensagem = "REGISTRADA AINDA.";
         }
 
-        if (session()->has("tema") && session("tema") == "claro") {
+        if (Cache::has('tema') && Cache::get('tema') === 'claro') {
             $tema_bg = "dark";
         }
     @endphp
